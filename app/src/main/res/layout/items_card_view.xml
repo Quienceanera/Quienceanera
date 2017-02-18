@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/cardViewItems"
+    app:cardElevation="2dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="1dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardViewItems_helper"
+            android:layout_alignParentStart="true"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="2dp"
+            android:layout_margin="5dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp">
+
+    <ImageView
+        android:id="@+id/imageViewItems"
+        android:src="@drawable/logoi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:layout_toEndOf="@+id/cardViewItems_helper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewItemsQuantity"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textViewItemsName"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:textSize="20sp"
+                android:textStyle="normal|bold" />
+
+
+        <TextView
+            android:id="@+id/textViewItemsPrice"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+        <ImageButton
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/dots_vertical"
+            android:background="@color/tw__transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Eventmakr</string>
+    <string name="i_m_planning_an_event">I\'M PLANNING AN EVENT</string>
+    <string name="i_m_a_vendor">I\'M A VENDOR</string>
+    <string name="i_have_an_account">I have an account</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+
+    <string name="title_activity_vendor">VendorActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="select_your_location">Select your location</string>
+    <string name="what_s_the_occasion">What\'s the occasion?</string>
+    <string name="next">Next</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="when_will_your_event_be_held">When will your event be held?</string>
+    <string name="what_is_your_estimated_budget">What is your estimated budget?</string>
+    <string name="find_vendors">FIND VENDORS</string>
+    <string name="we_found">We found</string>
+    <string name="vendors_for_your_event">vendors for your event!</string>
+    <string name="caterers">CATERERS</string>
+    <string name="title_activity_consumer">ConsumerActivity</string>
+    <string name="log_in">LOG IN</string>
+    <string name="enter_your_zip_code">Enter your zip code</string>
+    <string name="mixologists">MIXOLOGISTS</string>
+    <string name="florists">FLORISTS</string>
+    <string name="party_supplies">PARTY SUPPLIES</string>
+    <string name="djs">DJs</string>
+    <string name="bakeries">BAKERIES</string>
+    <string name="filter_results_by_estimated_budget">Filter results by estimated budget</string>
+    <string name="contact_vendor">Contact Vendor</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="select">Select</string>
+    <string name="contact_vendor_to_confirm_availability">Contact Vendor to Confirm Availability</string>
+    <string name="upload_a_photo">Upload a Photo</string>
+    <string name="change_password">Change Password</string>
+    <string name="delete_account">   Delete Account   </string>
+    <string name="title_activity_sign_in">SignInActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="google_maps_key">AIzaSyDHdWJbPDyo3CMx0iWT0egqk77T7b9pf1Y</string>
+</resources>

@@ -1,0 +1,60 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary"
+    android:layout_gravity="bottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.NavBar">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/navButton_home"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/home_outline" />
+
+        <ImageView
+            android:id="@+id/navButton_chat"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_toEndOf="@+id/navButton_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/message_text_outline" />
+
+        <ImageView
+            android:id="@+id/navButton_cart"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_toEndOf="@+id/navButton_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/cart_outline" />
+
+        <ImageView
+            android:id="@+id/navButton_user"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_toEndOf="@+id/navButton_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/face" />
+
+    </RelativeLayout>
+
+</FrameLayout>

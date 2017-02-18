@@ -1,0 +1,110 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerVendorProfileFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/vendorProfile1"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardViewVendorProfile"
+                app:cardElevation="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageViewVendorProfile"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp" />
+
+            </android.support.v7.widget.CardView>
+
+            <RelativeLayout
+                android:layout_marginLeft="180dp"
+                android:elevation="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewVendorName"
+                android:textAllCaps="true"
+                android:textAlignment="center"
+                android:textColor="@color/colorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textViewVendorDetails"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/textViewVendorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardViewMap"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true"
+            app:cardBackgroundColor="@color/colorAccent"
+            android:layout_below="@id/vendorProfile1"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="120dp">
+
+            <!--<include-->
+                <!--layout="@layout/activity_maps"-->
+                <!--android:layout_height="150dp"-->
+                <!--android:layout_width="match_parent"/>-->
+
+        </android.support.v7.widget.CardView>
+
+        <fragment
+            android:id="@+id/recyclerViewVendorProductItemList"
+            android:name="com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorProfileProductItemFragment"
+            android:layout_below="@+id/cardViewMap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/buttonMyItems"
+        app:cardBackgroundColor="@color/colorButtons"
+        app:cardCornerRadius="5dp"
+        android:layout_marginBottom="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="40dp"
+        android:elevation="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_centerInParent="true"
+                android:text="My Items"
+                android:textSize="20sp"
+                android:elevation="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+</FrameLayout>

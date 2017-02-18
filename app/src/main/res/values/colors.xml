@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#D500F9</color>
+    <color name="colorPrimaryDark">#9c27b0</color>
+    <color name="colorAccentLight">#c3c3e5</color>
+    <color name="colorAccent">#c3c3e5</color>
+    <color name="colorAccentLighter">#f1f0ff</color>
+    <color name="colorText">#000000</color>
+    <color name="colorButtons">#D500F9</color>
+    <color name="colorButtonRed">#D50000</color>
+    <color name="fabColor">#9c27b0</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="background_lite">#FFFAFAFA</color>
+</resources>
