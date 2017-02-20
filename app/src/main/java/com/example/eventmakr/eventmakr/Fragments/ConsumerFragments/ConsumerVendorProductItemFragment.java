@@ -2,7 +2,6 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,13 +17,14 @@ import com.example.eventmakr.eventmakr.Adapters.VendorProfileProductAdapter;
 import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
+import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class ConsumerVendorProductItemFragment extends Fragment implements View.OnClickListener {
+public class ConsumerVendorProductItemFragment extends android.app.Fragment implements View.OnClickListener {
     private static final String TAG = "ConsumerVendorProductItemFragment";
 //    private OnFragmentInteractionListener mListener;
     private CardView mButtonProductItemSelect;
@@ -146,8 +146,12 @@ public class ConsumerVendorProductItemFragment extends Fragment implements View.
         returnToVendorProfile();
     }
     void returnToVendorProfile () {
-        getActivity()
-                .getSupportFragmentManager().popBackStackImmediate();
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.consumerActivityLayout, FragmentUtil.getContactVendorFragment())
+                .addToBackStack(null)
+                .commit();
     }
+
 
 }

@@ -2,8 +2,6 @@ package com.example.eventmakr.eventmakr.Fragments.VendorNavBarFragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +12,8 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
 
-public class VendorNavBar extends Fragment implements View.OnClickListener {
+public class VendorNavBar extends android.app.Fragment implements View.OnClickListener {
     private ImageView mButtonHome, mButtonChat, mButtonCart, mButtonUser;
-    private FragmentManager mFragmentManager;
-
 
     public VendorNavBar() {
         // Required empty public constructor
@@ -67,8 +63,7 @@ public class VendorNavBar extends Fragment implements View.OnClickListener {
     }
 
     public void getUserFragment () {
-        FragmentManager mFragmentManagerSupport = getActivity().getSupportFragmentManager();
-        mFragmentManagerSupport
+        getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.navVendorActivityLayout, FragmentUtil.getUserFragment())
                 .addToBackStack(null)
@@ -76,9 +71,7 @@ public class VendorNavBar extends Fragment implements View.OnClickListener {
     }
 
     public void getChatFragment () {
-//        Toast.makeText(getActivity(), "chat", Toast.LENGTH_SHORT).show();
-        FragmentManager mFragmentManagerSupport = getActivity().getSupportFragmentManager();
-        mFragmentManagerSupport
+        getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.navVendorActivityLayout, FragmentUtil.getChatFragment())
                 .addToBackStack(null)
@@ -86,8 +79,7 @@ public class VendorNavBar extends Fragment implements View.OnClickListener {
     }
 
     public void getCartFragment () {
-        FragmentManager mFragmentManagerSupport = getActivity().getSupportFragmentManager();
-        mFragmentManagerSupport
+        getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.navVendorActivityLayout, FragmentUtil.getCartFragment())
                 .addToBackStack(null)

@@ -2,8 +2,6 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +12,7 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
 
-public class MenuItemFragment extends Fragment implements  View.OnClickListener{
+public class MenuItemFragment extends android.app.Fragment implements  View.OnClickListener{
     private static final String TAG = "MenuItemFragment";
     private OnFragmentInteractionListener mListener;
 
@@ -69,14 +67,13 @@ public class MenuItemFragment extends Fragment implements  View.OnClickListener{
         switch (id) {
             case R.id.buttonProductItemSelect:
                 getVendorProfileFragment();
-                Toast.makeText(getContext(), "menu item selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "menu item selected", Toast.LENGTH_SHORT).show();
                 break;
             default:
         }
     }
     public void getVendorProfileFragment() {
-        FragmentManager mFragmentManagerSupport = getActivity().getSupportFragmentManager();
-        mFragmentManagerSupport.beginTransaction().replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorProfileFragment()).commit();
+        getFragmentManager().beginTransaction().replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorProfileFragment()).commit();
     }
 
     public interface OnFragmentInteractionListener {

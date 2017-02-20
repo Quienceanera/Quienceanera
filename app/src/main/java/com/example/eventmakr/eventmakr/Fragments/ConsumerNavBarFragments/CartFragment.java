@@ -2,7 +2,6 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import android.view.ViewGroup;
 import com.example.eventmakr.eventmakr.R;
 
 
-public class CartFragment extends Fragment {
+public class CartFragment extends android.app.Fragment {
 
     private OnFragmentInteractionListener mListener;
 

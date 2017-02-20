@@ -2,7 +2,6 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class ConsumerVendorProfileFragment extends Fragment implements View.OnClickListener {
+public class ConsumerVendorProfileFragment extends android.app.Fragment implements View.OnClickListener {
     private static final String TAG = "ConsumerVendorProfileFragment";
 //    private OnFragmentInteractionListener mListener;
     private CardView mButtonMyItems;

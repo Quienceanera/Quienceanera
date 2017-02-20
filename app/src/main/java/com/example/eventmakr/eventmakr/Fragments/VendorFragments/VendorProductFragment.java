@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +27,7 @@ import com.google.firebase.storage.UploadTask;
 
 import static android.app.Activity.RESULT_OK;
 
-public class VendorProductFragment extends Fragment implements View.OnClickListener{
+public class VendorProductFragment extends android.app.Fragment implements View.OnClickListener{
 
     private static final String TAG = "VendorProductFragment";
 

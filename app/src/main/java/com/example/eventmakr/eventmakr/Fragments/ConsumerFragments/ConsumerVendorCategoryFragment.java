@@ -2,7 +2,6 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,7 @@ import android.widget.Toast;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
-public class ConsumerVendorCategoryFragment extends Fragment implements View.OnClickListener {
+public class ConsumerVendorCategoryFragment extends android.app.Fragment implements View.OnClickListener {
 
     private static final String TAG = "ConsumerVendorCategoryFragment";
 

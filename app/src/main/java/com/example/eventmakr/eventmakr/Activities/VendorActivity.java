@@ -1,8 +1,8 @@
 package com.example.eventmakr.eventmakr.Activities;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -12,7 +12,7 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.github.florent37.viewanimator.ViewAnimator;
 
-public class VendorActivity extends AppCompatActivity implements View.OnClickListener{
+public class VendorActivity extends Activity implements View.OnClickListener{
     private CardView mCardViewProducts, mCardViewDocuments, mCardViewInputInfo;
     private RelativeLayout mLayoutVendorMenu;
 
@@ -33,11 +33,19 @@ public class VendorActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     void getVendorInputFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.vendorActivityLayout, FragmentUtil.getVendorInputFragment()).commit();
+        getFragmentManager()
+                .beginTransaction()
+                .add(R.id.vendorActivityLayout, FragmentUtil.getVendorInputFragment())
+                .addToBackStack(null)
+                .commit();
     }
 
     void getVendorProductFragment() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.vendorActivityLayout, FragmentUtil.getVendorProductFragment()).commit();
+        getFragmentManager()
+            .beginTransaction()
+                .replace(R.id.vendorActivityLayout, FragmentUtil.getVendorProductFragment())
+                .addToBackStack(null)
+                .commit();
     }
 
     void transitionOutMainMenu () {
@@ -76,5 +84,14 @@ public class VendorActivity extends AppCompatActivity implements View.OnClickLis
             default:
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

@@ -2,7 +2,6 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,7 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
 
-public class NavBar extends Fragment implements View.OnClickListener {
+public class NavBar extends android.app.Fragment implements View.OnClickListener {
     private ImageView mButtonHome, mButtonChat, mButtonCart, mButtonUser;
     private FragmentManager mFragmentManager;
 
@@ -68,8 +67,7 @@ public class NavBar extends Fragment implements View.OnClickListener {
     }
 
     public void getUserFragment () {
-        FragmentManager mFragmentManagerSupport = getActivity().getSupportFragmentManager();
-        mFragmentManagerSupport
+        getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.navConsumerActivityLayout, FragmentUtil.getUserFragment())
                 .addToBackStack(null)
@@ -77,8 +75,7 @@ public class NavBar extends Fragment implements View.OnClickListener {
     }
 
     public void getChatFragment () {
-        FragmentManager mFragmentManagerSupport = getActivity().getSupportFragmentManager();
-        mFragmentManagerSupport
+        getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.navConsumerActivityLayout, FragmentUtil.getChatFragment())
                 .addToBackStack(null)
@@ -86,8 +83,7 @@ public class NavBar extends Fragment implements View.OnClickListener {
     }
 
     public void getCartFragment () {
-        FragmentManager mFragmentManagerSupport = getActivity().getSupportFragmentManager();
-        mFragmentManagerSupport
+        getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.navConsumerActivityLayout, FragmentUtil.getCartFragment())
                 .addToBackStack(null)

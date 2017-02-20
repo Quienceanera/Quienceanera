@@ -3,7 +3,6 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -16,7 +15,7 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.github.florent37.viewanimator.ViewAnimator;
 
-public class ConsumerInputFragment extends Fragment implements View.OnClickListener {
+public class ConsumerInputFragment extends android.app.Fragment implements View.OnClickListener {
     private static final String TAG = "ConsumerInputFragment";
     private OnFragmentInteractionListener mListener;
     private RelativeLayout mLayoutConsumer1, mLayoutConsumer2;
@@ -50,7 +49,6 @@ public class ConsumerInputFragment extends Fragment implements View.OnClickListe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getActivity();
-        mFragmentManager = getActivity().getSupportFragmentManager();
 //        if (getArguments() != null) {
 //            mParam1 = getArguments().getString(ARG_PARAM1);
 //            mParam2 = getArguments().getString(ARG_PARAM2);
@@ -112,7 +110,7 @@ public class ConsumerInputFragment extends Fragment implements View.OnClickListe
                 mLayoutConsumer2.setVisibility(View.VISIBLE);
                 break;
             case R.id.buttonFindVendors:
-                mFragmentManager.beginTransaction().replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorCategoryFragment()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorCategoryFragment()).commit();
                 Toast.makeText(mContext, "find vendors", Toast.LENGTH_SHORT).show();
             default:
         }

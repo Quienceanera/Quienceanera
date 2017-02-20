@@ -44,12 +44,11 @@ public class VendorAdapter extends FirebaseRecyclerAdapter<Vendor, Viewholder> {
 
     private void getVendorProfile() {
         ConsumerActivity consumerActivity = (ConsumerActivity)mContext;
-        consumerActivity.getSupportFragmentManager()
+        consumerActivity.getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorProfileFragment())
                 .addToBackStack(null)
                 .commit();
-
     }
 //    private void sendVendorKey() {
 //        ConsumerVendorProfileFragment consumerVendorProfileFragment = new ConsumerVendorProfileFragment();

@@ -2,14 +2,13 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.eventmakr.eventmakr.R;
 
-public class ConsumerBudgetFragment extends Fragment implements View.OnClickListener{
+public class ConsumerBudgetFragment extends android.app.Fragment implements View.OnClickListener{
 
     private static final String TAG = "ConsumerBudgetFragment";
 

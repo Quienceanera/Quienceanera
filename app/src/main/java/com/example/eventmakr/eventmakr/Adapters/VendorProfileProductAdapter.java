@@ -1,7 +1,6 @@
 package com.example.eventmakr.eventmakr.Adapters;
 
 import android.content.Context;
-import android.support.v4.app.FragmentManager;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
@@ -61,8 +60,9 @@ public class VendorProfileProductAdapter extends FirebaseRecyclerAdapter<Menu, V
         });
     }
     void getProductItemFragment () {
-        FragmentManager mFragmentManager = ((ConsumerActivity) mContext).getSupportFragmentManager();
-        mFragmentManager.beginTransaction()
+        ((ConsumerActivity) mContext)
+                .getFragmentManager()
+                .beginTransaction()
                 .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorProductItemFragment())
                 .addToBackStack(null)
                 .commit();
