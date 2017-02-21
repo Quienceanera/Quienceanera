@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.eventmakr.eventmakr.R;
+import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
 public class ConsumerBudgetFragment extends android.app.Fragment implements View.OnClickListener{
 
@@ -31,27 +32,18 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
                              Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.fragment_consumer_budget, container, false);
-//        button = (CardView) view.findViewById(R.id.button);
-//        button.setOnClickListener(this);
+
+        getChildRecyclerVendorFragment();
+
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    void getChildRecyclerVendorFragment () {
+        getChildFragmentManager()
+                .beginTransaction()
+                .add(R.id.containerRecyclerVendorFragment, FragmentUtil.getRecyclerVendorFragment())
+                .commit();
     }
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
 
     @Override
     public void onDetach() {
@@ -61,8 +53,7 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
 
     @Override
     public void onClick(View view) {
-//        FragmentManager mFragmentManager = getActivity().getSupportFragmentManager();
-//        mFragmentManager.beginTransaction().replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorProfileFragment()).commit();
+
     }
 
     public interface OnFragmentInteractionListener {

@@ -57,25 +57,40 @@
             android:id="@+id/cardViewMap"
             app:cardElevation="2dp"
             app:cardUseCompatPadding="true"
-            app:cardBackgroundColor="@color/colorAccent"
             android:layout_below="@id/vendorProfile1"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="120dp">
 
+            <FrameLayout
+                android:id="@+id/containerMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </FrameLayout>
+
             <!--<include-->
                 <!--layout="@layout/activity_maps"-->
-                <!--android:layout_height="150dp"-->
+                <!--android:layout_height="match_parent"-->
                 <!--android:layout_width="match_parent"/>-->
 
         </android.support.v7.widget.CardView>
 
-        <fragment
-            android:id="@+id/recyclerViewVendorProductItemList"
-            android:name="com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorProfileProductItemFragment"
+        <FrameLayout
+            android:id="@+id/containerRecyclerVendorProductItemList"
             android:layout_below="@+id/cardViewMap"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+
+            <!--<fragment-->
+                <!--android:id="@+id/recyclerViewVendorProductItemList"-->
+                <!--android:name="com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorProfileProductItemFragment"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"/>-->
+
+        </FrameLayout>
+
+
 
     <android.support.v7.widget.CardView
         android:id="@+id/buttonMyItems"

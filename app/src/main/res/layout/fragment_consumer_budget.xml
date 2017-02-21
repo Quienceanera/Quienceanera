@@ -40,12 +40,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-            <fragment
-                android:name="com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorFragment"
-                android:id="@+id/recyclerVendorFragment"
+            <FrameLayout
+                android:id="@+id/containerRecyclerVendorFragment"
                 android:layout_below="@+id/textViewVendorCategory"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent">
+                <!--<fragment-->
+                    <!--android:name="com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorFragment"-->
+                    <!--android:id="@+id/recyclerVendorFragment"-->
+                    <!--android:layout_below="@+id/textViewVendorCategory"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"/>-->
+            </FrameLayout>
+
+
 
 
         </RelativeLayout>

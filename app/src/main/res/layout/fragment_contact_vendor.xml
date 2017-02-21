@@ -21,22 +21,22 @@
             android:layout_height="wrap_content" />
 
         <FrameLayout
-            android:id="@+id/layoutItems"
+            android:id="@+id/containerRecyclerItemsFragment"
             android:layout_below="@+id/TextViewTop"
             android:layout_width="match_parent"
             android:layout_height="250dp">
 
-            <fragment
-                android:name="com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerItemsFragment"
-                android:id="@+id/recyclerItemsFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+            <!--<fragment-->
+                <!--android:name="com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerItemsFragment"-->
+                <!--android:id="@+id/recyclerItemsFragment"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"/>-->
 
         </FrameLayout>
 
         <TextView
             android:text="$50 TOTAL"
-            android:layout_below="@id/layoutItems"
+            android:layout_below="@id/containerRecyclerItemsFragment"
             android:id="@+id/textViewTotalPrice"
             android:layout_margin="20dp"
             android:layout_centerHorizontal="true"

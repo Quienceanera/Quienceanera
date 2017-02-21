@@ -3,11 +3,12 @@ package com.example.eventmakr.eventmakr.RecyclerFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.Adapters.VendorProfileProductAdapter;
 import com.example.eventmakr.eventmakr.Objects.Menu;
@@ -20,7 +21,7 @@ public class RecyclerVendorProfileProductItemFragment extends Fragment {
     private static final String TAG = "RecyclerVendorProfileProductItemFragment";
     private RecyclerView mRecyclerView;
     private VendorProfileProductAdapter mVendorProfileProductAdapter;
-    private StaggeredGridLayoutManager mLayoutManager;
+    private LinearLayoutManager mLayoutManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,8 +31,8 @@ public class RecyclerVendorProfileProductItemFragment extends Fragment {
                 Viewholder.class,
                 FirebaseUtil.getMenuRef(),
                 getActivity());
-        mLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL);
-//        mLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+//        mLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL);
+        mLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         super.onCreate(savedInstanceState);
     }
 
@@ -45,5 +46,12 @@ public class RecyclerVendorProfileProductItemFragment extends Fragment {
         mRecyclerView.setAdapter(mVendorProfileProductAdapter);
         mLayoutManager.setItemPrefetchEnabled(false);
         return rootView;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(getActivity(), "destroy", Toast.LENGTH_SHORT).show();
+        mVendorProfileProductAdapter.cleanup();
     }
 }

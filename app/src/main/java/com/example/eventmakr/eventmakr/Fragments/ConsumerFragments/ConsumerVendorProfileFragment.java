@@ -57,9 +57,25 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
         mTextViewVendorDescription = (TextView) view.findViewById(R.id.textViewVendorDetails);
 
         getVendorInfo();
+        getChildRecyclerVendorProductItems();
+        getChildMapFragment();
 
         mButtonMyItems.setOnClickListener(this);
         return view;
+    }
+
+    void getChildRecyclerVendorProductItems () {
+        getChildFragmentManager()
+                .beginTransaction()
+                .add(R.id.containerRecyclerVendorProductItemList, FragmentUtil.getRecyclerVendorProfileProductItemFragment())
+                .commit();
+    }
+
+    void getChildMapFragment () {
+        getChildFragmentManager()
+                .beginTransaction()
+                .add(R.id.containerMapFragment, FragmentUtil.getMapFragment())
+                .commit();
     }
 
     public void getVendorInfo() {

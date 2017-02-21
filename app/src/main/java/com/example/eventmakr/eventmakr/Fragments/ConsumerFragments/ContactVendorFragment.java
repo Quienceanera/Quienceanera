@@ -1,17 +1,18 @@
 package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.eventmakr.eventmakr.R;
+import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
 public class ContactVendorFragment extends android.app.Fragment implements View.OnClickListener{
     private static final String TAG = "ContactVendorFragment";
+    private TextView mTextViewTotal;
 
-    private OnFragmentInteractionListener mListener;
 
     public ContactVendorFragment() {
         // Required empty public constructor
@@ -27,25 +28,17 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_contact_vendor, container, false);
+        mTextViewTotal = (TextView) view.findViewById(R.id.textViewTotalPrice);
+        getChildRecyclerItems();
         return view;
     }
 
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+    void getChildRecyclerItems () {
+        getChildFragmentManager()
+                .beginTransaction()
+                .add(R.id.containerRecyclerItemsFragment, FragmentUtil.getRecyclerItemsFragment())
+                .commit();
     }
 
     @Override
@@ -53,8 +46,4 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
 
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

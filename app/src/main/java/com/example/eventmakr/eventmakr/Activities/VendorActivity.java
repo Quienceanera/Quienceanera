@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import com.github.florent37.viewanimator.ViewAnimator;
 public class VendorActivity extends Activity implements View.OnClickListener{
     private CardView mCardViewProducts, mCardViewDocuments, mCardViewInputInfo;
     private RelativeLayout mLayoutVendorMenu;
+    private ImageButton mBackButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,10 +27,12 @@ public class VendorActivity extends Activity implements View.OnClickListener{
         mCardViewDocuments = (CardView) findViewById(R.id.cardViewDocuments);
         mCardViewInputInfo = (CardView) findViewById(R.id.cardViewInputInfo);
         mLayoutVendorMenu = (RelativeLayout) findViewById(R.id.layoutVendorMain);
+        mBackButton = (ImageButton) findViewById(R.id.toolbarBackButton);
 
         mCardViewProducts.setOnClickListener(this);
         mCardViewDocuments.setOnClickListener(this);
         mCardViewInputInfo.setOnClickListener(this);
+        mBackButton.setOnClickListener(this);
 
     }
 
@@ -81,6 +85,8 @@ public class VendorActivity extends Activity implements View.OnClickListener{
                 getVendorInputFragment();
                 Toast.makeText(this, "info", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.toolbarBackButton:
+                onBackPressed();
             default:
         }
 

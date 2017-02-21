@@ -14,6 +14,10 @@ import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.MenuItemFragm
 import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.NavBar;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.UserFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorInputFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerItemsFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorProfileProductItemFragment;
+import com.google.android.gms.maps.MapFragment;
 
 public class FragmentUtil {
 
@@ -75,6 +79,22 @@ public class FragmentUtil {
     public static ConsumerVendorProductItemFragment getConsumerVendorProductItemFragment () {
         ConsumerVendorProductItemFragment consumerVendorProductItemFragment = new ConsumerVendorProductItemFragment();
         return consumerVendorProductItemFragment;
+    }
+
+    public static RecyclerVendorFragment getRecyclerVendorFragment () {
+        return new RecyclerVendorFragment();
+    }
+
+    public static RecyclerVendorProfileProductItemFragment getRecyclerVendorProfileProductItemFragment () {
+        return new RecyclerVendorProfileProductItemFragment();
+    }
+
+    public static MapFragment getMapFragment () {
+        return new MapFragment();
+    }
+
+    public static RecyclerItemsFragment getRecyclerItemsFragment () {
+        return new RecyclerItemsFragment();
     }
 
 

@@ -47,6 +47,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         mContext = getActivity();
         mProductKey = mVendorProfileProductAdapter.mProductKey;
         mDatabaseReference = FirebaseUtil.getMenuRef();
+
     }
 
     @Override
@@ -98,7 +99,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                     @Override
                     public void afterTextChanged(Editable s) {
 //                        int q = Integer.valueOf(mEditTextQuantity.getText().toString());
-//                        Toast.makeText(mContext, "$ " + String.valueOf((q * Int.valueOf(mProductPrice))), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(mContext, "$ " + String.valueOf((q * Integer.valueOf(mProductPrice))), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -148,7 +149,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     void returnToVendorProfile () {
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.consumerActivityLayout, FragmentUtil.getContactVendorFragment())
+                .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorProfileFragment())
                 .addToBackStack(null)
                 .commit();
     }

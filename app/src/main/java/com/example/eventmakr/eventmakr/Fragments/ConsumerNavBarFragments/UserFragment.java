@@ -1,25 +1,25 @@
 package com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.R;
+import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class UserFragment extends android.app.Fragment {
 
-    private OnFragmentInteractionListener mListener;
-    private FragmentManager mFragmentManager;
-
-
+    private CircleImageView mCircleImageViewUser;
+    private TextView mTextViewUserName, mTextViewUserEmail, mTextViewUserLocation;
     public UserFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,46 +31,22 @@ public class UserFragment extends android.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_user, container, false);
+        mCircleImageViewUser = (CircleImageView) view.findViewById(R.id.circleImageViewUser);
+        mTextViewUserName = (TextView) view.findViewById(R.id.textViewUserName);
+        mTextViewUserEmail = (TextView) view.findViewById(R.id.textViewUserEmail);
+        mTextViewUserLocation = (TextView) view.findViewById(R.id.textViewUserLocation);
 
+        insertUserData();
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
-
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+    void insertUserData() {
+        Glide.with(this)
+                .load(FirebaseUtil.getUser().getPhotoUrl())
+                .centerCrop()
+                .into(mCircleImageViewUser);
+        mTextViewUserName.setText(FirebaseUtil.getUser().getDisplayName());
+        mTextViewUserEmail.setText(FirebaseUtil.getUser().getEmail());
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

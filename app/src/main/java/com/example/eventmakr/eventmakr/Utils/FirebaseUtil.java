@@ -35,10 +35,10 @@ public class FirebaseUtil {
         return getBaseRef().child("item");
     }
 
-//    public static User getUser () {
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        return new User(user.getDisplayName(),user.getPhotoUrl().toString(), null, null, null);
-//    }
+    public static FirebaseUser getUser () {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        return user;
+    }
     public static String getUserName () {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         return firebaseUser.getDisplayName();

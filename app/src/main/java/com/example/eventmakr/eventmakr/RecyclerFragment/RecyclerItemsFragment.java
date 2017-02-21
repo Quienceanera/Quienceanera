@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.Adapters.ItemsAdapter;
 import com.example.eventmakr.eventmakr.Objects.Items;
@@ -43,6 +44,14 @@ public class RecyclerItemsFragment extends Fragment{
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mItemsAdapter);
         mLayoutManager.setItemPrefetchEnabled(false);
+
         return rootView;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(getActivity(), "destroyitems", Toast.LENGTH_SHORT).show();
+        mItemsAdapter.cleanup();
     }
 }

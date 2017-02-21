@@ -6,7 +6,6 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
@@ -77,27 +76,27 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
         switch (id) {
             case R.id.cardViewProducts:
                 getConsumerBudgetFragment();
-                Toast.makeText(getContext(), "caterers", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "caterers", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cardViewDocuments:
                 getConsumerBudgetFragment();
-                Toast.makeText(getContext(), "mixologists", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(, "mixologists", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cardViewInputInfo:
                 getConsumerBudgetFragment();
-                Toast.makeText(getContext(), "florists", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "florists", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cardViewPartySupplies:
                 getConsumerBudgetFragment();
-                Toast.makeText(getContext(), "party supplies", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "party supplies", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cardViewDjs:
                 getConsumerBudgetFragment();
-                Toast.makeText(getContext(), "djs", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "djs", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cardViewBakeries:
                 getConsumerBudgetFragment();
-                Toast.makeText(getContext(), "bakeries", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "bakeries", Toast.LENGTH_SHORT).show();
                 break;
             default:
         }
@@ -105,7 +104,11 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
     }
 
     public void getConsumerBudgetFragment() {
-        getFragmentManager().beginTransaction().replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerBudgetFragment()).commit();
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerBudgetFragment())
+                .addToBackStack(null)
+                .commit();
     }
 
     public interface OnFragmentInteractionListener {
