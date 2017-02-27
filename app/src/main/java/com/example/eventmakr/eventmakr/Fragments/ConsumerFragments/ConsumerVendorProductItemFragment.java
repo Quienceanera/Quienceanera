@@ -34,7 +34,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     private ImageView mImageViewProductItem;
     private TextView mTextViewProductItemName, mTextViewProductItemDetails, mTextViewProductItemPrice;
     public static String mProductKey;
-    private String mProductImage, mProductName, mProductDetails, mProductPrice, mProductQuantity, mKey;
+    private String mProductImage, mProductName, mProductDetails, mProductPrice, mProductQuantity, mVendorUid, mUid, mKey;
     private EditText mEditTextQuantity;
 
     public ConsumerVendorProductItemFragment() {
@@ -46,6 +46,8 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         super.onCreate(savedInstanceState);
         mContext = getActivity();
         mProductKey = mVendorProfileProductAdapter.mProductKey;
+        mVendorUid = mVendorProfileProductAdapter.mVendorUid;
+        mUid = FirebaseUtil.getUser().getUid();
         mDatabaseReference = FirebaseUtil.getMenuRef();
 
     }
@@ -127,7 +129,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
 
     }
     void getKey () {
-        mDatabaseReference = FirebaseUtil.getItemRef();
+        mDatabaseReference = FirebaseUtil.getBaseRef().child("cart").child(mUid).child(mVendorUid);
         mPushRef = mDatabaseReference.push();
         mKey = mPushRef.getKey();
         addToMyItems();
@@ -141,7 +143,9 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                 mProductQuantity,
                 mProductPrice,
                 mProductName,
-                mProductImage
+                mProductImage,
+                mKey,
+                mVendorUid
         );
         mPushRef.setValue(items);
         returnToVendorProfile();

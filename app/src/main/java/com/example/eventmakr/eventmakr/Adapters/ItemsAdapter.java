@@ -2,16 +2,12 @@ package com.example.eventmakr.eventmakr.Adapters;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Objects.Items;
-import com.example.eventmakr.eventmakr.Utils.Viewholder;
+import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class ItemsAdapter extends FirebaseRecyclerAdapter<Items, Viewholder> {
 
@@ -30,17 +26,6 @@ public class ItemsAdapter extends FirebaseRecyclerAdapter<Items, Viewholder> {
         super(modelClass, modelLayout, viewHolderClass, ref);
         this.mContext = context;
 
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
     @Override
@@ -53,14 +38,15 @@ public class ItemsAdapter extends FirebaseRecyclerAdapter<Items, Viewholder> {
                 .centerCrop()
                 .into(viewHolder.mImageViewItems);
 
+//        int q = Integer.parseInt(model.getQuantity());
+//        float p = Float.parseFloat((model.getPrice()));
+//        final float t = (q * p);
+//        Toast.makeText(mContext, String.valueOf(t), Toast.LENGTH_SHORT).show();
 
         viewHolder.mImageViewItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int q = Integer.parseInt(model.getQuantity());
-                float p = Float.parseFloat((model.getPrice()));
-                final float t = (q * p);
-                Toast.makeText(mContext, String.valueOf(t), Toast.LENGTH_SHORT).show();
+
             }
         });
     }

@@ -31,7 +31,8 @@ import static android.app.Activity.RESULT_OK;
 public class VendorInputFragment extends android.app.Fragment implements View.OnClickListener{
 
     private final static int SELECT_PHOTO = 0;
-    private String mName, mOwner, mContact, mId, mAddress, mZipcode, mDescription, mPrice, mLogo, mKey, mCategory;
+    private String mName, mOwner, mContact, mId, mAddress, mZipcode, mDescription, mPrice, mLogo, mKey, mCategory, mVendorUid;
+    public static String mVendorKey;
     private CardView mButtonNext, mButtonSave;
     private ProgressBar mProgressBar;
     private StorageReference mStorageReference, mPhotoRef;
@@ -77,10 +78,13 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
         mLayout1 = (RelativeLayout) mView.findViewById(R.id.layoutVendorInput);
         mLayout2 = (RelativeLayout) mView.findViewById(R.id.layoutVendorInput2);
         mProgressBar = (ProgressBar) mView.findViewById(R.id.progressBarVendorInput);
+        mVendorUid = mFirebaseAuth.getCurrentUser().getUid();
 
         mContext = getActivity();
 
-        mStorageReference = mFirebaseStorage.getReference().child("vendor");
+        if(mCategory != null) {
+            mStorageReference = mFirebaseStorage.getReference().child("vendor").child(mCategory).child(mVendorUid);
+        }
         mButtonNext.setOnClickListener(this);
         mButtonSave.setOnClickListener(this);
         mImageViewLogo.setOnClickListener(this);
@@ -90,27 +94,27 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
     }
 
     public void getKey () {
-        mDatabaseRef = FirebaseUtil.getVendorRef();
-        mPushRef = mDatabaseRef.push();
-        mKey = mPushRef.getKey();
+        mCategory = mEditTextCategory.getText().toString();
+        mDatabaseRef = FirebaseUtil.getVendorRef().child(mCategory).child(FirebaseUtil.getUid());
+        mPushRef = mDatabaseRef;
+        mVendorKey = mPushRef.getKey();
         databasePush();
     }
     public void databasePush() {
         mName = mEditTextName.getText().toString();
         mOwner = mEditTextOwner.getText().toString();
         mContact = mEditTextContact.getText().toString();
-        mId = mFirebaseAuth.getCurrentUser().getUid();
         mAddress = mEditTextAddress.getText().toString();
         mZipcode = mEditTextZipcode.getText().toString();
         mDescription = mEditTextDescription.getText().toString();
         mPrice = mEditTextPrice.getText().toString();
-        mCategory = mEditTextCategory.getText().toString();
 
         Vendor vendor = new Vendor(
                 mName,
                 mOwner,
                 mContact,
-                mId,
+                mVendorUid,
+                mVendorKey,
                 mAddress,
                 mZipcode,
                 mDescription,
@@ -137,9 +141,9 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
                     Toast.makeText(mContext, "Photo Uploaded", Toast.LENGTH_SHORT).show();
                 }
             });
-            Toast.makeText(mContext, "if", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(mContext, "if", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(mContext, "else", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(mContext, "else", Toast.LENGTH_SHORT).show();
         }
     }
 

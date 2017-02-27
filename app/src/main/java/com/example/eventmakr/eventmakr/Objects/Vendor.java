@@ -5,7 +5,8 @@ public class Vendor {
     private String name;
     private String owner;
     private String contact;
-    private String id;
+    private String vendorUid;
+    private String vendorKey;
     private String address;
     private String zipcode;
     private String description;
@@ -16,11 +17,12 @@ public class Vendor {
     public Vendor() {
     }
 
-    public Vendor(String name, String owner, String contact, String id, String address, String zipcode, String description, String price, String logo, String category) {
+    public Vendor(String name, String owner, String contact, String vendorUid, String vendorKey, String address, String zipcode, String description, String price, String logo, String category) {
         this.name = name;
         this.owner = owner;
         this.contact = contact;
-        this.id = id;
+        this.vendorUid = vendorUid;
+        this.vendorKey = vendorKey;
         this.address = address;
         this.zipcode = zipcode;
         this.description = description;
@@ -53,12 +55,20 @@ public class Vendor {
         this.contact = contact;
     }
 
-    public String getId() {
-        return id;
+    public String getVendorUid() {
+        return vendorUid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setVendorUid(String vendorUid) {
+        this.vendorUid = vendorUid;
+    }
+
+    public String getVendorKey() {
+        return vendorKey;
+    }
+
+    public void setVendorKey(String vendorKey) {
+        this.vendorKey = vendorKey;
     }
 
     public String getAddress() {

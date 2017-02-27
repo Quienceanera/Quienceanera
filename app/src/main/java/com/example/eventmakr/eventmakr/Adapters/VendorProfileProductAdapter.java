@@ -8,7 +8,7 @@ import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
 import com.example.eventmakr.eventmakr.Objects.Menu;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
-import com.example.eventmakr.eventmakr.Utils.Viewholder;
+import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,7 +21,7 @@ public class VendorProfileProductAdapter extends FirebaseRecyclerAdapter<Menu, V
     private  static final String TAG = VendorProfileProductAdapter.class.getSimpleName();
     private Context mContext;
     private DatabaseReference mDatabaseReference;
-    public static String mProductKey;
+    public static String mProductKey, mVendorUid;
 
     public VendorProfileProductAdapter(Class<Menu> modelClass, int modelLayout, Class<Viewholder> viewHolderClass, Query ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
@@ -53,6 +53,7 @@ public class VendorProfileProductAdapter extends FirebaseRecyclerAdapter<Menu, V
             @Override
             public void onClick(View v) {
                 mProductKey = model.getKey();
+                mVendorUid = model.getVendorUid();
                 getProductItemFragment();
 //                Toast.makeText(mContext, model.getKey(), Toast.LENGTH_SHORT).show();
 

@@ -9,12 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.Objects.Chat;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
-import com.example.eventmakr.eventmakr.Utils.Viewholder;
+import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
@@ -83,7 +82,6 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
         switch (id) {
             case R.id.fabSend:
                 postChat();
-                Toast.makeText(getActivity(), "send", Toast.LENGTH_SHORT).show();
                 break;
             default:
         }

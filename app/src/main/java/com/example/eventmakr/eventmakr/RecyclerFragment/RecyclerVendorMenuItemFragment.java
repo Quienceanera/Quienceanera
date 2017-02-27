@@ -13,7 +13,7 @@ import com.example.eventmakr.eventmakr.Adapters.MenuAdapter;
 import com.example.eventmakr.eventmakr.Objects.Menu;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
-import com.example.eventmakr.eventmakr.Utils.Viewholder;
+import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 
 public class RecyclerVendorMenuItemFragment extends Fragment {
 
@@ -44,5 +44,13 @@ public class RecyclerVendorMenuItemFragment extends Fragment {
         mRecyclerView.setAdapter(mMenuAdapter);
         mLayoutManager.setItemPrefetchEnabled(false);
         return rootView;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mMenuAdapter != null) {
+            mMenuAdapter.cleanup();
+        }
     }
 }

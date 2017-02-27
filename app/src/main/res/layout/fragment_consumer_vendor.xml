@@ -42,7 +42,7 @@
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.CardView
-                android:id="@+id/cardViewProducts"
+                android:id="@+id/cardViewCaterers"
                 app:cardUseCompatPadding="true"
                 app:cardElevation="2dp"
                 app:cardBackgroundColor="@color/colorButtons"
@@ -70,8 +70,8 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/cardViewDocuments"
-                android:layout_toEndOf="@id/cardViewProducts"
+                android:id="@+id/cardViewMixologists"
+                android:layout_toEndOf="@id/cardViewCaterers"
                 app:cardUseCompatPadding="true"
                 app:cardElevation="2dp"
                 app:cardBackgroundColor="@color/colorButtons"
@@ -99,8 +99,8 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/cardViewInputInfo"
-                android:layout_toEndOf="@id/cardViewDocuments"
+                android:id="@+id/cardViewFlorists"
+                android:layout_toEndOf="@id/cardViewMixologists"
                 app:cardUseCompatPadding="true"
                 app:cardElevation="2dp"
                 app:cardBackgroundColor="@color/colorButtons"

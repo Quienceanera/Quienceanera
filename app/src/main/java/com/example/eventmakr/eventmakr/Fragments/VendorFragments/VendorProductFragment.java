@@ -45,7 +45,8 @@ public class VendorProductFragment extends android.app.Fragment implements View.
     private EditText mEditTextMenuItemName, mEditTextMenuItemDescription, mEditTextMenuItemPrice;
     private Context mContext;
     private RelativeLayout mLayoutAddMenuItem;
-    private String mKey, mMenuItemName, mMenuItemDescription, mMenuItemImage, mMenuItemPrice;
+    private String mKey, mMenuItemName, mMenuItemDescription, mMenuItemImage, mMenuItemPrice, mVendorUid;
+    public static String mVendorKey;
 
     public VendorProductFragment() {
         // Required empty public constructor
@@ -72,10 +73,12 @@ public class VendorProductFragment extends android.app.Fragment implements View.
         mEditTextMenuItemDescription = (EditText) view.findViewById(R.id.editTextMenuAddItemDescription);
         mEditTextMenuItemPrice = (EditText) view.findViewById(R.id.editTextMenuAddItemPrice);
         mProgressBar = (ProgressBar) view.findViewById(R.id.progressBarAddMenuItem);
+        mVendorUid = FirebaseUtil.getUid();
+        mVendorKey = VendorInputFragment.mVendorKey;
 
         mContext = getActivity();
 
-        mStorageReference = mFirebaseStorage.getReference().child("vendor").child("menu");
+        mStorageReference = mFirebaseStorage.getReference().child("vendor").child(mVendorUid).child("menu");
 
         mFabMenuAdd.setOnClickListener(this);
         mFabMenuCancel.setOnClickListener(this);
@@ -100,7 +103,8 @@ public class VendorProductFragment extends android.app.Fragment implements View.
                 mMenuItemImage,
                 mMenuItemPrice,
                 mMenuItemDescription,
-                mKey
+                mKey,
+                mVendorUid
         );
         mPushRef.setValue(menu);
     }

@@ -77,7 +77,7 @@ public class NavBar extends android.app.Fragment implements View.OnClickListener
     public void getChatFragment () {
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.navConsumerActivityLayout, FragmentUtil.getChatFragment())
+                .replace(R.id.navConsumerActivityLayout, FragmentUtil.getChatHomeFragment())
                 .addToBackStack(null)
                 .commit();
     }

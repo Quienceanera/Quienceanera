@@ -26,31 +26,15 @@
             android:layout_width="match_parent"
             android:layout_height="250dp">
 
-            <!--<fragment-->
-                <!--android:name="com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerItemsFragment"-->
-                <!--android:id="@+id/recyclerItemsFragment"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"/>-->
-
         </FrameLayout>
 
         <TextView
-            android:text="$50 TOTAL"
             android:layout_below="@id/containerRecyclerItemsFragment"
             android:id="@+id/textViewTotalPrice"
             android:layout_margin="20dp"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
-        <!--<EditText-->
-            <!--android:id="@+id/editTextOrderDetails"-->
-            <!--android:layout_margin="20dp"-->
-            <!--android:hint="Let us know any special instructions here"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:layout_below="@+id/textViewTotalPrice"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content" />-->
 
         <android.support.v7.widget.CardView
             android:id="@+id/buttonContactVendor"

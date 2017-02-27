@@ -13,7 +13,7 @@ import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 public class ConsumerVendorCategoryFragment extends android.app.Fragment implements View.OnClickListener {
 
     private static final String TAG = "ConsumerVendorCategoryFragment";
-
+    public static String mCategory;
 
     private OnFragmentInteractionListener mListener;
     private CardView mCardViewCaterers, mCardViewMixologists, mCardViewFlorists, mCardViewPartySupplies, mCardViewDjs, mCardViewBakeries;
@@ -21,7 +21,6 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
     public ConsumerVendorCategoryFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,9 +34,9 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_consumer_vendor, container, false);
         //Setting Buttons
-        mCardViewCaterers = (CardView) view.findViewById(R.id.cardViewProducts);
-        mCardViewMixologists = (CardView) view.findViewById(R.id.cardViewDocuments);
-        mCardViewFlorists = (CardView) view.findViewById(R.id.cardViewInputInfo);
+        mCardViewCaterers = (CardView) view.findViewById(R.id.cardViewCaterers);
+        mCardViewMixologists = (CardView) view.findViewById(R.id.cardViewMixologists);
+        mCardViewFlorists = (CardView) view.findViewById(R.id.cardViewFlorists);
         mCardViewPartySupplies = (CardView) view.findViewById(R.id.cardViewPartySupplies);
         mCardViewDjs = (CardView) view.findViewById(R.id.cardViewDjs);
         mCardViewBakeries = (CardView) view.findViewById(R.id.cardViewBakeries);
@@ -51,19 +50,6 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
         return view;
     }
 
-
-
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-
     @Override
     public void onDetach() {
         super.onDetach();
@@ -74,29 +60,29 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
-            case R.id.cardViewProducts:
+            case R.id.cardViewCaterers:
+                mCategory = "Caterer";
                 getConsumerBudgetFragment();
-//                Toast.makeText(getActivity(), "caterers", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.cardViewDocuments:
+            case R.id.cardViewMixologists:
+                mCategory = "Mixologist";
                 getConsumerBudgetFragment();
-//                Toast.makeText(, "mixologists", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.cardViewInputInfo:
+            case R.id.cardViewFlorists:
+                mCategory = "Florist";
                 getConsumerBudgetFragment();
-//                Toast.makeText(getContext(), "florists", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cardViewPartySupplies:
+                mCategory = "PartySupplie";
                 getConsumerBudgetFragment();
-//                Toast.makeText(getContext(), "party supplies", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cardViewDjs:
+                mCategory = "DJ";
                 getConsumerBudgetFragment();
-//                Toast.makeText(getContext(), "djs", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cardViewBakeries:
+                mCategory = "Bakerie";
                 getConsumerBudgetFragment();
-//                Toast.makeText(getContext(), "bakeries", Toast.LENGTH_SHORT).show();
                 break;
             default:
         }

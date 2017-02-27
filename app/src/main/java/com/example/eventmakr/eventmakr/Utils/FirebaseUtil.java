@@ -1,18 +1,25 @@
 package com.example.eventmakr.eventmakr.Utils;
 
+import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FirebaseUtil {
+    public static String mVendorCategory, mVendorUid, mVendorKey;
 
     public static DatabaseReference getBaseRef() {
         return FirebaseDatabase.getInstance().getReference();
     }
 
     public static DatabaseReference getChatRef() {
-        return FirebaseDatabase.getInstance().getReference().child("Chat");
+        mVendorUid = VendorAdapter.mVendorUid;
+        return FirebaseDatabase.getInstance().getReference().child("chat").child(FirebaseUtil.getUid()).child(mVendorUid);
+    }
+
+    public static DatabaseReference getChatHomeRef() {
+        return FirebaseDatabase.getInstance().getReference().child("chat").child(FirebaseUtil.getUid());
     }
 
     public static DatabaseReference getVendorRef() {
@@ -20,7 +27,12 @@ public class FirebaseUtil {
     }
 
     public static DatabaseReference getMenuRef () {
-        return getVendorRef().child("menu");
+        mVendorUid = FirebaseUtil.getUid();
+
+        if (mVendorUid != null) {
+            return getBaseRef().child("menu").child(mVendorUid);
+        }
+        return null;
     }
 
     public static DatabaseReference getUserRef () {
@@ -31,9 +43,21 @@ public class FirebaseUtil {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
-    public static  DatabaseReference getItemRef () {
-        return getBaseRef().child("item");
+    public static  DatabaseReference getCartRef() {
+        mVendorUid = VendorAdapter.mVendorUid;
+        if (mVendorUid!= null) {
+            return getBaseRef().child("cart").child(FirebaseUtil.getUid()).child(mVendorUid);
+        }
+        return null;
     }
+
+//    public static DatabaseReference getOrderRef () {
+//        mVendorUid = VendorProfileProductAdapter.mVendorUid;
+//        if (mVendorKey != null) {
+//            return getBaseRef().child("cart").child(FirebaseUtil.getUid()).child(mVendorKey);
+//        }
+//        return null;
+//    }
 
     public static FirebaseUser getUser () {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

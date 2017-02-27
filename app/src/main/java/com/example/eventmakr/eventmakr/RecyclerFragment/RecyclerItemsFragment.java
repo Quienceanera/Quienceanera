@@ -11,10 +11,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.Adapters.ItemsAdapter;
+import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
-import com.example.eventmakr.eventmakr.Utils.Viewholder;
+import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 
 public class RecyclerItemsFragment extends Fragment{
 
@@ -22,15 +23,20 @@ public class RecyclerItemsFragment extends Fragment{
     private RecyclerView mRecyclerView;
     private ItemsAdapter mItemsAdapter;
     private LinearLayoutManager mLayoutManager;
+    private String mVendorUid;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        mItemsAdapter = new ItemsAdapter(
-                Items.class,
-                R.layout.items_card_view,
-                Viewholder.class,
-                FirebaseUtil.getItemRef(),
-                getActivity());
+    @ Override
+    public void onCreate(Bundle savedInstanceState){
+        mVendorUid = VendorAdapter.mVendorUid;
+        Toast.makeText(getActivity(), mVendorUid, Toast.LENGTH_SHORT).show();
+        if (mVendorUid != null) {
+            mItemsAdapter = new ItemsAdapter(
+                    Items.class,
+                    R.layout.items_card_view,
+                    Viewholder.class,
+                    FirebaseUtil.getCartRef(),
+                    getActivity());
+        }
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         super.onCreate(savedInstanceState);
     }
@@ -51,7 +57,9 @@ public class RecyclerItemsFragment extends Fragment{
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Toast.makeText(getActivity(), "destroyitems", Toast.LENGTH_SHORT).show();
-        mItemsAdapter.cleanup();
+        if (mItemsAdapter != null) {
+            mItemsAdapter.cleanup();
+        }
+
     }
 }

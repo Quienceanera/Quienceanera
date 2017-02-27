@@ -14,7 +14,7 @@ import com.example.eventmakr.eventmakr.Adapters.ChatAdapter;
 import com.example.eventmakr.eventmakr.Objects.Chat;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
-import com.example.eventmakr.eventmakr.Utils.Viewholder;
+import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 
 public class ChatItemFragment extends Fragment {
     private static final String TAG = "ChatItemFragment";
@@ -62,5 +62,13 @@ public class ChatItemFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mAdapter != null) {
+            mAdapter.cleanup();
+        }
     }
 }

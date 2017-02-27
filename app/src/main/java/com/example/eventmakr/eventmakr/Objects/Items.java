@@ -7,16 +7,20 @@ public class Items {
     public String price;
     public String name;
     public String photo;
+    private String vendorKey;
+    private String vendorId;
 
     public Items() {
     }
 
-    public Items(String key, String quantity, String price, String name, String photo) {
+    public Items(String key, String quantity, String price, String name, String photo, String vendorKey, String vendorId) {
         this.key = key;
         this.quantity = quantity;
         this.price = price;
         this.name = name;
         this.photo = photo;
+        this.vendorKey = vendorKey;
+        this.vendorId = vendorId;
     }
 
     public String getKey() {
@@ -57,5 +61,21 @@ public class Items {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String getVendorKey() {
+        return vendorKey;
+    }
+
+    public void setVendorKey(String vendorKey) {
+        this.vendorKey = vendorKey;
+    }
+
+    public String getVendorId() {
+        return vendorId;
+    }
+
+    public void setVendorId(String vendorId) {
+        this.vendorId = vendorId;
     }
 }

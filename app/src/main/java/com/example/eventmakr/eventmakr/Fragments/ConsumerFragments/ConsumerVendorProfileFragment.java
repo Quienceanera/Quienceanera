@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
@@ -30,7 +29,7 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
     private ImageView mImageViewVendorProfile;
     private TextView mTextViewVendorName, mTextViewVendorDescription;
     private VendorAdapter mVendorAdapter;
-    public static String mVendorKey;
+    private String mVendorUid;
     private String mVendorLogo, mVendorName, mVendorDescription;
 
     public ConsumerVendorProfileFragment() {
@@ -41,10 +40,10 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getActivity();
-        mVendorKey = mVendorAdapter.mVendorKey;
+        mVendorUid = mVendorAdapter.mVendorUid;
         mDatabaseReference = FirebaseUtil.getVendorRef();
 
-        Toast.makeText(mContext, mVendorKey, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(mContext, mVendorKey, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -79,7 +78,7 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
     }
 
     public void getVendorInfo() {
-        mDatabaseReference.child(mVendorKey).addValueEventListener(new ValueEventListener() {
+        mDatabaseReference.child(mVendorUid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mVendorLogo = (String) dataSnapshot.child("logo").getValue();

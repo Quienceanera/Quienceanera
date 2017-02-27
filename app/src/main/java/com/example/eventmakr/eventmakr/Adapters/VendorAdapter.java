@@ -6,33 +6,64 @@ import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerVendorCategoryFragment;
 import com.example.eventmakr.eventmakr.Objects.Vendor;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
-import com.example.eventmakr.eventmakr.Utils.Viewholder;
+import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class VendorAdapter extends FirebaseRecyclerAdapter<Vendor, Viewholder> {
 
     private  static final String TAG = VendorAdapter.class.getSimpleName();
     private Context mContext;
     private Intent mIntent;
-    public static String mVendorKey;
+    private Query mQuery;
+    public static String mVendorUid, mCategory, mPriceRange, mVendorLogo, mVendorName;
 
-    public VendorAdapter(Class<Vendor> modelClass, int modelLayout, Class<Viewholder> viewHolderClass, Query ref, Context context) {
+    public VendorAdapter(Class<Vendor> modelClass, int modelLayout, Class<Viewholder> viewHolderClass,final Query ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
         this.mContext = context;
+        this.mQuery = ref;
+        mCategory = ConsumerVendorCategoryFragment.mCategory;
+//        mPriceRange = ConsumerBudgetFragment.mPriceRange;
     }
 
     @Override
-    protected void populateViewHolder(Viewholder viewHolder, Vendor model, final int position) {
-        mVendorKey = getRef(position).getKey();
-        viewHolder.mTextViewVendorName.setText(model.getName());
-        Glide.with(mContext)
-                .load(model.getLogo())
-                .centerCrop()
-                .into(viewHolder.mImageViewVendor);
+    protected void populateViewHolder(final Viewholder viewHolder, final Vendor model, final int position) {
+        mVendorUid = getRef(position).getKey();
+        mQuery.getRef().child(mCategory).child(mVendorUid).orderByValue().addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+//                mPriceRange = ConsumerBudgetFragment.mPriceRange;
+                mVendorLogo = model.getLogo();
+                mVendorUid = model.getVendorUid();
+                mVendorName = model.getName();
+                if (model.getPrice().equals(mPriceRange)){
+//                    Toast.makeText(mContext, mPriceRange, Toast.LENGTH_SHORT).show();
+                    viewHolder.mTextViewVendorName.setText(model.getName());
+                    Glide.with(mContext)
+                            .load(model.getLogo())
+                            .centerCrop()
+                            .into(viewHolder.mImageViewVendor);
+                } else if (model.getPrice() != (mPriceRange)){
+                    viewHolder.mCardViewVendorItem.setVisibility(View.GONE);
+//                    viewHolder.mCardViewVendorItem.clearFocus();
+                }
+                }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
         viewHolder.mCardViewVendorItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +71,20 @@ public class VendorAdapter extends FirebaseRecyclerAdapter<Vendor, Viewholder> {
                 getVendorProfile();
             }
         });
+
+        if (model.getPrice().equals("$")) {
+            viewHolder.mImageViewPrice1.setVisibility(View.VISIBLE);
+        } if (model.getPrice().equals("$$")) {
+            viewHolder.mImageViewPrice1.setVisibility(View.VISIBLE);
+            viewHolder.mImageViewPrice2.setVisibility(View.VISIBLE);
+        } if (model.getPrice().equals("$$$")) {
+            viewHolder.mImageViewPrice1.setVisibility(View.VISIBLE);
+            viewHolder.mImageViewPrice2.setVisibility(View.VISIBLE);
+            viewHolder.mImageViewPrice3.setVisibility(View.VISIBLE);
+
+        }
     }
+
 
     private void getVendorProfile() {
         ConsumerActivity consumerActivity = (ConsumerActivity)mContext;
@@ -50,21 +94,5 @@ public class VendorAdapter extends FirebaseRecyclerAdapter<Vendor, Viewholder> {
                 .addToBackStack(null)
                 .commit();
     }
-//    private void sendVendorKey() {
-//        ConsumerVendorProfileFragment consumerVendorProfileFragment = new ConsumerVendorProfileFragment();
-//        Bundle args = new Bundle();
-//        args.putString(mKey, "mKey");
-//        consumerVendorProfileFragment.setArguments(args);
-//
-//        ConsumerActivity consumerActivity = (ConsumerActivity)mContext;
-//        FragmentTransaction fragmentTransaction = consumerActivity.getSupportFragmentManager().beginTransaction().replace(R.id.consumerActivityLayout, consumerVendorProfileFragment);
-//        fragmentTransaction.addToBackStack(null);
-//        fragmentTransaction.commit();
-//    }
-
-//    @Override
-//    public void onFragmentInteraction(String string) {
-//        string = mKey;
-//    }
 
 }

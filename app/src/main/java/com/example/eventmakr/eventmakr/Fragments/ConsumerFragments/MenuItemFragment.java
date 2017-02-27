@@ -6,6 +6,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
@@ -66,7 +67,7 @@ public class MenuItemFragment extends android.app.Fragment implements  View.OnCl
         switch (id) {
             case R.id.buttonProductItemSelect:
                 getVendorProfileFragment();
-//                Toast.makeText(getActivity(), "menu item selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "menu item selected", Toast.LENGTH_SHORT).show();
                 break;
             default:
         }
