@@ -28,7 +28,7 @@ public class RecyclerVendorMenuItemFragment extends Fragment {
                 Menu.class,
                 R.layout.menu_card_view,
                 Viewholder.class,
-                FirebaseUtil.getMenuRef(),
+                FirebaseUtil.getConsumerMenuRef(),
                 getActivity());
         mLayoutManager = new LinearLayoutManager(getActivity());
         super.onCreate(savedInstanceState);

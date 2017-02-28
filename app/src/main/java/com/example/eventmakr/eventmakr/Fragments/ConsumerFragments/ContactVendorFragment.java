@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
+import com.example.eventmakr.eventmakr.Objects.Chat;
 import com.example.eventmakr.eventmakr.Objects.ChatHome;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -20,8 +21,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static com.example.eventmakr.eventmakr.R.drawable.chat;
 
 public class ContactVendorFragment extends android.app.Fragment implements View.OnClickListener{
     private static final String TAG = "ContactVendorFragment";
@@ -97,25 +96,43 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     void pushToChat () {
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
-        mDatabaseReference = FirebaseUtil.getChatRef();
-        mDatabaseRef = mDatabaseReference.push();
-        mChatKey = mDatabaseRef.getKey();
+        mDatabaseReference = FirebaseUtil.getChatHomeRef().child(mVendorUid);
+//        mDatabaseRef = mDatabaseReference.push();
+//        mChatKey = mDatabaseRef.getKey();
         ChatHome chatHome = new ChatHome(
                 mVendorName,
                 mVendorLogo,
                 mVendorUid,
                 mCurrentTimestamp,
-                mChatKey
+                null
         );
-        mDatabaseRef.setValue(chat);
+        mDatabaseReference.setValue(chatHome);
+        postChat();
     }
 
     void contactVendor () {
-//        mVendorWelcome = "Chat with us here!";
+        mVendorWelcome = "Chat with us here!";
         mVendorName = VendorAdapter.mVendorName;
         mVendorLogo = VendorAdapter.mVendorLogo;
         mVendorUid = VendorAdapter.mVendorUid;
         pushToChat();
+    }
+
+    void postChat() {
+        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
+        final String mCurrentTimestamp = time.format(new Date());
+        mDatabaseReference = FirebaseUtil.getMessageRef().child(mVendorUid);
+        mDatabaseRef = mDatabaseReference.push();
+        mChatKey = mDatabaseRef.getKey();
+        Chat chat = new Chat(
+                mVendorWelcome,
+                mVendorName,
+                mVendorLogo,
+                mChatKey,
+                mVendorUid,
+                mCurrentTimestamp
+        );
+        mDatabaseRef.setValue(chat);
     }
 
 }

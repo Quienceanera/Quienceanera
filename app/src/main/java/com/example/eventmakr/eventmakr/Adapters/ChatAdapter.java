@@ -91,7 +91,7 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Chat, Viewholder>{
             viewHolder.mCardViewChat.setVisibility(View.VISIBLE);
             viewHolder.mCircleImageViewChat.setVisibility(View.VISIBLE);
             if (model.getPhotoUrl() == null) {
-                viewHolder.mCircleImageViewChat.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_account_circle_black_36dp));
+                viewHolder.mCircleImageViewChat.setImageDrawable(ContextCompat.getDrawable(viewHolder.itemView.getContext(), R.drawable.ic_account_circle_black_36dp));
             } else {
                 Glide.with(viewHolder.itemView.getContext())
                         .load(model.getPhotoUrl())
@@ -108,7 +108,7 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Chat, Viewholder>{
 
     }
     private void deleteComment () {
-        FirebaseUtil.getChatRef().child(mChatKey).removeValue();
+        FirebaseUtil.getMessageRef().child(mChatKey).removeValue();
     }
 
 }

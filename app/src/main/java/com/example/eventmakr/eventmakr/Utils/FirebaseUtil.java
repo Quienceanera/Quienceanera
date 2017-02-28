@@ -1,5 +1,6 @@
 package com.example.eventmakr.eventmakr.Utils;
 
+import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -13,12 +14,18 @@ public class FirebaseUtil {
         return FirebaseDatabase.getInstance().getReference();
     }
 
-    public static DatabaseReference getChatRef() {
-        mVendorUid = VendorAdapter.mVendorUid;
-        return FirebaseDatabase.getInstance().getReference().child("chat").child(FirebaseUtil.getUid()).child(mVendorUid);
+    public static DatabaseReference getMessageRef() {
+//        mVendorUid = ChatHomeAdapter.mVendorUid;
+//        mVendorUid = VendorAdapter.mVendorUid;
+//        if (mVendorUid != null) {
+            return FirebaseUtil.getBaseRef().child("messages").child(FirebaseUtil.getUid());
+//        }
+//        return null;
     }
 
     public static DatabaseReference getChatHomeRef() {
+        mVendorUid = VendorAdapter.mVendorUid;
+        mVendorUid = ChatHomeAdapter.mVendorUid;
         return FirebaseDatabase.getInstance().getReference().child("chat").child(FirebaseUtil.getUid());
     }
 
@@ -28,7 +35,14 @@ public class FirebaseUtil {
 
     public static DatabaseReference getMenuRef () {
         mVendorUid = FirebaseUtil.getUid();
+        if (mVendorUid != null) {
+            return getBaseRef().child("menu").child(mVendorUid);
+        }
+        return null;
+    }
 
+    public static DatabaseReference getConsumerMenuRef () {
+        mVendorUid = VendorAdapter.mVendorUid;
         if (mVendorUid != null) {
             return getBaseRef().child("menu").child(mVendorUid);
         }

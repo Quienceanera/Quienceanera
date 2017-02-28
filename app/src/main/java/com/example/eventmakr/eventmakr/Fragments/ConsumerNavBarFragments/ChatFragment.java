@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Objects.Chat;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -23,7 +24,7 @@ import java.util.Date;
 public class ChatFragment extends android.app.Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
-    private String mPhotoUrl, mUsername, mUid, mChatPath, mChatKey;
+    private String mPhotoUrl, mUsername, mUid, mChatPath, mChatKey, mVendorUid;
     private DatabaseReference mDatabaseReference, mDatabaseRef;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private Viewholder mViewHolder;
@@ -41,6 +42,7 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
         mPhotoUrl = mAuth.getCurrentUser().getPhotoUrl().toString();
         mUsername = mAuth.getCurrentUser().getDisplayName();
         mUid = mAuth.getCurrentUser().getUid();
+        mVendorUid = ChatHomeAdapter.mVendorUid;
 //        Toast.makeText(getActivity(), "chat opened", Toast.LENGTH_SHORT).show();
 
     }
@@ -89,7 +91,7 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
     void postChat() {
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
-        mDatabaseReference = FirebaseUtil.getChatRef();
+        mDatabaseReference = FirebaseUtil.getMessageRef().child(mVendorUid);
         mDatabaseRef = mDatabaseReference.push();
         mChatKey = mDatabaseRef.getKey();
         Chat chat = new Chat(

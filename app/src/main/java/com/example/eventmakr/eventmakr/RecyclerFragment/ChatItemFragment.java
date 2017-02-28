@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.eventmakr.eventmakr.Adapters.ChatAdapter;
+import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Objects.Chat;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -23,6 +24,7 @@ public class ChatItemFragment extends Fragment {
     private String mKey;
     private int mCount, mLastPosition;
     private ChatAdapter mAdapter;
+    private String mVendorUid;
     private LinearLayoutManager mLayoutManger;
 
     public ChatItemFragment() {
@@ -30,13 +32,15 @@ public class ChatItemFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        mAdapter = new ChatAdapter(
-                Chat.class,
-                R.layout.fragment_chat_item,
-                Viewholder.class,
-                FirebaseUtil.getChatRef(),
-                mContext);
-
+        mVendorUid = ChatHomeAdapter.mVendorUid;
+        if (mVendorUid != null) {
+            mAdapter = new ChatAdapter(
+                    Chat.class,
+                    R.layout.fragment_chat_item,
+                    Viewholder.class,
+                    FirebaseUtil.getMessageRef().child(mVendorUid),
+                    mContext);
+        }
         mLayoutManger = new LinearLayoutManager(mContext);
         mLayoutManger.setStackFromEnd(true);
         super.onCreate(savedInstanceState);

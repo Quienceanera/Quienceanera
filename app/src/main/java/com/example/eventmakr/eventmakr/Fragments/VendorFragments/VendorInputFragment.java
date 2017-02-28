@@ -132,6 +132,7 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
             mMediaUri = data.getData();
             mImageViewLogo.setImageURI(mMediaUri);
             mProgressBar.setVisibility(View.VISIBLE);
+            mStorageReference = mFirebaseStorage.getReference().child("vendor").child(mVendorUid);
             mPhotoRef = mStorageReference.child(mMediaUri.getLastPathSegment());
             mPhotoRef.putFile(mMediaUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -143,7 +144,7 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
             });
 //            Toast.makeText(mContext, "if", Toast.LENGTH_SHORT).show();
         } else {
-//            Toast.makeText(mContext, "else", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "else", Toast.LENGTH_SHORT).show();
         }
     }
 
