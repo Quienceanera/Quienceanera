@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/cardViewCartItem"
+    app:cardElevation="2dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="1dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardViewCartItem_helper"
+            android:layout_alignParentStart="true"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="2dp"
+            android:layout_margin="5dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp">
+
+    <ImageView
+        android:id="@+id/imageViewCartItem"
+        android:src="@drawable/logoi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:layout_toEndOf="@+id/cardViewCartItem_helper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="small tray"
+                android:id="@+id/textViewCartItemName"
+                android:layout_marginStart="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:textSize="20sp"
+                android:textStyle="normal|bold" />
+
+
+            <TextView
+                android:text="catering"
+                android:id="@+id/textViewCartItemVendorName"
+                android:layout_marginStart="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:textSize="15sp" />
+
+        <TextView
+            android:text="10.99"
+            android:id="@+id/textViewCartItemPrice"
+            android:layout_marginStart="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:textSize="15sp" />
+
+            <TextView
+                android:text="4"
+                android:id="@+id/textViewCartItemQuantity"
+                android:layout_marginStart="2dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:textSize="15sp" />
+
+    </LinearLayout>
+
+        <TextView
+            android:text="Awaiting Confirmation"
+            android:layout_alignBaseline="@+id/checkBoxCartItem"
+            android:layout_toStartOf="@+id/checkBoxCartItem"
+            android:textSize="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <CheckBox
+            android:id="@+id/checkBoxCartItem"
+            android:layout_alignParentEnd="true"
+            android:background="@color/tw__transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

@@ -9,6 +9,7 @@ import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerVendo
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ContactVendorFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.MenuItemFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.CartHomeFragment;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.CartListFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.ChatFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.ChatHomeFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.NavBar;
@@ -75,6 +76,10 @@ public class FragmentUtil {
     public static CartHomeFragment getCartFragment () {
         CartHomeFragment cartHomeFragment = new CartHomeFragment();
         return cartHomeFragment;
+    }
+
+    public static CartListFragment getCartListFragment () {
+        return new CartListFragment();
     }
 
     public static VendorInputFragment getVendorInputFragment () {

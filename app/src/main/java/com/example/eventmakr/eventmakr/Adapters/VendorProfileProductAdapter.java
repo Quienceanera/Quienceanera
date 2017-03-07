@@ -16,7 +16,7 @@ public class VendorProfileProductAdapter extends FirebaseRecyclerAdapter<Menu, V
 
     private  static final String TAG = VendorProfileProductAdapter.class.getSimpleName();
     private Context mContext;
-    public static String mProductKey, mVendorUid;
+    public static String mProductKey, mVendorUid, mVendorName;
 
     public VendorProfileProductAdapter(Class<Menu> modelClass, int modelLayout, Class<Viewholder> viewHolderClass, Query ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
@@ -37,6 +37,7 @@ public class VendorProfileProductAdapter extends FirebaseRecyclerAdapter<Menu, V
             public void onClick(View v) {
                 mProductKey = model.getKey();
                 mVendorUid = model.getVendorUid();
+                mVendorName = model.getName();
                 getProductItemFragment();
             }
         });

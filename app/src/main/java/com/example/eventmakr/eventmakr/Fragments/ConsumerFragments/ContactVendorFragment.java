@@ -69,7 +69,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
         mItemsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
+                int sum = 0;
                 for (DataSnapshot child: dataSnapshot.getChildren()) {
                     int mChildrenNum = ((int) dataSnapshot.getChildrenCount());
                     Float mChildPrice = Float.parseFloat(child.child("price").getValue().toString());
@@ -80,16 +80,16 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                     Log.i("Total ", String.valueOf(mChildTotal));
                     Log.i("ChildCount ", String.valueOf(mChildrenNum));
 //                    Log.i("Total All ", String.valueOf(mTotalAll));
-                    double itemSum = mChildTotal;
-                    int sum = (int) itemSum;
-//                    int i = 0;
-                    for (int i = 0; i < mChildrenNum; i += itemSum) {
-//                        itemSum = i++;
-                        Log.i("Inside TotalAll ", String.valueOf(i));
-                    }
+                    sum += mChildTotal;
+
+//                    for (int i = 0; i < mChildrenNum; i += itemSum) {
+//                        Log.i("Inside TotalAll ", String.valueOf(i));
+//                    }
 //                    Log.i("TotalAll ", String.valueOf(f));
 //                    Toast.makeText(getActivity(), String.valueOf(itemSum), Toast.LENGTH_SHORT).show();
                 }
+                    Log.i("TotalAll ", String.valueOf(sum));
+
 
             }
 
@@ -105,8 +105,8 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
         int id = view.getId();
         switch (id) {
             case R.id.buttonContactVendor:
-                contactVendor();
-//                getTotalPrice();
+//                contactVendor();
+                getTotalPrice();
                 break;
             default:
         }

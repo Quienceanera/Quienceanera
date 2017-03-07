@@ -1,5 +1,6 @@
 package com.example.eventmakr.eventmakr.Utils;
 
+import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -82,6 +83,12 @@ public class FirebaseUtil {
     }
     public static  DatabaseReference getUserCartRef() {
             return getBaseRef().child("users").child(FirebaseUtil.getUid()).child("cartInfo");
+
+    }
+
+    public static  DatabaseReference getUserCartList() {
+        mVendorUid = CartHomeAdapter.mVendorUid;
+        return getBaseRef().child("users").child(FirebaseUtil.getUid()).child("cart").child(mVendorUid);
 
     }
 

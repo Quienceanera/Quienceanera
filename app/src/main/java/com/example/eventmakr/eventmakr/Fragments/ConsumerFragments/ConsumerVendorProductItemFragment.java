@@ -34,7 +34,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     private ImageView mImageViewProductItem;
     private TextView mTextViewProductItemName, mTextViewProductItemDetails, mTextViewProductItemPrice;
     public static String mProductKey;
-    private String mProductImage, mProductName, mProductDetails, mProductPrice, mProductQuantity, mVendorUid, mUid, mKey;
+    private String mProductImage, mProductName, mProductDetails, mProductPrice, mProductQuantity, mVendorUid, mUid, mKey, mVendorName;
     private EditText mEditTextQuantity;
 
     public ConsumerVendorProductItemFragment() {
@@ -47,8 +47,10 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         mContext = getActivity();
         mProductKey = mVendorProfileProductAdapter.mProductKey;
         mVendorUid = mVendorProfileProductAdapter.mVendorUid;
+        mVendorName = mVendorProfileProductAdapter.mVendorName;
         mUid = FirebaseUtil.getUser().getUid();
         mUserMenuRef = FirebaseUtil.getUserMenuRef();
+
 
     }
 
@@ -141,8 +143,10 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                 mProductKey,
                 mProductQuantity,
                 mProductPrice,
+                null,
                 mProductName,
                 mProductImage,
+                mVendorName,
                 mKey,
                 mVendorUid
         );

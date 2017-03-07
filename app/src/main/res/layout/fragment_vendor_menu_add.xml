@@ -114,11 +114,20 @@
 
     </RelativeLayout>
 
-    <fragment
-        android:name="com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorMenuItemFragment"
-        android:id="@+id/menuItemFragment"
+    <FrameLayout
+        android:id="@+id/containerMenuItemList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <!---->
+        <!--<fragment-->
+            <!--android:name="com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorMenuItemFragment"-->
+            <!--android:id="@+id/menuItemFragment"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"/>-->
+
+    </FrameLayout>
+
+
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"

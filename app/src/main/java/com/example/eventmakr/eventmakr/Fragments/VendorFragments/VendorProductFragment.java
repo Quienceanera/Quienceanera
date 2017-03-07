@@ -1,5 +1,6 @@
 package com.example.eventmakr.eventmakr.Fragments.VendorFragments;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.example.eventmakr.eventmakr.Objects.Menu;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
+import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.github.florent37.viewanimator.ViewAnimator;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,7 +33,6 @@ public class VendorProductFragment extends android.app.Fragment implements View.
 
     private static final String TAG = "VendorProductFragment";
 
-    private OnFragmentInteractionListener mListener;
     private final static int SELECT_PHOTO = 0;
     private ProgressBar mProgressBar;
     private StorageReference mStorageReference, mPhotoRef;
@@ -84,7 +85,16 @@ public class VendorProductFragment extends android.app.Fragment implements View.
         mFabMenuCancel.setOnClickListener(this);
         mFabMenuSave.setOnClickListener(this);
 
+        getMenuList();
+
         return view;
+    }
+
+    void getMenuList() {
+        getChildFragmentManager()
+                .beginTransaction()
+                .add(R.id.containerMenuItemList, FragmentUtil.getMenuItemFragment())
+                .commit();
     }
 
     void getKey () {
@@ -135,9 +145,7 @@ public class VendorProductFragment extends android.app.Fragment implements View.
                     Toast.makeText(mContext, "Photo Uploaded", Toast.LENGTH_SHORT).show();
                 }
             });
-            Toast.makeText(mContext, "if", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(mContext, "else", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -147,29 +155,6 @@ public class VendorProductFragment extends android.app.Fragment implements View.
         startActivityForResult(pickPhotoIntent, SELECT_PHOTO);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
 
     @Override
     public void onClick(View view) {
@@ -183,20 +168,5 @@ public class VendorProductFragment extends android.app.Fragment implements View.
                     break;
                 default:
             }
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 }

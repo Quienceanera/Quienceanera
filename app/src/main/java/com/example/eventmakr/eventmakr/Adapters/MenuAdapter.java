@@ -1,7 +1,5 @@
 package com.example.eventmakr.eventmakr.Adapters;
-
 import android.content.Context;
-
 import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Objects.Menu;
 import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
