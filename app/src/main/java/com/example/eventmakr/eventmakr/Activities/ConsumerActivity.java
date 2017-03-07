@@ -1,16 +1,14 @@
 package com.example.eventmakr.eventmakr.Activities;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerInputFragment;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
-public class ConsumerActivity extends AppCompatActivity implements ConsumerInputFragment.OnFragmentInteractionListener{
+public class ConsumerActivity extends AppCompatActivity {
 
     private ImageButton mBackButton;
 
@@ -38,12 +36,6 @@ public class ConsumerActivity extends AppCompatActivity implements ConsumerInput
                 .addToBackStack(null)
                 .commit();
     }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
-
 
     @Override
     public void onBackPressed() {

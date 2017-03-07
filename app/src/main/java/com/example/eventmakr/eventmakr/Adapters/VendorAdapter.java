@@ -12,10 +12,7 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class VendorAdapter extends FirebaseRecyclerAdapter<Vendor, Viewholder> {
 
@@ -36,33 +33,35 @@ public class VendorAdapter extends FirebaseRecyclerAdapter<Vendor, Viewholder> {
     @Override
     protected void populateViewHolder(final Viewholder viewHolder, final Vendor model, final int position) {
         mVendorUid = getRef(position).getKey();
-        mQuery.getRef().child(mCategory).child(mVendorUid).orderByValue().addValueEventListener(new ValueEventListener() {
 
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-//                mPriceRange = ConsumerBudgetFragment.mPriceRange;
-                mVendorLogo = model.getLogo();
-                mVendorUid = model.getVendorUid();
-                mVendorName = model.getName();
-                if (model.getPrice().equals(mPriceRange)){
+        mVendorLogo = model.getLogo();
+        mVendorUid = model.getVendorUid();
+        mVendorName = model.getName();
+        if (model.getPrice().equals(mPriceRange)){
 //                    Toast.makeText(mContext, mPriceRange, Toast.LENGTH_SHORT).show();
-                    viewHolder.mTextViewVendorName.setText(model.getName());
-                    Glide.with(mContext)
-                            .load(model.getLogo())
-                            .centerCrop()
-                            .into(viewHolder.mImageViewVendor);
-                } else if (model.getPrice() != (mPriceRange)){
-                    viewHolder.mCardViewVendorItem.setVisibility(View.GONE);
+            viewHolder.mTextViewVendorName.setText(model.getName());
+            Glide.with(mContext)
+                    .load(model.getLogo())
+                    .centerCrop()
+                    .into(viewHolder.mImageViewVendor);
+        } else if (model.getPrice() != (mPriceRange)){
+            viewHolder.mCardViewVendorItem.setVisibility(View.GONE);
 //                    viewHolder.mCardViewVendorItem.clearFocus();
-                }
-                }
-
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        }
+//        mQuery.getRef().child(mCategory).child(mVendorUid).orderByValue().addValueEventListener(new ValueEventListener() {
+//
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+////                mPriceRange = ConsumerBudgetFragment.mPriceRange;
+//
+//                }
+//
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
 
         viewHolder.mCardViewVendorItem.setOnClickListener(new View.OnClickListener() {

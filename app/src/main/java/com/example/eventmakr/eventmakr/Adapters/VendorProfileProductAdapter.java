@@ -10,34 +10,17 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class VendorProfileProductAdapter extends FirebaseRecyclerAdapter<Menu, Viewholder> {
 
     private  static final String TAG = VendorProfileProductAdapter.class.getSimpleName();
     private Context mContext;
-    private DatabaseReference mDatabaseReference;
     public static String mProductKey, mVendorUid;
 
     public VendorProfileProductAdapter(Class<Menu> modelClass, int modelLayout, Class<Viewholder> viewHolderClass, Query ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
         this.mContext = context;
-
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
     @Override
@@ -55,12 +38,10 @@ public class VendorProfileProductAdapter extends FirebaseRecyclerAdapter<Menu, V
                 mProductKey = model.getKey();
                 mVendorUid = model.getVendorUid();
                 getProductItemFragment();
-//                Toast.makeText(mContext, model.getKey(), Toast.LENGTH_SHORT).show();
-
             }
         });
     }
-    void getProductItemFragment () {
+    private void getProductItemFragment () {
         ((ConsumerActivity) mContext)
                 .getFragmentManager()
                 .beginTransaction()

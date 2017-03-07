@@ -2,13 +2,14 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
+import com.example.eventmakr.eventmakr.Objects.Cart;
 import com.example.eventmakr.eventmakr.Objects.Chat;
 import com.example.eventmakr.eventmakr.Objects.ChatHome;
 import com.example.eventmakr.eventmakr.R;
@@ -27,10 +28,8 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     private TextView mTextViewTotal;
     private CardView mButtonContactVendor;
     private String mPrice, mQuantity, mKey, mChatWelcome;
-    private DatabaseReference mDatabaseReference, mDatabaseRef;
-    private String mVendorLogo, mVendorName, mVendorUid, mVendorWelcome, mChatKey;
-
-
+    private DatabaseReference mItemsRef, mDatabaseRef, mUserCartRef, mVendorCartRef, mUserChatHomeRef, mVendorChatHomeRef, mUserMessageRef, mVendorMessageRef, mDatabaseReference, mUserChatPushRef, mVendorChatPushRef;
+    private String mVendorLogo, mVendorName, mVendorUid, mVendorWelcome, mChatKey, mOrderId, mConsumerId, VendorId, mPriceTotal, mItemCount;
 
     public ContactVendorFragment() {
         // Required empty public constructor
@@ -49,11 +48,14 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
         mTextViewTotal = (TextView) view.findViewById(R.id.textViewTotalPrice);
         mButtonContactVendor = (CardView) view.findViewById(R.id.buttonContactVendor);
         mButtonContactVendor.setOnClickListener(this);
+        mVendorUid = VendorAdapter.mVendorUid;
+//        mDatabaseRef = mDatabaseReference.push();
+
+//        Log.i("push ref  ", mDatabaseRef.getKey());
 
         getChildRecyclerItems();
         return view;
     }
-
 
     void getChildRecyclerItems () {
         getChildFragmentManager()
@@ -63,13 +65,31 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     }
 
     void getTotalPrice () {
-        FirebaseUtil.getCartRef().addValueEventListener(new ValueEventListener() {
+        mItemsRef = FirebaseUtil.getUserCartRef().child(mVendorUid);
+        mItemsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                mKey = dataSnapshot.getKey();
-                mPrice = (String) dataSnapshot.child(mKey).child("price").getValue();
-                mQuantity = (String) dataSnapshot.child("quantity").getValue();
-                Toast.makeText(getActivity(), mPrice + " " + mQuantity, Toast.LENGTH_SHORT).show();
+
+                for (DataSnapshot child: dataSnapshot.getChildren()) {
+                    int mChildrenNum = ((int) dataSnapshot.getChildrenCount());
+                    Float mChildPrice = Float.parseFloat(child.child("price").getValue().toString());
+                    int mChildQuantity = Integer.valueOf(child.child("quantity").getValue().toString());
+                    double mChildTotal = mChildPrice * mChildQuantity;
+                    Log.i("Price ", String.valueOf(mChildPrice));
+                    Log.i("Quantity", String.valueOf(mChildQuantity));
+                    Log.i("Total ", String.valueOf(mChildTotal));
+                    Log.i("ChildCount ", String.valueOf(mChildrenNum));
+//                    Log.i("Total All ", String.valueOf(mTotalAll));
+                    double itemSum = mChildTotal;
+                    int sum = (int) itemSum;
+//                    int i = 0;
+                    for (int i = 0; i < mChildrenNum; i += itemSum) {
+//                        itemSum = i++;
+                        Log.i("Inside TotalAll ", String.valueOf(i));
+                    }
+//                    Log.i("TotalAll ", String.valueOf(f));
+//                    Toast.makeText(getActivity(), String.valueOf(itemSum), Toast.LENGTH_SHORT).show();
+                }
 
             }
 
@@ -90,15 +110,38 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                 break;
             default:
         }
+    }
+
+    void pushToCart () {
+        mOrderId = mChatKey;
+
+        mUserCartRef = FirebaseUtil.getUserCartInfoRef().child(mVendorUid);
+        mVendorCartRef = FirebaseUtil.getVendorCartInfoRef();
+        mConsumerId = FirebaseUtil.getUid();
+        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
+        final String mCurrentTimestamp = time.format(new Date());
+        Cart cart = new Cart(
+                mOrderId,
+                mConsumerId,
+                mVendorUid,
+                "price",
+                "count",
+                mVendorName,
+                mVendorLogo,
+                mCurrentTimestamp
+        );
+
+        mUserCartRef.setValue(cart);
+        mVendorCartRef.setValue(cart);
 
     }
 
-    void pushToChat () {
+    void pushToChatHome() {
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
-        mDatabaseReference = FirebaseUtil.getChatHomeRef().child(mVendorUid);
-//        mDatabaseRef = mDatabaseReference.push();
-//        mChatKey = mDatabaseRef.getKey();
+        mUserChatHomeRef = FirebaseUtil.getUserChatHomeRef().child(mVendorUid);
+        mVendorChatHomeRef = FirebaseUtil.getVendorChatHomeRef().child(mVendorUid).child("chat").child(FirebaseUtil.getUid());
+
         ChatHome chatHome = new ChatHome(
                 mVendorName,
                 mVendorLogo,
@@ -106,7 +149,8 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                 mCurrentTimestamp,
                 null
         );
-        mDatabaseReference.setValue(chatHome);
+        mUserChatHomeRef.setValue(chatHome);
+        mVendorChatHomeRef.setValue(chatHome);
         postChat();
     }
 
@@ -115,15 +159,25 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
         mVendorName = VendorAdapter.mVendorName;
         mVendorLogo = VendorAdapter.mVendorLogo;
         mVendorUid = VendorAdapter.mVendorUid;
-        pushToChat();
+        pushToChatHome();
+    }
+
+    void openChat () {
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.consumerActivityLayout, FragmentUtil.getChatHomeFragment())
+                .commit();
     }
 
     void postChat() {
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
-        mDatabaseReference = FirebaseUtil.getMessageRef().child(mVendorUid);
-        mDatabaseRef = mDatabaseReference.push();
-        mChatKey = mDatabaseRef.getKey();
+        mUserMessageRef = FirebaseUtil.getUserMessageRef().child(mVendorUid);
+        mVendorMessageRef = FirebaseUtil.getVendorMessageRef().child(FirebaseUtil.getUid());
+//        mUserChatPushRef = mUserMessageRef.push();
+//        mChatKey = mUserChatPushRef.getKey();
+//        mVendorChatPushRef = mVendorMessageRef.push();
+
         Chat chat = new Chat(
                 mVendorWelcome,
                 mVendorName,
@@ -132,7 +186,12 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                 mVendorUid,
                 mCurrentTimestamp
         );
-        mDatabaseRef.setValue(chat);
+//        Log.i("push key", mDatabaseRef.getKey());
+        mUserMessageRef.setValue(chat);
+        mVendorMessageRef.setValue(chat);
+
+        pushToCart();
+        openChat();
     }
 
 }

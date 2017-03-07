@@ -34,7 +34,7 @@ public class RecyclerItemsFragment extends Fragment{
                     Items.class,
                     R.layout.items_card_view,
                     Viewholder.class,
-                    FirebaseUtil.getCartRef(),
+                    FirebaseUtil.getUserCartRef().child(mVendorUid),
                     getActivity());
         }
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);

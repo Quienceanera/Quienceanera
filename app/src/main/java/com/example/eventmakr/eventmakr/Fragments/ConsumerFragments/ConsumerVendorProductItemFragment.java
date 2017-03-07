@@ -29,7 +29,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
 //    private OnFragmentInteractionListener mListener;
     private CardView mButtonProductItemSelect;
     private Context mContext;
-    private DatabaseReference mDatabaseReference, mPushRef;
+    private DatabaseReference mUserCartRef, mVendorCartRef, mPushRef, mUserMenuRef;
     private VendorProfileProductAdapter mVendorProfileProductAdapter;
     private ImageView mImageViewProductItem;
     private TextView mTextViewProductItemName, mTextViewProductItemDetails, mTextViewProductItemPrice;
@@ -48,7 +48,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         mProductKey = mVendorProfileProductAdapter.mProductKey;
         mVendorUid = mVendorProfileProductAdapter.mVendorUid;
         mUid = FirebaseUtil.getUser().getUid();
-        mDatabaseReference = FirebaseUtil.getMenuRef();
+        mUserMenuRef = FirebaseUtil.getUserMenuRef();
 
     }
 
@@ -70,7 +70,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     }
 
     public void getProductInfo() {
-        mDatabaseReference.child(mProductKey).addValueEventListener(new ValueEventListener() {
+        mUserMenuRef.child(mProductKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mProductImage = (String) dataSnapshot.child("photo").getValue();
@@ -82,7 +82,6 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                         .load(mProductImage)
                         .centerCrop()
                         .into(mImageViewProductItem);
-//                Toast.makeText(mContext, "photo " + mProductImage, Toast.LENGTH_SHORT).show();
                 mTextViewProductItemName.setText(mProductName);
                 mTextViewProductItemDetails.setText(mProductDetails);
                 mTextViewProductItemPrice.setText("$ " + mProductPrice);
@@ -122,15 +121,15 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         switch (id) {
             case R.id.buttonProductItemSelect:
                 getKey();
-
                 break;
                 default:
         }
 
     }
     void getKey () {
-        mDatabaseReference = FirebaseUtil.getBaseRef().child("cart").child(mUid).child(mVendorUid);
-        mPushRef = mDatabaseReference.push();
+        mUserCartRef = FirebaseUtil.getUserCartRef().child(mVendorUid);
+        mVendorCartRef = FirebaseUtil.getVendorCartRef();
+        mPushRef = mUserCartRef.push();
         mKey = mPushRef.getKey();
         addToMyItems();
     }
@@ -147,7 +146,8 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                 mKey,
                 mVendorUid
         );
-        mPushRef.setValue(items);
+        mUserCartRef.child(mKey).setValue(items);
+        mVendorCartRef.child(mKey).setValue(items);
         returnToVendorProfile();
     }
     void returnToVendorProfile () {

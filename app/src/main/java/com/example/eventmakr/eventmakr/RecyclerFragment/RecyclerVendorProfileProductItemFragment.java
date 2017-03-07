@@ -28,7 +28,7 @@ public class RecyclerVendorProfileProductItemFragment extends Fragment {
                 Menu.class,
                 R.layout.vendor_product_card_view,
                 Viewholder.class,
-                FirebaseUtil.getMenuRef(),
+                FirebaseUtil.getUserMenuRef(),
                 getActivity());
 //        mLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL);
         mLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);

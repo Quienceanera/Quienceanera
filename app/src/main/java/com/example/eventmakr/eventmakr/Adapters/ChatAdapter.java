@@ -108,7 +108,7 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Chat, Viewholder>{
 
     }
     private void deleteComment () {
-        FirebaseUtil.getMessageRef().child(mChatKey).removeValue();
+        FirebaseUtil.getUserMessageRef().child(mChatKey).removeValue();
     }
 
 }

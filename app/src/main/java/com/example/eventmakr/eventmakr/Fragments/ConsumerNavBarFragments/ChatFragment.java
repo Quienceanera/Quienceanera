@@ -91,7 +91,7 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
     void postChat() {
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
-        mDatabaseReference = FirebaseUtil.getMessageRef().child(mVendorUid);
+        mDatabaseReference = FirebaseUtil.getUserMessageRef().child(mVendorUid);
         mDatabaseRef = mDatabaseReference.push();
         mChatKey = mDatabaseRef.getKey();
         Chat chat = new Chat(

@@ -38,7 +38,7 @@ public class ChatItemFragment extends Fragment {
                     Chat.class,
                     R.layout.fragment_chat_item,
                     Viewholder.class,
-                    FirebaseUtil.getMessageRef().child(mVendorUid),
+                    FirebaseUtil.getUserMessageRef().child(mVendorUid),
                     mContext);
         }
         mLayoutManger = new LinearLayoutManager(mContext);
