@@ -129,7 +129,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
 
     }
     void getKey () {
-        mUserCartRef = FirebaseUtil.getUserCartRef().child(mVendorUid);
+        mUserCartRef = FirebaseUtil.getUserCartList().child(mVendorUid);
         mVendorCartRef = FirebaseUtil.getVendorCartRef();
         mPushRef = mUserCartRef.push();
         mKey = mPushRef.getKey();

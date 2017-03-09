@@ -15,6 +15,10 @@ public class FirebaseUtil {
         return FirebaseDatabase.getInstance().getReference();
     }
 
+    public static DatabaseReference getEventsRef() {
+        return getBaseRef().child("events").child(FirebaseUtil.getUid());
+    }
+
     public static DatabaseReference getUserMessageRef() {
             return FirebaseUtil.getBaseRef().child("users").child(FirebaseUtil.getUid()).child("messages");
     }
@@ -88,7 +92,7 @@ public class FirebaseUtil {
 
     public static  DatabaseReference getUserCartList() {
         mVendorUid = CartHomeAdapter.mVendorUid;
-        return getBaseRef().child("users").child(FirebaseUtil.getUid()).child("cart").child(mVendorUid);
+        return getBaseRef().child("users").child(FirebaseUtil.getUid()).child("cart");
 
     }
 

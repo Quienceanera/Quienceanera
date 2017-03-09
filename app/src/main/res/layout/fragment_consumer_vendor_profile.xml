@@ -12,7 +12,7 @@
         <RelativeLayout
             android:id="@+id/vendorProfile1"
             android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.CardView
@@ -23,8 +23,8 @@
 
                 <ImageView
                     android:id="@+id/imageViewVendorProfile"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp" />
+                    android:layout_width="170dp"
+                    android:layout_height="120dp" />
 
             </android.support.v7.widget.CardView>
 
@@ -38,6 +38,8 @@
                 android:id="@+id/textViewVendorName"
                 android:textAllCaps="true"
                 android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="20sp"
                 android:textColor="@color/colorText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -45,9 +47,20 @@
             <TextView
                 android:id="@+id/textViewVendorDetails"
                 android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:textColor="@color/colorText"
                 android:layout_below="@+id/textViewVendorName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/textViewVendorAddress"
+                    android:layout_marginTop="10dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorText"
+                    android:layout_below="@+id/textViewVendorDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </RelativeLayout>
 
@@ -56,23 +69,22 @@
         <android.support.v7.widget.CardView
             android:id="@+id/cardViewMap"
             app:cardElevation="2dp"
-            app:cardUseCompatPadding="true"
+            android:layout_marginTop="4dp"
             android:layout_below="@id/vendorProfile1"
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:layout_height="120dp">
+            android:layout_height="130dp">
 
-            <FrameLayout
-                android:id="@+id/containerMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <!--<FrameLayout-->
+                <!--android:id="@+id/containerMapFragment"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
 
-            </FrameLayout>
+            <!--</FrameLayout>-->
 
-            <!--<include-->
-                <!--layout="@layout/activity_maps"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_width="match_parent"/>-->
+            <include
+                layout="@layout/activity_maps"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"/>
 
         </android.support.v7.widget.CardView>
 
@@ -111,6 +123,8 @@
             <TextView
                 android:layout_centerInParent="true"
                 android:text="My Items"
+                android:textStyle="bold"
+                android:textColor="@color/colorText"
                 android:textSize="20sp"
                 android:elevation="4dp"
                 android:layout_width="wrap_content"

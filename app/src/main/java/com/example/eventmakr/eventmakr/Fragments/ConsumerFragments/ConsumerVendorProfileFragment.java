@@ -3,6 +3,7 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,10 +28,10 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
     private Context mContext;
     private DatabaseReference mDatabaseReference;
     private ImageView mImageViewVendorProfile;
-    private TextView mTextViewVendorName, mTextViewVendorDescription;
+    private TextView mTextViewVendorName, mTextViewVendorDescription, mTextViewVendorAddress;
     private VendorAdapter mVendorAdapter;
-    private String mVendorUid;
-    private String mVendorLogo, mVendorName, mVendorDescription;
+    private String mVendorUid, mVendorCategory;
+    private String mVendorLogo, mVendorName, mVendorDescription, mVendorAddress;
 
     public ConsumerVendorProfileFragment() {
         // Required empty public constructor
@@ -41,7 +42,8 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
         super.onCreate(savedInstanceState);
         mContext = getActivity();
         mVendorUid = mVendorAdapter.mVendorUid;
-        mDatabaseReference = FirebaseUtil.getVendorRef();
+        mVendorCategory = ConsumerBudgetFragment.mCategory;
+        mDatabaseReference = FirebaseUtil.getVendorRef().child(mVendorCategory).child(mVendorUid);
 
 //        Toast.makeText(mContext, mVendorKey, Toast.LENGTH_SHORT).show();
     }
@@ -54,10 +56,11 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
         mImageViewVendorProfile = (ImageView) view.findViewById(R.id.imageViewVendorProfile);
         mTextViewVendorName = (TextView) view.findViewById(R.id.textViewVendorName);
         mTextViewVendorDescription = (TextView) view.findViewById(R.id.textViewVendorDetails);
+        mTextViewVendorAddress = (TextView) view.findViewById(R.id.textViewVendorAddress);
 
         getVendorInfo();
         getChildRecyclerVendorProductItems();
-        getChildMapFragment();
+//        getChildMapFragment();
 
         mButtonMyItems.setOnClickListener(this);
         return view;
@@ -70,20 +73,21 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
                 .commit();
     }
 
-    void getChildMapFragment () {
-        getChildFragmentManager()
-                .beginTransaction()
-                .add(R.id.containerMapFragment, FragmentUtil.getMapFragment())
-                .commit();
-    }
+//    void getChildMapFragment () {
+//        getChildFragmentManager()
+//                .beginTransaction()
+//                .add(R.id.containerMapFragment, FragmentUtil.getMapFragment())
+//                .commit();
+//    }
 
     public void getVendorInfo() {
-        mDatabaseReference.child(mVendorUid).addValueEventListener(new ValueEventListener() {
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mVendorLogo = (String) dataSnapshot.child("logo").getValue();
                 mVendorName = (String) dataSnapshot.child("name").getValue();
                 mVendorDescription = (String) dataSnapshot.child("description").getValue();
+                mVendorAddress = (String) dataSnapshot.child("address").getValue();
 
                 Glide.with(mContext)
                         .load(mVendorLogo)
@@ -91,7 +95,9 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
                         .into(mImageViewVendorProfile);
                 mTextViewVendorName.setText(mVendorName);
                 mTextViewVendorDescription.setText(mVendorDescription);
+                mTextViewVendorAddress.setText(mVendorAddress);
 
+                Log.i("Vendor Info ",mVendorCategory +" "+ mVendorLogo +" "+ mVendorName +" "+ mVendorDescription);
             }
 
             @Override

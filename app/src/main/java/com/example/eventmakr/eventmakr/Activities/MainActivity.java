@@ -3,26 +3,34 @@ package com.example.eventmakr.eventmakr.Activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.R;
+import com.github.florent37.viewanimator.ViewAnimator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.nvanbenschoten.motion.ParallaxImageView;
 
 public class MainActivity extends Activity implements View.OnClickListener{
 
     private CardView mButtonPlanning, mButtonLogIn;
     private TextView mTextViewVendor;
-
+    private ParallaxImageView mBackground;
+    private CardView mCardView1, mCardView2;
     private FirebaseUser mFirebaseUser;
     private FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+//    private final Boolean Opened = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mCardView1 = (CardView) findViewById(R.id.cardView1);
+        mCardView2 = (CardView) findViewById(R.id.cardView2);
 
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
@@ -30,17 +38,74 @@ public class MainActivity extends Activity implements View.OnClickListener{
         mButtonLogIn = (CardView) findViewById(R.id.buttonLogIn);
         mTextViewVendor = (TextView)  findViewById(R.id.textView_imAVendor);
 
+        mBackground = (ParallaxImageView) findViewById(R.id.parallaxBackground);
+
         mButtonPlanning.setOnClickListener(this);
         mButtonLogIn.setOnClickListener(this);
         mTextViewVendor.setOnClickListener(this);
 
         if (mFirebaseUser == null) {
-            Toast.makeText(this, "Not logged in", Toast.LENGTH_SHORT).show();
+            ViewAnimator.animate(mButtonLogIn)
+                    .fadeIn()
+                    .duration(1300)
+                    .start();
+            mButtonLogIn.setVisibility(View.VISIBLE);
+            Log.i("User", "Not logged in");
         } else {
             mButtonLogIn.setVisibility(View.GONE);
-            Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
+            Log.i("User", "Logged in");
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mBackground.registerSensorManager();
+
+            ViewAnimator.animate(mCardView1)
+                    .translationX(0, -800)
+                    .duration(1000)
+                    .andAnimate(mCardView2)
+                    .translationX(0, 800)
+                    .duration(1000)
+                    .andAnimate(mButtonPlanning)
+                    .slideBottom()
+                    .duration(1200)
+                    .start();
+            mButtonPlanning.setVisibility(View.VISIBLE);
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable(){
+                @Override
+                public void run() {
+                }
+            }, 1200);
+
+//        ViewAnimator.animate(mCardView1)
+//                .translationX(0, -800)
+//                .duration(500)
+//                .andAnimate(mCardView2)
+//                .translationX(0, 800)
+//                .duration(500)
+//                .andAnimate(mButtonPlanning)
+//                .slideBottom()
+//                .duration(200)
+//                .start();
+//        mButtonPlanning.setVisibility(View.VISIBLE);
+//
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable(){
+//            @Override
+//            public void run() {
+//            }
+//        }, 800);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mBackground.unregisterSensorManager();
     }
 
     @Override

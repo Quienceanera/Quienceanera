@@ -2,13 +2,20 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@color/background_lite"/>
+        android:drawable="@color/cardview_light_background" />
+    <!--<item>-->
+        <!--<bitmap-->
+            <!--android:src="@drawable/logow"-->
+            <!--android:filter="true"-->
+            <!--android:gravity="bottom"/>-->
+    <!--</item>-->
 
-    <item>
-        <bitmap
-
-            android:gravity="center"
-            android:src="@drawable/logoi"/>
-    </item>
+    <!--<item>-->
+        <!--<bitmap-->
+            <!--android:mipMap="true"-->
+            <!--android:filter="true"-->
+            <!--android:gravity="center"-->
+            <!--android:src="@drawable/logoi"/>-->
+    <!--</item>-->
 
 </layer-list>

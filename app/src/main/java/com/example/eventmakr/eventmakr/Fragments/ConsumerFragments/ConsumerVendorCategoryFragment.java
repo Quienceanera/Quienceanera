@@ -6,6 +6,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
@@ -14,6 +15,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
 
     private static final String TAG = "ConsumerVendorCategoryFragment";
     public static String mCategory;
+    private TextView mTextViewVendorCount;
 
     private OnFragmentInteractionListener mListener;
     private CardView mCardViewCaterers, mCardViewMixologists, mCardViewFlorists, mCardViewPartySupplies, mCardViewDjs, mCardViewBakeries;
@@ -40,6 +42,8 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
         mCardViewPartySupplies = (CardView) view.findViewById(R.id.cardViewPartySupplies);
         mCardViewDjs = (CardView) view.findViewById(R.id.cardViewDjs);
         mCardViewBakeries = (CardView) view.findViewById(R.id.cardViewBakeries);
+
+        mTextViewVendorCount = (TextView) view.findViewById(R.id.textViewFoundVendors1);
 
         mCardViewCaterers.setOnClickListener(this);
         mCardViewMixologists.setOnClickListener(this);

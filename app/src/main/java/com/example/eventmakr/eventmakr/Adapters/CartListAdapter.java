@@ -2,7 +2,6 @@ package com.example.eventmakr.eventmakr.Adapters;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Objects.Items;
@@ -35,7 +34,6 @@ public class CartListAdapter extends FirebaseRecyclerAdapter<Items, CartListView
             @Override
             public void onClick(View v) {
 //                getCart();
-                Toast.makeText(mContext, "cartlist", Toast.LENGTH_SHORT).show();
             }
         });
     }

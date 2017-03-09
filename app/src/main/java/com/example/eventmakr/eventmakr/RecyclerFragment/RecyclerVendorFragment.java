@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerBudgetFragment;
@@ -31,7 +30,7 @@ public class RecyclerVendorFragment extends Fragment {
         mCategory = ConsumerVendorCategoryFragment.mCategory;
         mPriceRange = ConsumerBudgetFragment.mPriceRange;
         if (mCategory != null) {
-            Toast.makeText(getActivity(), mCategory, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(), mCategory, Toast.LENGTH_SHORT).show();
             mVendorAdapter = new VendorAdapter(
                     Vendor.class,
                     R.layout.vendor_card_view,

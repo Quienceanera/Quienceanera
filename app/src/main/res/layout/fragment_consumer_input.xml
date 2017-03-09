@@ -8,8 +8,7 @@
     <include
         android:id="@+id/layoutConsumerInput2"
         android:visibility="gone"
-        layout="@layout/fragment_consumer_calendar"
-        />
+        layout="@layout/fragment_consumer_calendar"/>
 
     <RelativeLayout
         android:id="@+id/layoutConsumerInput1"
@@ -18,42 +17,83 @@
 
         <RelativeLayout
             android:layout_centerInParent="true"
-            android:paddingBottom="100dp"
+            android:paddingBottom="120dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <TextView
+            <android.support.v7.widget.CardView
                 android:layout_centerHorizontal="true"
-                android:text="@string/what_s_the_occasion"
+                android:id="@+id/cardViewInput_helper1"
+                app:cardBackgroundColor="@color/light_transparent"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewOccasion"/>
+                android:layout_height="wrap_content">
 
-            <Spinner
-                android:layout_width="150dp"
-                android:tag="Select"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textViewOccasion"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="28dp"
-                android:id="@+id/spinner_occasion" />
+                <RelativeLayout
+                    android:layout_margin="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-            <TextView
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/what_s_the_occasion"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewOccasion"/>
+
+                    <Spinner
+                        android:layout_width="150dp"
+                        android:tag="Select"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewOccasion"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="28dp"
+                        android:id="@+id/spinner_occasion" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="170dp"
-                android:layout_below="@id/textViewOccasion"
-                android:text="@string/enter_your_zip_code"
+                android:layout_marginTop="70dp"
+                android:id="@+id/cardViewInput_helper2"
+                android:layout_below="@+id/cardViewInput_helper1"
+                app:cardBackgroundColor="@color/light_transparent"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewZipCode" />
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/editTextZipCode"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/textViewZipCode"
-                android:layout_margin="20dp"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:layout_margin="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/enter_your_zip_code"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewZipCode" />
+
+                    <EditText
+                        android:id="@+id/editTextZipCode"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/textViewZipCode"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
 
         </RelativeLayout>
 
@@ -75,6 +115,8 @@
                 <TextView
                     android:layout_centerInParent="true"
                     android:text="@string/next"
+                    android:textColor="@color/colorText"
+                    android:textStyle="bold"
                     android:textSize="20sp"
                     android:elevation="4dp"
                     android:layout_width="wrap_content"

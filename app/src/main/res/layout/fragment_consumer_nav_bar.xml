@@ -1,11 +1,16 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorPrimary"
     android:layout_gravity="bottom"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     tools:context="com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.NavBar">
+
+    <ImageView
+        android:src="@drawable/pinknav"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 
     <RelativeLayout
         android:layout_width="wrap_content"

@@ -50,11 +50,18 @@ public class NavBar extends android.app.Fragment implements View.OnClickListener
         int id = view.getId();
         switch (id) {
             case R.id.navButton_home:
-                Intent intent = new Intent(getActivity(), ConsumerActivity.class);
-                startActivity(intent);
+                if (getActivity().findViewById(R.id.navConsumerActivityLayout).isShown()){
+                    getActivity().findViewById(R.id.consumerActivityLayout).setVisibility(View.VISIBLE);
+                    getActivity().findViewById(R.id.navConsumerActivityLayout).setVisibility(View.GONE);
+                } else {
+                    Intent intent = new Intent(getActivity(), ConsumerActivity.class);
+                    startActivity(intent);
+                }
+
                 break;
             case R.id.navButton_chat:
                 getChatFragment();
+
                 break;
             case R.id.navButton_cart:
                 getCartFragment();
@@ -72,6 +79,9 @@ public class NavBar extends android.app.Fragment implements View.OnClickListener
                 .replace(R.id.navConsumerActivityLayout, FragmentUtil.getUserFragment())
                 .addToBackStack(null)
                 .commit();
+        getActivity().findViewById(R.id.consumerActivityLayout).setVisibility(View.GONE);
+        getActivity().findViewById(R.id.navConsumerActivityLayout).setVisibility(View.VISIBLE);
+
     }
 
     public void getChatFragment () {
@@ -80,6 +90,8 @@ public class NavBar extends android.app.Fragment implements View.OnClickListener
                 .replace(R.id.navConsumerActivityLayout, FragmentUtil.getChatHomeFragment())
                 .addToBackStack(null)
                 .commit();
+        getActivity().findViewById(R.id.consumerActivityLayout).setVisibility(View.GONE);
+        getActivity().findViewById(R.id.navConsumerActivityLayout).setVisibility(View.VISIBLE);
     }
 
     public void getCartFragment () {
@@ -88,6 +100,8 @@ public class NavBar extends android.app.Fragment implements View.OnClickListener
                 .replace(R.id.navConsumerActivityLayout, FragmentUtil.getCartFragment())
                 .addToBackStack(null)
                 .commit();
+        getActivity().findViewById(R.id.consumerActivityLayout).setVisibility(View.GONE);
+        getActivity().findViewById(R.id.navConsumerActivityLayout).setVisibility(View.VISIBLE);
     }
 
 //    // TODO: Rename method, update argument and hook method into UI event

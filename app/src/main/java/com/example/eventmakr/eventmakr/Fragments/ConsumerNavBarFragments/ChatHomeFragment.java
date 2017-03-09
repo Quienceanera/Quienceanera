@@ -1,6 +1,7 @@
 package com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,5 +48,16 @@ public class ChatHomeFragment extends android.app.Fragment implements View.OnCli
         }
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i("ChatHome onStop", "Stop");
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i("ChatHome onPause", "Pause");
+    }
 }
