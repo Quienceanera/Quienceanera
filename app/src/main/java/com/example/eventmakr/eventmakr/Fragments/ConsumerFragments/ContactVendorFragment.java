@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.example.eventmakr.eventmakr.Objects.Cart;
 import com.example.eventmakr.eventmakr.Objects.Chat;
@@ -63,7 +64,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     }
 
     void getTotalPrice () {
-        mItemsRef = FirebaseUtil.getUserCartList().child(mVendorUid);
+        mItemsRef = FirebaseUtil.getUserCartList().child(EventsAdapter.mEventKey).child(mVendorUid);
         mItemsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -110,7 +111,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     void pushToCart () {
         mOrderId = mChatKey;
 
-        mUserCartRef = FirebaseUtil.getUserCartInfoRef().child(mVendorUid);
+        mUserCartRef = FirebaseUtil.getUserCartInfoRef().child(EventsAdapter.mEventKey).child(mVendorUid);
         mVendorCartRef = FirebaseUtil.getVendorCartInfoRef();
         mConsumerId = FirebaseUtil.getUid();
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
@@ -128,7 +129,6 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                 mVendorLogo,
                 mCurrentTimestamp
         );
-
         mUserCartRef.setValue(cart);
         mVendorCartRef.setValue(cart);
 
@@ -137,15 +137,16 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     void pushToChatHome() {
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
-        mUserChatHomeRef = FirebaseUtil.getUserChatHomeRef().child(mVendorUid);
+        mUserChatHomeRef = FirebaseUtil.getUserChatHomeRef().child(EventsAdapter.mEventKey).child(mVendorUid);
         mVendorChatHomeRef = FirebaseUtil.getVendorChatHomeRef().child(mVendorUid).child("chat").child(FirebaseUtil.getUid());
-
         ChatHome chatHome = new ChatHome(
                 mVendorName,
                 mVendorLogo,
                 mVendorUid,
                 mCurrentTimestamp,
-                null
+                null,
+                EventsAdapter.mEventName,
+                EventsAdapter.mEventDate
         );
         mUserChatHomeRef.setValue(chatHome);
         mVendorChatHomeRef.setValue(chatHome);
@@ -170,7 +171,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     void postChat() {
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
-        mUserMessageRef = FirebaseUtil.getUserMessageRef().child(mVendorUid);
+        mUserMessageRef = FirebaseUtil.getUserMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid);
         mVendorMessageRef = FirebaseUtil.getVendorMessageRef().child(FirebaseUtil.getUid());
         mUserChatPushRef = mUserMessageRef.push();
         mChatKey = mUserChatPushRef.getKey();

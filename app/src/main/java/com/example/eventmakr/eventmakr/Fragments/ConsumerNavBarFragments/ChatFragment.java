@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
+import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Objects.Chat;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -91,7 +92,7 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
     void postChat() {
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
-        mDatabaseReference = FirebaseUtil.getUserMessageRef().child(mVendorUid);
+        mDatabaseReference = FirebaseUtil.getUserMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid);
         mDatabaseRef = mDatabaseReference.push();
         mChatKey = mDatabaseRef.getKey();
         Chat chat = new Chat(

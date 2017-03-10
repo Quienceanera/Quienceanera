@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorProfileProductAdapter;
 import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.R;
@@ -50,7 +51,6 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         mVendorName = mVendorProfileProductAdapter.mVendorName;
         mUid = FirebaseUtil.getUser().getUid();
         mUserMenuRef = FirebaseUtil.getUserMenuRef();
-
 
     }
 
@@ -122,14 +122,18 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         int id = view.getId();
         switch (id) {
             case R.id.buttonProductItemSelect:
-                getKey();
+                if (mEditTextQuantity != null){
+                    getKey();
+                }else {
+                    returnToVendorProfile();
+                }
                 break;
                 default:
         }
 
     }
     void getKey () {
-        mUserCartRef = FirebaseUtil.getUserCartList().child(mVendorUid);
+        mUserCartRef = FirebaseUtil.getUserCartList().child(EventsAdapter.mEventKey).child(mVendorUid);
         mVendorCartRef = FirebaseUtil.getVendorCartRef();
         mPushRef = mUserCartRef.push();
         mKey = mPushRef.getKey();

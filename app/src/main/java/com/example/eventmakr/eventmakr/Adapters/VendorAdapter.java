@@ -38,8 +38,8 @@ public class VendorAdapter extends FirebaseRecyclerAdapter<Vendor, Viewholder> {
         mVendorUid = model.getVendorUid();
         mVendorName = model.getName();
         if (model.getPrice().equals(mPriceRange)){
-//                    Toast.makeText(mContext, mPriceRange, Toast.LENGTH_SHORT).show();
             viewHolder.mTextViewVendorName.setText(model.getName());
+            viewHolder.mTextViewVendorAddress.setText(model.getAddress()+" "+model.getZipcode());
             Glide.with(mContext)
                     .load(model.getLogo())
                     .centerCrop()

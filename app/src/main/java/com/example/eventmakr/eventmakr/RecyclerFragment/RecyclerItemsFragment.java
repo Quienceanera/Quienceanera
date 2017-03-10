@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ItemsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.example.eventmakr.eventmakr.Objects.Items;
@@ -34,7 +35,7 @@ public class RecyclerItemsFragment extends Fragment{
                     Items.class,
                     R.layout.items_card_view,
                     Viewholder.class,
-                    FirebaseUtil.getUserCartList().child(mVendorUid),
+                    FirebaseUtil.getUserCartList().child(EventsAdapter.mEventKey).child(mVendorUid),
                     getActivity());
         }
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);

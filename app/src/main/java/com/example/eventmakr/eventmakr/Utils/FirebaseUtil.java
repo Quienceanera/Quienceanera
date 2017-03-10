@@ -20,7 +20,7 @@ public class FirebaseUtil {
     }
 
     public static DatabaseReference getUserMessageRef() {
-            return FirebaseUtil.getBaseRef().child("users").child(FirebaseUtil.getUid()).child("messages");
+            return FirebaseUtil.getBaseRef().child("messages").child(FirebaseUtil.getUid());
     }
 
     public static DatabaseReference getVendorMessageRef() {
@@ -32,7 +32,7 @@ public class FirebaseUtil {
     public static DatabaseReference getUserChatHomeRef() {
         mVendorUid = VendorAdapter.mVendorUid;
         mVendorUid = ChatHomeAdapter.mVendorUid;
-        return getBaseRef().child("users").child(FirebaseUtil.getUid()).child("chat");
+        return getBaseRef().child("chathome").child(FirebaseUtil.getUid());
     }
 
     public static DatabaseReference getVendorChatHomeRef() {
@@ -92,7 +92,7 @@ public class FirebaseUtil {
 
     public static  DatabaseReference getUserCartList() {
         mVendorUid = CartHomeAdapter.mVendorUid;
-        return getBaseRef().child("users").child(FirebaseUtil.getUid()).child("cart");
+        return getBaseRef().child("cart").child(FirebaseUtil.getUid());
 
     }
 

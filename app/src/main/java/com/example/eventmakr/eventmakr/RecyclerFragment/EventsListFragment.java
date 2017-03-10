@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,7 +21,7 @@ public class EventsListFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private Context mContext;
     private EventsAdapter mAdapter;
-    private GridLayoutManager mLayoutManger;
+    private LinearLayoutManager mLayoutManger;
 
     public EventsListFragment() {
     }
@@ -36,16 +35,17 @@ public class EventsListFragment extends Fragment {
                 FirebaseUtil.getEventsRef(),
                 getActivity());
 
-//        mLayoutManger.setStackFromEnd(true);
+        mLayoutManger = new LinearLayoutManager(getActivity());
+
         super.onCreate(savedInstanceState);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_cart_home_item_list, container, false);
+        View view = inflater.inflate(R.layout.events_item_list, container, false);
         view.setTag(TAG);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewCartHomeList);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewEventsList);
         mRecyclerView.setLayoutManager(mLayoutManger);
         mRecyclerView.setAdapter(mAdapter);
 //        mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {

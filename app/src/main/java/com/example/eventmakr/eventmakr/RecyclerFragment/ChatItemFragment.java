@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.eventmakr.eventmakr.Adapters.ChatAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
+import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Objects.Chat;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -38,7 +39,7 @@ public class ChatItemFragment extends Fragment {
                     Chat.class,
                     R.layout.fragment_chat_item,
                     Viewholder.class,
-                    FirebaseUtil.getUserMessageRef().child(mVendorUid),
+                    FirebaseUtil.getUserMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid),
                     mContext);
         }
         mLayoutManger = new LinearLayoutManager(mContext);

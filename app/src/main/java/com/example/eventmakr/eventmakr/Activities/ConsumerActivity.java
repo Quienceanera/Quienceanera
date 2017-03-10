@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.example.eventmakr.eventmakr.R;
@@ -15,6 +16,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
 
     private ImageView mImageViewToolbarIcon;
     private FloatingActionButton mFabNewEvent;
+    private FrameLayout mLayoutEventsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         setSupportActionBar(mToolbar);
         mFabNewEvent = (FloatingActionButton) findViewById(R.id.fabNewEvent);
         mImageViewToolbarIcon = (ImageView) findViewById(R.id.imageViewIcon);
+        mLayoutEventsList = (FrameLayout) findViewById(R.id.containerEventsList);
         mFabNewEvent.setOnClickListener(this);
         mImageViewToolbarIcon.setOnClickListener(this);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -43,6 +46,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
             case R.id.fabNewEvent:
                 getConsumerInputFragment();
                 mFabNewEvent.setVisibility(View.GONE);
+                mLayoutEventsList.setVisibility(View.GONE);
                 break;
             case R.id.imageViewIcon:
                 startActivity(new Intent(this, MainActivity.class));

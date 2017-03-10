@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
+import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
@@ -60,11 +62,19 @@ public class NavBar extends android.app.Fragment implements View.OnClickListener
 
                 break;
             case R.id.navButton_chat:
-                getChatFragment();
+                if (EventsAdapter.mEventKey != null){
+                    getChatFragment();
+                }else {
+                    Toast.makeText(getActivity(), "Choose an event or create a new one", Toast.LENGTH_SHORT).show();
+                }
 
                 break;
             case R.id.navButton_cart:
-                getCartFragment();
+                if (EventsAdapter.mEventKey != null){
+                    getCartFragment();
+                }else {
+                    Toast.makeText(getActivity(), "Choose an event or create a new one", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.navButton_user:
                 getUserFragment();
@@ -101,6 +111,7 @@ public class NavBar extends android.app.Fragment implements View.OnClickListener
                 .addToBackStack(null)
                 .commit();
         getActivity().findViewById(R.id.consumerActivityLayout).setVisibility(View.GONE);
+        getActivity().findViewById(R.id.containerEventsList).setVisibility(View.GONE);
         getActivity().findViewById(R.id.navConsumerActivityLayout).setVisibility(View.VISIBLE);
     }
 

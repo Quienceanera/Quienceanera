@@ -6,17 +6,19 @@ public class Events {
     private String eventDate;
     private String eventType;
     private String eventPhoto;
+    private String eventZip;
     private String uid;
 
     public Events() {
     }
 
-    public Events(String eventId, String eventName, String eventDate, String eventType, String eventPhoto, String uid) {
+    public Events(String eventId, String eventName, String eventDate, String eventType, String eventPhoto, String eventZip, String uid) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventDate = eventDate;
         this.eventType = eventType;
         this.eventPhoto = eventPhoto;
+        this.eventZip = eventZip;
         this.uid = uid;
     }
 
@@ -58,6 +60,14 @@ public class Events {
 
     public void setEventPhoto(String eventPhoto) {
         this.eventPhoto = eventPhoto;
+    }
+
+    public String getEventZip() {
+        return eventZip;
+    }
+
+    public void setEventZip(String eventZip) {
+        this.eventZip = eventZip;
     }
 
     public String getUid() {

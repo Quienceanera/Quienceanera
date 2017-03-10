@@ -31,7 +31,7 @@ public class ItemsAdapter extends FirebaseRecyclerAdapter<Items, Viewholder> {
     protected void populateViewHolder(Viewholder viewHolder, final Items model, int position) {
         viewHolder.mTextViewItemsName.setText(model.getName());
         viewHolder.mTextViewItemsQuantity.setText(model.getQuantity());
-        viewHolder.mTextViewItemsPrice.setText("$ " + model.getPrice());
+        viewHolder.mTextViewItemsPrice.setText("$" + model.getPrice());
         Glide.with(mContext)
                 .load(model.getPhoto())
                 .centerCrop()

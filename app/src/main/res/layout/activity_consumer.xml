@@ -6,6 +6,7 @@
     tools:context="com.example.eventmakr.eventmakr.Activities.VendorActivity">
 
     <ImageView
+        android:id="@+id/imageViewBackground"
         android:src="@drawable/cupcakebw"
         android:scaleType="centerCrop"
         android:layout_width="match_parent"
@@ -40,6 +41,21 @@
 
      </android.support.v7.widget.Toolbar>
 
+        <FrameLayout
+            android:id="@+id/containerEventsList"
+            android:layout_below="@+id/toolbar"
+            android:layout_above="@+id/navBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <fragment
+                android:id="@+id/eventsListFragment"
+                android:name="com.example.eventmakr.eventmakr.RecyclerFragment.EventsListFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </FrameLayout>
+
         <android.support.design.widget.FloatingActionButton
             android:layout_above="@+id/navBar"
             android:id="@+id/fabNewEvent"
@@ -48,7 +64,7 @@
             app:pressedTranslationZ="8dp"
             app:elevation="6dp"
             app:useCompatPadding="true"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="48dp"
             android:layout_marginEnd="16dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
