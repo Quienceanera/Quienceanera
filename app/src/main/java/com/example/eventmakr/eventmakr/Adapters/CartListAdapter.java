@@ -22,9 +22,9 @@ public class CartListAdapter extends FirebaseRecyclerAdapter<Items, CartListView
     @Override
     protected void populateViewHolder(final CartListViewholder viewHolder, final Items model, final int position) {
         viewHolder.mTextViewCartItemName.setText(model.getName());
-        viewHolder.mTextViewCartItemVendorName.setText(model.getVendorName());
-        viewHolder.mTextViewCartItemPrice.setText(model.getTotalPrice());
-        viewHolder.mTextViewCartItemQuantity.setText(model.getQuantity());
+        viewHolder.mTextViewCartItemVendorName.setText("");
+        viewHolder.mTextViewCartItemPrice.setText("$"+model.getPrice());
+        viewHolder.mTextViewCartItemQuantity.setText("Qty: "+model.getQuantity());
         Glide.with(mContext)
                 .load(model.getPhoto())
                 .centerCrop()

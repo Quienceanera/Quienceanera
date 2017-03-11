@@ -9,8 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.CartListAdapter;
+import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerInputFragment;
 import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -30,15 +32,24 @@ public class CartListItemFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        mAdapter = new CartListAdapter(
-                Items.class,
-                R.layout.fragment_cart_item,
-                CartListViewholder.class,
-                FirebaseUtil.getUserCartList(),
-                getActivity());
+        if (EventsAdapter.mEventKey != null) {
+            mAdapter = new CartListAdapter(
+                    Items.class,
+                    R.layout.fragment_cart_item,
+                    CartListViewholder.class,
+                    FirebaseUtil.getUserCartList().child(EventsAdapter.mEventKey).child(CartHomeAdapter.mVendorUid),
+                    getActivity());
+        }
+        if (ConsumerInputFragment.mEventKey != null) {
+            mAdapter = new CartListAdapter(
+                    Items.class,
+                    R.layout.fragment_cart_item,
+                    CartListViewholder.class,
+                    FirebaseUtil.getUserCartList().child(ConsumerInputFragment.mEventKey).child(CartHomeAdapter.mVendorUid),
+                    getActivity());
+        }
 
         mLayoutManger = new LinearLayoutManager(getActivity());
-//        mLayoutManger.setStackFromEnd(true);
         super.onCreate(savedInstanceState);
     }
 
@@ -47,7 +58,7 @@ public class CartListItemFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart_item_list, container, false);
         view.setTag(TAG);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewCartHomeList);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewCartList);
         mRecyclerView.setLayoutManager(mLayoutManger);
         mRecyclerView.setAdapter(mAdapter);
 //        mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {

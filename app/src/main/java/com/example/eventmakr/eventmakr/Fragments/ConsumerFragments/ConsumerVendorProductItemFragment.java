@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -133,7 +134,15 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
 
     }
     void getKey () {
-        mUserCartRef = FirebaseUtil.getUserCartList().child(EventsAdapter.mEventKey).child(mVendorUid);
+        if (EventsAdapter.mEventKey != null) {
+            mUserCartRef = FirebaseUtil.getUserCartList().child(EventsAdapter.mEventKey).child(mVendorUid);
+            Log.i("EventAdapter Key", EventsAdapter.mEventKey);
+        }
+        if (ConsumerInputFragment.mEventKey != null){
+            mUserCartRef = FirebaseUtil.getUserCartList().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
+            Log.i("EventInput Key", ConsumerInputFragment.mEventKey);
+
+        }
         mVendorCartRef = FirebaseUtil.getVendorCartRef();
         mPushRef = mUserCartRef.push();
         mKey = mPushRef.getKey();
@@ -162,7 +171,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorProfileFragment())
-                .addToBackStack(null)
+                .disallowAddToBackStack()
                 .commit();
     }
 

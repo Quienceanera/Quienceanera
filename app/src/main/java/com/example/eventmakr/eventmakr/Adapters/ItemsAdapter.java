@@ -1,19 +1,14 @@
 package com.example.eventmakr.eventmakr.Adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Objects.Items;
-import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class ItemsAdapter extends FirebaseRecyclerAdapter<Items, Viewholder> {
 
@@ -36,23 +31,23 @@ public class ItemsAdapter extends FirebaseRecyclerAdapter<Items, Viewholder> {
                 .load(model.getPhoto())
                 .centerCrop()
                 .into(viewHolder.mImageViewItems);
-
-        mItemsRef = FirebaseUtil.getUserCartRef().child(model.getVendorId());
-        mItemsRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-            for (DataSnapshot child: dataSnapshot.child("price").getChildren()) {
-                String mChildPrice = child.getKey();
-                Log.i("Price ", mChildPrice);
-
-            }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//
+//        mItemsRef = FirebaseUtil.getUserCartRef().child(model.getVendorId());
+//        mItemsRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//            for (DataSnapshot child: dataSnapshot.child("price").getChildren()) {
+//                String mChildPrice = child.getKey();
+//                Log.i("Price ", mChildPrice);
+//
+//            }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
         viewHolder.mImageViewItems.setOnClickListener(new View.OnClickListener() {
             @Override

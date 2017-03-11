@@ -8,11 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ItemsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerInputFragment;
 import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -29,15 +29,27 @@ public class RecyclerItemsFragment extends Fragment{
     @ Override
     public void onCreate(Bundle savedInstanceState){
         mVendorUid = VendorAdapter.mVendorUid;
-        Toast.makeText(getActivity(), mVendorUid, Toast.LENGTH_SHORT).show();
-        if (mVendorUid != null) {
-            mItemsAdapter = new ItemsAdapter(
-                    Items.class,
-                    R.layout.items_card_view,
-                    Viewholder.class,
-                    FirebaseUtil.getUserCartList().child(EventsAdapter.mEventKey).child(mVendorUid),
-                    getActivity());
+        if (EventsAdapter.mEventKey != null){
+            if (mVendorUid != null) {
+                mItemsAdapter = new ItemsAdapter(
+                        Items.class,
+                        R.layout.items_card_view,
+                        Viewholder.class,
+                        FirebaseUtil.getUserCartList().child(EventsAdapter.mEventKey).child(mVendorUid),
+                        getActivity());
+            }
         }
+        if (ConsumerInputFragment.mEventKey != null) {
+            if (mVendorUid != null) {
+                mItemsAdapter = new ItemsAdapter(
+                        Items.class,
+                        R.layout.items_card_view,
+                        Viewholder.class,
+                        FirebaseUtil.getUserCartList().child(ConsumerInputFragment.mEventKey).child(mVendorUid),
+                        getActivity());
+            }
+        }
+
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         super.onCreate(savedInstanceState);
     }

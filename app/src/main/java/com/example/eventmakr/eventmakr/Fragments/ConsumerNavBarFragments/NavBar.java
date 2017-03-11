@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerInputFragment;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
@@ -55,14 +56,21 @@ public class NavBar extends android.app.Fragment implements View.OnClickListener
                 if (getActivity().findViewById(R.id.navConsumerActivityLayout).isShown()){
                     getActivity().findViewById(R.id.consumerActivityLayout).setVisibility(View.VISIBLE);
                     getActivity().findViewById(R.id.navConsumerActivityLayout).setVisibility(View.GONE);
-                } else {
+                    getActivity().findViewById(R.id.containerEventsList).setVisibility(View.VISIBLE);
+
+                }
+                else {
                     Intent intent = new Intent(getActivity(), ConsumerActivity.class);
                     startActivity(intent);
+                }
+                if (getActivity().findViewById(R.id.consumerActivityLayout).isShown()){
+                    getActivity().findViewById(R.id.containerEventsList).setVisibility(View.GONE);
+
                 }
 
                 break;
             case R.id.navButton_chat:
-                if (EventsAdapter.mEventKey != null){
+                if (EventsAdapter.mEventKey != null || ConsumerInputFragment.mEventKey != null){
                     getChatFragment();
                 }else {
                     Toast.makeText(getActivity(), "Choose an event or create a new one", Toast.LENGTH_SHORT).show();
@@ -70,7 +78,7 @@ public class NavBar extends android.app.Fragment implements View.OnClickListener
 
                 break;
             case R.id.navButton_cart:
-                if (EventsAdapter.mEventKey != null){
+                if (EventsAdapter.mEventKey != null || ConsumerInputFragment.mEventKey != null){
                     getCartFragment();
                 }else {
                     Toast.makeText(getActivity(), "Choose an event or create a new one", Toast.LENGTH_SHORT).show();
@@ -90,6 +98,7 @@ public class NavBar extends android.app.Fragment implements View.OnClickListener
                 .addToBackStack(null)
                 .commit();
         getActivity().findViewById(R.id.consumerActivityLayout).setVisibility(View.GONE);
+        getActivity().findViewById(R.id.containerEventsList).setVisibility(View.GONE);
         getActivity().findViewById(R.id.navConsumerActivityLayout).setVisibility(View.VISIBLE);
 
     }
@@ -101,6 +110,7 @@ public class NavBar extends android.app.Fragment implements View.OnClickListener
                 .addToBackStack(null)
                 .commit();
         getActivity().findViewById(R.id.consumerActivityLayout).setVisibility(View.GONE);
+        getActivity().findViewById(R.id.containerEventsList).setVisibility(View.GONE);
         getActivity().findViewById(R.id.navConsumerActivityLayout).setVisibility(View.VISIBLE);
     }
 

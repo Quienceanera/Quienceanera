@@ -32,13 +32,13 @@ public class ConsumerInputFragment extends android.app.Fragment implements View.
     private CardView mButtonNext, mButtonFindVendors;
     private Spinner mSpinner;
     private String[] Events = {"Choose an Event","Quienceanera", "Birthday", "Wedding", "Baby Shower", "Graduation"};
-    private Integer[] mImagesSpinner = { 0, R.drawable.q, R.drawable.birthday, R.drawable.wedding, R.drawable.baby, R.drawable.graduation };
-    private String mEventType, mEventZipCode, mEventId, mEventName, mEventDate, mEventPhoto, mUid;
-    private EditText mEditTextZipCode;
+    private String mEventZipCode, mEventId, mEventPhoto, mUid;
+    private EditText mEditTextZipCode, mEditTextEventName;
     private DatabaseReference mPushRef, mEventsRef;
     private int mImageId;
     private CalendarView mCalendarView;
     private Boolean mCheckFields = false;
+    public static String mEventKey, mEventAddress, mEventDate, mEventName, mEventType;
 
     public ConsumerInputFragment() {
         // Required empty public constructor
@@ -58,6 +58,7 @@ public class ConsumerInputFragment extends android.app.Fragment implements View.
         mButtonNext = (CardView) view.findViewById(R.id.buttonNextInput);
         mButtonFindVendors = (CardView) view.findViewById(R.id.buttonFindVendors);
         mEditTextZipCode = (EditText) view.findViewById(R.id.editTextZipCode);
+        mEditTextEventName = (EditText) view.findViewById(R.id.editTextInputEventName);
         mCalendarView = (CalendarView) view.findViewById(R.id.calendarView);
         mSpinner = (Spinner) view.findViewById(R.id.spinner_occasion);
         mSpinner.setAdapter(new spinnerAdapter(getActivity(), R.layout.custom_spinner, R.id.textViewSpinner, Events));
@@ -91,6 +92,7 @@ public class ConsumerInputFragment extends android.app.Fragment implements View.
 
     void createEvent () {
         mEventZipCode = mEditTextZipCode.getText().toString();
+        mEventName= mEditTextEventName.getText().toString();
         mEventPhoto = ((String.valueOf(mImageId)));
         mEventsRef = FirebaseUtil.getEventsRef();
         mPushRef = mEventsRef.push();
@@ -106,6 +108,7 @@ public class ConsumerInputFragment extends android.app.Fragment implements View.
                 mUid
         );
         mPushRef.setValue(events);
+        mEventKey = mEventId;
     }
 
     public class spinnerAdapter extends ArrayAdapter {

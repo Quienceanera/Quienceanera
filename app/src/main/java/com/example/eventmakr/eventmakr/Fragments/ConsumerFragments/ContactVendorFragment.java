@@ -24,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static com.example.eventmakr.eventmakr.Utils.FirebaseUtil.getUserChatHomeRef;
+
 public class ContactVendorFragment extends android.app.Fragment implements View.OnClickListener{
     private static final String TAG = "ContactVendorFragment";
     private TextView mTextViewTotal;
@@ -64,7 +66,15 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     }
 
     void getTotalPrice () {
-        mItemsRef = FirebaseUtil.getUserCartList().child(EventsAdapter.mEventKey).child(mVendorUid);
+        if (EventsAdapter.mEventKey != null) {
+            mItemsRef = FirebaseUtil.getUserCartList().child(EventsAdapter.mEventKey).child(mVendorUid);
+            Log.i("EventAdapter Key", EventsAdapter.mEventKey);
+        }
+        if (ConsumerInputFragment.mEventKey != null){
+            mItemsRef = FirebaseUtil.getUserCartList().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
+            Log.i("EventInput Key", ConsumerInputFragment.mEventKey);
+
+        }
         mItemsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -110,47 +120,94 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
 
     void pushToCart () {
         mOrderId = mChatKey;
-
-        mUserCartRef = FirebaseUtil.getUserCartInfoRef().child(EventsAdapter.mEventKey).child(mVendorUid);
+        if (EventsAdapter.mEventKey != null){
+            mUserCartRef = FirebaseUtil.getUserCartInfoRef().child(EventsAdapter.mEventKey).child(mVendorUid);
+        }
+        if (ConsumerInputFragment.mEventKey != null){
+            mUserCartRef = FirebaseUtil.getUserCartInfoRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
+        }
         mVendorCartRef = FirebaseUtil.getVendorCartInfoRef();
         mConsumerId = FirebaseUtil.getUid();
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
-        Cart cart = new Cart(
-                "eventdate",
-                "eventType",
-                "eventaddress",
-                mOrderId,
-                mConsumerId,
-                mVendorUid,
-                mPriceTotal,
-                mQuantity,
-                mVendorName,
-                mVendorLogo,
-                mCurrentTimestamp
-        );
-        mUserCartRef.setValue(cart);
-        mVendorCartRef.setValue(cart);
 
+        if (EventsAdapter.mEventKey != null){
+            Cart cart = new Cart(
+                    EventsAdapter.mEventDate,
+                    EventsAdapter.mEventType,
+                    EventsAdapter.mEventAddress,
+                    EventsAdapter.mEventName,
+                    mOrderId,
+                    mConsumerId,
+                    mVendorUid,
+                    mPriceTotal,
+                    mQuantity,
+                    mVendorName,
+                    mVendorLogo,
+                    mCurrentTimestamp
+            );
+            mUserCartRef.setValue(cart);
+            mVendorCartRef.setValue(cart);
+        }
+        if (ConsumerInputFragment.mEventKey != null){
+            Cart cart = new Cart(
+                    ConsumerInputFragment.mEventDate,
+                    ConsumerInputFragment.mEventType,
+                    ConsumerInputFragment.mEventAddress,
+                    ConsumerInputFragment.mEventName,
+                    mOrderId,
+                    mConsumerId,
+                    mVendorUid,
+                    mPriceTotal,
+                    mQuantity,
+                    mVendorName,
+                    mVendorLogo,
+                    mCurrentTimestamp
+            );
+            mUserCartRef.setValue(cart);
+            mVendorCartRef.setValue(cart);
+        }
     }
 
     void pushToChatHome() {
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
-        mUserChatHomeRef = FirebaseUtil.getUserChatHomeRef().child(EventsAdapter.mEventKey).child(mVendorUid);
+        if (EventsAdapter.mEventKey != null){
+            mUserChatHomeRef = getUserChatHomeRef().child(EventsAdapter.mEventKey).child(mVendorUid);
+        }
+        if (ConsumerInputFragment.mEventKey != null){
+            mUserChatHomeRef = getUserChatHomeRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
+        }
         mVendorChatHomeRef = FirebaseUtil.getVendorChatHomeRef().child(mVendorUid).child("chat").child(FirebaseUtil.getUid());
-        ChatHome chatHome = new ChatHome(
-                mVendorName,
-                mVendorLogo,
-                mVendorUid,
-                mCurrentTimestamp,
-                null,
-                EventsAdapter.mEventName,
-                EventsAdapter.mEventDate
-        );
-        mUserChatHomeRef.setValue(chatHome);
-        mVendorChatHomeRef.setValue(chatHome);
-        postChat();
+        if (EventsAdapter.mEventKey != null){
+            ChatHome chatHome = new ChatHome(
+                    mVendorName,
+                    mVendorLogo,
+                    mVendorUid,
+                    mCurrentTimestamp,
+                    null,
+                    EventsAdapter.mEventName,
+                    EventsAdapter.mEventDate
+            );
+            mUserChatHomeRef.setValue(chatHome);
+            mVendorChatHomeRef.setValue(chatHome);
+            postChat();
+        }
+        if (ConsumerInputFragment.mEventKey != null){
+            ChatHome chatHome = new ChatHome(
+                    mVendorName,
+                    mVendorLogo,
+                    mVendorUid,
+                    mCurrentTimestamp,
+                    null,
+                    ConsumerInputFragment.mEventName,
+                    ConsumerInputFragment.mEventDate
+            );
+            mUserChatHomeRef.setValue(chatHome);
+            mVendorChatHomeRef.setValue(chatHome);
+            postChat();
+        }
+
     }
 
     void contactVendor () {
@@ -162,21 +219,26 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     }
 
     void openChat () {
+        getActivity().findViewById(R.id.consumerActivityLayout).setVisibility(View.GONE);
+        getActivity().findViewById(R.id.navConsumerActivityLayout).setVisibility(View.VISIBLE);
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.consumerActivityLayout, FragmentUtil.getChatHomeFragment())
+                .replace(R.id.navConsumerActivityLayout, FragmentUtil.getChatHomeFragment())
                 .commit();
     }
 
     void postChat() {
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
-        mUserMessageRef = FirebaseUtil.getUserMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid);
+        if (EventsAdapter.mEventKey != null){
+            mUserMessageRef = FirebaseUtil.getUserMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid);
+        }
+        if (ConsumerInputFragment.mEventKey != null){
+            mUserMessageRef = FirebaseUtil.getUserMessageRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
+        }
         mVendorMessageRef = FirebaseUtil.getVendorMessageRef().child(FirebaseUtil.getUid());
         mUserChatPushRef = mUserMessageRef.push();
         mChatKey = mUserChatPushRef.getKey();
-//        mVendorChatPushRef = mVendorMessageRef.push();
-
         Chat chat = new Chat(
                 mVendorWelcome,
                 mVendorName,
@@ -185,10 +247,8 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                 mVendorUid,
                 mCurrentTimestamp
         );
-//        Log.i("push key", mDatabaseRef.getKey());
         mUserMessageRef.child(mChatKey).setValue(chat);
         mVendorMessageRef.child(mChatKey).setValue(chat);
-
         pushToCart();
         openChat();
     }

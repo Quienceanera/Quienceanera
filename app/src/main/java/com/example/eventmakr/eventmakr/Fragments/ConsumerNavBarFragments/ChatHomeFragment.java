@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.eventmakr.eventmakr.R;
+import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
@@ -33,9 +34,16 @@ public class ChatHomeFragment extends android.app.Fragment implements View.OnCli
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_chat_home, container, false);
-
+        getChatHomeList();
 
         return view;
+    }
+
+    void getChatHomeList(){
+        getChildFragmentManager()
+                .beginTransaction()
+                .add(R.id.containerChatHomeList, FragmentUtil.getChatHomeItemFragment())
+                .commit();
     }
 
     @Override

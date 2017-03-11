@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.eventmakr.eventmakr.Adapters.ChatAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerInputFragment;
 import com.example.eventmakr.eventmakr.Objects.Chat;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -34,14 +35,27 @@ public class ChatItemFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         mVendorUid = ChatHomeAdapter.mVendorUid;
-        if (mVendorUid != null) {
-            mAdapter = new ChatAdapter(
-                    Chat.class,
-                    R.layout.fragment_chat_item,
-                    Viewholder.class,
-                    FirebaseUtil.getUserMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid),
-                    mContext);
+        if (EventsAdapter.mEventKey != null){
+            if (mVendorUid != null) {
+                mAdapter = new ChatAdapter(
+                        Chat.class,
+                        R.layout.fragment_chat_item,
+                        Viewholder.class,
+                        FirebaseUtil.getUserMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid),
+                        mContext);
+            }
         }
+        if (ConsumerInputFragment.mEventKey != null){
+            if (mVendorUid != null) {
+                mAdapter = new ChatAdapter(
+                        Chat.class,
+                        R.layout.fragment_chat_item,
+                        Viewholder.class,
+                        FirebaseUtil.getUserMessageRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid),
+                        mContext);
+            }
+        }
+
         mLayoutManger = new LinearLayoutManager(mContext);
         mLayoutManger.setStackFromEnd(true);
         super.onCreate(savedInstanceState);

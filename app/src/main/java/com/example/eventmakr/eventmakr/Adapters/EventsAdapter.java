@@ -14,7 +14,7 @@ import com.google.firebase.database.Query;
 
 public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewholder>{
     private Context mContext;
-    public static String mEventKey, mEventName, mEventDate;
+    public static String mEventKey, mEventName, mEventDate, mEventAddress, mEventType;
 
 
     public EventsAdapter(Class<Events> modelClass, int modelLayout, Class<EventsViewholder> viewHolderClass, Query ref, Context context) {
@@ -56,6 +56,8 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
         });
         mEventDate = model.getEventDate();
         mEventName = model.getEventName();
+        mEventAddress = model.getEventZip();
+        mEventType = model.getEventType();
     }
 
     private void getCategory() {

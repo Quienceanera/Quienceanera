@@ -23,7 +23,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private CardView mCardView1, mCardView2;
     private FirebaseUser mFirebaseUser;
     private FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
-//    private final Boolean Opened = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +55,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
             mButtonLogIn.setVisibility(View.GONE);
             Log.i("User", "Logged in");
         }
-
     }
 
     @Override
@@ -81,25 +80,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 public void run() {
                 }
             }, 1200);
-
-//        ViewAnimator.animate(mCardView1)
-//                .translationX(0, -800)
-//                .duration(500)
-//                .andAnimate(mCardView2)
-//                .translationX(0, 800)
-//                .duration(500)
-//                .andAnimate(mButtonPlanning)
-//                .slideBottom()
-//                .duration(200)
-//                .start();
-//        mButtonPlanning.setVisibility(View.VISIBLE);
-//
-//        Handler handler = new Handler();
-//        handler.postDelayed(new Runnable(){
-//            @Override
-//            public void run() {
-//            }
-//        }, 800);
     }
 
     @Override

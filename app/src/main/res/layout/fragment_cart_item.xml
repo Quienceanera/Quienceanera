@@ -17,9 +17,7 @@
             android:id="@+id/cardViewCartItem_helper"
             android:layout_alignParentStart="true"
             app:cardCornerRadius="4dp"
-            app:cardElevation="2dp"
-            android:layout_margin="5dp"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="100dp">
 
     <ImageView
@@ -30,8 +28,8 @@
 
         </android.support.v7.widget.CardView>
 
-        <LinearLayout
-            android:layout_margin="10dp"
+        <RelativeLayout
+            android:layout_margin="2dp"
             android:orientation="vertical"
             android:layout_toEndOf="@+id/cardViewCartItem_helper"
             android:layout_width="wrap_content"
@@ -40,18 +38,29 @@
             <TextView
                 android:text="small tray"
                 android:id="@+id/textViewCartItemName"
-                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="10dp"
                 android:textSize="20sp"
                 android:textStyle="normal|bold" />
 
-
             <TextView
                 android:text="catering"
+                android:layout_below="@+id/textViewCartItemName"
                 android:id="@+id/textViewCartItemVendorName"
-                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:textSize="15sp" />
+
+            <TextView
+                android:text="4"
+                android:id="@+id/textViewCartItemQuantity"
+                android:layout_below="@+id/textViewCartItemVendorName"
+                android:layout_marginTop="2dp"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="10dp"
@@ -60,29 +69,21 @@
         <TextView
             android:text="10.99"
             android:id="@+id/textViewCartItemPrice"
-            android:layout_marginStart="2dp"
+            android:layout_below="@+id/textViewCartItemQuantity"
+            android:layout_marginTop="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="10dp"
             android:textSize="15sp" />
 
-            <TextView
-                android:text="4"
-                android:id="@+id/textViewCartItemQuantity"
-                android:layout_marginStart="2dp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:elevation="10dp"
-                android:textSize="15sp" />
-
-    </LinearLayout>
+    </RelativeLayout>
 
         <TextView
             android:text="Awaiting Confirmation"
             android:layout_alignBaseline="@+id/checkBoxCartItem"
             android:layout_toStartOf="@+id/checkBoxCartItem"
-            android:textSize="10sp"
+            android:textSize="8sp"
+            android:textColor="@color/com_facebook_blue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

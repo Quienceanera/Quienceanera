@@ -16,6 +16,10 @@ import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.NavBar;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.UserFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorInputFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorProductFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.CartHomeItemFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.CartListItemFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.ChatHomeItemFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.ChatItemFragment;
 import com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerItemsFragment;
 import com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorFragment;
 import com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorProfileProductItemFragment;
@@ -68,6 +72,14 @@ public class FragmentUtil {
         return chatFragment;
     }
 
+    public static ChatHomeItemFragment getChatHomeItemFragment(){
+        return new ChatHomeItemFragment();
+    }
+
+    public static ChatItemFragment getChatItemFragment () {
+        return new ChatItemFragment();
+    }
+
     public static ChatHomeFragment getChatHomeFragment () {
         ChatHomeFragment chatHomeFragment = new ChatHomeFragment();
         return chatHomeFragment;
@@ -76,6 +88,14 @@ public class FragmentUtil {
     public static CartHomeFragment getCartFragment () {
         CartHomeFragment cartHomeFragment = new CartHomeFragment();
         return cartHomeFragment;
+    }
+
+    public static CartHomeItemFragment getCartHomeItemFragment () {
+        return new CartHomeItemFragment();
+    }
+
+    public static CartListItemFragment getCartListItemFragment(){
+        return new CartListItemFragment();
     }
 
     public static CartDetailFragment getCartDetailFragment() {

@@ -1,6 +1,5 @@
 package com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Editable;
@@ -15,6 +14,7 @@ import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Objects.Chat;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
+import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +24,6 @@ import java.util.Date;
 
 public class ChatFragment extends android.app.Fragment implements View.OnClickListener {
 
-    private OnFragmentInteractionListener mListener;
     private String mPhotoUrl, mUsername, mUid, mChatPath, mChatKey, mVendorUid;
     private DatabaseReference mDatabaseReference, mDatabaseRef;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -36,7 +35,6 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +42,8 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
         mUsername = mAuth.getCurrentUser().getDisplayName();
         mUid = mAuth.getCurrentUser().getUid();
         mVendorUid = ChatHomeAdapter.mVendorUid;
-//        Toast.makeText(getActivity(), "chat opened", Toast.LENGTH_SHORT).show();
 
+        getChildMessagesList();
     }
 
     @Override
@@ -59,9 +57,7 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
         mEditTextChat.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.toString().trim().length() > 0) {
@@ -70,7 +66,6 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
                     mFabSend.setEnabled(false);
                 }
             }
-
             @Override
             public void afterTextChanged(Editable editable) {
 
@@ -107,15 +102,10 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
         mEditTextChat.setText("");
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    void getChildMessagesList() {
+        getChildFragmentManager()
+                .beginTransaction()
+                .add(R.id.containerChatItemList, FragmentUtil.getChatItemFragment())
+                .commit();
     }
 }
