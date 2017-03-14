@@ -8,7 +8,6 @@
                 android:text="@string/when_will_your_event_be_held"
                 android:textStyle="bold"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="10dp"
                 android:elevation="6dp"
                 android:textSize="20sp"
                 android:textColor="@color/colorText"
@@ -17,6 +16,7 @@
                 android:id="@+id/textViewCalendar" />
 
             <RelativeLayout
+                android:layout_above="@+id/buttonFindVendors"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/layoutCalendar"
                 android:layout_below="@+id/textViewCalendar"
@@ -43,11 +43,11 @@
                 android:elevation="2dp"
                 app:cardBackgroundColor="@color/colorButtons"
                 app:cardCornerRadius="5dp"
-                android:layout_margin="40dp"
+                android:layout_margin="10dp"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
-                android:layout_height="80dp" >
+                android:layout_height="60dp" >
 
             <RelativeLayout
                 android:layout_width="match_parent"

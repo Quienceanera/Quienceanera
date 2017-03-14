@@ -39,7 +39,6 @@ public class RecyclerVendorFragment extends Fragment {
                     getActivity());
             mVendorAdapter.notifyDataSetChanged();
         }
-        mLayoutManager = new LinearLayoutManager(getActivity());
         super.onCreate(savedInstanceState);
     }
 
@@ -49,12 +48,14 @@ public class RecyclerVendorFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_vendor_item_list, container, false);
         rootView.setTag(TAG);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewVendorList);
-        if (mLayoutManager == null) {
+        mLayoutManager = new LinearLayoutManager(getActivity());
             mRecyclerView.setLayoutManager(mLayoutManager);
-        } else {
-            mLayoutManager.removeAllViews();
-            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        }
+
+//        if (mLayoutManager == null) {
+//        } else {
+//            mLayoutManager.removeAllViews();
+//            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        }
         mRecyclerView.setAdapter(mVendorAdapter);
         mLayoutManager.setItemPrefetchEnabled(false);
         return rootView;

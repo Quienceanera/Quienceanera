@@ -8,8 +8,6 @@
     tools:context="com.example.eventmakr.eventmakr.Activities.MainActivity">
 
     <com.nvanbenschoten.motion.ParallaxImageView
-        android:src="@drawable/mobile_bg"
-        android:scaleType="centerCrop"
         android:id="@+id/parallaxBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -39,12 +37,12 @@
             android:id="@+id/buttonPlanning"
             android:visibility="invisible"
             android:layout_above="@+id/buttonLogIn"
-            android:layout_margin="40dp"
+            app:cardUseCompatPadding="true"
             app:cardCornerRadius="5dp"
             android:elevation="2dp"
             app:cardBackgroundColor="@color/colorButtons"
             android:layout_width="match_parent"
-            android:layout_height="80dp">
+            android:layout_height="60dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -68,13 +66,12 @@
         android:visibility="invisible"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/textView_imAVendor"
-        android:layout_margin="40dp"
-        app:paddingEnd="@dimen/paddingRight"
-        app:paddingStart="@dimen/padddingLeft"
+        app:cardUseCompatPadding="true"
         app:cardCornerRadius="5dp"
         app:cardBackgroundColor="@color/colorButtons"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="60dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -99,7 +96,7 @@
         android:text="@string/i_m_a_vendor"
         android:textStyle="bold"
         android:textColor="@color/colorText"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"

@@ -30,7 +30,6 @@ public class RecyclerVendorProfileProductItemFragment extends Fragment {
                 Viewholder.class,
                 FirebaseUtil.getUserMenuRef(),
                 getActivity());
-//        mLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL);
         mLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         super.onCreate(savedInstanceState);
     }
@@ -41,15 +40,8 @@ public class RecyclerVendorProfileProductItemFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_vendor_menu_item_list, container, false);
         rootView.setTag(TAG);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewMenuItemList);
-        if (mLayoutManager == null) {
-            mRecyclerView.setLayoutManager(mLayoutManager);
-        } else {
-            this.mVendorProfileProductAdapter.notifyDataSetChanged();
-            mRecyclerView.removeAllViewsInLayout();
-            mLayoutManager.removeAllViews();
-            mRecyclerView.setLayoutManager(mLayoutManager);
-            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false));
-        }
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         mRecyclerView.setAdapter(mVendorProfileProductAdapter);
         mLayoutManager.setItemPrefetchEnabled(false);
         return rootView;

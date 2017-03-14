@@ -2,6 +2,7 @@ package com.example.eventmakr.eventmakr.Adapters;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
@@ -18,6 +19,7 @@ import com.google.firebase.database.Query;
 public class ChatAdapter extends FirebaseRecyclerAdapter<Chat, Viewholder>{
     private Context context;
     private String mUid, mChatKey;
+    private Query mQuery;
 
     /**
      * @param modelClass      Firebase will marshall the data at a location into an instance of a class that you provide
@@ -30,6 +32,7 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Chat, Viewholder>{
     public ChatAdapter(Class<Chat> modelClass, int modelLayout, Class<Viewholder> viewHolderClass, Query ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
         this.context = context;
+        this.mQuery = ref;
     }
 
     @Override
@@ -40,6 +43,14 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Chat, Viewholder>{
             viewHolder.mCardViewChatUser.setVisibility(View.VISIBLE);
             viewHolder.mCardViewChat.setVisibility(View.INVISIBLE);
             viewHolder.mCircleImageViewChat.setVisibility(View.INVISIBLE);
+
+            for (int i = 0; i < position; i++) {
+                ViewAnimator.animate(viewHolder.mCardViewChatUser)
+                        .slideLeft()
+                        .duration(100)
+                        .start();
+                Log.i("for loop", String.valueOf(position));
+            }
 
             viewHolder.mCardViewChatUser.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override

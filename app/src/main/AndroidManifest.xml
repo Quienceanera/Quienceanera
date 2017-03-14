@@ -53,6 +53,7 @@
             android:name=".Activities.ConsumerActivity"
             android:label=" "
             android:parentActivityName=".Activities.MainActivity"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

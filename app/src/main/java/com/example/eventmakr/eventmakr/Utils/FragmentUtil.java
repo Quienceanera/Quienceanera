@@ -7,6 +7,7 @@ import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerVendo
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerVendorProductItemFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerVendorProfileFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ContactVendorFragment;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.EventBannerFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.MenuItemFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.CartHomeFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.CartDetailFragment;
@@ -20,12 +21,31 @@ import com.example.eventmakr.eventmakr.RecyclerFragment.CartHomeItemFragment;
 import com.example.eventmakr.eventmakr.RecyclerFragment.CartListItemFragment;
 import com.example.eventmakr.eventmakr.RecyclerFragment.ChatHomeItemFragment;
 import com.example.eventmakr.eventmakr.RecyclerFragment.ChatItemFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.EventsListFragment;
 import com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerItemsFragment;
 import com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorFragment;
 import com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorProfileProductItemFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.VendorOrderHomeListFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.VendorOrderListFragment;
 import com.google.android.gms.maps.MapFragment;
 
 public class FragmentUtil {
+
+    public static VendorOrderHomeListFragment getVendorOrderHomeListFragment() {
+        return new VendorOrderHomeListFragment();
+    }
+
+    public static VendorOrderListFragment getVendorOrderListFragment() {
+        return new VendorOrderListFragment();
+    }
+
+    public static EventBannerFragment getEventBannerFragment() {
+        return new EventBannerFragment();
+    }
+
+    public static EventsListFragment getEventsList() {
+        return new EventsListFragment();
+    }
 
     public static ConsumerInputFragment getConsumerDropdownFragment() {
         ConsumerInputFragment consumerInputFragment = new ConsumerInputFragment();

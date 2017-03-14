@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:id="@+id/cardViewVendorOrderHome"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="1dp"
+    android:layout_height="120dp"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageViewVendorOrderHome"
+            android:layout_alignParentStart="true"
+            android:layout_width="160dp"
+            android:layout_height="120dp" />
+
+        <RelativeLayout
+            android:id="@+id/vendorOrderLayout1"
+            android:layout_toEndOf="@+id/imageViewVendorOrderHome"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewVendorOrderHomeCustomerName"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:text="vendorname"
+                android:layout_margin="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textViewVendorOrderHomeEventName"
+                android:layout_below="@+id/textViewVendorOrderHomeCustomerName"
+                android:textStyle="bold|italic"
+                android:text="eventname"
+                android:layout_margin="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textViewVendorOrderHomeTime"
+                android:layout_below="@id/textViewVendorOrderHomeEventName"
+                android:text="Time"
+                android:layout_margin="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/vendorOrderLayout2"
+            android:layout_below="@+id/vendorOrderLayout1"
+            android:layout_toEndOf="@+id/imageViewVendorOrderHome"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewVendorOrderHomeCount"
+                android:textStyle="italic"
+                android:text="Quantity"
+                android:layout_margin="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textViewVendorOrderHomePriceTotal"
+                android:layout_below="@+id/textViewVendorOrderHomeCount"
+                android:text="total price"
+                android:layout_margin="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+   </android.support.v7.widget.CardView>

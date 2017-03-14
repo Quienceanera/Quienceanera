@@ -30,7 +30,6 @@ public class RecyclerVendorMenuItemFragment extends Fragment {
                 Viewholder.class,
                 FirebaseUtil.getConsumerMenuRef(),
                 getActivity());
-        mLayoutManager = new LinearLayoutManager(getActivity());
         super.onCreate(savedInstanceState);
     }
 
@@ -40,6 +39,7 @@ public class RecyclerVendorMenuItemFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_vendor_menu_item_list, container, false);
         rootView.setTag(TAG);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewMenuItemList);
+        mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mMenuAdapter);
         mLayoutManager.setItemPrefetchEnabled(false);

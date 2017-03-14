@@ -27,9 +27,9 @@ import com.google.firebase.database.DatabaseReference;
 
 public class ConsumerInputFragment extends android.app.Fragment implements View.OnClickListener{
     private static final String TAG = "ConsumerInputFragment";
-    private RelativeLayout mLayoutConsumer1, mLayoutConsumer2;
+    private RelativeLayout mLayoutConsumer1, mLayoutConsumer2, mLayoutConsumer3;
     private Context mContext;
-    private CardView mButtonNext, mButtonFindVendors;
+    private CardView mButtonNext, mButtonFindVendors, mButtonNextEventName;
     private Spinner mSpinner;
     private String[] Events = {"Choose an Event","Quienceanera", "Birthday", "Wedding", "Baby Shower", "Graduation"};
     private String mEventZipCode, mEventId, mEventPhoto, mUid;
@@ -57,6 +57,7 @@ public class ConsumerInputFragment extends android.app.Fragment implements View.
         final View view = inflater.inflate(R.layout.fragment_consumer_input, container, false);
         mButtonNext = (CardView) view.findViewById(R.id.buttonNextInput);
         mButtonFindVendors = (CardView) view.findViewById(R.id.buttonFindVendors);
+        mButtonNextEventName = (CardView) view.findViewById(R.id.buttonNextEventName);
         mEditTextZipCode = (EditText) view.findViewById(R.id.editTextZipCode);
         mEditTextEventName = (EditText) view.findViewById(R.id.editTextInputEventName);
         mCalendarView = (CalendarView) view.findViewById(R.id.calendarView);
@@ -85,9 +86,21 @@ public class ConsumerInputFragment extends android.app.Fragment implements View.
 
         mLayoutConsumer1 = (RelativeLayout) view.findViewById(R.id.layoutConsumerInput1);
         mLayoutConsumer2 = (RelativeLayout) view.findViewById(R.id.layoutConsumerInput2);
+        mLayoutConsumer3 = (RelativeLayout) view.findViewById(R.id.layoutConsumerInput3);
         mButtonNext.setOnClickListener(this);
         mButtonFindVendors.setOnClickListener(this);
+        mButtonNextEventName.setOnClickListener(this);
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ViewAnimator.animate(mLayoutConsumer1)
+                .slideRight()
+                .descelerate()
+                .duration(300)
+                .start();
     }
 
     void createEvent () {
@@ -135,21 +148,33 @@ public class ConsumerInputFragment extends android.app.Fragment implements View.
         int id = view.getId();
         switch (id) {
             case R.id.buttonNextInput:
-//                if (mEventZipCode != null || !mCheckFields) {
+                if (mCheckFields) {
                     ViewAnimator.animate(mLayoutConsumer1)
                             .slideLeft()
                             .duration(300)
                             .andAnimate(mLayoutConsumer2)
                             .slideRight()
                             .descelerate()
-                            .duration(600)
+                            .duration(300)
                             .start();
                     mLayoutConsumer1.setVisibility(View.GONE);
                     mLayoutConsumer2.setVisibility(View.VISIBLE);
                     Log.i("Event press", mEventDate +" "+ mEventZipCode +" "+ mCheckFields);
-//                }
-                Log.i("Event press", mEventDate +" "+ mEventZipCode +" "+ mCheckFields);
-//                Toast.makeText(mContext, "Please choose an Occasion and enter your zip code", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.buttonNextEventName:
+                if (mEditTextEventName != null) {
+                    ViewAnimator.animate(mLayoutConsumer2)
+                            .slideLeft()
+                            .duration(300)
+                            .andAnimate(mLayoutConsumer3)
+                            .slideRight()
+                            .duration(300)
+                            .descelerate()
+                            .start();
+                    mLayoutConsumer2.setVisibility(View.GONE);
+                    mLayoutConsumer3.setVisibility(View.VISIBLE);
+                }
                 break;
             case R.id.buttonFindVendors:
                 createEvent();

@@ -2,15 +2,18 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
+import com.github.florent37.viewanimator.ViewAnimator;
 
 public class ConsumerBudgetFragment extends android.app.Fragment implements View.OnClickListener{
 
@@ -18,15 +21,15 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
     public static String mCategory, mPriceRange;
     private TextView mTextViewVendorCategory;
     private SeekBar mSeekBar;
+    private CardView mCardViewBudget;
+    private FrameLayout mLayoutVendorRecycler;
     static final int REQUESTCODE = 1;
-
 
     private OnFragmentInteractionListener mListener;
 
     public ConsumerBudgetFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,8 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
 
         mTextViewVendorCategory = (TextView) view.findViewById(R.id.textViewVendorCategory);
         mSeekBar = (SeekBar) view.findViewById(R.id.seekBarBudget);
+        mCardViewBudget = (CardView) view.findViewById(R.id.cardViewBudget_helper);
+        mLayoutVendorRecycler = (FrameLayout) view.findViewById(R.id.containerRecyclerVendorFragment);
 
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -49,15 +54,12 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
                 if (progress > 30 && progress < 70) {
                     VendorAdapter.mPriceRange = "$$";
                     getUpdateChildRecyclerVendorFragment();
-//                    Toast.makeText(getActivity(), "$$", Toast.LENGTH_SHORT).show();
                 } if (progress < 30) {
                     VendorAdapter.mPriceRange = "$";
                     getUpdateChildRecyclerVendorFragment();
-//                    Toast.makeText(getActivity(), "$", Toast.LENGTH_SHORT).show();
                 } if (progress > 70) {
                     VendorAdapter.mPriceRange = "$$$";
                     getUpdateChildRecyclerVendorFragment();
-//                    Toast.makeText(getActivity(), "$$$", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -77,6 +79,18 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        ViewAnimator.animate(mCardViewBudget)
+                .slideTop()
+                .duration(500)
+                .andAnimate(mLayoutVendorRecycler)
+                .slideBottom()
+                .duration(500)
+                .start();
+    }
+
     void getChildRecyclerVendorFragment () {
         getChildFragmentManager()
                 .beginTransaction()
@@ -85,14 +99,10 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
     }
 
     void getUpdateChildRecyclerVendorFragment () {
-//        updatePrice();
         getChildFragmentManager()
                 .beginTransaction()
                 .replace(R.id.containerRecyclerVendorFragment, FragmentUtil.getRecyclerVendorFragment())
                 .commit();
-
-    }
-    private void updatePrice () {
 
     }
 

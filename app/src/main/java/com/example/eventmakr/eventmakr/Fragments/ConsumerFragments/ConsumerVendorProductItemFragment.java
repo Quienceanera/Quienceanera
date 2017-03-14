@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorProfileProductAdapter;
 import com.example.eventmakr.eventmakr.Objects.Items;
+import com.example.eventmakr.eventmakr.Objects.VendorOrderItem;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
@@ -143,7 +144,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
             Log.i("EventInput Key", ConsumerInputFragment.mEventKey);
 
         }
-        mVendorCartRef = FirebaseUtil.getVendorCartRef();
+        mVendorCartRef = FirebaseUtil.getVendorOrderRef();
         mPushRef = mUserCartRef.push();
         mKey = mPushRef.getKey();
         addToMyItems();
@@ -152,20 +153,59 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     public void addToMyItems() {
         mProductQuantity = mEditTextQuantity.getText().toString();
 
-        Items items = new Items(
-                mProductKey,
-                mProductQuantity,
-                mProductPrice,
-                null,
-                mProductName,
-                mProductImage,
-                mVendorName,
-                mKey,
-                mVendorUid
-        );
-        mUserCartRef.child(mKey).setValue(items);
-        mVendorCartRef.child(mKey).setValue(items);
+        if (EventsAdapter.mEventKey != null) {
+            Items items = new Items(
+                    mProductKey,
+                    mProductQuantity,
+                    mProductPrice,
+                    null,
+                    mProductName,
+                    mProductImage,
+                    mVendorName,
+                    mKey,
+                    mVendorUid
+            );
+            mUserCartRef.child(EventsAdapter.mEventKey).setValue(items);
+        }
+        if (ConsumerInputFragment.mEventKey != null){
+            Items items = new Items(
+                    mProductKey,
+                    mProductQuantity,
+                    mProductPrice,
+                    null,
+                    mProductName,
+                    mProductImage,
+                    mVendorName,
+                    mKey,
+                    mVendorUid
+            );
+            mUserCartRef.child(ConsumerInputFragment.mEventKey).setValue(items);
+        }
+
+        if (EventsAdapter.mEventKey != null) {
+            VendorOrderItem vendorOrderItem = new VendorOrderItem(
+                    mProductKey,
+                    mProductQuantity,
+                    mProductPrice,
+                    "totalPrice",
+                    mProductName,
+                    mProductImage
+            );
+            mVendorCartRef.setValue(vendorOrderItem);
+        }
+        if (ConsumerInputFragment.mEventKey != null){
+            VendorOrderItem vendorOrderItem = new VendorOrderItem(
+                    mProductKey,
+                    mProductQuantity,
+                    mProductPrice,
+                    "totalPrice",
+                    mProductName,
+                    mProductImage
+            );
+            mVendorCartRef.setValue(vendorOrderItem);
+        }
         returnToVendorProfile();
+
     }
     void returnToVendorProfile () {
         getFragmentManager()

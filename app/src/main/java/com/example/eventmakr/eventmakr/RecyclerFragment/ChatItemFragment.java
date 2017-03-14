@@ -56,8 +56,6 @@ public class ChatItemFragment extends Fragment {
             }
         }
 
-        mLayoutManger = new LinearLayoutManager(mContext);
-        mLayoutManger.setStackFromEnd(true);
         super.onCreate(savedInstanceState);
     }
 
@@ -67,7 +65,15 @@ public class ChatItemFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_chat_item_list, container, false);
         view.setTag(TAG);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewChatList);
-        mRecyclerView.setLayoutManager(mLayoutManger);
+        mLayoutManger = new LinearLayoutManager(mContext);
+        mLayoutManger.setStackFromEnd(true);
+//        if (mLayoutManger != null){
+//            mLayoutManger = new LinearLayoutManager(mContext);
+//            mLayoutManger.setStackFromEnd(true);
+//            mRecyclerView.setLayoutManager(mLayoutManger);
+//        } else {
+            mRecyclerView.setLayoutManager(mLayoutManger);
+//        }
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override

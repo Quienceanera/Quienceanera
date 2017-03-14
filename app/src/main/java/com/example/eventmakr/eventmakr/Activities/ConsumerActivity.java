@@ -6,17 +6,19 @@ import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.github.florent37.viewanimator.ViewAnimator;
 
 public class ConsumerActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView mImageViewToolbarIcon;
+    private ImageView mImageViewToolbarIcon, mImageViewBackGround;
     private FloatingActionButton mFabNewEvent;
     private FrameLayout mLayoutEventsList, mLayoutConsumerNav, mLayoutConsumer;
 
@@ -28,9 +30,12 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         setSupportActionBar(mToolbar);
         mFabNewEvent = (FloatingActionButton) findViewById(R.id.fabNewEvent);
         mImageViewToolbarIcon = (ImageView) findViewById(R.id.imageViewIcon);
+        mImageViewBackGround = (ImageView) findViewById(R.id.imageViewBackground);
+        loadBackground();
         mLayoutEventsList = (FrameLayout) findViewById(R.id.containerEventsList);
         mLayoutConsumerNav = (FrameLayout) findViewById(R.id.navConsumerActivityLayout);
         mLayoutConsumer = (FrameLayout) findViewById(R.id.consumerActivityLayout);
+
         mFabNewEvent.setOnClickListener(this);
         mImageViewToolbarIcon.setOnClickListener(this);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -40,7 +45,21 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
+        getEventsList();
 
+//        if (EventsAdapter.mEventName != null){
+//            Log.i("is shown", "shown");
+//            getEventBannerFragment();
+//        }
+
+    }
+
+    void loadBackground() {
+        Glide.with(this)
+                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fcupcakebw.jpg?alt=media&token=6f2ad4a1-9b52-489c-832e-31d2fc241ae4")
+                .centerCrop()
+                .crossFade()
+                .into(mImageViewBackGround);
     }
 
     @Override
@@ -61,13 +80,32 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
     void getConsumerInputFragment() {
         getFragmentManager()
                 .beginTransaction()
-                .add(R.id.consumerActivityLayout, FragmentUtil.getConsumerDropdownFragment())
+                .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerDropdownFragment())
                 .addToBackStack(null)
                 .commit();
     }
 
+    void getEventsList() {
+        getFragmentManager()
+                .beginTransaction()
+                .add(R.id.consumerActivityLayout, FragmentUtil.getEventsList())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void getEventBannerFragment () {
+        getFragmentManager()
+                .beginTransaction()
+                .add(R.id.containerEventBannerFragment, FragmentUtil.getEventBannerFragment())
+                .commit();
+        Log.i("Event Banner", "Loaded");
+    }
+
     @Override
     public void onBackPressed() {
+        if (FragmentUtil.getEventsList().isVisible()){
+            Log.i("eventslist", "Shown");
+        }
         if (mLayoutConsumerNav.isShown()){
             ViewAnimator.animate(mLayoutConsumerNav)
                     .slideRight()
@@ -81,6 +119,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void run() {
                     mLayoutConsumer.setVisibility(View.VISIBLE);
+                    mLayoutConsumerNav.setVisibility(View.GONE);
                 }
             },50);
         }

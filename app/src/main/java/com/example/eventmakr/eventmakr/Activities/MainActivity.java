@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.eventmakr.eventmakr.R;
 import com.github.florent37.viewanimator.ViewAnimator;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,6 +41,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         mTextViewVendor = (TextView)  findViewById(R.id.textView_imAVendor);
 
         mBackground = (ParallaxImageView) findViewById(R.id.parallaxBackground);
+        loadParallaxBg();
 
         mButtonPlanning.setOnClickListener(this);
         mButtonLogIn.setOnClickListener(this);
@@ -55,6 +58,15 @@ public class MainActivity extends Activity implements View.OnClickListener{
             mButtonLogIn.setVisibility(View.GONE);
             Log.i("User", "Logged in");
         }
+    }
+
+        void loadParallaxBg(){
+        Glide.with(this)
+                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fmobile_bg.jpg?alt=media&token=8930f92d-f5f0-45dd-b9f9-51775faac1e2")
+                .centerCrop()
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(mBackground);
     }
 
     @Override

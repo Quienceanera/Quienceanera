@@ -5,64 +5,90 @@
     android:layout_height="match_parent"
     tools:context="com.example.eventmakr.eventmakr.Activities.VendorActivity">
 
+    <ImageView
+        android:id="@+id/imageViewBackgroundVendor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <android.support.v7.widget.CardView
-        app:cardBackgroundColor="@color/colorPrimary"
-        android:id="@+id/cardViewToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <RelativeLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarVendor"
+            android:background="@drawable/pink"
+            android:elevation="4dp"
+            app:navigationIcon="@drawable/arrow_left"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="60dp">
 
-            <ImageButton
-                android:id="@+id/toolbarBackButton"
-                android:layout_centerVertical="true"
-                android:background="@color/tw__transparent"
-                android:src="@drawable/chevron_left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView_logo"
-                android:layout_margin="5dp"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/logoi"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/imageViewIconVendor"
+                    android:layout_margin="2dp"
+                    android:paddingEnd="57dp"
+                    android:src="@drawable/logoi2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp" />
 
-    </android.support.v7.widget.CardView>
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.Toolbar>
+
+
+            <!--<android.support.design.widget.TabLayout-->
+                <!--style="@style/MyCustomTabLayout"-->
+                <!--app:tabMode="fixed"-->
+                <!--app:tabGravity="fill"-->
+                <!--app:tabSelectedTextColor="@color/fabColor"-->
+                <!--android:layout_below="@+id/toolbarVendor"-->
+                <!--android:id="@+id/tabLayout"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="30dp">-->
+
+                <!--<android.support.design.widget.TabItem-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent" />-->
+
+                <!--<FrameLayout-->
+                    <!--android:id="@+id/containerTabLayout"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent">-->
+
+                <!--</FrameLayout>-->
+
+
+            <!--</android.support.design.widget.TabLayout>-->
+
+
 
     <FrameLayout
         android:id="@+id/vendorActivityLayout"
-        android:paddingTop="@dimen/paddingTop"
-        android:paddingStart="@dimen/padddingLeft"
-        android:paddingEnd="@dimen/paddingRight"
-        android:layout_below="@+id/cardViewToolbar"
+        android:layout_below="@+id/toolbarVendor"
         android:layout_above="@+id/vendorNavBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/layoutVendorMain"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <include
-                layout="@layout/vendor_main_layout"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"/>
-        </RelativeLayout>
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/layoutVendorMain"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+            <!--<include-->
+                <!--layout="@layout/vendor_main_layout"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_width="match_parent"/>-->
+        <!--</RelativeLayout>-->
     </FrameLayout>
 
         <FrameLayout
             android:id="@+id/navVendorActivityLayout"
-            android:layout_below="@+id/cardViewToolbar"
+            android:layout_below="@+id/toolbarVendor"
             android:layout_above="@+id/vendorNavBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

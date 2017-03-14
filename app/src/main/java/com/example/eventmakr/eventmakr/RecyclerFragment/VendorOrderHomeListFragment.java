@@ -1,7 +1,6 @@
 package com.example.eventmakr.eventmakr.RecyclerFragment;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,39 +9,40 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
-import com.example.eventmakr.eventmakr.Objects.Events;
+import com.example.eventmakr.eventmakr.Adapters.VendorOrderHomeAdapter;
+import com.example.eventmakr.eventmakr.Objects.VendorOrderHome;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
-import com.example.eventmakr.eventmakr.ViewHolders.EventsViewholder;
+import com.example.eventmakr.eventmakr.ViewHolders.VendorOrderHomeViewholder;
 
-public class EventsListFragment extends Fragment {
-    private static final String TAG = "EventsListFragment";
+public class VendorOrderHomeListFragment extends Fragment {
+    private static final String TAG = "VendorOrderHomeListFragment";
     private RecyclerView mRecyclerView;
-    private Context mContext;
-    private EventsAdapter mAdapter;
+    private VendorOrderHomeAdapter mAdapter;
     private LinearLayoutManager mLayoutManger;
 
-    public EventsListFragment() {
+    public VendorOrderHomeListFragment() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        mAdapter = new EventsAdapter(
-                Events.class,
-                R.layout.events_item,
-                EventsViewholder.class,
-                FirebaseUtil.getEventsRef(),
-                getActivity());
+//        if (EventsAdapter.mEventKey != null) {
+            mAdapter = new VendorOrderHomeAdapter(
+                    VendorOrderHome.class,
+                    R.layout.vendor_order_home_item,
+                    VendorOrderHomeViewholder.class,
+                    FirebaseUtil.getVendorOrderHomeRef(),
+                    getActivity());
+//        }
         super.onCreate(savedInstanceState);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.events_item_list, container, false);
+        View view = inflater.inflate(R.layout.vendor_order_home_list, container, false);
         view.setTag(TAG);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewEventsList);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewVendorOrderHomeList);
         mLayoutManger = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManger);
         mRecyclerView.setAdapter(mAdapter);

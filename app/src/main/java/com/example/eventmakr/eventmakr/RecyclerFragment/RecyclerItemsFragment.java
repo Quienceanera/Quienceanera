@@ -49,8 +49,6 @@ public class RecyclerItemsFragment extends Fragment{
                         getActivity());
             }
         }
-
-        mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         super.onCreate(savedInstanceState);
     }
 
@@ -60,6 +58,7 @@ public class RecyclerItemsFragment extends Fragment{
         View rootView = inflater.inflate(R.layout.fragment_items_list, container, false);
         rootView.setTag(TAG);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewItemsList);
+        mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mItemsAdapter);
         mLayoutManager.setItemPrefetchEnabled(false);

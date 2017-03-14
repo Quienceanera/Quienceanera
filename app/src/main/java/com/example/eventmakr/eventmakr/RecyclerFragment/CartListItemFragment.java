@@ -48,8 +48,6 @@ public class CartListItemFragment extends Fragment {
                     FirebaseUtil.getUserCartList().child(ConsumerInputFragment.mEventKey).child(CartHomeAdapter.mVendorUid),
                     getActivity());
         }
-
-        mLayoutManger = new LinearLayoutManager(getActivity());
         super.onCreate(savedInstanceState);
     }
 
@@ -59,6 +57,7 @@ public class CartListItemFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cart_item_list, container, false);
         view.setTag(TAG);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewCartList);
+        mLayoutManger = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManger);
         mRecyclerView.setAdapter(mAdapter);
 //        mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {

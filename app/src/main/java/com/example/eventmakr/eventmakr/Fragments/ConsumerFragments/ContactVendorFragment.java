@@ -13,6 +13,7 @@ import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.example.eventmakr.eventmakr.Objects.Cart;
 import com.example.eventmakr.eventmakr.Objects.Chat;
 import com.example.eventmakr.eventmakr.Objects.ChatHome;
+import com.example.eventmakr.eventmakr.Objects.VendorOrderHome;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
@@ -126,7 +127,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
         if (ConsumerInputFragment.mEventKey != null){
             mUserCartRef = FirebaseUtil.getUserCartInfoRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
         }
-        mVendorCartRef = FirebaseUtil.getVendorCartInfoRef();
+        mVendorCartRef = FirebaseUtil.getVendorOrderInfoRef();
         mConsumerId = FirebaseUtil.getUid();
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
@@ -166,6 +167,38 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
             );
             mUserCartRef.setValue(cart);
             mVendorCartRef.setValue(cart);
+        }
+
+
+        if (EventsAdapter.mEventKey != null){
+            VendorOrderHome vendorOrderHome = new VendorOrderHome(
+                    FirebaseUtil.getUserName(),
+                    FirebaseUtil.getUser().getPhotoUrl().toString(),
+                    FirebaseUtil.getUid(),
+                    mPriceTotal,
+                    mQuantity,
+                    mCurrentTimestamp,
+                    EventsAdapter.mEventKey,
+                    EventsAdapter.mEventName,
+                    EventsAdapter.mEventDate
+            );
+            mUserCartRef.setValue(vendorOrderHome);
+            mVendorCartRef.setValue(vendorOrderHome);
+        }
+        if (ConsumerInputFragment.mEventKey != null){
+            VendorOrderHome vendorOrderHome = new VendorOrderHome(
+                    FirebaseUtil.getUserName(),
+                    FirebaseUtil.getUser().getPhotoUrl().toString(),
+                    FirebaseUtil.getUid(),
+                    mPriceTotal,
+                    mQuantity,
+                    mCurrentTimestamp,
+                    ConsumerInputFragment.mEventKey,
+                    ConsumerInputFragment.mEventName,
+                    ConsumerInputFragment.mEventDate
+            );
+            mUserCartRef.setValue(vendorOrderHome);
+            mVendorCartRef.setValue(vendorOrderHome);
         }
     }
 

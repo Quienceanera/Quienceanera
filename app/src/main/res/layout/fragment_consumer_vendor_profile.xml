@@ -18,13 +18,14 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/cardViewVendorProfile"
                 app:cardElevation="2dp"
+                app:cardUseCompatPadding="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/imageViewVendorProfile"
                     android:layout_width="170dp"
-                    android:layout_height="120dp" />
+                    android:layout_height="100dp" />
 
             </android.support.v7.widget.CardView>
 
@@ -67,12 +68,13 @@
         </RelativeLayout>
 
         <android.support.v7.widget.CardView
+            app:cardUseCompatPadding="true"
             android:id="@+id/cardViewMap"
             app:cardElevation="2dp"
-            android:layout_marginTop="4dp"
             android:layout_below="@id/vendorProfile1"
+            android:layout_above="@+id/containerRecyclerVendorProductItemList"
             android:layout_width="match_parent"
-            android:layout_height="130dp">
+            android:layout_height="wrap_content">
 
             <!--<FrameLayout-->
                 <!--android:id="@+id/containerMapFragment"-->
@@ -90,7 +92,7 @@
 
         <FrameLayout
             android:id="@+id/containerRecyclerVendorProductItemList"
-            android:layout_below="@+id/cardViewMap"
+            android:layout_above="@+id/buttonMyItems"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -108,13 +110,12 @@
         android:id="@+id/buttonMyItems"
         app:cardBackgroundColor="@color/colorButtons"
         app:cardCornerRadius="5dp"
-        android:layout_marginBottom="50dp"
+        app:cardUseCompatPadding="true"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="40dp"
         android:elevation="2dp"
         android:layout_width="match_parent"
-        android:layout_height="80dp" >
+        android:layout_height="60dp" >
 
         <RelativeLayout
             android:layout_width="match_parent"
