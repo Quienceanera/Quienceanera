@@ -4,6 +4,7 @@ import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
+import com.example.eventmakr.eventmakr.Adapters.VendorOrderHomeAdapter;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerInputFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -11,116 +12,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FirebaseUtil {
-    public static String mVendorCategory, mVendorUid, mVendorKey;
 
     public static DatabaseReference getBaseRef() {
         return FirebaseDatabase.getInstance().getReference();
-    }
-
-    public static DatabaseReference getEventsRef() {
-        return getBaseRef().child("events").child(FirebaseUtil.getUid());
-    }
-
-    public static DatabaseReference getUserMessageRef() {
-            return FirebaseUtil.getBaseRef().child("messages").child(FirebaseUtil.getUid());
-    }
-
-    public static DatabaseReference getVendorMessageRef() {
-        mVendorUid = ChatHomeAdapter.mVendorUid;
-        mVendorUid = VendorAdapter.mVendorUid;
-        return FirebaseUtil.getBaseRef().child("vendors").child(mVendorUid).child("messages");
-    }
-
-    public static DatabaseReference getUserChatHomeRef() {
-        mVendorUid = VendorAdapter.mVendorUid;
-        mVendorUid = ChatHomeAdapter.mVendorUid;
-        return getBaseRef().child("chathome").child(FirebaseUtil.getUid());
-    }
-
-    public static DatabaseReference getVendorChatHomeRef() {
-        mVendorUid = VendorAdapter.mVendorUid;
-        mVendorUid = ChatHomeAdapter.mVendorUid;
-//        return getBaseRef().child("vendors").child(mVendorUid).child("chat");
-        return getBaseRef().child("vendors");
-    }
-
-    public static DatabaseReference getVendorRef() {
-        return getBaseRef().child("vendor");
-    }
-
-    public static DatabaseReference getUserMenuRef () {
-        mVendorUid = VendorAdapter.mVendorUid;
-        if (mVendorUid != null) {
-            return getBaseRef().child("menu").child(mVendorUid);
-        }
-        return null;
-    }
-
-    public static DatabaseReference getMenuRef () {
-        mVendorUid = FirebaseUtil.getUid();
-        if (mVendorUid != null) {
-            return getBaseRef().child("menu").child(mVendorUid);
-        }
-        return null;
-    }
-
-    public static DatabaseReference getConsumerMenuRef () {
-        mVendorUid = VendorAdapter.mVendorUid;
-        if (mVendorUid != null) {
-            return getBaseRef().child("menu").child(mVendorUid);
-        }
-        return null;
-    }
-
-    public static DatabaseReference getUserRef () {
-        return getBaseRef().child("users/data");
-    }
-
-    public static String getUid () {
-        return FirebaseAuth.getInstance().getCurrentUser().getUid();
-    }
-
-    public static  DatabaseReference getVendorOrderRef() {
-        if (EventsAdapter.mEventKey != null) {
-            return getBaseRef().child("vendors").child(VendorAdapter.mVendorUid).child("cart").child(EventsAdapter.mEventKey);
-        }
-        if (ConsumerInputFragment.mEventKey != null) {
-            return getBaseRef().child("vendors").child(VendorAdapter.mVendorUid).child("cart").child(ConsumerInputFragment.mEventKey);
-        }
-        return null;
-    }
-
-    public static  DatabaseReference getUserCartRef() {
-            return getBaseRef().child("users").child(FirebaseUtil.getUid()).child("cartInfo");
-
-    }
-
-    public static  DatabaseReference getUserCartList() {
-        mVendorUid = CartHomeAdapter.mVendorUid;
-        return getBaseRef().child("cart").child(FirebaseUtil.getUid());
-
-    }
-
-    public static  DatabaseReference getUserCartInfoRef() {
-        return getBaseRef().child("users").child(FirebaseUtil.getUid()).child("cartInfo");
-
-    }
-    public static  DatabaseReference getVendorOrderInfoRef() {
-        mVendorUid = VendorAdapter.mVendorUid;
-        if (EventsAdapter.mEventKey != null) {
-            return getBaseRef().child("vendors").child(mVendorUid).child("orders").child(EventsAdapter.mEventKey);
-        }
-        if (ConsumerInputFragment.mEventKey != null) {
-            return getBaseRef().child("vendors").child(mVendorUid).child("orders").child(ConsumerInputFragment.mEventKey);
-        }
-        return null;
-    }
-
-    public static  DatabaseReference getVendorOrderHomeRef() {
-        return getBaseRef().child("vendors").child(FirebaseUtil.getUid()).child("orders");
-    }
-    public static DatabaseReference getVendorOrderListRef() {
-        return getBaseRef().child("vendors").child(FirebaseUtil.getUid()).child("cart");
     }
 
     public static FirebaseUser getUser () {
@@ -131,4 +25,95 @@ public class FirebaseUtil {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         return firebaseUser.getDisplayName();
     }
+    public static String getUid () {
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
+    }
+
+    public static DatabaseReference getVendorRef() {
+        return getBaseRef().child("vendor");
+    }
+
+    //TODO: Consumer Side
+    public static DatabaseReference getEventsRef() {
+        return getBaseRef().child("consumerEvent").child(FirebaseUtil.getUid());
+    }
+
+    public static DatabaseReference getConsumerSideConsumerMessageRef() {
+        return getBaseRef().child("consumerMessage").child(FirebaseUtil.getUid());
+    }
+
+    public static DatabaseReference getConsumerSideConsumerChatRef() {
+        return getBaseRef().child("consumerChat").child(FirebaseUtil.getUid());
+    }
+
+    public static DatabaseReference getConsumerSideVendorChatRef() {
+        return getBaseRef().child("vendorChat").child(VendorAdapter.mVendorUid);
+    }
+
+    public static DatabaseReference getConsumerSideVendorMessageRef() {
+        return getBaseRef().child("vendorMessage").child(VendorAdapter.mVendorUid);
+    }
+
+    public static DatabaseReference getConsumerSideVendorProductRef() {
+        return getBaseRef().child("consumerProduct").child(VendorAdapter.mVendorUid);
+    }
+
+    public static  DatabaseReference getConsumerSideVendorOrderRef() {
+        if (EventsAdapter.mEventKey != null) {
+            return getBaseRef().child("vendorOrder").child(VendorAdapter.mVendorUid).child(EventsAdapter.mEventKey);
+        }
+        if (ConsumerInputFragment.mEventKey != null) {
+            return getBaseRef().child("vendorOrder").child(VendorAdapter.mVendorUid).child(ConsumerInputFragment.mEventKey);
+        }
+        return null;
+    }
+
+    public static  DatabaseReference getConsumerSideConsumerOrderRef() {
+        return getBaseRef().child("consumerOrder").child(FirebaseUtil.getUid()).child(CartHomeAdapter.mVendorUid);
+    }
+
+    public static  DatabaseReference getConsumerSideConsumerOrderInfoRef() {
+        if (EventsAdapter.mEventKey != null){
+            return getBaseRef().child("consumerOrderInfo").child(FirebaseUtil.getUid()).child(EventsAdapter.mEventKey);
+        }
+        if (ConsumerInputFragment.mEventKey != null){
+            return getBaseRef().child("consumerOrderInfo").child(FirebaseUtil.getUid()).child(ConsumerInputFragment.mEventKey);
+        }
+        return null;
+    }
+    public static  DatabaseReference getConsumerSideVendorOrderInfoRef() {
+        if (EventsAdapter.mEventKey != null) {
+            return getBaseRef().child("vendorOrderInfo").child(VendorAdapter.mVendorUid).child(EventsAdapter.mEventKey);
+        }
+        if (ConsumerInputFragment.mEventKey != null) {
+            return getBaseRef().child("vendorOrderInfo").child(VendorAdapter.mVendorUid).child(ConsumerInputFragment.mEventKey);
+        }
+        return null;
+    }
+
+    //TODO: Vendor Side
+
+    public static DatabaseReference getVendorSideVendorProductRef() {
+        return getBaseRef().child("vendorProduct").child(getUid());
+    }
+
+    public static DatabaseReference getVendorSideVendorChatRef() {
+        return getBaseRef().child("vendorChat").child(getUid());
+    }
+
+    public static DatabaseReference getVendorSideVendorMessageRef() {
+        return getBaseRef().child("vendorMessage").child(getUid()).child(ChatHomeAdapter.mConsumerUid);
+    }
+
+    public static  DatabaseReference getVendorSideConsumerMessageRef() {
+        return getBaseRef().child("consumerMessage").child(ChatHomeAdapter.mConsumerUid).child(ChatHomeAdapter.mEventKey).child(getUid());
+    }
+
+    public static  DatabaseReference getVendorSideVendorOrderHomeRef() {
+        return getBaseRef().child("vendorOrder").child(FirebaseUtil.getUid());
+    }
+    public static DatabaseReference getVendorSideVendorOrderListRef() {
+        return getBaseRef().child("vendorOrderList").child(getUid()).child(VendorOrderHomeAdapter.mEventKey);
+    }
+
 }

@@ -35,7 +35,7 @@ public class RecyclerItemsFragment extends Fragment{
                         Items.class,
                         R.layout.items_card_view,
                         Viewholder.class,
-                        FirebaseUtil.getUserCartList().child(EventsAdapter.mEventKey).child(mVendorUid),
+                        FirebaseUtil.getConsumerSideConsumerOrderRef().child(EventsAdapter.mEventKey).child(mVendorUid),
                         getActivity());
             }
         }
@@ -45,7 +45,7 @@ public class RecyclerItemsFragment extends Fragment{
                         Items.class,
                         R.layout.items_card_view,
                         Viewholder.class,
-                        FirebaseUtil.getUserCartList().child(ConsumerInputFragment.mEventKey).child(mVendorUid),
+                        FirebaseUtil.getConsumerSideConsumerOrderRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid),
                         getActivity());
             }
         }

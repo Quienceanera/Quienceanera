@@ -4,7 +4,7 @@
     app:cardElevation="2dp"
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="1dp"
-    android:layout_height="120dp"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -13,11 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_margin="5dp"
             android:id="@+id/imageViewVendorOrderHome"
             android:layout_alignParentStart="true"
-            android:layout_width="160dp"
-            android:layout_height="120dp" />
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
 
         <RelativeLayout
             android:id="@+id/vendorOrderLayout1"
@@ -31,7 +32,6 @@
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:text="vendorname"
-                android:layout_margin="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -40,7 +40,6 @@
                 android:layout_below="@+id/textViewVendorOrderHomeCustomerName"
                 android:textStyle="bold|italic"
                 android:text="eventname"
-                android:layout_margin="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -48,7 +47,6 @@
                 android:id="@+id/textViewVendorOrderHomeTime"
                 android:layout_below="@id/textViewVendorOrderHomeEventName"
                 android:text="Time"
-                android:layout_margin="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -56,8 +54,9 @@
 
         <RelativeLayout
             android:id="@+id/vendorOrderLayout2"
-            android:layout_below="@+id/vendorOrderLayout1"
-            android:layout_toEndOf="@+id/imageViewVendorOrderHome"
+            android:layout_alignBottom="@id/vendorOrderLayout1"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -66,7 +65,7 @@
                 android:id="@+id/textViewVendorOrderHomeCount"
                 android:textStyle="italic"
                 android:text="Quantity"
-                android:layout_margin="1dp"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -74,11 +73,28 @@
                 android:id="@+id/textViewVendorOrderHomePriceTotal"
                 android:layout_below="@+id/textViewVendorOrderHomeCount"
                 android:text="total price"
-                android:layout_margin="1dp"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
         </RelativeLayout>
+
+        <TextView
+            android:text="Check to Confirm"
+            android:layout_alignBaseline="@+id/checkBoxCartItem"
+            android:layout_toStartOf="@+id/checkBoxCartItem"
+            android:textSize="8sp"
+            android:textColor="@color/com_facebook_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <CheckBox
+            android:id="@+id/checkBoxCartItem"
+            android:layout_alignParentEnd="true"
+            android:background="@color/tw__transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
 
     </RelativeLayout>
 

@@ -9,8 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
+import com.example.eventmakr.eventmakr.Activities.VendorActivity;
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerInputFragment;
 import com.example.eventmakr.eventmakr.Objects.Chat;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -25,7 +28,7 @@ import java.util.Date;
 public class ChatFragment extends android.app.Fragment implements View.OnClickListener {
 
     private String mPhotoUrl, mUsername, mUid, mChatPath, mChatKey, mVendorUid;
-    private DatabaseReference mDatabaseReference, mDatabaseRef;
+    private DatabaseReference mDatabaseReference, mDatabaseRef, mConsumerSideVendorRef, mVendorMessageRef, mConsumerMessageRef;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private Viewholder mViewHolder;
     private FloatingActionButton mFabSend;
@@ -87,9 +90,26 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
     void postChat() {
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
-        mDatabaseReference = FirebaseUtil.getUserMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid);
-        mDatabaseRef = mDatabaseReference.push();
-        mChatKey = mDatabaseRef.getKey();
+        if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
+            mVendorMessageRef = FirebaseUtil.getVendorSideVendorMessageRef().push();
+            mConsumerMessageRef = FirebaseUtil.getVendorSideConsumerMessageRef().push();
+
+
+        } else {
+            if (EventsAdapter.mEventKey != null){
+                mDatabaseReference = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid);
+                mConsumerSideVendorRef = FirebaseUtil.getConsumerSideVendorMessageRef().push();
+
+            }
+            if (ConsumerInputFragment.mEventKey != null){
+                mDatabaseReference = FirebaseUtil.getConsumerSideConsumerMessageRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
+                mConsumerSideVendorRef = FirebaseUtil.getConsumerSideVendorMessageRef().push();
+
+
+            }
+            mDatabaseRef = mDatabaseReference.push();
+            mChatKey = mDatabaseRef.getKey();
+        }
         Chat chat = new Chat(
                 mEditTextChat.getText().toString(),
                 mUsername,
@@ -98,8 +118,16 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
                 mUid,
                 mCurrentTimestamp
         );
-        mDatabaseRef.setValue(chat);
-        mEditTextChat.setText("");
+
+        if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
+            mVendorMessageRef.setValue(chat);
+            mConsumerMessageRef.setValue(chat);
+            mEditTextChat.setText("");
+        } else {
+            mDatabaseRef.setValue(chat);
+            mConsumerSideVendorRef.setValue(chat);
+            mEditTextChat.setText("");
+        }
     }
 
     void getChildMessagesList() {

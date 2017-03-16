@@ -1,6 +1,5 @@
 package com.example.eventmakr.eventmakr.Fragments.VendorFragments;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -98,7 +97,7 @@ public class VendorProductFragment extends android.app.Fragment implements View.
     }
 
     void getKey () {
-        mDatabaseRef = FirebaseUtil.getMenuRef();
+        mDatabaseRef = FirebaseUtil.getVendorSideVendorProductRef();
         mPushRef = mDatabaseRef.push();
         mKey = mPushRef.getKey();
         databasePush();

@@ -76,6 +76,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:src="@drawable/map"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
             <!--<FrameLayout-->
                 <!--android:id="@+id/containerMapFragment"-->
                 <!--android:layout_width="match_parent"-->

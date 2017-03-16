@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static com.example.eventmakr.eventmakr.Utils.FirebaseUtil.getUserChatHomeRef;
+import static com.example.eventmakr.eventmakr.Utils.FirebaseUtil.getConsumerSideConsumerChatRef;
 
 public class ContactVendorFragment extends android.app.Fragment implements View.OnClickListener{
     private static final String TAG = "ContactVendorFragment";
@@ -68,11 +68,11 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
 
     void getTotalPrice () {
         if (EventsAdapter.mEventKey != null) {
-            mItemsRef = FirebaseUtil.getUserCartList().child(EventsAdapter.mEventKey).child(mVendorUid);
+            mItemsRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(EventsAdapter.mEventKey).child(mVendorUid);
             Log.i("EventAdapter Key", EventsAdapter.mEventKey);
         }
         if (ConsumerInputFragment.mEventKey != null){
-            mItemsRef = FirebaseUtil.getUserCartList().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
+            mItemsRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
             Log.i("EventInput Key", ConsumerInputFragment.mEventKey);
 
         }
@@ -121,13 +121,13 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
 
     void pushToCart () {
         mOrderId = mChatKey;
-        if (EventsAdapter.mEventKey != null){
-            mUserCartRef = FirebaseUtil.getUserCartInfoRef().child(EventsAdapter.mEventKey).child(mVendorUid);
-        }
-        if (ConsumerInputFragment.mEventKey != null){
-            mUserCartRef = FirebaseUtil.getUserCartInfoRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
-        }
-        mVendorCartRef = FirebaseUtil.getVendorOrderInfoRef();
+//        if (EventsAdapter.mEventKey != null){
+            mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(mVendorUid);
+//        }
+//        if (ConsumerInputFragment.mEventKey != null){
+//            mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
+//        }
+        mVendorCartRef = FirebaseUtil.getConsumerSideVendorOrderInfoRef();
         mConsumerId = FirebaseUtil.getUid();
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
@@ -206,19 +206,19 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
         if (EventsAdapter.mEventKey != null){
-            mUserChatHomeRef = getUserChatHomeRef().child(EventsAdapter.mEventKey).child(mVendorUid);
+            mUserChatHomeRef = getConsumerSideConsumerChatRef().child(EventsAdapter.mEventKey).child(mVendorUid);
         }
         if (ConsumerInputFragment.mEventKey != null){
-            mUserChatHomeRef = getUserChatHomeRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
+            mUserChatHomeRef = getConsumerSideConsumerChatRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
         }
-        mVendorChatHomeRef = FirebaseUtil.getVendorChatHomeRef().child(mVendorUid).child("chat").child(FirebaseUtil.getUid());
+        mVendorChatHomeRef = FirebaseUtil.getConsumerSideVendorChatRef().child(FirebaseUtil.getUid());
         if (EventsAdapter.mEventKey != null){
             ChatHome chatHome = new ChatHome(
                     mVendorName,
                     mVendorLogo,
                     mVendorUid,
                     mCurrentTimestamp,
-                    null,
+                    EventsAdapter.mEventKey,
                     EventsAdapter.mEventName,
                     EventsAdapter.mEventDate
             );
@@ -232,7 +232,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                     mVendorLogo,
                     mVendorUid,
                     mCurrentTimestamp,
-                    null,
+                    ConsumerInputFragment.mEventKey,
                     ConsumerInputFragment.mEventName,
                     ConsumerInputFragment.mEventDate
             );
@@ -264,12 +264,12 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
         if (EventsAdapter.mEventKey != null){
-            mUserMessageRef = FirebaseUtil.getUserMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid);
+            mUserMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid);
         }
         if (ConsumerInputFragment.mEventKey != null){
-            mUserMessageRef = FirebaseUtil.getUserMessageRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
+            mUserMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
         }
-        mVendorMessageRef = FirebaseUtil.getVendorMessageRef().child(FirebaseUtil.getUid());
+        mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef().child(FirebaseUtil.getUid());
         mUserChatPushRef = mUserMessageRef.push();
         mChatKey = mUserChatPushRef.getKey();
         Chat chat = new Chat(

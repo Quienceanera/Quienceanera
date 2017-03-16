@@ -21,6 +21,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
     private ImageView mImageViewToolbarIcon, mImageViewBackGround;
     private FloatingActionButton mFabNewEvent;
     private FrameLayout mLayoutEventsList, mLayoutConsumerNav, mLayoutConsumer;
+    public static Boolean mVendorMode, mConsumerMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,9 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         });
 
         getEventsList();
+
+        mVendorMode = false;
+        mConsumerMode = true;
 
 //        if (EventsAdapter.mEventName != null){
 //            Log.i("is shown", "shown");

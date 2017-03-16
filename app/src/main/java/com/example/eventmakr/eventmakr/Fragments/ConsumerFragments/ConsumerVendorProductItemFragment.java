@@ -52,7 +52,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         mVendorUid = mVendorProfileProductAdapter.mVendorUid;
         mVendorName = mVendorProfileProductAdapter.mVendorName;
         mUid = FirebaseUtil.getUser().getUid();
-        mUserMenuRef = FirebaseUtil.getUserMenuRef();
+        mUserMenuRef = FirebaseUtil.getConsumerSideVendorProductRef();
 
     }
 
@@ -136,15 +136,15 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     }
     void getKey () {
         if (EventsAdapter.mEventKey != null) {
-            mUserCartRef = FirebaseUtil.getUserCartList().child(EventsAdapter.mEventKey).child(mVendorUid);
+            mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(EventsAdapter.mEventKey).child(mVendorUid);
             Log.i("EventAdapter Key", EventsAdapter.mEventKey);
         }
         if (ConsumerInputFragment.mEventKey != null){
-            mUserCartRef = FirebaseUtil.getUserCartList().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
+            mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
             Log.i("EventInput Key", ConsumerInputFragment.mEventKey);
 
         }
-        mVendorCartRef = FirebaseUtil.getVendorOrderRef();
+        mVendorCartRef = FirebaseUtil.getConsumerSideVendorOrderRef();
         mPushRef = mUserCartRef.push();
         mKey = mPushRef.getKey();
         addToMyItems();
@@ -165,7 +165,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                     mKey,
                     mVendorUid
             );
-            mUserCartRef.child(EventsAdapter.mEventKey).setValue(items);
+            mUserCartRef.child(mKey).setValue(items);
         }
         if (ConsumerInputFragment.mEventKey != null){
             Items items = new Items(
@@ -179,7 +179,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                     mKey,
                     mVendorUid
             );
-            mUserCartRef.child(ConsumerInputFragment.mEventKey).setValue(items);
+            mUserCartRef.child(mKey).setValue(items);
         }
 
         if (EventsAdapter.mEventKey != null) {
@@ -191,7 +191,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                     mProductName,
                     mProductImage
             );
-            mVendorCartRef.setValue(vendorOrderItem);
+            mVendorCartRef.child(mKey).setValue(vendorOrderItem);
         }
         if (ConsumerInputFragment.mEventKey != null){
             VendorOrderItem vendorOrderItem = new VendorOrderItem(
@@ -202,7 +202,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                     mProductName,
                     mProductImage
             );
-            mVendorCartRef.setValue(vendorOrderItem);
+            mVendorCartRef.child(mKey).setValue(vendorOrderItem);
         }
         returnToVendorProfile();
 

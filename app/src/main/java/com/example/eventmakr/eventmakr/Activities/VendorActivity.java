@@ -21,6 +21,7 @@ public class VendorActivity extends AppCompatActivity implements View.OnClickLis
     private ImageView mImageViewToolbarIcon, mImageViewBackground;
     private TabLayout mTabLayout;
     private FrameLayout mFrameLayout;
+    public static Boolean mVendorMode = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class VendorActivity extends AppCompatActivity implements View.OnClickLis
 
         loadBackground();
         getOrderFragment();
+        ConsumerActivity.mConsumerMode = false;
 //        mCardViewProducts.setOnClickListener(this);
 //        mCardViewDocuments.setOnClickListener(this);
 //        mCardViewInputInfo.setOnClickListener(this);

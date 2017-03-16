@@ -1,7 +1,6 @@
 package com.example.eventmakr.eventmakr.Adapters;
 
 import android.content.Context;
-import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Objects.Items;
@@ -31,11 +30,11 @@ public class VendorOrdersAdapter extends FirebaseRecyclerAdapter<VendorOrderItem
                 .centerCrop()
                 .into(viewHolder.mImageViewOrderItem);
 
-        viewHolder.mCardViewOrderItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                getCart();
-            }
-        });
+//        viewHolder.mCardViewOrderItem.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                getCart();
+//            }
+//        });
     }
 }

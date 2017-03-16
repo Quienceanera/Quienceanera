@@ -37,7 +37,7 @@ public class CartListItemFragment extends Fragment {
                     Items.class,
                     R.layout.fragment_cart_item,
                     CartListViewholder.class,
-                    FirebaseUtil.getUserCartList().child(EventsAdapter.mEventKey).child(CartHomeAdapter.mVendorUid),
+                    FirebaseUtil.getConsumerSideConsumerOrderRef().child(EventsAdapter.mEventKey).child(CartHomeAdapter.mVendorUid),
                     getActivity());
         }
         if (ConsumerInputFragment.mEventKey != null) {
@@ -45,7 +45,7 @@ public class CartListItemFragment extends Fragment {
                     Items.class,
                     R.layout.fragment_cart_item,
                     CartListViewholder.class,
-                    FirebaseUtil.getUserCartList().child(ConsumerInputFragment.mEventKey).child(CartHomeAdapter.mVendorUid),
+                    FirebaseUtil.getConsumerSideConsumerOrderRef().child(ConsumerInputFragment.mEventKey).child(CartHomeAdapter.mVendorUid),
                     getActivity());
         }
         super.onCreate(savedInstanceState);

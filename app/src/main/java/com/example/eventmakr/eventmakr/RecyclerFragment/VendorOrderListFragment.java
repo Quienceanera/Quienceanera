@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.eventmakr.eventmakr.Adapters.VendorOrdersAdapter;
-import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.Objects.VendorOrderItem;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -32,7 +31,7 @@ public class VendorOrderListFragment extends Fragment {
                     VendorOrderItem.class,
                     R.layout.vendor_order_item,
                     VendorOrderListViewholder.class,
-                    FirebaseUtil.getVendorOrderListRef(),
+                    FirebaseUtil.getVendorSideVendorOrderListRef(),
                     getActivity());
 //        }
         super.onCreate(savedInstanceState);

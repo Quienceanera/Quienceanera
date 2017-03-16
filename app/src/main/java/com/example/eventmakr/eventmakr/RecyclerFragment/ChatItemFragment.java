@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
+import com.example.eventmakr.eventmakr.Activities.VendorActivity;
 import com.example.eventmakr.eventmakr.Adapters.ChatAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
@@ -41,7 +43,7 @@ public class ChatItemFragment extends Fragment {
                         Chat.class,
                         R.layout.fragment_chat_item,
                         Viewholder.class,
-                        FirebaseUtil.getUserMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid),
+                        FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid),
                         mContext);
             }
         }
@@ -51,9 +53,17 @@ public class ChatItemFragment extends Fragment {
                         Chat.class,
                         R.layout.fragment_chat_item,
                         Viewholder.class,
-                        FirebaseUtil.getUserMessageRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid),
+                        FirebaseUtil.getConsumerSideConsumerMessageRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid),
                         mContext);
             }
+        }
+        if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
+            mAdapter = new ChatAdapter(
+                    Chat.class,
+                    R.layout.fragment_chat_item,
+                    Viewholder.class,
+                    FirebaseUtil.getVendorSideVendorMessageRef(),
+                    mContext);
         }
 
         super.onCreate(savedInstanceState);

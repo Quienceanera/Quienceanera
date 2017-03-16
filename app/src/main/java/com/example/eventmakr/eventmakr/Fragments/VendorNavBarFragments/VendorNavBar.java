@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.eventmakr.eventmakr.Activities.VendorActivity;
+import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
@@ -46,14 +46,23 @@ public class VendorNavBar extends android.app.Fragment implements View.OnClickLi
         int id = view.getId();
         switch (id) {
             case R.id.vendorNavButton_home:
-                Intent intent = new Intent(getActivity(), VendorActivity.class);
-                startActivity(intent);
+                if (getActivity().findViewById(R.id.navVendorActivityLayout).isShown()){
+                    getActivity().findViewById(R.id.vendorActivityLayout).setVisibility(View.VISIBLE);
+                    getActivity().findViewById(R.id.navVendorActivityLayout).setVisibility(View.GONE);
+                }
+                else {
+                    Intent intent = new Intent(getActivity(), ConsumerActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.vendorNavButton_chat:
-                getChatFragment();
+
+                    getChatFragment();
+
                 break;
             case R.id.vendorNavButton_cart:
-                getCartFragment();
+                    getCartFragment();
+
                 break;
             case R.id.vendorNavButton_user:
                 getUserFragment();
@@ -73,9 +82,11 @@ public class VendorNavBar extends android.app.Fragment implements View.OnClickLi
     public void getChatFragment () {
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.navVendorActivityLayout, FragmentUtil.getChatFragment())
+                .replace(R.id.navVendorActivityLayout, FragmentUtil.getChatHomeFragment())
                 .addToBackStack(null)
                 .commit();
+        getActivity().findViewById(R.id.vendorActivityLayout).setVisibility(View.GONE);
+        getActivity().findViewById(R.id.navVendorActivityLayout).setVisibility(View.VISIBLE);
     }
 
     public void getCartFragment () {

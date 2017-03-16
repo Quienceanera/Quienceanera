@@ -31,7 +31,7 @@ public class VendorOrderHomeListFragment extends Fragment {
                     VendorOrderHome.class,
                     R.layout.vendor_order_home_item,
                     VendorOrderHomeViewholder.class,
-                    FirebaseUtil.getVendorOrderHomeRef(),
+                    FirebaseUtil.getVendorSideVendorOrderHomeRef(),
                     getActivity());
 //        }
         super.onCreate(savedInstanceState);
