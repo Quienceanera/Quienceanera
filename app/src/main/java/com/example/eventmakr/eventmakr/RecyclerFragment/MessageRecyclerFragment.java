@@ -21,8 +21,8 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 
-public class ChatItemFragment extends Fragment {
-    private static final String TAG = "ChatItemFragment";
+public class MessageRecyclerFragment extends Fragment {
+    private static final String TAG = "MessageRecyclerFragment";
     private RecyclerView mRecyclerView;
     private Context mContext;
     private String mKey;
@@ -31,7 +31,7 @@ public class ChatItemFragment extends Fragment {
     private String mVendorUid;
     private LinearLayoutManager mLayoutManger;
 
-    public ChatItemFragment() {
+    public MessageRecyclerFragment() {
     }
 
     @Override

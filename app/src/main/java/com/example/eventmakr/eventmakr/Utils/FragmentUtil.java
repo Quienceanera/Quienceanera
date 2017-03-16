@@ -16,15 +16,16 @@ import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.ChatHom
 import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.NavBar;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.UserFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorInputFragment;
+import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorMenuFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorProductFragment;
-import com.example.eventmakr.eventmakr.RecyclerFragment.CartHomeItemFragment;
-import com.example.eventmakr.eventmakr.RecyclerFragment.CartListItemFragment;
-import com.example.eventmakr.eventmakr.RecyclerFragment.ChatHomeItemFragment;
-import com.example.eventmakr.eventmakr.RecyclerFragment.ChatItemFragment;
-import com.example.eventmakr.eventmakr.RecyclerFragment.EventsListFragment;
-import com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerItemsFragment;
-import com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorFragment;
-import com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorProfileProductItemFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.CartRecyclerFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.OrderListRecyclerFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.ChatRecyclerFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.EventRecyclerFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.MessageRecyclerFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.OrderRecyclerFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.VendorRecyclerFragment;
+import com.example.eventmakr.eventmakr.RecyclerFragment.VendorProfileProductRecyclerFragment;
 import com.example.eventmakr.eventmakr.RecyclerFragment.VendorOrderHomeListFragment;
 import com.example.eventmakr.eventmakr.RecyclerFragment.VendorOrderListFragment;
 import com.google.android.gms.maps.MapFragment;
@@ -43,8 +44,8 @@ public class FragmentUtil {
         return new EventBannerFragment();
     }
 
-    public static EventsListFragment getEventsList() {
-        return new EventsListFragment();
+    public static EventRecyclerFragment getEventsList() {
+        return new EventRecyclerFragment();
     }
 
     public static ConsumerInputFragment getConsumerDropdownFragment() {
@@ -92,12 +93,12 @@ public class FragmentUtil {
         return chatFragment;
     }
 
-    public static ChatHomeItemFragment getChatHomeItemFragment(){
-        return new ChatHomeItemFragment();
+    public static ChatRecyclerFragment getChatHomeItemFragment(){
+        return new ChatRecyclerFragment();
     }
 
-    public static ChatItemFragment getChatItemFragment () {
-        return new ChatItemFragment();
+    public static MessageRecyclerFragment getChatItemFragment () {
+        return new MessageRecyclerFragment();
     }
 
     public static ChatHomeFragment getChatHomeFragment () {
@@ -110,12 +111,12 @@ public class FragmentUtil {
         return cartHomeFragment;
     }
 
-    public static CartHomeItemFragment getCartHomeItemFragment () {
-        return new CartHomeItemFragment();
+    public static CartRecyclerFragment getCartHomeItemFragment () {
+        return new CartRecyclerFragment();
     }
 
-    public static CartListItemFragment getCartListItemFragment(){
-        return new CartListItemFragment();
+    public static OrderListRecyclerFragment getCartListItemFragment(){
+        return new OrderListRecyclerFragment();
     }
 
     public static CartDetailFragment getCartDetailFragment() {
@@ -132,26 +133,32 @@ public class FragmentUtil {
         return consumerVendorProductItemFragment;
     }
 
-    public static RecyclerVendorFragment getRecyclerVendorFragment () {
-        return new RecyclerVendorFragment();
+    public static VendorRecyclerFragment getRecyclerVendorFragment () {
+        return new VendorRecyclerFragment();
     }
 
-    public static RecyclerVendorProfileProductItemFragment getRecyclerVendorProfileProductItemFragment () {
-        return new RecyclerVendorProfileProductItemFragment();
+    public static VendorProfileProductRecyclerFragment getRecyclerVendorProfileProductItemFragment () {
+        return new VendorProfileProductRecyclerFragment();
     }
 
     public static MapFragment getMapFragment () {
         return new MapFragment();
     }
 
-    public static RecyclerItemsFragment getRecyclerItemsFragment () {
-        return new RecyclerItemsFragment();
+    public static OrderRecyclerFragment getRecyclerItemsFragment () {
+        return new OrderRecyclerFragment();
     }
 
 
     public static NavBar getNavBar () {
         NavBar navBar = new NavBar();
         return navBar;
+    }
+
+    //TODO: Vendor Fragments
+
+    public static VendorMenuFragment getVendorMenuFragment(){
+        return new VendorMenuFragment();
     }
 
 

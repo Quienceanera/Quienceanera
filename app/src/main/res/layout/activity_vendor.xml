@@ -16,7 +16,7 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbarVendor"
-            android:background="@drawable/pink"
+            android:background="@drawable/pinktoolbar"
             android:elevation="4dp"
             app:navigationIcon="@drawable/arrow_left"
             android:layout_width="match_parent"

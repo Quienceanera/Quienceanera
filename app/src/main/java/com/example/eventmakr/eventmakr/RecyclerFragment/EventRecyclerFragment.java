@@ -16,14 +16,14 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.EventsViewholder;
 
-public class EventsListFragment extends Fragment {
-    private static final String TAG = "EventsListFragment";
+public class EventRecyclerFragment extends Fragment {
+    private static final String TAG = "EventRecyclerFragment";
     private RecyclerView mRecyclerView;
     private Context mContext;
     private EventsAdapter mAdapter;
     private LinearLayoutManager mLayoutManger;
 
-    public EventsListFragment() {
+    public EventRecyclerFragment() {
     }
 
     @Override

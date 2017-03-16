@@ -15,9 +15,9 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 
-public class RecyclerVendorProfileProductItemFragment extends Fragment {
+public class VendorProfileProductRecyclerFragment extends Fragment {
 
-    private static final String TAG = "RecyclerVendorProfileProductItemFragment";
+    private static final String TAG = "VendorProfileProductRecyclerFragment";
     private RecyclerView mRecyclerView;
     private VendorProfileProductAdapter mVendorProfileProductAdapter;
     private LinearLayoutManager mLayoutManager;

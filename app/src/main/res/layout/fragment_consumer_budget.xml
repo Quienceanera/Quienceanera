@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <!--<fragment-->
-                    <!--android:name="com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerVendorFragment"-->
+                    <!--android:name="com.example.eventmakr.eventmakr.RecyclerFragment.VendorRecyclerFragment"-->
                     <!--android:id="@+id/recyclerVendorFragment"-->
                     <!--android:layout_below="@+id/textViewVendorCategory"-->
                     <!--android:layout_width="match_parent"-->

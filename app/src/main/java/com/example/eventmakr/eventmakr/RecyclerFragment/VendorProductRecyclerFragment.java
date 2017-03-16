@@ -15,9 +15,9 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 
-public class RecyclerVendorMenuItemFragment extends Fragment {
+public class VendorProductRecyclerFragment extends Fragment {
 
-    private static final String TAG = "RecyclerVendorMenuItemFragment";
+    private static final String TAG = "VendorProductRecyclerFragment";
     private RecyclerView mRecyclerView;
     private MenuAdapter mMenuAdapter;
     private LinearLayoutManager mLayoutManager;
@@ -28,7 +28,7 @@ public class RecyclerVendorMenuItemFragment extends Fragment {
                 Menu.class,
                 R.layout.menu_card_view,
                 Viewholder.class,
-                FirebaseUtil.getConsumerSideMenuRef(),
+                FirebaseUtil.getConsumerSideVendorProductRef(),
                 getActivity());
         super.onCreate(savedInstanceState);
     }

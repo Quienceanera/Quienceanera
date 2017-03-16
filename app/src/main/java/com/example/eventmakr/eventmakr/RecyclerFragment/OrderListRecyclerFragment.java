@@ -18,8 +18,8 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.CartListViewholder;
 
-public class CartListItemFragment extends Fragment {
-    private static final String TAG = "CartListItemFragment";
+public class OrderListRecyclerFragment extends Fragment {
+    private static final String TAG = "OrderListRecyclerFragment";
     private RecyclerView mRecyclerView;
     private Context mContext;
     private String mKey;
@@ -27,7 +27,7 @@ public class CartListItemFragment extends Fragment {
     private CartListAdapter mAdapter;
     private LinearLayoutManager mLayoutManger;
 
-    public CartListItemFragment() {
+    public OrderListRecyclerFragment() {
     }
 
     @Override

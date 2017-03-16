@@ -18,9 +18,9 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 
-public class RecyclerItemsFragment extends Fragment{
+public class OrderRecyclerFragment extends Fragment{
 
-    private static final String TAG = "RecyclerItemsFragment";
+    private static final String TAG = "OrderRecyclerFragment";
     private RecyclerView mRecyclerView;
     private ItemsAdapter mItemsAdapter;
     private LinearLayoutManager mLayoutManager;

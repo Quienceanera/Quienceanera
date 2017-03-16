@@ -13,7 +13,7 @@ import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
 
 public class VendorNavBar extends android.app.Fragment implements View.OnClickListener {
-    private ImageView mButtonHome, mButtonChat, mButtonCart, mButtonUser;
+    private ImageView mButtonHome, mButtonChat, mButtonCart, mButtonMenu;
 
     public VendorNavBar() {
         // Required empty public constructor
@@ -33,11 +33,11 @@ public class VendorNavBar extends android.app.Fragment implements View.OnClickLi
         mButtonHome = (ImageView) view.findViewById(R.id.vendorNavButton_home);
         mButtonChat = (ImageView) view.findViewById(R.id.vendorNavButton_chat);
         mButtonCart = (ImageView) view.findViewById(R.id.vendorNavButton_cart);
-        mButtonUser = (ImageView) view.findViewById(R.id.vendorNavButton_user);
+        mButtonMenu = (ImageView) view.findViewById(R.id.vendorNavButton_menu);
         mButtonHome.setOnClickListener(this);
         mButtonChat.setOnClickListener(this);
         mButtonCart.setOnClickListener(this);
-        mButtonUser.setOnClickListener(this);
+        mButtonMenu.setOnClickListener(this);
         return view;
     }
 
@@ -64,17 +64,17 @@ public class VendorNavBar extends android.app.Fragment implements View.OnClickLi
                     getCartFragment();
 
                 break;
-            case R.id.vendorNavButton_user:
-                getUserFragment();
+            case R.id.vendorNavButton_menu:
+                getMenuFragment();
                 break;
             default:
         }
     }
 
-    public void getUserFragment () {
+    public void getMenuFragment() {
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.navVendorActivityLayout, FragmentUtil.getUserFragment())
+                .replace(R.id.vendorActivityLayout, FragmentUtil.getVendorMenuFragment())
                 .addToBackStack(null)
                 .commit();
     }
@@ -82,17 +82,17 @@ public class VendorNavBar extends android.app.Fragment implements View.OnClickLi
     public void getChatFragment () {
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.navVendorActivityLayout, FragmentUtil.getChatHomeFragment())
+                .replace(R.id.vendorActivityLayout, FragmentUtil.getChatHomeFragment())
                 .addToBackStack(null)
                 .commit();
-        getActivity().findViewById(R.id.vendorActivityLayout).setVisibility(View.GONE);
-        getActivity().findViewById(R.id.navVendorActivityLayout).setVisibility(View.VISIBLE);
+//        getActivity().findViewById(R.id.vendorActivityLayout).setVisibility(View.GONE);
+//        getActivity().findViewById(R.id.navVendorActivityLayout).setVisibility(View.VISIBLE);
     }
 
     public void getCartFragment () {
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.navVendorActivityLayout, FragmentUtil.getCartFragment())
+                .replace(R.id.vendorActivityLayout, FragmentUtil.getCartFragment())
                 .addToBackStack(null)
                 .commit();
     }

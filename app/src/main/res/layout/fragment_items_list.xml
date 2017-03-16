@@ -7,5 +7,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.example.eventmakr.eventmakr.RecyclerFragment.RecyclerItemsFragment"
+    tools:context="com.example.eventmakr.eventmakr.RecyclerFragment.OrderRecyclerFragment"
     tools:listitem="@layout/items_card_view" />

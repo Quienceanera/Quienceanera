@@ -29,7 +29,7 @@
 
     <!--<fragment-->
         <!--android:layout_below="@+id/textViewLabel"-->
-        <!--android:name="com.example.eventmakr.eventmakr.RecyclerFragment.ChatItemFragment"-->
+        <!--android:name="com.example.eventmakr.eventmakr.RecyclerFragment.MessageRecyclerFragmentragment"-->
         <!--android:id="@+id/chatListFragment"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"/>-->
