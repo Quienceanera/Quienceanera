@@ -63,9 +63,9 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_vendor_input, container, false);
-        mButtonNext = (CardView) mView.findViewById(R.id.buttonNext);
+//        mButtonNext = (CardView) mView.findViewById(R.id.buttonNext);
         mButtonSave = (CardView) mView.findViewById(R.id.buttonSave);
-        mTextViewButton = (TextView) mView.findViewById(R.id.textViewVendorInputButton);
+//        mTextViewButton = (TextView) mView.findViewById(R.id.textViewVendorInputButton);
         mEditTextName = (EditText) mView.findViewById(R.id.editTextVendorInputName);
         mEditTextOwner = (EditText) mView.findViewById(R.id.editTextVendorInputOwner);
         mEditTextContact = (EditText) mView.findViewById(R.id.editTextVendorInputContact);
@@ -75,8 +75,8 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
         mEditTextZipcode = (EditText) mView.findViewById(R.id.editTextVendorInputZipcode);
         mEditTextPrice = (EditText) mView.findViewById(R.id.editTextVendorInputPrice);
         mImageViewLogo = (ImageView) mView.findViewById(R.id.imageViewVendorInputLogo);
-        mLayout1 = (RelativeLayout) mView.findViewById(R.id.layoutVendorInput);
-        mLayout2 = (RelativeLayout) mView.findViewById(R.id.layoutVendorInput2);
+//        mLayout1 = (RelativeLayout) mView.findViewById(R.id.layoutVendorInput);
+//        mLayout2 = (RelativeLayout) mView.findViewById(R.id.layoutVendorInput2);
         mProgressBar = (ProgressBar) mView.findViewById(R.id.progressBarVendorInput);
         mVendorUid = mFirebaseAuth.getCurrentUser().getUid();
 
@@ -85,7 +85,7 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
         if(mCategory != null) {
             mStorageReference = mFirebaseStorage.getReference().child("vendor").child(mCategory).child(mVendorUid);
         }
-        mButtonNext.setOnClickListener(this);
+//        mButtonNext.setOnClickListener(this);
         mButtonSave.setOnClickListener(this);
         mImageViewLogo.setOnClickListener(this);
 
@@ -152,19 +152,9 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
-            case R.id.buttonNext:
-                ViewAnimator.animate(mLayout1)
-                        .fadeOut()
-                        .duration(300)
-                        .andAnimate(mLayout2)
-                        .slideRight()
-                        .descelerate()
-                        .duration(600)
-                        .start();
-                mLayout1.setVisibility(View.GONE);
-                mLayout2.setVisibility(View.VISIBLE);
-//                Toast.makeText(view.getContext(), "clicked", Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.buttonNext:
+//
+//                break;
             case R.id.buttonSave:
                 getKey();
                 break;

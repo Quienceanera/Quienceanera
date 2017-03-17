@@ -20,7 +20,6 @@ import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.Objects.VendorOrderItem;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
-import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -127,7 +126,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                 if (mEditTextQuantity != null){
                     getKey();
                 }else {
-                    returnToVendorProfile();
+//                    returnToVendorProfile();
                 }
                 break;
                 default:
@@ -139,11 +138,11 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
             mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(EventsAdapter.mEventKey).child(mVendorUid);
             Log.i("EventAdapter Key", EventsAdapter.mEventKey);
         }
-        if (ConsumerInputFragment.mEventKey != null){
-            mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
-            Log.i("EventInput Key", ConsumerInputFragment.mEventKey);
-
-        }
+//        if (ConsumerInputFragment.mEventKey != null){
+//            mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
+//            Log.i("EventInput Key", ConsumerInputFragment.mEventKey);
+//
+//        }
         mVendorCartRef = FirebaseUtil.getConsumerSideVendorOrderRef();
         mPushRef = mUserCartRef.push();
         mKey = mPushRef.getKey();
@@ -167,20 +166,20 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
             );
             mUserCartRef.child(mKey).setValue(items);
         }
-        if (ConsumerInputFragment.mEventKey != null){
-            Items items = new Items(
-                    mProductKey,
-                    mProductQuantity,
-                    mProductPrice,
-                    null,
-                    mProductName,
-                    mProductImage,
-                    mVendorName,
-                    mKey,
-                    mVendorUid
-            );
-            mUserCartRef.child(mKey).setValue(items);
-        }
+//        if (ConsumerInputFragment.mEventKey != null){
+//            Items items = new Items(
+//                    mProductKey,
+//                    mProductQuantity,
+//                    mProductPrice,
+//                    null,
+//                    mProductName,
+//                    mProductImage,
+//                    mVendorName,
+//                    mKey,
+//                    mVendorUid
+//            );
+//            mUserCartRef.child(mKey).setValue(items);
+//        }
 
         if (EventsAdapter.mEventKey != null) {
             VendorOrderItem vendorOrderItem = new VendorOrderItem(
@@ -193,27 +192,27 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
             );
             mVendorCartRef.child(mKey).setValue(vendorOrderItem);
         }
-        if (ConsumerInputFragment.mEventKey != null){
-            VendorOrderItem vendorOrderItem = new VendorOrderItem(
-                    mProductKey,
-                    mProductQuantity,
-                    mProductPrice,
-                    "totalPrice",
-                    mProductName,
-                    mProductImage
-            );
-            mVendorCartRef.child(mKey).setValue(vendorOrderItem);
-        }
-        returnToVendorProfile();
+//        if (ConsumerInputFragment.mEventKey != null){
+//            VendorOrderItem vendorOrderItem = new VendorOrderItem(
+//                    mProductKey,
+//                    mProductQuantity,
+//                    mProductPrice,
+//                    "totalPrice",
+//                    mProductName,
+//                    mProductImage
+//            );
+//            mVendorCartRef.child(mKey).setValue(vendorOrderItem);
+//        }
+//        returnToVendorProfile();
 
     }
-    void returnToVendorProfile () {
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorProfileFragment())
-                .disallowAddToBackStack()
-                .commit();
-    }
+//    void returnToVendorProfile () {
+//        getFragmentManager()
+//                .beginTransaction()
+////                .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorProfileFragment())
+//                .disallowAddToBackStack()
+//                .commit();
+//    }
 
 
 }

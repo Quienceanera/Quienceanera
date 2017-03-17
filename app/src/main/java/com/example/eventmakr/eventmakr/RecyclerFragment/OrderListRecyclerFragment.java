@@ -9,10 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.CartListAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
-import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerInputFragment;
 import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -40,14 +40,14 @@ public class OrderListRecyclerFragment extends Fragment {
                     FirebaseUtil.getConsumerSideConsumerOrderRef().child(EventsAdapter.mEventKey).child(CartHomeAdapter.mVendorUid),
                     getActivity());
         }
-        if (ConsumerInputFragment.mEventKey != null) {
-            mAdapter = new CartListAdapter(
-                    Items.class,
-                    R.layout.fragment_cart_item,
-                    CartListViewholder.class,
-                    FirebaseUtil.getConsumerSideConsumerOrderRef().child(ConsumerInputFragment.mEventKey).child(CartHomeAdapter.mVendorUid),
-                    getActivity());
-        }
+//        if (ConsumerInputFragment.mEventKey != null) {
+//            mAdapter = new CartListAdapter(
+//                    Items.class,
+//                    R.layout.fragment_cart_item,
+//                    CartListViewholder.class,
+//                    FirebaseUtil.getConsumerSideConsumerOrderRef().child(ConsumerInputFragment.mEventKey).child(CartHomeAdapter.mVendorUid),
+//                    getActivity());
+//        }
         super.onCreate(savedInstanceState);
     }
 

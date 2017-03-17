@@ -3,6 +3,7 @@ package com.example.eventmakr.eventmakr.Activities;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -12,7 +13,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+import com.example.eventmakr.eventmakr.Adapters.ViewPagerAdapter;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.ChatHomeFragment;
+import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorMenuFragment;
 import com.example.eventmakr.eventmakr.R;
+import com.example.eventmakr.eventmakr.RecyclerFragment.VendorOrderHomeListFragment;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
 public class VendorActivity extends AppCompatActivity implements View.OnClickListener{
@@ -20,6 +25,8 @@ public class VendorActivity extends AppCompatActivity implements View.OnClickLis
     private RelativeLayout mLayoutVendorMenu;
     private ImageView mImageViewToolbarIcon, mImageViewBackground;
     private TabLayout mTabLayout;
+    private ViewPager mViewPager;
+    private ViewPagerAdapter mViewPagerAdapter;
     private FrameLayout mFrameLayout;
     public static Boolean mVendorMode = true;
 
@@ -27,7 +34,6 @@ public class VendorActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor);
-
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbarVendor);
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -37,54 +43,41 @@ public class VendorActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
-//        mCardViewProducts = (CardView) findViewById(R.id.cardViewProducts);
-//        mCardViewDocuments = (CardView) findViewById(R.id.cardViewDocuments);
-//        mCardViewInputInfo = (CardView) findViewById(R.id.cardViewInputInfo);
         mImageViewToolbarIcon = (ImageView) findViewById(R.id.imageViewIconVendor);
-//        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
-//        mFrameLayout = (FrameLayout) findViewById(R.id.containerTabLayout);
         mImageViewBackground = (ImageView) findViewById(R.id.imageViewBackgroundVendor);
+
+        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        mViewPager = (ViewPager) findViewById(R.id.viewpagerVendor);
+        mViewPagerAdapter = new ViewPagerAdapter(getFragmentManager(), this);
+        mViewPagerAdapter.addFragments(new VendorOrderHomeListFragment(), "");
+        mViewPagerAdapter.addFragments(new VendorMenuFragment(), "");
+        mViewPagerAdapter.addFragments(new ChatHomeFragment(), "");
+
+        mViewPager.setAdapter(mViewPagerAdapter);
+        mTabLayout.setupWithViewPager(mViewPager);
 
         loadBackground();
         getOrderFragment();
         ConsumerActivity.mConsumerMode = false;
-//        mCardViewProducts.setOnClickListener(this);
-//        mCardViewDocuments.setOnClickListener(this);
-//        mCardViewInputInfo.setOnClickListener(this);
+
         mImageViewToolbarIcon.setOnClickListener(this);
 
-//        mTabLayout.addTab(mTabLayout.newTab().setText("ORDERS"));
-//        mTabLayout.addTab(mTabLayout.newTab().setText("MENU"));
-//
-//        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                Fragment fragment = null;
-//                switch (tab.getPosition()){
-//                    case 0:
-//                        fragment = new VendorOrderListFragment();
-//                        break;
-//                    case 1:
-//                        fragment = new VendorOrderListFragment();
-//                        break;
-//                }
-//                getFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.containerTabLayout, fragment)
-//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                        .commit();
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
     }
 
@@ -119,18 +112,10 @@ public class VendorActivity extends AppCompatActivity implements View.OnClickLis
                 .commit();
     }
 
-//    void transitionOutMainMenu () {
-//        ViewAnimator.animate(mLayoutVendorMenu)
-//                .bounceOut()
-//                .duration(300)
-//                .start();
-//        mLayoutVendorMenu.setVisibility(View.GONE);
-//    }
 
     @Override
     protected void onPause() {
         super.onPause();
-//        transitionOutMainMenu();
     }
 
 
@@ -139,7 +124,6 @@ public class VendorActivity extends AppCompatActivity implements View.OnClickLis
         int id = view.getId();
         switch (id) {
             case R.id.cardViewProducts:
-//                transitionOutMainMenu();
                 getVendorProductFragment();
                 break;
             case R.id.cardViewDocuments:

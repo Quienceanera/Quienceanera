@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import static com.example.eventmakr.eventmakr.Utils.FragmentUtil.getContactVendorFragment;
+
 
 public class ConsumerVendorProfileFragment extends android.app.Fragment implements View.OnClickListener {
     private static final String TAG = "ConsumerVendorProfileFragment";
@@ -116,13 +118,13 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
         }
 
     }
-
-    public void getContactVendorFragment () {
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.consumerActivityLayout, FragmentUtil.getContactVendorFragment())
-                .addToBackStack(null)
-                .commit();
-    }
+//
+//    public void getContactVendorFragment () {
+//        getFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.consumerActivityLayout, FragmentUtil.getContactVendorFragment())
+//                .addToBackStack(null)
+//                .commit();
+//    }
 
 }

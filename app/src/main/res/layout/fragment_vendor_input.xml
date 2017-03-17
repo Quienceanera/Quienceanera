@@ -9,174 +9,256 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/progressBarVendorInput"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="5dp"
-            android:visibility="gone"
-            android:elevation="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:id="@+id/layoutTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imageViewVendorInputLogo"
         android:scaleType="centerCrop"
         android:elevation="2dp"
-        android:src="@drawable/home_outline"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_width="100dp"
-        android:layout_height="80dp" />
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
 
+            <ProgressBar
+                android:id="@+id/progressBarVendorInput"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:elevation="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         <TextView
-            android:layout_below="@+id/imageViewVendorInputLogo"
-            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
             android:id="@+id/TextViewVendorInputHint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Click here to add your logo"/>
+            android:text="Your logo here!"/>
 
-        <RelativeLayout
-            android:layout_below="@+id/imageViewVendorInputLogo"
-            android:id="@+id/layoutVendorInput"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:id="@+id/editTextVendorInputName"
-                android:paddingTop="50dp"
-                android:inputType="textPersonName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="What is your business name?" />
-
-            <EditText
-                android:id="@+id/editTextVendorInputOwner"
-                android:paddingTop="50dp"
-                android:inputType="textPersonName"
-                android:layout_below="@+id/editTextVendorInputName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="What is the owners name?" />
-
-            <EditText
-                android:id="@+id/editTextVendorInputContact"
-                android:paddingTop="50dp"
-                android:inputType="textPersonName"
-                android:layout_below="@+id/editTextVendorInputOwner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Who will be your customer contact?" />
-
-            <EditText
-                android:id="@+id/editTextVendorInputDescription"
-                android:paddingTop="50dp"
-                android:inputType="textMultiLine"
-                android:layout_below="@+id/editTextVendorInputContact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Give a description of your business" />
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/buttonNext"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="30dp"
-                app:cardCornerRadius="5dp"
-                app:cardBackgroundColor="@color/colorButtons"
-                android:layout_width="match_parent"
-                android:layout_height="80dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/textViewVendorInputButton"
-                        android:text="@string/next"
-                        android:elevation="4dp"
-                        android:layout_centerInParent="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </RelativeLayout>
-
-            </android.support.v7.widget.CardView>
-
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabVendorInputAddLogo"
+            app:backgroundTint="@color/colorButtons"
+            android:src="@drawable/camera"
+            app:useCompatPadding="true"
+            app:elevation="6dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/imageViewVendorInputLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_below="@+id/imageViewVendorInputLogo"
-            android:visibility="gone"
-            android:id="@+id/layoutVendorInput2"
+        <ScrollView
+            android:layout_below="@+id/layoutTop"
+            android:layout_above="@+id/buttonSave"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/editTextVendorInputCategory"
-                android:paddingTop="50dp"
-                android:inputType="textCapWords"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="What type of service do you provide?" />
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/editTextVendorInputAddress"
-                android:paddingTop="50dp"
-                android:inputType="textPostalAddress"
-                android:layout_below="@+id/editTextVendorInputCategory"
+            <LinearLayout
+                android:id="@+id/layoutVendorInput"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="What is your business address?" />
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/editTextVendorInputZipcode"
-                android:paddingTop="50dp"
-                android:inputType="number"
-                android:ems="5"
-                android:layout_below="@+id/editTextVendorInputAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="What is your Zip code?" />
-
-            <EditText
-                android:id="@+id/editTextVendorInputPrice"
-                android:paddingTop="50dp"
-                android:inputType="text"
-                android:layout_below="@+id/editTextVendorInputZipcode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Tell customers your price range with $, $$, or $$$" />
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/buttonSave"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="30dp"
-                app:cardCornerRadius="5dp"
-                app:cardBackgroundColor="@color/colorButtons"
-                android:layout_width="match_parent"
-                android:layout_height="80dp">
-
-                <RelativeLayout
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
-                    <TextView
-                        android:text="Save"
-                        android:elevation="4dp"
-                        android:layout_centerInParent="true"
+                    <ImageView
+                        android:baselineAlignBottom="true"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/store"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
-                </RelativeLayout>
+                    <EditText
+                        android:padding="16dp"
+                        android:id="@+id/editTextVendorInputName"
+                        android:inputType="textPersonName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="What is your business name?" />
+                </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:baselineAlignBottom="true"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/account_star"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:padding="16dp"
+                        android:id="@+id/editTextVendorInputOwner"
+                        android:inputType="textPersonName"
+                        android:layout_below="@+id/editTextVendorInputName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="What is the owners name?" />
+                </LinearLayout>
 
-        </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:baselineAlignBottom="true"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/human_greeting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:padding="16dp"
+                        android:id="@+id/editTextVendorInputContact"
+                        android:inputType="textPersonName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Who will be your customer contact?" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:baselineAlignBottom="true"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/lead_pencil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:padding="16dp"
+                        android:id="@+id/editTextVendorInputDescription"
+                        android:inputType="textMultiLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Give a description of your business" />
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:baselineAlignBottom="true"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/silverware"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:padding="16dp"
+                        android:id="@+id/editTextVendorInputCategory"
+                        android:inputType="textCapWords"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="What type of service do you provide?" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:baselineAlignBottom="true"
+                            android:layout_margin="5dp"
+                            android:src="@drawable/map_marker2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <EditText
+                            android:padding="16dp"
+                            android:id="@+id/editTextVendorInputAddress"
+                            android:inputType="textPostalAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="Business address        " />
+
+                        <EditText
+                            android:paddingTop="16dp"
+                            android:paddingBottom="16dp"
+                            android:id="@+id/editTextVendorInputZipcode"
+                            android:inputType="number"
+                            android:ems="5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Zip code" />
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:baselineAlignBottom="true"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/currency_usd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:padding="16dp"
+                        android:id="@+id/editTextVendorInputPrice"
+                        android:inputType="text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Price range? $, $$, or $$$" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            </FrameLayout>
+
+        </ScrollView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/buttonSave"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            app:cardCornerRadius="5dp"
+            app:cardBackgroundColor="@color/colorButtons"
+            app:cardUseCompatPadding="true"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Save"
+                    android:elevation="4dp"
+                    android:textStyle="bold"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
 
     </RelativeLayout>
 

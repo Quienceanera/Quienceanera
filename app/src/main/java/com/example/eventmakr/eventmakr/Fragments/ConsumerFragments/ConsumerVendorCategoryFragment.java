@@ -189,7 +189,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
     public void getConsumerBudgetFragment() {
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerBudgetFragment())
+                .replace(R.id.containerEventActivity, FragmentUtil.getConsumerBudgetFragment())
                 .addToBackStack(null)
                 .commit();
     }

@@ -1,13 +1,12 @@
 package com.example.eventmakr.eventmakr.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
-import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
+import com.example.eventmakr.eventmakr.Activities.EventActivity;
 import com.example.eventmakr.eventmakr.Objects.Events;
-import com.example.eventmakr.eventmakr.R;
-import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.EventsViewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.github.florent37.viewanimator.ViewAnimator;
@@ -95,7 +94,7 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
             public void onClick(View v) {
                 mEventKey = getRef(position).getKey();
                 mEventName = model.getEventName();
-                getCategory();
+                getEventsActivity();
             }
         });
         mEventDate = model.getEventDate();
@@ -104,14 +103,7 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
         mEventType = model.getEventType();
     }
 
-    private void getCategory() {
-        ConsumerActivity consumerActivity = (ConsumerActivity)mContext;
-        consumerActivity.findViewById(R.id.fabNewEvent).setVisibility(View.GONE);
-        consumerActivity.findViewById(R.id.containerEventsList).setVisibility(View.GONE);
-        consumerActivity.getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorCategoryFragment())
-                .addToBackStack(null)
-                .commit();
+    private void getEventsActivity() {
+        mContext.startActivity(new Intent(mContext, EventActivity.class));
     }
 }

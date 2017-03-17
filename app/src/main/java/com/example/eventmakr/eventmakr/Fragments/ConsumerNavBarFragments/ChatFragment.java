@@ -13,7 +13,6 @@ import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
 import com.example.eventmakr.eventmakr.Activities.VendorActivity;
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
-import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerInputFragment;
 import com.example.eventmakr.eventmakr.Objects.Chat;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -96,17 +95,17 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
 
 
         } else {
-            if (EventsAdapter.mEventKey != null){
+//            if (EventsAdapter.mEventKey != null){
                 mDatabaseReference = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid);
                 mConsumerSideVendorRef = FirebaseUtil.getConsumerSideVendorMessageRef().push();
 
-            }
-            if (ConsumerInputFragment.mEventKey != null){
-                mDatabaseReference = FirebaseUtil.getConsumerSideConsumerMessageRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
-                mConsumerSideVendorRef = FirebaseUtil.getConsumerSideVendorMessageRef().push();
-
-
-            }
+////            }
+//            if (ConsumerInputFragment.mEventKey != null){
+//                mDatabaseReference = FirebaseUtil.getConsumerSideConsumerMessageRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
+//                mConsumerSideVendorRef = FirebaseUtil.getConsumerSideVendorMessageRef().push();
+//
+//
+//            }
             mDatabaseRef = mDatabaseReference.push();
             mChatKey = mDatabaseRef.getKey();
         }

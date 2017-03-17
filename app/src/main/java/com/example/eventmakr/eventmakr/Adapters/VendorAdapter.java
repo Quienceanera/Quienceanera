@@ -5,11 +5,8 @@ import android.content.Intent;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
-import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerVendorCategoryFragment;
 import com.example.eventmakr.eventmakr.Objects.Vendor;
-import com.example.eventmakr.eventmakr.R;
-import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
@@ -67,7 +64,7 @@ public class VendorAdapter extends FirebaseRecyclerAdapter<Vendor, Viewholder> {
         viewHolder.mCardViewVendorItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getVendorProfile();
+//                getVendorProfile();
             }
         });
 
@@ -85,13 +82,13 @@ public class VendorAdapter extends FirebaseRecyclerAdapter<Vendor, Viewholder> {
     }
 
 
-    private void getVendorProfile() {
-        ConsumerActivity consumerActivity = (ConsumerActivity)mContext;
-        consumerActivity.getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorProfileFragment())
-                .addToBackStack(null)
-                .commit();
-    }
+//    private void getVendorProfile() {
+//        ConsumerActivity consumerActivity = (ConsumerActivity)mContext;
+//        consumerActivity.getFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorProfileFragment())
+//                .addToBackStack(null)
+//                .commit();
+//    }
 
 }

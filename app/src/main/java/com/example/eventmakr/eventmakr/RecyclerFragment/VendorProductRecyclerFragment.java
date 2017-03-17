@@ -28,7 +28,7 @@ public class VendorProductRecyclerFragment extends Fragment {
                 Menu.class,
                 R.layout.menu_card_view,
                 Viewholder.class,
-                FirebaseUtil.getConsumerSideVendorProductRef(),
+                FirebaseUtil.getVendorSideVendorProductRef(),
                 getActivity());
         super.onCreate(savedInstanceState);
     }

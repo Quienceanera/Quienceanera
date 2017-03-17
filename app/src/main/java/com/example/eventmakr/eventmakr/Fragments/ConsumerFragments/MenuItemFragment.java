@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.R;
-import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
 
 public class MenuItemFragment extends android.app.Fragment implements  View.OnClickListener{
@@ -66,19 +65,19 @@ public class MenuItemFragment extends android.app.Fragment implements  View.OnCl
         int id = view.getId();
         switch (id) {
             case R.id.buttonProductItemSelect:
-                getVendorProfileFragment();
+//                getVendorProfileFragment();
                 Toast.makeText(getActivity(), "menu item selected", Toast.LENGTH_SHORT).show();
                 break;
             default:
         }
     }
-    public void getVendorProfileFragment() {
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorProfileFragment())
-                .addToBackStack(null)
-                .commit();
-    }
+//    public void getVendorProfileFragment() {
+//        getFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorProfileFragment())
+//                .addToBackStack(null)
+//                .commit();
+//    }
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name

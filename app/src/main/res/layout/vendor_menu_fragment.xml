@@ -13,7 +13,7 @@
             android:id="@+id/cardViewVendorMenuProfile"
             app:cardUseCompatPadding="true"
             app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/background"
+            app:cardBackgroundColor="@color/colorButtons"
             android:layout_width="match_parent"
             android:layout_height="250dp">
 
@@ -24,6 +24,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
+
                 <TextView
                     android:text="PROFILE"
                     android:layout_alignParentBottom="true"
@@ -36,6 +37,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:id="@+id/buttonVendorMenuProfile"
                     android:text="EDIT"
                     android:textStyle="bold"
                     android:textColor="@color/colorText"
@@ -69,6 +71,7 @@
                     android:id="@+id/imageViewVendorMenuDocuments"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
+
                 <TextView
                     android:text="DOCUMENTS"
                     android:textStyle="bold"
@@ -77,6 +80,19 @@
                     android:layout_alignParentStart="true"
                     android:padding="10dp"
                     android:textColor="@color/colorText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/buttonVendorMenuDocuments"
+                    android:text="EDIT"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorText"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="10dp"
+                    android:padding="5dp"
+                    android:background="@color/colorButtons"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -95,10 +111,12 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
                 android:id="@+id/imageViewVendorMenuProducts"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+
             <TextView
                 android:text="PRODUCTS"
                 android:layout_alignParentBottom="true"
@@ -109,7 +127,22 @@
                 android:textColor="@color/colorText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/buttonVendorMenuProducts"
+                android:text="EDIT"
+                android:textStyle="bold"
+                android:textColor="@color/colorText"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:background="@color/colorButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
         </RelativeLayout>
+
     </android.support.v7.widget.CardView>
 
     </RelativeLayout>

@@ -5,7 +5,6 @@ import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorOrderHomeAdapter;
-import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerInputFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -59,13 +58,7 @@ public class FirebaseUtil {
     }
 
     public static  DatabaseReference getConsumerSideVendorOrderRef() {
-        if (EventsAdapter.mEventKey != null) {
             return getBaseRef().child("vendorOrder").child(VendorAdapter.mVendorUid).child(EventsAdapter.mEventKey);
-        }
-        if (ConsumerInputFragment.mEventKey != null) {
-            return getBaseRef().child("vendorOrder").child(VendorAdapter.mVendorUid).child(ConsumerInputFragment.mEventKey);
-        }
-        return null;
     }
 
     public static  DatabaseReference getConsumerSideConsumerOrderRef() {
@@ -73,22 +66,10 @@ public class FirebaseUtil {
     }
 
     public static  DatabaseReference getConsumerSideConsumerOrderInfoRef() {
-        if (EventsAdapter.mEventKey != null){
             return getBaseRef().child("consumerOrderInfo").child(FirebaseUtil.getUid()).child(EventsAdapter.mEventKey);
-        }
-        if (ConsumerInputFragment.mEventKey != null){
-            return getBaseRef().child("consumerOrderInfo").child(FirebaseUtil.getUid()).child(ConsumerInputFragment.mEventKey);
-        }
-        return null;
     }
     public static  DatabaseReference getConsumerSideVendorOrderInfoRef() {
-        if (EventsAdapter.mEventKey != null) {
             return getBaseRef().child("vendorOrderInfo").child(VendorAdapter.mVendorUid).child(EventsAdapter.mEventKey);
-        }
-        if (ConsumerInputFragment.mEventKey != null) {
-            return getBaseRef().child("vendorOrderInfo").child(VendorAdapter.mVendorUid).child(ConsumerInputFragment.mEventKey);
-        }
-        return null;
     }
 
     //TODO: Vendor Side

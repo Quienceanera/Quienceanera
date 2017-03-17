@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ItemsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
-import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerInputFragment;
 import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -39,16 +38,16 @@ public class OrderRecyclerFragment extends Fragment{
                         getActivity());
             }
         }
-        if (ConsumerInputFragment.mEventKey != null) {
-            if (mVendorUid != null) {
-                mItemsAdapter = new ItemsAdapter(
-                        Items.class,
-                        R.layout.items_card_view,
-                        Viewholder.class,
-                        FirebaseUtil.getConsumerSideConsumerOrderRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid),
-                        getActivity());
-            }
-        }
+//        if (ConsumerInputFragment.mEventKey != null) {
+//            if (mVendorUid != null) {
+//                mItemsAdapter = new ItemsAdapter(
+//                        Items.class,
+//                        R.layout.items_card_view,
+//                        Viewholder.class,
+//                        FirebaseUtil.getConsumerSideConsumerOrderRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid),
+//                        getActivity());
+//            }
+//        }
         super.onCreate(savedInstanceState);
     }
 

@@ -15,7 +15,6 @@ import com.example.eventmakr.eventmakr.Activities.VendorActivity;
 import com.example.eventmakr.eventmakr.Adapters.ChatAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
-import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerInputFragment;
 import com.example.eventmakr.eventmakr.Objects.Chat;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -47,16 +46,16 @@ public class MessageRecyclerFragment extends Fragment {
                         mContext);
             }
         }
-        if (ConsumerInputFragment.mEventKey != null){
-            if (mVendorUid != null) {
-                mAdapter = new ChatAdapter(
-                        Chat.class,
-                        R.layout.fragment_chat_item,
-                        Viewholder.class,
-                        FirebaseUtil.getConsumerSideConsumerMessageRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid),
-                        mContext);
-            }
-        }
+//        if (ConsumerInputFragment.mEventKey != null){
+//            if (mVendorUid != null) {
+//                mAdapter = new ChatAdapter(
+//                        Chat.class,
+//                        R.layout.fragment_chat_item,
+//                        Viewholder.class,
+//                        FirebaseUtil.getConsumerSideConsumerMessageRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid),
+//                        mContext);
+//            }
+//        }
         if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
             mAdapter = new ChatAdapter(
                     Chat.class,
