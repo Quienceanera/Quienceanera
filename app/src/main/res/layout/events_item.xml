@@ -22,7 +22,19 @@
             android:layout_width="match_parent"
             android:layout_height="200dp">
 
-    <ImageView
+            <TextView
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:textColor="@color/colorText"
+                android:layout_margin="5dp"
+                android:id="@+id/textViewEventsDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:textSize="15sp" />
+
+
+            <ImageView
         android:id="@+id/imageViewEvents"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
@@ -47,18 +59,29 @@
                 android:elevation="10dp"
                 android:textSize="25sp" />
 
-            <TextView
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:textColor="@color/colorText"
-                android:layout_margin="5dp"
-                android:id="@+id/textViewEventsDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:elevation="10dp"
-                android:textSize="15sp" />
-
         </RelativeLayout>
+
+        <LinearLayout
+            android:elevation="2dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:textAllCaps="true"
+                android:text="edit"
+                android:textColor="@color/logoColor"
+                android:background="@color/tw__transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:textAllCaps="true"
+                android:text="select"
+                android:textColor="@color/logoColor"
+                android:background="@color/tw__transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
 
 

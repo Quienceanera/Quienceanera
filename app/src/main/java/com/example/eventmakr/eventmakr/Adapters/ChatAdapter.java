@@ -18,7 +18,7 @@ import com.google.firebase.database.Query;
 
 public class ChatAdapter extends FirebaseRecyclerAdapter<Chat, Viewholder>{
     private Context context;
-    private String mUid, mChatKey;
+    private String mUid, mChatKey, mRefKey;
     private Query mQuery;
 
     /**
@@ -38,7 +38,7 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Chat, Viewholder>{
     @Override
     protected void populateViewHolder(final Viewholder viewHolder, final Chat model, final int position) {
         mUid = FirebaseUtil.getUid();
-        if (mUid.equals(model.getUid())) {
+        if (mUid.equals(model.getCustomerUid())) {
             viewHolder.mTextViewChatUser.setText(model.getText());
             viewHolder.mCardViewChatUser.setVisibility(View.VISIBLE);
             viewHolder.mCardViewChat.setVisibility(View.INVISIBLE);
@@ -55,7 +55,7 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Chat, Viewholder>{
             viewHolder.mCardViewChatUser.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    mChatKey = model.getChatKey();
+                    mChatKey = getItem(position).toString();
                     ViewAnimator.animate(viewHolder.mLayoutDeleteComment)
                             .slideRight()
                             .descelerate()

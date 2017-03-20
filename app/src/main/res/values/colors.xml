@@ -13,5 +13,7 @@
     <color name="black_overlay">#66000000</color>
     <color name="background_lite">#FFFAFAFA</color>
     <color name="light_transparent">#beffffff</color>
-    <color name="background">#ade040fb</color>
+    <color name="background_white">#FFFFFF</color>
+    <color name="background">#BA68C8</color>
+    <color name="logoColor">#87C1EF</color>
 </resources>

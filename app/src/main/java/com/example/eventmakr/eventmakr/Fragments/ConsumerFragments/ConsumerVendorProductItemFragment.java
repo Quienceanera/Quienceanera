@@ -15,11 +15,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
+import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorProfileProductAdapter;
 import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.Objects.VendorOrderItem;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
+import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -135,7 +137,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     }
     void getKey () {
         if (EventsAdapter.mEventKey != null) {
-            mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(EventsAdapter.mEventKey).child(mVendorUid);
+            mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(VendorAdapter.mVendorUid);
             Log.i("EventAdapter Key", EventsAdapter.mEventKey);
         }
 //        if (ConsumerInputFragment.mEventKey != null){
@@ -203,16 +205,16 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
 //            );
 //            mVendorCartRef.child(mKey).setValue(vendorOrderItem);
 //        }
-//        returnToVendorProfile();
+        returnToVendorProfile();
 
     }
-//    void returnToVendorProfile () {
-//        getFragmentManager()
-//                .beginTransaction()
-////                .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorProfileFragment())
-//                .disallowAddToBackStack()
-//                .commit();
-//    }
+    void returnToVendorProfile () {
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.containerEventActivity, FragmentUtil.getConsumerVendorProfileFragment())
+                .disallowAddToBackStack()
+                .commit();
+    }
 
 
 }

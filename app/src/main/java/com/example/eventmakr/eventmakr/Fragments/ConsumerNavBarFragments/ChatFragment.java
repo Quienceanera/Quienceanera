@@ -93,28 +93,18 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
             mVendorMessageRef = FirebaseUtil.getVendorSideVendorMessageRef().push();
             mConsumerMessageRef = FirebaseUtil.getVendorSideConsumerMessageRef().push();
 
-
         } else {
-//            if (EventsAdapter.mEventKey != null){
-                mDatabaseReference = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid);
-                mConsumerSideVendorRef = FirebaseUtil.getConsumerSideVendorMessageRef().push();
+                mConsumerMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid).push();
+                mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef().push();
 
-////            }
-//            if (ConsumerInputFragment.mEventKey != null){
-//                mDatabaseReference = FirebaseUtil.getConsumerSideConsumerMessageRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
-//                mConsumerSideVendorRef = FirebaseUtil.getConsumerSideVendorMessageRef().push();
-//
-//
-//            }
-            mDatabaseRef = mDatabaseReference.push();
-            mChatKey = mDatabaseRef.getKey();
         }
         Chat chat = new Chat(
                 mEditTextChat.getText().toString(),
                 mUsername,
                 mPhotoUrl,
-                mChatKey,
+                EventsAdapter.mEventKey,
                 mUid,
+                mVendorUid,
                 mCurrentTimestamp
         );
 
@@ -123,8 +113,8 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
             mConsumerMessageRef.setValue(chat);
             mEditTextChat.setText("");
         } else {
-            mDatabaseRef.setValue(chat);
-            mConsumerSideVendorRef.setValue(chat);
+            mConsumerMessageRef.setValue(chat);
+            mVendorMessageRef.setValue(chat);
             mEditTextChat.setText("");
         }
     }

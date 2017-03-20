@@ -2,7 +2,6 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,10 +38,10 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActivity().getActionBar().setTitle("Contact Vendor to confirm");
     }
 
     @Override
@@ -62,20 +61,13 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     void getChildRecyclerItems () {
         getChildFragmentManager()
                 .beginTransaction()
-                .add(R.id.containerRecyclerItemsFragment, FragmentUtil.getRecyclerItemsFragment())
+                .add(R.id.containerRecyclerItemsFragment, FragmentUtil.getOrderRecyclerFragment())
                 .commit();
     }
 
     void getTotalPrice () {
-        if (EventsAdapter.mEventKey != null) {
             mItemsRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(EventsAdapter.mEventKey).child(mVendorUid);
-            Log.i("EventAdapter Key", EventsAdapter.mEventKey);
-        }
-//        if (ConsumerInputFragment.mEventKey != null){
-//            mItemsRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
-//            Log.i("EventInput Key", ConsumerInputFragment.mEventKey);
-//
-//        }
+
         mItemsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -86,24 +78,16 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                     Float mChildPrice = Float.parseFloat(child.child("price").getValue().toString());
                     int mChildQuantity = Integer.valueOf(child.child("quantity").getValue().toString());
                     double mChildTotal = mChildPrice * mChildQuantity;
-                    Log.i("Price ", String.valueOf(mChildPrice));
-                    Log.i("Quantity", String.valueOf(mChildQuantity));
-                    Log.i("Total ", String.valueOf(mChildTotal));
-                    Log.i("ChildCount ", String.valueOf(mChildrenNum));
                     sum += mChildTotal;
                     quantity = (int) (mChildQuantity * Double.parseDouble(String.valueOf(mChildTotal)));
                 }
-                    Log.i("TotalAll ", String.valueOf(sum));
-                    Log.i("Total Quantity", String.valueOf(quantity));
-
-                    mTextViewTotal.setText("Total Price " + "$" +String.valueOf(sum));
+                mTextViewTotal.setText("Total Price " + "$" +String.valueOf(sum));
                 mPriceTotal = String.valueOf(sum);
                 mQuantity = String.valueOf(quantity);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
     }
@@ -119,14 +103,67 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
         }
     }
 
+    void contactVendor () {
+        mVendorWelcome = "Chat with us here!";
+        mVendorName = VendorAdapter.mVendorName;
+        mVendorLogo = VendorAdapter.mVendorLogo;
+        mVendorUid = VendorAdapter.mVendorUid;
+        pushToChatHome();
+    }
+
+
+    void pushToChatHome() {
+        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
+        final String mCurrentTimestamp = time.format(new Date());
+        if (EventsAdapter.mEventKey != null){
+            mUserChatHomeRef = getConsumerSideConsumerChatRef().child(EventsAdapter.mEventKey).child(mVendorUid);
+        }
+
+        mVendorChatHomeRef = FirebaseUtil.getConsumerSideVendorChatRef().push();
+        if (EventsAdapter.mEventKey != null){
+            ChatHome chatHome = new ChatHome(
+                    mVendorName,
+                    mVendorLogo,
+                    mVendorUid,
+                    FirebaseUtil.getUid(),
+                    mCurrentTimestamp,
+                    EventsAdapter.mEventKey,
+                    EventsAdapter.mEventName,
+                    EventsAdapter.mEventDate
+            );
+            mUserChatHomeRef.setValue(chatHome);
+            mVendorChatHomeRef.setValue(chatHome);
+            postChat();
+        }
+    }
+
+
+    void postChat() {
+        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
+        final String mCurrentTimestamp = time.format(new Date());
+        if (EventsAdapter.mEventKey != null){
+            mUserMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid);
+        }
+        mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef();
+        mUserChatPushRef = mUserMessageRef.push();
+        mChatKey = mUserChatPushRef.getKey();
+        Chat chat = new Chat(
+                mVendorWelcome,
+                mVendorName,
+                mVendorLogo,
+                EventsAdapter.mEventKey,
+                FirebaseUtil.getUid(),
+                mVendorUid,
+                mCurrentTimestamp
+        );
+        mUserMessageRef.child(mChatKey).setValue(chat);
+        mVendorMessageRef.child(mChatKey).setValue(chat);
+        pushToCart();
+    }
+
     void pushToCart () {
         mOrderId = mChatKey;
-//        if (EventsAdapter.mEventKey != null){
-            mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(mVendorUid);
-//        }
-//        if (ConsumerInputFragment.mEventKey != null){
-//            mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
-//        }
+        mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(VendorAdapter.mVendorUid);
         mVendorCartRef = FirebaseUtil.getConsumerSideVendorOrderInfoRef();
         mConsumerId = FirebaseUtil.getUid();
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
@@ -148,27 +185,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                     mCurrentTimestamp
             );
             mUserCartRef.setValue(cart);
-            mVendorCartRef.setValue(cart);
         }
-//        if (ConsumerInputFragment.mEventKey != null){
-//            Cart cart = new Cart(
-//                    ConsumerInputFragment.mEventDate,
-//                    ConsumerInputFragment.mEventType,
-//                    ConsumerInputFragment.mEventAddress,
-//                    ConsumerInputFragment.mEventName,
-//                    mOrderId,
-//                    mConsumerId,
-//                    mVendorUid,
-//                    mPriceTotal,
-//                    mQuantity,
-//                    mVendorName,
-//                    mVendorLogo,
-//                    mCurrentTimestamp
-//            );
-//            mUserCartRef.setValue(cart);
-//            mVendorCartRef.setValue(cart);
-//        }
-
 
         if (EventsAdapter.mEventKey != null){
             VendorOrderHome vendorOrderHome = new VendorOrderHome(
@@ -182,108 +199,9 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                     EventsAdapter.mEventName,
                     EventsAdapter.mEventDate
             );
-            mUserCartRef.setValue(vendorOrderHome);
             mVendorCartRef.setValue(vendorOrderHome);
         }
-//        if (ConsumerInputFragment.mEventKey != null){
-//            VendorOrderHome vendorOrderHome = new VendorOrderHome(
-//                    FirebaseUtil.getUserName(),
-//                    FirebaseUtil.getUser().getPhotoUrl().toString(),
-//                    FirebaseUtil.getUid(),
-//                    mPriceTotal,
-//                    mQuantity,
-//                    mCurrentTimestamp,
-//                    ConsumerInputFragment.mEventKey,
-//                    ConsumerInputFragment.mEventName,
-//                    ConsumerInputFragment.mEventDate
-//            );
-//            mUserCartRef.setValue(vendorOrderHome);
-//            mVendorCartRef.setValue(vendorOrderHome);
-//        }
     }
 
-    void pushToChatHome() {
-        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
-        final String mCurrentTimestamp = time.format(new Date());
-        if (EventsAdapter.mEventKey != null){
-            mUserChatHomeRef = getConsumerSideConsumerChatRef().child(EventsAdapter.mEventKey).child(mVendorUid);
-        }
-//        if (ConsumerInputFragment.mEventKey != null){
-//            mUserChatHomeRef = getConsumerSideConsumerChatRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
-//        }
-        mVendorChatHomeRef = FirebaseUtil.getConsumerSideVendorChatRef().child(FirebaseUtil.getUid());
-        if (EventsAdapter.mEventKey != null){
-            ChatHome chatHome = new ChatHome(
-                    mVendorName,
-                    mVendorLogo,
-                    mVendorUid,
-                    mCurrentTimestamp,
-                    EventsAdapter.mEventKey,
-                    EventsAdapter.mEventName,
-                    EventsAdapter.mEventDate
-            );
-            mUserChatHomeRef.setValue(chatHome);
-            mVendorChatHomeRef.setValue(chatHome);
-            postChat();
-        }
-//        if (ConsumerInputFragment.mEventKey != null){
-//            ChatHome chatHome = new ChatHome(
-//                    mVendorName,
-//                    mVendorLogo,
-//                    mVendorUid,
-//                    mCurrentTimestamp,
-//                    ConsumerInputFragment.mEventKey,
-//                    ConsumerInputFragment.mEventName,
-//                    ConsumerInputFragment.mEventDate
-//            );
-//            mUserChatHomeRef.setValue(chatHome);
-//            mVendorChatHomeRef.setValue(chatHome);
-//            postChat();
-//        }
-
-    }
-
-    void contactVendor () {
-        mVendorWelcome = "Chat with us here!";
-        mVendorName = VendorAdapter.mVendorName;
-        mVendorLogo = VendorAdapter.mVendorLogo;
-        mVendorUid = VendorAdapter.mVendorUid;
-        pushToChatHome();
-    }
-
-//    void openChat () {
-//        getActivity().findViewById(R.id.consumerActivityLayout).setVisibility(View.GONE);
-//        getActivity().findViewById(R.id.navConsumerActivityLayout).setVisibility(View.VISIBLE);
-//        getFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.navConsumerActivityLayout, FragmentUtil.getChatHomeFragment())
-//                .commit();
-//    }
-
-    void postChat() {
-        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
-        final String mCurrentTimestamp = time.format(new Date());
-        if (EventsAdapter.mEventKey != null){
-            mUserMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid);
-        }
-//        if (ConsumerInputFragment.mEventKey != null){
-//            mUserMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
-//        }
-        mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef().child(FirebaseUtil.getUid());
-        mUserChatPushRef = mUserMessageRef.push();
-        mChatKey = mUserChatPushRef.getKey();
-        Chat chat = new Chat(
-                mVendorWelcome,
-                mVendorName,
-                mVendorLogo,
-                mChatKey,
-                mVendorUid,
-                mCurrentTimestamp
-        );
-        mUserMessageRef.child(mChatKey).setValue(chat);
-        mVendorMessageRef.child(mChatKey).setValue(chat);
-        pushToCart();
-//        openChat();
-    }
 
 }

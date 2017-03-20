@@ -34,7 +34,7 @@ public class OrderRecyclerFragment extends Fragment{
                         Items.class,
                         R.layout.items_card_view,
                         Viewholder.class,
-                        FirebaseUtil.getConsumerSideConsumerOrderRef().child(EventsAdapter.mEventKey).child(mVendorUid),
+                        FirebaseUtil.getConsumerSideConsumerOrderRef().child(mVendorUid),
                         getActivity());
             }
         }

@@ -5,20 +5,19 @@ public class Chat {
     private String text;
     private String user;
     private String photoUrl;
-    private String chatKey;
-    private String uid;
+    private String eventKey;
+    private String customerUid;
+    private String vendorUid;
     private String timestamp;
 
-    public Chat(String text, String user, String photoUrl, String chatKey, String uid, String timestamp) {
+    public Chat(String text, String user, String photoUrl, String eventKey, String customerUid, String vendorUid, String timestamp) {
         this.text = text;
         this.user = user;
         this.photoUrl = photoUrl;
-        this.chatKey = chatKey;
-        this.uid = uid;
+        this.eventKey = eventKey;
+        this.customerUid = customerUid;
+        this.vendorUid = vendorUid;
         this.timestamp = timestamp;
-    }
-
-    public Chat() {
     }
 
     public String getText() {
@@ -45,20 +44,28 @@ public class Chat {
         this.photoUrl = photoUrl;
     }
 
-    public String getChatKey() {
-        return chatKey;
+    public String getEventKey() {
+        return eventKey;
     }
 
-    public void setChatKey(String chatKey) {
-        this.chatKey = chatKey;
+    public void setEventKey(String eventKey) {
+        this.eventKey = eventKey;
     }
 
-    public String getUid() {
-        return uid;
+    public String getCustomerUid() {
+        return customerUid;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setCustomerUid(String customerUid) {
+        this.customerUid = customerUid;
+    }
+
+    public String getVendorUid() {
+        return vendorUid;
+    }
+
+    public void setVendorUid(String vendorUid) {
+        this.vendorUid = vendorUid;
     }
 
     public String getTimestamp() {
@@ -68,5 +75,4 @@ public class Chat {
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
-
 }

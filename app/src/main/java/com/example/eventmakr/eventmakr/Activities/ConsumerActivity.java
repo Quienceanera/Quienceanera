@@ -12,10 +12,11 @@ import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ViewPagerAdapter;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
+import com.github.florent37.viewanimator.ViewAnimator;
 
 public class ConsumerActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView mImageViewBackGround;
+    private ImageView mImageViewBackGround, mImageViewLogo, mImageViewMainBg;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private ViewPagerAdapter mViewPagerAdapter;
@@ -27,6 +28,8 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_consumer);
 
         mImageViewBackGround = (ImageView) findViewById(R.id.imageViewBackground);
+        mImageViewLogo = (ImageView) findViewById(R.id.imageViewConsumerLogo);
+        mImageViewMainBg = (ImageView) findViewById(R.id.imageViewMainBg);
         loadBackground();
 
         mTabLayout = (TabLayout) findViewById(R.id.tabLayoutConsumer);
@@ -44,6 +47,8 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
 
         mVendorMode = false;
         mConsumerMode = true;
+
+//        Snackbar.make(findViewById(R.id.layoutConsumer), "Choose or create an event to get started!", Snackbar.LENGTH_SHORT).show();
     }
 
     void loadBackground() {
@@ -52,6 +57,32 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                 .centerCrop()
                 .crossFade()
                 .into(mImageViewBackGround);
+
+        Glide.with(this)
+                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Flogo.png?alt=media&token=f3fb17ed-6cb5-41ff-a8de-41f283efb14c")
+                .crossFade()
+                .into(mImageViewLogo);
+
+        Glide.with(this)
+                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fconf2.png?alt=media&token=7cd08c24-fe3f-4b39-a847-92f1086e4031")
+                .crossFade()
+                .centerCrop()
+                .into(mImageViewMainBg);
+        ViewAnimator.animate(mImageViewMainBg)
+                .translationY(-1400,1700)
+                .duration(30000)
+                .repeatCount(5)
+                .start();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        ViewAnimator.animate(mImageViewLogo)
+                .slideBottom()
+                .descelerate()
+                .duration(1000)
+                .start();
     }
 
     @Override

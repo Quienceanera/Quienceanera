@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
+    tools:context="com.example.eventmakr.eventmakr.Activities.ChatActivity">
+
+    <!--<ImageView-->
+        <!--android:alpha="0.6"-->
+        <!--android:id="@+id/imageViewBackgroundChat"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+
+    <Toolbar
+        android:id="@+id/toolbarChat"
+        android:elevation="8dp"
+        android:background="@drawable/pinktoolbar"
+        app:navigationIcon="@drawable/arrow_left"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+    </Toolbar>
+
+    <FrameLayout
+        android:id="@+id/containerChat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+</RelativeLayout>

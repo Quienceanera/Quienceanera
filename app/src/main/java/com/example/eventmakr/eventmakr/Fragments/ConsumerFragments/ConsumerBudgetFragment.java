@@ -3,16 +3,17 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
+import com.github.channguyen.rsv.RangeSliderView;
 import com.github.florent37.viewanimator.ViewAnimator;
 
 public class ConsumerBudgetFragment extends android.app.Fragment implements View.OnClickListener{
@@ -20,7 +21,7 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
     private static final String TAG = "ConsumerBudgetFragment";
     public static String mCategory, mPriceRange;
     private TextView mTextViewVendorCategory;
-    private SeekBar mSeekBar;
+    private RangeSliderView mSeekBar;
     private CardView mCardViewBudget;
     private FrameLayout mLayoutVendorRecycler;
     static final int REQUESTCODE = 1;
@@ -35,6 +36,9 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCategory = ConsumerVendorCategoryFragment.mCategory;
+        if (mCategory != null) {
+            getActivity().getActionBar().setTitle(mCategory+"s");
+        }
     }
 
     @Override
@@ -43,36 +47,28 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
 
         final View view = inflater.inflate(R.layout.fragment_consumer_budget, container, false);
 
-        mTextViewVendorCategory = (TextView) view.findViewById(R.id.textViewVendorCategory);
-        mSeekBar = (SeekBar) view.findViewById(R.id.seekBarBudget);
+        mSeekBar = (RangeSliderView) view.findViewById(R.id.seekBarBudget);
         mCardViewBudget = (CardView) view.findViewById(R.id.cardViewBudget_helper);
         mLayoutVendorRecycler = (FrameLayout) view.findViewById(R.id.containerRecyclerVendorFragment);
 
-        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        mSeekBar.setOnSlideListener(new RangeSliderView.OnSlideListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (progress > 30 && progress < 70) {
+            public void onSlide(int progress) {
+                Log.i("seekbar", String.valueOf(progress));
+                if (progress == 1) {
                     VendorAdapter.mPriceRange = "$$";
                     getUpdateChildRecyclerVendorFragment();
-                } if (progress < 30) {
+                } if (progress == 0) {
                     VendorAdapter.mPriceRange = "$";
                     getUpdateChildRecyclerVendorFragment();
-                } if (progress > 70) {
+                } if (progress == 2) {
                     VendorAdapter.mPriceRange = "$$$";
                     getUpdateChildRecyclerVendorFragment();
                 }
             }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
         });
 
-        if (mCategory != null) {
-            mTextViewVendorCategory.setText(mCategory + "s");
-        }
+
 
         getChildRecyclerVendorFragment();
 
@@ -83,10 +79,10 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
     public void onStart() {
         super.onStart();
         ViewAnimator.animate(mCardViewBudget)
-                .slideTop()
+                .slideBottom()
                 .duration(500)
                 .andAnimate(mLayoutVendorRecycler)
-                .slideBottom()
+                .slideTop()
                 .duration(500)
                 .start();
     }

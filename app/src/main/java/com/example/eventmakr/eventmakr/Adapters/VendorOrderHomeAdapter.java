@@ -1,13 +1,12 @@
 package com.example.eventmakr.eventmakr.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
-import com.example.eventmakr.eventmakr.Activities.VendorActivity;
+import com.example.eventmakr.eventmakr.Activities.VendorOrderActivity;
 import com.example.eventmakr.eventmakr.Objects.VendorOrderHome;
-import com.example.eventmakr.eventmakr.R;
-import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.VendorOrderHomeViewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
@@ -46,10 +45,6 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
     }
 
     private void getOrders() {
-        VendorActivity vendorActivity = (VendorActivity)mContext;
-        vendorActivity.getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.vendorActivityLayout, FragmentUtil.getVendorOrderListFragment())
-                .commit();
+        mContext.startActivity(new Intent(mContext, VendorOrderActivity.class));
     }
 }

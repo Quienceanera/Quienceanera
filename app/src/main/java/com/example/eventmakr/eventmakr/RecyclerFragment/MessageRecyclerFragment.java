@@ -35,33 +35,21 @@ public class MessageRecyclerFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        mVendorUid = ChatHomeAdapter.mVendorUid;
-        if (EventsAdapter.mEventKey != null){
-            if (mVendorUid != null) {
-                mAdapter = new ChatAdapter(
-                        Chat.class,
-                        R.layout.fragment_chat_item,
-                        Viewholder.class,
-                        FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid),
-                        mContext);
-            }
-        }
-//        if (ConsumerInputFragment.mEventKey != null){
-//            if (mVendorUid != null) {
-//                mAdapter = new ChatAdapter(
-//                        Chat.class,
-//                        R.layout.fragment_chat_item,
-//                        Viewholder.class,
-//                        FirebaseUtil.getConsumerSideConsumerMessageRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid),
-//                        mContext);
-//            }
-//        }
         if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
             mAdapter = new ChatAdapter(
                     Chat.class,
                     R.layout.fragment_chat_item,
                     Viewholder.class,
                     FirebaseUtil.getVendorSideVendorMessageRef(),
+                    mContext);
+        } else {
+            mVendorUid = ChatHomeAdapter.mVendorUid;
+
+            mAdapter = new ChatAdapter(
+                    Chat.class,
+                    R.layout.fragment_chat_item,
+                    Viewholder.class,
+                    FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid),
                     mContext);
         }
 

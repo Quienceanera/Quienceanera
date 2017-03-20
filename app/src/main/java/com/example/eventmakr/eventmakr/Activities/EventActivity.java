@@ -1,12 +1,14 @@
 package com.example.eventmakr.eventmakr.Activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
-import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
@@ -14,6 +16,7 @@ public class EventActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private ImageView mBackGround;
     private String mEventTypeUrl;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,45 +26,35 @@ public class EventActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbarEvent);
         setActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.arrow_left);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EventActivity.this, ConsumerActivity.class));
+            }
+        });
 
         mBackGround = (ImageView) findViewById(R.id.imageViewBackgroundEvents);
-
-
-        getVendorCategory();
-        getBackground();
+        loadBackGround();
     }
-    void getVendorCategory(){
-        getFragmentManager()
-                .beginTransaction()
-                .add(R.id.containerEventActivity, FragmentUtil.getConsumerVendorCategoryFragment())
-                .addToBackStack(null)
-                .commit();
-    }
-
-    void getBackground(){
-        String type = EventsAdapter.mEventType;
-        switch (type) {
-            case "Wedding":
-                mEventTypeUrl = "https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fwedding.jpg?alt=media&token=c155bd76-6e1a-4fb6-b775-8ca72b893126";
-                break;
-            case "Quienceanera":
-                mEventTypeUrl = "https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fmobile_bg.jpg?alt=media&token=8930f92d-f5f0-45dd-b9f9-51775faac1e2";
-                break;
-            case "Birthday":
-                mEventTypeUrl = "https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fbirthday.jpg?alt=media&token=9ae47551-bcbe-44cb-aaab-6fe2699311dd";
-                break;
-            case "Baby Shower":
-                mEventTypeUrl = "https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fbaby.jpg?alt=media&token=a804bad3-cb61-4690-91d4-879c031102a5";
-                break;
-            case "Graduation":
-                mEventTypeUrl = "https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fgraduation.jpg?alt=media&token=d86c1680-0bfa-4349-b872-009a6097a530";
-                break;
-            default:
-        }
+    void loadBackGround(){
         Glide.with(this)
-                .load(mEventTypeUrl)
+                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fcupcakebw.jpg?alt=media&token=6f2ad4a1-9b52-489c-832e-31d2fc241ae4")
                 .centerCrop()
                 .crossFade()
                 .into(mBackGround);
     }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        getVendorCategory();
+    }
+
+    void getVendorCategory(){
+        getFragmentManager()
+                .beginTransaction()
+                .add(R.id.containerEventActivity, FragmentUtil.getConsumerVendorCategoryFragment())
+                .commit();
+    }
+
 }

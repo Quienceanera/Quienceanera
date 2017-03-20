@@ -94,13 +94,14 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
             public void onClick(View v) {
                 mEventKey = getRef(position).getKey();
                 mEventName = model.getEventName();
+                mEventDate = model.getEventDate();
+                mEventName = model.getEventName();
+                mEventAddress = model.getEventZip();
+                mEventType = model.getEventType();
                 getEventsActivity();
             }
         });
-        mEventDate = model.getEventDate();
-        mEventName = model.getEventName();
-        mEventAddress = model.getEventZip();
-        mEventType = model.getEventType();
+
     }
 
     private void getEventsActivity() {

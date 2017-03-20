@@ -6,19 +6,20 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
-import com.example.eventmakr.eventmakr.Adapters.ViewPagerAdapter;
+import com.example.eventmakr.eventmakr.Adapters.VendorViewPagerAdapter;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.ChatHomeFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorMenuFragment;
+import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorOrderHome;
 import com.example.eventmakr.eventmakr.R;
-import com.example.eventmakr.eventmakr.RecyclerFragment.VendorOrderHomeListFragment;
-import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
+
+import static com.example.eventmakr.eventmakr.Utils.FragmentUtil.getVendorInputFragment;
+import static com.example.eventmakr.eventmakr.Utils.FragmentUtil.getVendorProductFragment;
 
 public class VendorActivity extends AppCompatActivity implements View.OnClickListener{
     private CardView mCardViewProducts, mCardViewDocuments, mCardViewInputInfo;
@@ -26,7 +27,7 @@ public class VendorActivity extends AppCompatActivity implements View.OnClickLis
     private ImageView mImageViewToolbarIcon, mImageViewBackground;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
-    private ViewPagerAdapter mViewPagerAdapter;
+    private VendorViewPagerAdapter mViewPagerAdapter;
     private FrameLayout mFrameLayout;
     public static Boolean mVendorMode = true;
 
@@ -34,33 +35,21 @@ public class VendorActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor);
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbarVendor);
-        setSupportActionBar(mToolbar);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
 
-        mImageViewToolbarIcon = (ImageView) findViewById(R.id.imageViewIconVendor);
         mImageViewBackground = (ImageView) findViewById(R.id.imageViewBackgroundVendor);
+        loadBackground();
 
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
         mViewPager = (ViewPager) findViewById(R.id.viewpagerVendor);
-        mViewPagerAdapter = new ViewPagerAdapter(getFragmentManager(), this);
-        mViewPagerAdapter.addFragments(new VendorOrderHomeListFragment(), "");
-        mViewPagerAdapter.addFragments(new VendorMenuFragment(), "");
+        mViewPagerAdapter = new VendorViewPagerAdapter(getFragmentManager(), this);
+        mViewPagerAdapter.addFragments(new VendorOrderHome(), "");
         mViewPagerAdapter.addFragments(new ChatHomeFragment(), "");
+        mViewPagerAdapter.addFragments(new VendorMenuFragment(), "");
 
         mViewPager.setAdapter(mViewPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
 
-        loadBackground();
-        getOrderFragment();
         ConsumerActivity.mConsumerMode = false;
-
-        mImageViewToolbarIcon.setOnClickListener(this);
 
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -81,12 +70,6 @@ public class VendorActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    void getOrderFragment() {
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.vendorActivityLayout, FragmentUtil.getVendorOrderHomeListFragment())
-                .commit();
-    }
 
     void loadBackground() {
         Glide.with(this)
@@ -94,22 +77,6 @@ public class VendorActivity extends AppCompatActivity implements View.OnClickLis
                 .centerCrop()
                 .crossFade()
                 .into(mImageViewBackground);
-    }
-
-    void getVendorInputFragment() {
-        getFragmentManager()
-                .beginTransaction()
-                .add(R.id.vendorActivityLayout, FragmentUtil.getVendorInputFragment())
-                .addToBackStack(null)
-                .commit();
-    }
-
-    void getVendorProductFragment() {
-        getFragmentManager()
-            .beginTransaction()
-                .replace(R.id.vendorActivityLayout, FragmentUtil.getVendorProductFragment())
-                .addToBackStack(null)
-                .commit();
     }
 
 

@@ -14,6 +14,7 @@ import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.ChatFra
 import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.ChatHomeFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.NavBar;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.UserFragment;
+import com.example.eventmakr.eventmakr.Fragments.VendorFragments.OrderDetailFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorInputFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorMenuFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorProductFragment;
@@ -34,6 +35,10 @@ public class FragmentUtil {
 
     public static VendorOrderHomeListFragment getVendorOrderHomeListFragment() {
         return new VendorOrderHomeListFragment();
+    }
+
+    public static OrderDetailFragment getOrderDetailFragment(){
+        return new OrderDetailFragment();
     }
 
     public static VendorOrderListFragment getVendorOrderListFragment() {
@@ -112,7 +117,7 @@ public class FragmentUtil {
         return new CartRecyclerFragment();
     }
 
-    public static OrderListRecyclerFragment getCartListItemFragment(){
+    public static OrderListRecyclerFragment getOrderListItemFragment(){
         return new OrderListRecyclerFragment();
     }
 
@@ -142,7 +147,7 @@ public class FragmentUtil {
         return new MapFragment();
     }
 
-    public static OrderRecyclerFragment getRecyclerItemsFragment () {
+    public static OrderRecyclerFragment getOrderRecyclerFragment() {
         return new OrderRecyclerFragment();
     }
 

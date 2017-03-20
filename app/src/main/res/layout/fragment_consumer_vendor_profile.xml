@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layoutConsumerVendorProfile"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:visibility="gone"
     tools:context="com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerVendorProfileFragment">
 
     <RelativeLayout
@@ -47,7 +49,6 @@
 
             <TextView
                 android:id="@+id/textViewVendorDetails"
-                android:layout_marginTop="10dp"
                 android:textSize="20sp"
                 android:textColor="@color/colorText"
                 android:layout_below="@+id/textViewVendorName"
@@ -56,7 +57,6 @@
 
                 <TextView
                     android:id="@+id/textViewVendorAddress"
-                    android:layout_marginTop="10dp"
                     android:textSize="15sp"
                     android:textColor="@color/colorText"
                     android:layout_below="@+id/textViewVendorDetails"

@@ -1,6 +1,7 @@
 package com.example.eventmakr.eventmakr.Fragments.VendorFragments;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,20 +9,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.eventmakr.eventmakr.Activities.VendorExtrasActivity;
 import com.example.eventmakr.eventmakr.R;
-import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
 public class VendorMenuFragment extends Fragment implements View.OnClickListener{
     private static final String TAG = "VendorMenuFragment";
     private TextView mButtonProfile, mButtonDocuments, mButtonProducts;
+    public static int mFragmentIntent;
 
     public VendorMenuFragment() {
 
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.vendor_menu_fragment, container, false);
         mButtonProfile = (TextView) view.findViewById(R.id.buttonVendorMenuProfile);
         mButtonDocuments = (TextView) view.findViewById(R.id.buttonVendorMenuDocuments);
@@ -37,26 +43,24 @@ public class VendorMenuFragment extends Fragment implements View.OnClickListener
         int id = v.getId();
         switch (id) {
             case R.id.buttonVendorMenuProfile:
-                    getVendorInputFragment();
+                mFragmentIntent = 1;
+                openVendorExtras();
                 break;
             case R.id.buttonVendorMenuDocuments:
+                mFragmentIntent = 2;
+                openVendorExtras();
                 break;
             case R.id.buttonVendorMenuProducts:
-                getVendorProductFragment();
+                mFragmentIntent = 3;
+                openVendorExtras();
                 default:
         }
 
     }
-    void getVendorInputFragment(){
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.vendorActivityLayout, FragmentUtil.getVendorInputFragment())
-                .commit();
+
+    void openVendorExtras(){
+        startActivity(new Intent(getActivity(), VendorExtrasActivity.class));
     }
-    void getVendorProductFragment(){
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.vendorActivityLayout, FragmentUtil.getVendorProductFragment())
-                .commit();
-    }
+
+
 }

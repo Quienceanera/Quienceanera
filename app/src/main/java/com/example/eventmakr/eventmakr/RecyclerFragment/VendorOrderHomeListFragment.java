@@ -26,14 +26,12 @@ public class VendorOrderHomeListFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-//        if (EventsAdapter.mEventKey != null) {
             mAdapter = new VendorOrderHomeAdapter(
                     VendorOrderHome.class,
                     R.layout.vendor_order_home_item,
                     VendorOrderHomeViewholder.class,
                     FirebaseUtil.getVendorSideVendorOrderHomeRef(),
                     getActivity());
-//        }
         super.onCreate(savedInstanceState);
     }
 
@@ -46,17 +44,6 @@ public class VendorOrderHomeListFragment extends Fragment {
         mLayoutManger = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManger);
         mRecyclerView.setAdapter(mAdapter);
-//        mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-//            @Override
-//            public void onItemRangeInserted(int positionStart, int itemCount) {
-//                super.onItemRangeInserted(positionStart, itemCount);
-//                mCount = mAdapter.getItemCount();
-//                mLastPosition = mLayoutManger.findLastCompletelyVisibleItemPosition();
-//                if (mLastPosition == -1 || (positionStart >= (mCount - 1) && mLastPosition == (positionStart - 1))) {
-//                    mRecyclerView.scrollToPosition(positionStart);
-//                }
-//            }
-//        });
         return view;
     }
 

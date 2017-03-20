@@ -1,6 +1,5 @@
 package com.example.eventmakr.eventmakr.Utils;
 
-import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
@@ -50,11 +49,14 @@ public class FirebaseUtil {
     }
 
     public static DatabaseReference getConsumerSideVendorMessageRef() {
-        return getBaseRef().child("vendorMessage").child(VendorAdapter.mVendorUid);
+        if (VendorAdapter.mVendorUid != null){
+            return getBaseRef().child("vendorMessage").child(VendorAdapter.mVendorUid).child(getUid());
+        }else {
+            return getBaseRef().child("vendorMessage").child(ChatHomeAdapter.mVendorUid).child(getUid());
+        }
     }
-
     public static DatabaseReference getConsumerSideVendorProductRef() {
-        return getBaseRef().child("consumerProduct").child(VendorAdapter.mVendorUid);
+        return getBaseRef().child("vendorProduct").child(VendorAdapter.mVendorUid);
     }
 
     public static  DatabaseReference getConsumerSideVendorOrderRef() {
@@ -62,7 +64,7 @@ public class FirebaseUtil {
     }
 
     public static  DatabaseReference getConsumerSideConsumerOrderRef() {
-        return getBaseRef().child("consumerOrder").child(FirebaseUtil.getUid()).child(CartHomeAdapter.mVendorUid);
+        return getBaseRef().child("consumerOrder").child(FirebaseUtil.getUid()).child(EventsAdapter.mEventKey);
     }
 
     public static  DatabaseReference getConsumerSideConsumerOrderInfoRef() {
@@ -91,10 +93,11 @@ public class FirebaseUtil {
     }
 
     public static  DatabaseReference getVendorSideVendorOrderHomeRef() {
-        return getBaseRef().child("vendorOrder").child(FirebaseUtil.getUid());
+        return getBaseRef().child("vendorOrderInfo").child(FirebaseUtil.getUid());
     }
+
     public static DatabaseReference getVendorSideVendorOrderListRef() {
-        return getBaseRef().child("vendorOrderList").child(getUid()).child(VendorOrderHomeAdapter.mEventKey);
+        return getBaseRef().child("vendorOrder").child(getUid()).child(VendorOrderHomeAdapter.mEventKey);
     }
 
 }

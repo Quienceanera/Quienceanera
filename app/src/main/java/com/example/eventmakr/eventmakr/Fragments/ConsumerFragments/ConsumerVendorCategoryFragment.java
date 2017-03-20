@@ -3,6 +3,7 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
     private static final String TAG = "ConsumerVendorCategoryFragment";
     public static String mCategory;
     private TextView mTextViewVendorCount;
-    private RelativeLayout mLayout1, mLayout2, mLayout3;
+    private RelativeLayout mLayout1, mLayout2, mLayout3, mLayoutVendors;
     private OnFragmentInteractionListener mListener;
     private CardView mCardViewCaterers, mCardViewMixologists, mCardViewFlorists, mCardViewPartySupplies, mCardViewDjs, mCardViewBakeries;
     private ImageView mImageViewCaterers, mImageViewMixoligists, mImageViewFlorists, mImageViewPartySupplies, mImageViewDjs, mImageViewBakeries;
@@ -33,6 +34,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActivity().getActionBar().setTitle("Choose a category");
 
     }
 
@@ -58,6 +60,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
         mLayout1 = (RelativeLayout) view.findViewById(R.id.layoutVendorMenu1);
         mLayout2 = (RelativeLayout) view.findViewById(R.id.layoutVendor2);
         mLayout3 = (RelativeLayout) view.findViewById(R.id.layoutVendor3);
+        mLayoutVendors = (RelativeLayout) view.findViewById(R.id.layoutVendors);
 
         loadImages();
 
@@ -157,18 +160,35 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        Log.i("onresume", "onresume");
+        if (mLayoutVendors.isShown()){
+            ViewAnimator.animate(mLayout1)
+                    .fadeIn()
+                    .slideTop()
+                    .duration(500)
+                    .andAnimate(mLayout2)
+                    .slideRight()
+                    .fadeIn()
+                    .duration(500)
+                    .andAnimate(mLayout3)
+                    .slideBottom()
+                    .fadeIn()
+                    .duration(500)
+                    .descelerate()
+                    .start();
+            Log.i("onresume", "onresume2");
+
+        }
+
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
-        ViewAnimator.animate(mLayout1)
-                .slideTop()
-                .duration(300)
-                .andAnimate(mLayout2)
-                .slideRight()
-                .duration(300)
-                .andAnimate(mLayout3)
-                .slideBottom()
-                .duration(300)
-                .start();
+        Log.i("onstart", "onstart");
+
     }
 
     @Override

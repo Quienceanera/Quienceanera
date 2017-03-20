@@ -4,7 +4,10 @@ import android.content.Context;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
+import com.example.eventmakr.eventmakr.Activities.EventActivity;
 import com.example.eventmakr.eventmakr.Objects.Menu;
+import com.example.eventmakr.eventmakr.R;
+import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
@@ -35,16 +38,16 @@ public class VendorProfileProductAdapter extends FirebaseRecyclerAdapter<Menu, V
                 mProductKey = model.getKey();
                 mVendorUid = model.getVendorUid();
                 mVendorName = model.getName();
-//                getProductItemFragment();
+                getProductItemFragment();
             }
         });
     }
-//    private void getProductItemFragment () {
-//        ((ConsumerActivity) mContext)
-//                .getFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.consumerActivityLayout, FragmentUtil.getConsumerVendorProductItemFragment())
-//                .addToBackStack(null)
-//                .commit();
-//    }
+    private void getProductItemFragment () {
+        ((EventActivity) mContext)
+                .getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.containerEventActivity, FragmentUtil.getConsumerVendorProductItemFragment())
+                .addToBackStack(null)
+                .commit();
+    }
 }
