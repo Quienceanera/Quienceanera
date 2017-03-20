@@ -1,4 +1,4 @@
-package com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments;
+package com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,7 +13,7 @@ import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
 import com.example.eventmakr.eventmakr.Activities.VendorActivity;
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
-import com.example.eventmakr.eventmakr.Objects.Chat;
+import com.example.eventmakr.eventmakr.Objects.Message;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
@@ -90,6 +90,7 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
         if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
+
             mVendorMessageRef = FirebaseUtil.getVendorSideVendorMessageRef().push();
             mConsumerMessageRef = FirebaseUtil.getVendorSideConsumerMessageRef().push();
 
@@ -98,7 +99,7 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
                 mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef().push();
 
         }
-        Chat chat = new Chat(
+        Message message = new Message(
                 mEditTextChat.getText().toString(),
                 mUsername,
                 mPhotoUrl,
@@ -109,12 +110,12 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
         );
 
         if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
-            mVendorMessageRef.setValue(chat);
-            mConsumerMessageRef.setValue(chat);
+            mVendorMessageRef.setValue(message);
+            mConsumerMessageRef.setValue(message);
             mEditTextChat.setText("");
         } else {
-            mConsumerMessageRef.setValue(chat);
-            mVendorMessageRef.setValue(chat);
+            mConsumerMessageRef.setValue(message);
+            mVendorMessageRef.setValue(message);
             mEditTextChat.setText("");
         }
     }

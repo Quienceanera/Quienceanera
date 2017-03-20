@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Adapters.VendorViewPagerAdapter;
-import com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.ChatHomeFragment;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.ChatHomeFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorMenuFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorOrderHome;
 import com.example.eventmakr.eventmakr.R;

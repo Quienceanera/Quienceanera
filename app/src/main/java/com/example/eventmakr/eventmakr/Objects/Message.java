@@ -1,6 +1,6 @@
 package com.example.eventmakr.eventmakr.Objects;
 
-public class Chat {
+public class Message {
 
     private String text;
     private String user;
@@ -10,7 +10,10 @@ public class Chat {
     private String vendorUid;
     private String timestamp;
 
-    public Chat(String text, String user, String photoUrl, String eventKey, String customerUid, String vendorUid, String timestamp) {
+    public Message() {
+    }
+
+    public Message(String text, String user, String photoUrl, String eventKey, String customerUid, String vendorUid, String timestamp) {
         this.text = text;
         this.user = user;
         this.photoUrl = photoUrl;

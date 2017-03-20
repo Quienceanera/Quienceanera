@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.ChatFragment">
+    tools:context="com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.ChatFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

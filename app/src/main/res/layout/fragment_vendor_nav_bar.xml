@@ -4,7 +4,7 @@
     android:layout_gravity="bottom"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    tools:context="com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments.NavBar">
+    tools:context="com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.NavBar">
 
     <ImageView
         android:src="@drawable/pinknav"

@@ -1,4 +1,4 @@
-package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
+package com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.CreateEventDialogFragment;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 

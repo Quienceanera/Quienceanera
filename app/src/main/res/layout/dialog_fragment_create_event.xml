@@ -2,14 +2,15 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/light_transparent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
             <android.support.v7.widget.CardView
                 android:layout_alignParentTop="true"
-                app:cardUseCompatPadding="true"
+                app:cardBackgroundColor="@color/colorButtons"
                 app:cardElevation="4dp"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="2dp"
                 android:id="@+id/cardViewCalendar_helper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -24,7 +25,9 @@
     <android.support.v7.widget.CardView
         android:id="@+id/cardViewEdittext_helper"
         app:cardElevation="2dp"
-        app:cardBackgroundColor="@color/tw__transparent"
+        app:cardCornerRadius="2dp"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="@color/cardview_light_background"
         android:layout_below="@+id/cardViewCalendar_helper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -49,7 +52,6 @@
                     android:layout_width="match_parent"
                     android:tag="Select"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:id="@+id/spinner_occasion" />
 
             </LinearLayout>
@@ -96,34 +98,34 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
-    <LinearLayout
-        android:elevation="6dp"
-        android:layout_marginTop="5dp"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/cardViewEdittext_helper"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <!--<LinearLayout-->
+        <!--android:elevation="6dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_below="@+id/cardViewEdittext_helper"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
 
-        <android.support.design.widget.FloatingActionButton
-            android:layout_margin="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorButtons"
-            app:elevation="6dp"
-            app:fabSize="mini"
-            app:srcCompat="@drawable/cancel"
-            android:id="@+id/fabCancelEvent" />
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:backgroundTint="@color/colorButtons"-->
+            <!--app:elevation="6dp"-->
+            <!--app:fabSize="mini"-->
+            <!--app:srcCompat="@drawable/cancel"-->
+            <!--android:id="@+id/fabCancelEvent" />-->
 
-        <android.support.design.widget.FloatingActionButton
-            android:layout_margin="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:elevation="6dp"
-            android:backgroundTint="@color/colorButtons"
-            app:fabSize="mini"
-            app:srcCompat="@drawable/check"
-            android:id="@+id/fabCreateEvent" />
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:elevation="6dp"-->
+            <!--android:backgroundTint="@color/colorButtons"-->
+            <!--app:fabSize="mini"-->
+            <!--app:srcCompat="@drawable/check"-->
+            <!--android:id="@+id/fabCreateEvent" />-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
 </RelativeLayout>

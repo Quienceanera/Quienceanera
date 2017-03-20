@@ -8,7 +8,7 @@ import android.view.View;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.example.eventmakr.eventmakr.Objects.Chat;
+import com.example.eventmakr.eventmakr.Objects.Message;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
@@ -16,7 +16,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.github.florent37.viewanimator.ViewAnimator;
 import com.google.firebase.database.Query;
 
-public class ChatAdapter extends FirebaseRecyclerAdapter<Chat, Viewholder>{
+public class ChatAdapter extends FirebaseRecyclerAdapter<Message, Viewholder>{
     private Context context;
     private String mUid, mChatKey, mRefKey;
     private Query mQuery;
@@ -29,14 +29,14 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Chat, Viewholder>{
      * @param ref             The Firebase location to watch for data changes. Can also be a slice of a location, using some
      *                        combination of {@code limit()}, {@code startAt()}, and {@code endAt()}.
      */
-    public ChatAdapter(Class<Chat> modelClass, int modelLayout, Class<Viewholder> viewHolderClass, Query ref, Context context) {
+    public ChatAdapter(Class<Message> modelClass, int modelLayout, Class<Viewholder> viewHolderClass, Query ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
         this.context = context;
         this.mQuery = ref;
     }
 
     @Override
-    protected void populateViewHolder(final Viewholder viewHolder, final Chat model, final int position) {
+    protected void populateViewHolder(final Viewholder viewHolder, final Message model, final int position) {
         mUid = FirebaseUtil.getUid();
         if (mUid.equals(model.getCustomerUid())) {
             viewHolder.mTextViewChatUser.setText(model.getText());

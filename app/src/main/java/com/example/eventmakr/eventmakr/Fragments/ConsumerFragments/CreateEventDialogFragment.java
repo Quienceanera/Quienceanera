@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
@@ -25,7 +26,7 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.google.firebase.database.DatabaseReference;
 
-public class CreateEventDialogFragment extends DialogFragment implements View.OnClickListener{
+public class CreateEventDialogFragment extends DialogFragment{
     private Spinner mSpinner;
     private String[] Events = {"Choose an Event","Quienceanera", "Birthday", "Wedding", "Baby Shower", "Graduation"};
     private String mEventZipCode, mEventId, mEventPhoto, mUid;
@@ -44,16 +45,29 @@ public class CreateEventDialogFragment extends DialogFragment implements View.On
         final View view = inflater.inflate(R.layout.dialog_fragment_create_event, null);
         builder.setView(view);
 
-        mFabCancelEvent = (FloatingActionButton) view.findViewById(R.id.fabCancelEvent);
-        mFabCreateEvent = (FloatingActionButton) view.findViewById(R.id.fabCreateEvent);
+//        mFabCancelEvent = (FloatingActionButton) view.findViewById(R.id.fabCancelEvent);
+//        mFabCreateEvent = (FloatingActionButton) view.findViewById(R.id.fabCreateEvent);
         mEditTextZipCode = (EditText) view.findViewById(R.id.editTextZipCode);
         mEditTextEventName = (EditText) view.findViewById(R.id.editTextInputEventName);
         mCalendarView = (CalendarView) view.findViewById(R.id.calendarView);
         mSpinner = (Spinner) view.findViewById(R.id.spinner_occasion);
         mSpinner.setAdapter(new spinnerAdapter(getActivity(), R.layout.custom_spinner, R.id.textViewSpinner, Events));
 
-        mFabCreateEvent.setOnClickListener(this);
-        mFabCancelEvent.setOnClickListener(this);
+//        mFabCreateEvent.setOnClickListener(this);
+//        mFabCancelEvent.setOnClickListener(this);
+
+        builder.setPositiveButton("CREATE", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                createEvent();
+            }
+        });
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dismiss();
+            }
+        });
 
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -80,20 +94,7 @@ public class CreateEventDialogFragment extends DialogFragment implements View.On
         return alertDialog;
     }
 
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        switch (id) {
-            case R.id.fabCancelEvent:
-                dismiss();
-                break;
-            case R.id.fabCreateEvent:
-                createEvent();
-                dismiss();
-                break;
-            default:
-        }
-    }
+
     void createEvent () {
         mEventZipCode = mEditTextZipCode.getText().toString();
         mEventName= mEditTextEventName.getText().toString();

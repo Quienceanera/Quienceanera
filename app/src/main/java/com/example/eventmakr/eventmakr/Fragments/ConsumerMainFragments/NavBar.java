@@ -1,4 +1,4 @@
-package com.example.eventmakr.eventmakr.Fragments.ConsumerNavBarFragments;
+package com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;

@@ -15,7 +15,7 @@ import com.example.eventmakr.eventmakr.Activities.VendorActivity;
 import com.example.eventmakr.eventmakr.Adapters.ChatAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
-import com.example.eventmakr.eventmakr.Objects.Chat;
+import com.example.eventmakr.eventmakr.Objects.Message;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
@@ -37,7 +37,7 @@ public class MessageRecyclerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
             mAdapter = new ChatAdapter(
-                    Chat.class,
+                    Message.class,
                     R.layout.fragment_chat_item,
                     Viewholder.class,
                     FirebaseUtil.getVendorSideVendorMessageRef(),
@@ -46,7 +46,7 @@ public class MessageRecyclerFragment extends Fragment {
             mVendorUid = ChatHomeAdapter.mVendorUid;
 
             mAdapter = new ChatAdapter(
-                    Chat.class,
+                    Message.class,
                     R.layout.fragment_chat_item,
                     Viewholder.class,
                     FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid),
