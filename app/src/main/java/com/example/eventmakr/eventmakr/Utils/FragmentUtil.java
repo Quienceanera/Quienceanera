@@ -13,6 +13,7 @@ import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.CartHomeF
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.ChatFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.ChatHomeFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.NavBar;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.PayFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.UserFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.OrderDetailFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorInputFragment;
@@ -32,6 +33,10 @@ import com.example.eventmakr.eventmakr.RecyclerFragment.VendorRecyclerFragment;
 import com.google.android.gms.maps.MapFragment;
 
 public class FragmentUtil {
+
+    public static PayFragment getPayFragment(){
+        return new PayFragment();
+    }
 
     public static VendorOrderHomeListFragment getVendorOrderHomeListFragment() {
         return new VendorOrderHomeListFragment();

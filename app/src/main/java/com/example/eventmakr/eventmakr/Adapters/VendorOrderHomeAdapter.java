@@ -13,7 +13,7 @@ import com.google.firebase.database.Query;
 
 public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderHome, VendorOrderHomeViewholder>{
     private Context mContext;
-    public static String mCustomerUid, mEventKey;
+    public static String mCustomerUid, mEventKey, mTotalPrice;
 
     public VendorOrderHomeAdapter(Class<VendorOrderHome> modelClass, int modelLayout, Class<VendorOrderHomeViewholder> viewHolderClass, Query ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
@@ -38,6 +38,7 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
             public void onClick(View v) {
                 mCustomerUid = model.getCustomerUid();
                 mEventKey = model.getEventKey();
+                mTotalPrice = model.getTotalPrice();
 
                 getOrders();
             }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
+import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
 import com.example.eventmakr.eventmakr.Activities.EventActivity;
 import com.example.eventmakr.eventmakr.Objects.Events;
 import com.example.eventmakr.eventmakr.ViewHolders.EventsViewholder;
@@ -16,7 +17,6 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
     private Context mContext;
     public static String mEventKey, mEventName, mEventDate, mEventAddress, mEventType;
     private Query mQuery;
-
 
     public EventsAdapter(Class<Events> modelClass, int modelLayout, Class<EventsViewholder> viewHolderClass, Query ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
@@ -67,29 +67,12 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
                 break;
             default:
         }
-
-//        mQuery.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot child:dataSnapshot.getChildren()) {
                     ViewAnimator.animate(viewHolder.mCardViewEvents)
                             .slideBottom()
                             .duration(300)
                             .start();
-//                    Log.i("for loop", String.valueOf(child));
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
 
-
-
-
-        viewHolder.mCardViewEvents.setOnClickListener(new View.OnClickListener() {
+        viewHolder.mButtonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mEventKey = getRef(position).getKey();
@@ -102,9 +85,26 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
             }
         });
 
+        viewHolder.mButtonSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEventKey = getRef(position).getKey();
+                mEventName = model.getEventName();
+                mEventDate = model.getEventDate();
+                mEventName = model.getEventName();
+                mEventAddress = model.getEventZip();
+                mEventType = model.getEventType();
+                restartActivity();
+            }
+        });
+
     }
 
     private void getEventsActivity() {
         mContext.startActivity(new Intent(mContext, EventActivity.class));
+    }
+
+    private void restartActivity(){
+        mContext.startActivity(new Intent(mContext, ConsumerActivity.class));
     }
 }

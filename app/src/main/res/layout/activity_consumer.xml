@@ -4,6 +4,7 @@
     android:id="@+id/layoutConsumer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/logoColor"
     android:fitsSystemWindows="true"
     tools:context="com.example.eventmakr.eventmakr.Activities.VendorActivity">
 
@@ -67,7 +68,7 @@
                 app:tabSelectedTextColor="@color/colorButtons"
                 android:id="@+id/tabLayoutConsumer"
                 android:layout_width="match_parent"
-                android:layout_height="30dp">
+                android:layout_height="35dp">
 
             </android.support.design.widget.TabLayout>
 

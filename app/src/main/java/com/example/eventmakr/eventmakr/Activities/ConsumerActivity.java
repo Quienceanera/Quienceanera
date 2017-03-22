@@ -69,8 +69,8 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                 .centerCrop()
                 .into(mImageViewMainBg);
         ViewAnimator.animate(mImageViewMainBg)
-                .translationY(-1400,1700)
-                .duration(30000)
+                .translationY(-1400,1600)
+                .duration(35000)
                 .repeatCount(5)
                 .start();
     }

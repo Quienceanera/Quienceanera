@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
 import com.example.eventmakr.eventmakr.Activities.VendorActivity;
+import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.CartListAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Objects.Items;
@@ -34,7 +35,7 @@ public class OrderListRecyclerFragment extends Fragment {
                     Items.class,
                     R.layout.fragment_cart_item,
                     CartListViewholder.class,
-                    FirebaseUtil.getConsumerSideConsumerOrderRef(),
+                    FirebaseUtil.getConsumerSideConsumerOrderRef().child(CartHomeAdapter.mVendorUid),
                     getActivity());
         }
         if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){

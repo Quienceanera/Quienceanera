@@ -62,22 +62,24 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:elevation="2dp"
+            android:elevation="10dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <Button
+                android:id="@+id/editButton"
                 android:textAllCaps="true"
                 android:text="edit"
-                android:textColor="@color/logoColor"
+                android:elevation="2dp"
                 android:background="@color/tw__transparent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Button
+                android:id="@+id/selectButton"
                 android:textAllCaps="true"
                 android:text="select"
-                android:textColor="@color/logoColor"
+                android:elevation="2dp"
                 android:background="@color/tw__transparent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

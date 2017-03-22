@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/logoColor"
+    xmlns:wallet="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.eventmakr.eventmakr.Activities.PayActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:elevation="10dp"
+            android:visibility="gone"
+            android:layout_below="@+id/toolbarPay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cardNumber"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:text="4242 4242 4242 4242" />
+
+            <EditText
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/month"
+                android:layout_below="@+id/cardNumber"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:text="12" />
+
+            <EditText
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/year"
+                android:text="19"
+                android:layout_below="@+id/cardNumber"
+                android:layout_toRightOf="@+id/textView"
+                android:layout_toEndOf="@+id/textView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="/"
+                android:id="@+id/textView"
+                android:layout_alignBottom="@+id/month"
+                android:layout_toRightOf="@+id/month"
+                android:layout_toEndOf="@+id/month" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cvc"
+                android:text="123"
+                android:layout_below="@+id/cardNumber"
+                android:layout_toRightOf="@+id/year"
+                android:layout_toEndOf="@+id/year"
+                android:layout_marginLeft="49dp"
+                android:layout_marginStart="49dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:id="@+id/submitButton"
+                android:layout_below="@+id/cvc"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:onClick="submitCard" />
+
+
+        </RelativeLayout>
+
+
+
+        <!--<com.stripe.android.view.CardInputWidget-->
+            <!--android:id="@+id/card_input_widget"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--/>-->
+
+        <Toolbar
+            android:id="@+id/toolbarPay"
+            android:elevation="8dp"
+            android:background="@drawable/pinktoolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+        </Toolbar>
+
+        <FrameLayout
+            android:id="@+id/containerPay"
+            android:layout_below="@+id/toolbarPay"
+            android:layout_above="@+id/cardViewPay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardViewPay"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_above="@+id/containerWallet"
+                        android:layout_centerHorizontal="true"
+                        android:text="dkfjdfdkf"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorTextBlack"
+                        android:id="@+id/textViewPayTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <FrameLayout
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/containerWallet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+            <fragment
+                android:id="@+id/wallet_fragment"
+                android:name="com.google.android.gms.wallet.fragment.SupportWalletFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                wallet:environment="test"
+                wallet:fragmentMode="buyButton" />
+        </FrameLayout>
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

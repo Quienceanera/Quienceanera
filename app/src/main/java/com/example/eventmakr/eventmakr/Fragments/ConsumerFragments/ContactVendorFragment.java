@@ -29,11 +29,11 @@ import static com.example.eventmakr.eventmakr.Utils.FirebaseUtil.getConsumerSide
 
 public class ContactVendorFragment extends android.app.Fragment implements View.OnClickListener{
     private static final String TAG = "ContactVendorFragment";
-    private TextView mTextViewTotal;
+    private TextView mTextViewTotal, mTextViewTotalQuantity;
     private CardView mButtonContactVendor;
     private String mPrice, mQuantity, mKey, mChatWelcome;
-    private DatabaseReference mItemsRef, mDatabaseRef, mUserCartRef, mVendorCartRef, mUserChatHomeRef, mVendorChatHomeRef, mUserMessageRef, mVendorMessageRef, mDatabaseReference, mUserChatPushRef, mVendorChatPushRef;
-    private String mVendorLogo, mVendorName, mVendorUid, mVendorWelcome, mChatKey, mOrderId, mConsumerId, VendorId, mPriceTotal, mItemCount;
+    private DatabaseReference mItemsRef, mUserCartRef, mVendorCartRef, mUserChatHomeRef, mVendorChatHomeRef, mUserMessageRef, mVendorMessageRef;
+    private String mVendorUid, mVendorWelcome, mPriceTotal, mItemCount;
 
     public ContactVendorFragment() {
         // Required empty public constructor
@@ -50,6 +50,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_contact_vendor, container, false);
         mTextViewTotal = (TextView) view.findViewById(R.id.textViewTotalPrice);
+        mTextViewTotalQuantity = (TextView) view.findViewById(R.id.textViewTotalQuantity);
         mButtonContactVendor = (CardView) view.findViewById(R.id.buttonContactVendor);
         mButtonContactVendor.setOnClickListener(this);
         mVendorUid = VendorAdapter.mVendorUid;
@@ -80,12 +81,17 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                     int mChildQuantity = Integer.valueOf(child.child("quantity").getValue().toString());
                     double mChildTotal = mChildPrice * mChildQuantity;
                     sum += mChildTotal;
-                    quantity = (int) (mChildQuantity * Double.parseDouble(String.valueOf(mChildTotal)));
+                    quantity += mChildQuantity;
+//                    quantity = (int) (mChildQuantity * Double.parseDouble(String.valueOf(mChildrenNum)));
+                    Log.i("Quantity inside", String.valueOf(quantity));
                 }
-                mTextViewTotal.setText("Total Price " + "$" +String.valueOf(sum));
+                mTextViewTotal.setText("Total Price: " + "$" +String.valueOf(sum));
+                mTextViewTotalQuantity.setText("Qty:"+String.valueOf(quantity));
                 mPriceTotal = String.valueOf(sum);
                 mQuantity = String.valueOf(quantity);
                 Log.i("Total Price", String.valueOf(sum));
+                Log.i("Quantity", String.valueOf(quantity));
+                ;
             }
 
             @Override
@@ -146,8 +152,8 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
 
         Message message = new Message(
                 mVendorWelcome,
-                mVendorName,
-                mVendorLogo,
+                VendorAdapter.mVendorName,
+                VendorAdapter.mVendorLogo,
                 EventsAdapter.mEventKey,
                 FirebaseUtil.getUid(),
                 mVendorUid,
@@ -172,13 +178,13 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                     EventsAdapter.mEventType,
                     EventsAdapter.mEventAddress,
                     EventsAdapter.mEventName,
-                    mOrderId,
-                    mConsumerId,
+                    EventsAdapter.mEventKey,
+                    FirebaseUtil.getUid(),
                     mVendorUid,
                     mPriceTotal,
                     mQuantity,
-                    mVendorName,
-                    mVendorLogo,
+                    VendorAdapter.mVendorName,
+                    VendorAdapter.mVendorLogo,
                     mCurrentTimestamp
             );
             mUserCartRef.setValue(cart);
