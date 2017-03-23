@@ -8,17 +8,19 @@ public class Menu {
     public String details;
     public String key;
     private String vendorUid;
+    private String vendorName;
 
     public Menu() {
     }
 
-    public Menu(String name, String photo, String price, String details, String key, String vendorUid) {
+    public Menu(String name, String photo, String price, String details, String key, String vendorUid, String vendorName) {
         this.name = name;
         this.photo = photo;
         this.price = price;
         this.details = details;
         this.key = key;
         this.vendorUid = vendorUid;
+        this.vendorName = vendorName;
     }
 
     public String getName() {
@@ -67,5 +69,13 @@ public class Menu {
 
     public void setVendorUid(String vendorUid) {
         this.vendorUid = vendorUid;
+    }
+
+    public String getVendorName() {
+        return vendorName;
+    }
+
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
     }
 }

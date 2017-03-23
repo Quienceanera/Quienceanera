@@ -69,7 +69,7 @@ public class PayActivity extends FragmentActivity implements GoogleApiClient.Con
         mTextViewTotal.setText("Order Total:"+" $"+CartHomeAdapter.mTotalPrice);
         Log.i("totalprice", CartHomeAdapter.mTotalPrice);
         setActionBar(mToolbar);
-        mToolbar.setTitle("Pay For Your Order Here");
+
         mToolbar.setNavigationIcon(R.drawable.arrow_left);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +77,7 @@ public class PayActivity extends FragmentActivity implements GoogleApiClient.Con
                 startActivity(new Intent(PayActivity.this, ConsumerActivity.class));
             }
         });
+        getCartDetailFragment();
         getCartListFragment();
         googleApiClient();
         isReadyToPay();
@@ -240,12 +241,19 @@ public class PayActivity extends FragmentActivity implements GoogleApiClient.Con
         }
     }
 
+    void getCartDetailFragment(){
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.containerPayDetails, FragmentUtil.getCartDetailFragment())
+                .commit();
+
+    }
+
     void getCartListFragment(){
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.containerPay, FragmentUtil.getCartDetailFragment())
+                .replace(R.id.containerPay, FragmentUtil.getOrderListItemFragment())
                 .commit();
-
     }
 
     public void onStart() {

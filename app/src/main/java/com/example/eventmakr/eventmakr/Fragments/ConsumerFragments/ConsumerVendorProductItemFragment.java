@@ -2,6 +2,7 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -36,7 +37,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     private DatabaseReference mUserCartRef, mVendorCartRef, mPushRef, mUserMenuRef;
     private VendorProfileProductAdapter mVendorProfileProductAdapter;
     private ImageView mImageViewProductItem;
-    private TextView mTextViewProductItemName, mTextViewProductItemDetails, mTextViewProductItemPrice;
+    private TextView mTextViewProductItemName, mTextViewProductItemDetails, mTextViewProductItemPrice, mTextViewProductVendorName;
     public static String mProductKey;
     private String mProductImage, mProductName, mProductDetails, mProductPrice, mProductQuantity, mVendorUid, mUid, mKey, mVendorName;
     private EditText mEditTextQuantity;
@@ -66,6 +67,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         mTextViewProductItemName = (TextView) view.findViewById(R.id.textViewVendorProductName);
         mTextViewProductItemDetails = (TextView) view.findViewById(R.id.textViewVendorProductDetails);
         mTextViewProductItemPrice = (TextView) view.findViewById(R.id.textViewVendorProductPrice);
+        mTextViewProductVendorName = (TextView) view.findViewById(R.id.textViewVendorName);
         mEditTextQuantity = (EditText) view.findViewById(R.id.editTextQuantity);
 
         getProductInfo();
@@ -90,6 +92,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                 mTextViewProductItemName.setText(mProductName);
                 mTextViewProductItemDetails.setText(mProductDetails);
                 mTextViewProductItemPrice.setText("$ " + mProductPrice);
+                mTextViewProductVendorName.setText(VendorAdapter.mVendorName);
 
                 mEditTextQuantity.addTextChangedListener(new TextWatcher() {
                     @Override
@@ -104,18 +107,13 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
 
                     @Override
                     public void afterTextChanged(Editable s) {
-//                        int q = Integer.valueOf(mEditTextQuantity.getText().toString());
-//                        Toast.makeText(mContext, "$ " + String.valueOf((q * Integer.valueOf(mProductPrice))), Toast.LENGTH_SHORT).show();
+
                     }
                 });
-
-
-
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
     }
@@ -128,7 +126,6 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                 if (mEditTextQuantity != null){
                     getKey();
                 }else {
-//                    returnToVendorProfile();
                 }
                 break;
                 default:
@@ -136,15 +133,8 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
 
     }
     void getKey () {
-        if (EventsAdapter.mEventKey != null) {
             mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(VendorAdapter.mVendorUid);
             Log.i("EventAdapter Key", EventsAdapter.mEventKey);
-        }
-//        if (ConsumerInputFragment.mEventKey != null){
-//            mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid);
-//            Log.i("EventInput Key", ConsumerInputFragment.mEventKey);
-//
-//        }
         mVendorCartRef = FirebaseUtil.getConsumerSideVendorOrderRef();
         mPushRef = mUserCartRef.push();
         mKey = mPushRef.getKey();
@@ -168,20 +158,6 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
             );
             mUserCartRef.child(mKey).setValue(items);
         }
-//        if (ConsumerInputFragment.mEventKey != null){
-//            Items items = new Items(
-//                    mProductKey,
-//                    mProductQuantity,
-//                    mProductPrice,
-//                    null,
-//                    mProductName,
-//                    mProductImage,
-//                    mVendorName,
-//                    mKey,
-//                    mVendorUid
-//            );
-//            mUserCartRef.child(mKey).setValue(items);
-//        }
 
         if (EventsAdapter.mEventKey != null) {
             VendorOrderItem vendorOrderItem = new VendorOrderItem(
@@ -194,21 +170,11 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
             );
             mVendorCartRef.child(mKey).setValue(vendorOrderItem);
         }
-//        if (ConsumerInputFragment.mEventKey != null){
-//            VendorOrderItem vendorOrderItem = new VendorOrderItem(
-//                    mProductKey,
-//                    mProductQuantity,
-//                    mProductPrice,
-//                    "totalPrice",
-//                    mProductName,
-//                    mProductImage
-//            );
-//            mVendorCartRef.child(mKey).setValue(vendorOrderItem);
-//        }
         returnToVendorProfile();
 
     }
     void returnToVendorProfile () {
+        Snackbar.make(getActivity().findViewById(R.id.layoutEvent),"ADDED TO CART!", Snackbar.LENGTH_SHORT).show();
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.containerEventActivity, FragmentUtil.getConsumerVendorProfileFragment())

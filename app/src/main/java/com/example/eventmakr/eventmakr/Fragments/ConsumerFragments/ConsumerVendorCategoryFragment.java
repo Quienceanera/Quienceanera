@@ -1,6 +1,5 @@
 package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -23,7 +22,6 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
     public static String mCategory;
     private TextView mTextViewVendorCount;
     private RelativeLayout mLayout1, mLayout2, mLayout3, mLayoutVendors;
-    private OnFragmentInteractionListener mListener;
     private CardView mCardViewCaterers, mCardViewMixologists, mCardViewFlorists, mCardViewPartySupplies, mCardViewDjs, mCardViewBakeries;
     private ImageView mImageViewCaterers, mImageViewMixoligists, mImageViewFlorists, mImageViewPartySupplies, mImageViewDjs, mImageViewBakeries;
 
@@ -34,8 +32,6 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().getActionBar().setTitle("Choose a category");
-
     }
 
     @Override
@@ -123,7 +119,6 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
     @Override
@@ -207,6 +202,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
     }
 
     public void getConsumerBudgetFragment() {
+
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.containerEventActivity, FragmentUtil.getConsumerBudgetFragment())
@@ -214,8 +210,4 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
                 .commit();
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

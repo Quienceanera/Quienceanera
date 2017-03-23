@@ -33,7 +33,6 @@
                 android:elevation="10dp"
                 android:textSize="15sp" />
 
-
             <ImageView
         android:id="@+id/imageViewEvents"
         android:layout_width="match_parent"
@@ -70,22 +69,24 @@
             <Button
                 android:id="@+id/editButton"
                 android:textAllCaps="true"
-                android:text="edit"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
+                android:text="search\nvendors"
                 android:elevation="2dp"
+                android:textColor="@color/colorText"
                 android:background="@color/tw__transparent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Button
                 android:id="@+id/selectButton"
                 android:textAllCaps="true"
-                android:text="select"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
+                android:textColor="@color/colorText"
+                android:text="select\nevent"
                 android:elevation="2dp"
                 android:background="@color/tw__transparent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-
-
 
     </RelativeLayout>
 

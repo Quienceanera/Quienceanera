@@ -37,8 +37,9 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
         super.onCreate(savedInstanceState);
         mCategory = ConsumerVendorCategoryFragment.mCategory;
         if (mCategory != null) {
-            getActivity().getActionBar().setTitle(mCategory+"s");
         }
+
+
     }
 
     @Override

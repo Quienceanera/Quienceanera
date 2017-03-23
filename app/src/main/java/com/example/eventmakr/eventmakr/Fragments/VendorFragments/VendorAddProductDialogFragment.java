@@ -85,7 +85,8 @@ public class VendorAddProductDialogFragment extends DialogFragment implements Vi
                 mProductPrice,
                 mProductDescription,
                 mKey,
-                mVendorUid
+                mVendorUid,
+                FirebaseUtil.getUserName()
         );
         mPushRef.setValue(menu);
     }

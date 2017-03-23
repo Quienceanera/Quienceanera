@@ -82,7 +82,9 @@
         <activity
             android:name=".Activities.SignInActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activities.EventActivity" />
+        <activity
+            android:name=".Activities.EventActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".Activities.VendorExtrasActivity"
             android:label=""
@@ -92,10 +94,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.eventmakr.eventmakr.Activities.VendorActivity" />
         </activity>
-        <activity android:name=".Activities.ChatActivity" />
-        <activity android:name=".Activities.CartActivity" />
-        <activity android:name=".Activities.VendorOrderActivity" />
-        <activity android:name=".Activities.PayActivity"></activity>
+        <activity
+            android:name=".Activities.ChatActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".Activities.VendorOrderActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".Activities.PayActivity"
+            android:label=""
+            android:windowSoftInputMode="adjustPan" >
+
+        </activity>
         <meta-data
             android:name="io.fabric.ApiKey"
             tools:replace="android:value"

@@ -42,7 +42,6 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getActivity();
-        getActivity().getActionBar().setTitle(VendorAdapter.mVendorName);
         mVendorCategory = ConsumerBudgetFragment.mCategory;
         mDatabaseReference = FirebaseUtil.getVendorRef().child(mVendorCategory).child(VendorAdapter.mVendorUid);
     }

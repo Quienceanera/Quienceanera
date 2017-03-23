@@ -16,7 +16,7 @@ import com.github.florent37.viewanimator.ViewAnimator;
 
 public class ConsumerActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView mImageViewBackGround, mImageViewLogo, mImageViewMainBg;
+    private ImageView mImageViewBackGround, mImageViewLogo, mImageViewMainBg, mImageViewMainBg2;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private ViewPagerAdapter mViewPagerAdapter;
@@ -30,6 +30,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         mImageViewBackGround = (ImageView) findViewById(R.id.imageViewBackground);
         mImageViewLogo = (ImageView) findViewById(R.id.imageViewConsumerLogo);
         mImageViewMainBg = (ImageView) findViewById(R.id.imageViewMainBg);
+        mImageViewMainBg2 = (ImageView) findViewById(R.id.imageViewMainBg2);
         loadBackground();
 
         mTabLayout = (TabLayout) findViewById(R.id.tabLayoutConsumer);
@@ -68,9 +69,23 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                 .crossFade()
                 .centerCrop()
                 .into(mImageViewMainBg);
+
+        Glide.with(this)
+                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fconf4.png?alt=media&token=00a359cd-4467-4b1c-938c-7c41d5f64f6e")
+                .crossFade()
+                .centerCrop()
+                .into(mImageViewMainBg);
+
         ViewAnimator.animate(mImageViewMainBg)
-                .translationY(-1400,1600)
+                .translationY(-1000,1600)
                 .duration(35000)
+                .repeatCount(5)
+                .start();
+
+        ViewAnimator.animate(mImageViewMainBg2)
+                .startDelay(30000)
+                .translationY(-1400,2000)
+                .duration(65000)
                 .repeatCount(5)
                 .start();
     }

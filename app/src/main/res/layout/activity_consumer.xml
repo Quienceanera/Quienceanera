@@ -4,7 +4,6 @@
     android:id="@+id/layoutConsumer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/logoColor"
     android:fitsSystemWindows="true"
     tools:context="com.example.eventmakr.eventmakr.Activities.VendorActivity">
 
@@ -45,7 +44,11 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
+    <ImageView
+        android:id="@+id/imageViewMainBg2"
+        android:elevation="-1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
         <ImageView
             android:id="@+id/imageViewMainBg"

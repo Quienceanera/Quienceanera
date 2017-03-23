@@ -42,7 +42,6 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().getActionBar().setTitle("Contact Vendor to confirm");
     }
 
     @Override

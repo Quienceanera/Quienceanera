@@ -37,7 +37,7 @@ public class VendorProfileProductAdapter extends FirebaseRecyclerAdapter<Menu, V
             public void onClick(View v) {
                 mProductKey = model.getKey();
                 mVendorUid = model.getVendorUid();
-                mVendorName = model.getName();
+                mVendorName = model.getVendorName();
                 getProductItemFragment();
             }
         });

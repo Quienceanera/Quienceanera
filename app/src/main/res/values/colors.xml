@@ -16,4 +16,10 @@
     <color name="background_white">#FFFFFF</color>
     <color name="background">#BA68C8</color>
     <color name="logoColor">#87C1EF</color>
+    <color name="yellow">#F8D307</color>
+    <color name="green">#AFD136</color>
+    <color name="pink">#EE96C0</color>
+    <color name="blue">#87C1EF</color>
+
+
 </resources>

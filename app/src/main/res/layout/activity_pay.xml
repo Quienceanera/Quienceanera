@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/logoColor"
+    android:fitsSystemWindows="true"
     xmlns:wallet="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.eventmakr.eventmakr.Activities.PayActivity">
 
@@ -12,10 +13,96 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarPay"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
+
+            <Toolbar
+                android:id="@+id/toolbarPay"
+                android:elevation="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="C"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                        android:textColor="@color/logoColor"
+                        android:textSize="30sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="H"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                        android:textColor="@color/yellow"
+                        android:textSize="30sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="E"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                        android:textColor="@color/green"
+                        android:textSize="30sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="C"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                        android:textColor="@color/pink"
+                        android:textSize="30sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="K"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                        android:textColor="@color/blue"
+                        android:textSize="30sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="O"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                        android:textColor="@color/yellow"
+                        android:textSize="30sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="U"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                        android:textColor="@color/green"
+                        android:textSize="30sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:text="T"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                        android:textColor="@color/pink"
+                        android:textSize="30sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </Toolbar>
+
+            <FrameLayout
+                android:id="@+id/containerPayDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </android.support.design.widget.AppBarLayout>
+
         <RelativeLayout
             android:elevation="10dp"
             android:visibility="gone"
-            android:layout_below="@+id/toolbarPay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
@@ -85,26 +172,15 @@
 
         </RelativeLayout>
 
-
-
         <!--<com.stripe.android.view.CardInputWidget-->
             <!--android:id="@+id/card_input_widget"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
             <!--/>-->
 
-        <Toolbar
-            android:id="@+id/toolbarPay"
-            android:elevation="8dp"
-            android:background="@drawable/pinktoolbar"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-        </Toolbar>
-
         <FrameLayout
             android:id="@+id/containerPay"
-            android:layout_below="@+id/toolbarPay"
+            android:layout_below="@+id/appBarPay"
             android:layout_above="@+id/cardViewPay"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -124,7 +200,6 @@
                     <TextView
                         android:layout_above="@+id/containerWallet"
                         android:layout_centerHorizontal="true"
-                        android:text="dkfjdfdkf"
                         android:textSize="20sp"
                         android:textColor="@color/colorTextBlack"
                         android:id="@+id/textViewPayTotal"
@@ -136,6 +211,7 @@
                     android:id="@+id/containerWallet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
             <fragment
                 android:id="@+id/wallet_fragment"
                 android:name="com.google.android.gms.wallet.fragment.SupportWalletFragment"
@@ -143,10 +219,12 @@
                 android:layout_height="wrap_content"
                 wallet:environment="test"
                 wallet:fragmentMode="buyButton" />
-        </FrameLayout>
-    </RelativeLayout>
-    </android.support.v7.widget.CardView>
 
+        </FrameLayout>
+
+    </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
 
 </RelativeLayout>
 
