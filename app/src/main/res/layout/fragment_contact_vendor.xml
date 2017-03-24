@@ -70,8 +70,8 @@
                     android:layout_centerInParent="true"
                     android:text="@string/contact_vendor"
                     android:textSize="20sp"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                     android:textColor="@color/colorText"
-                    android:textStyle="bold"
                     android:elevation="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

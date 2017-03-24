@@ -3,7 +3,7 @@ package com.example.eventmakr.eventmakr.RecyclerFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,14 +23,13 @@ public class VendorRecyclerFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private VendorAdapter mVendorAdapter;
     public static String mCategory, mPriceRange;
-    private LinearLayoutManager mLayoutManager;
+    private GridLayoutManager mLayoutManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         mCategory = ConsumerVendorCategoryFragment.mCategory;
         mPriceRange = ConsumerBudgetFragment.mPriceRange;
         if (mCategory != null) {
-//            Toast.makeText(getActivity(), mCategory, Toast.LENGTH_SHORT).show();
             mVendorAdapter = new VendorAdapter(
                     Vendor.class,
                     R.layout.vendor_card_view,
@@ -48,14 +47,8 @@ public class VendorRecyclerFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_vendor_item_list, container, false);
         rootView.setTag(TAG);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewVendorList);
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        mLayoutManager = new GridLayoutManager(getActivity(), 2);
             mRecyclerView.setLayoutManager(mLayoutManager);
-
-//        if (mLayoutManager == null) {
-//        } else {
-//            mLayoutManager.removeAllViews();
-//            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        }
         mRecyclerView.setAdapter(mVendorAdapter);
         mLayoutManager.setItemPrefetchEnabled(false);
         return rootView;

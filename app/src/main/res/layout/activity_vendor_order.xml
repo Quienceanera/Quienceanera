@@ -1,27 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.eventmakr.eventmakr.Activities.VendorOrderActivity">
 
-    <Toolbar
-        android:id="@+id/toolbarVendorOrder"
-        android:elevation="8dp"
-        android:background="@drawable/pinktoolbar"
-        app:navigationIcon="@drawable/arrow_left"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-    </Toolbar>
-
-    <FrameLayout
-        android:id="@+id/containerVendorOrder"
-        android:layout_below="@+id/toolbarVendorOrder"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </FrameLayout>
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarVendorOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</RelativeLayout>
+            <Toolbar
+                android:id="@+id/toolbarVendorOrder"
+                android:elevation="8dp"
+                app:navigationIcon="@drawable/arrow_left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="O"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                        android:textColor="@color/logoColor"
+                        android:textSize="30sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="R"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                        android:textColor="@color/yellow"
+                        android:textSize="30sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="D"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                        android:textColor="@color/green"
+                        android:textSize="30sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="E"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                        android:textColor="@color/pink"
+                        android:textSize="30sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="R"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                        android:textColor="@color/logoColor"
+                        android:textSize="30sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="S"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                        android:textColor="@color/yellow"
+                        android:textSize="30sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </Toolbar>
+
+            <FrameLayout
+                android:layout_gravity="center"
+                android:id="@+id/containerVendorOrderDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <FrameLayout
+            android:id="@+id/containerVendorOrder"
+            android:layout_below="@+id/appBarVendorOrder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

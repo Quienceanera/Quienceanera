@@ -11,44 +11,43 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardViewItems_helper"
-            android:layout_alignParentStart="true"
             app:cardCornerRadius="4dp"
             app:cardElevation="2dp"
-            android:layout_margin="5dp"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="130dp">
 
-    <ImageView
-        android:id="@+id/imageViewItems"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        <ImageView
+            android:id="@+id/imageViewItems"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
         </android.support.v7.widget.CardView>
 
         <LinearLayout
-            android:layout_margin="5dp"
             android:orientation="vertical"
-            android:layout_toEndOf="@+id/cardViewItems_helper"
+            android:layout_margin="5dp"
+            android:layout_below="@+id/cardViewItems_helper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textViewItemsName"
+                android:text="name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                android:textColor="@color/blue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="10dp"
-                android:textSize="20sp"
-                android:textStyle="normal|bold" />
+                android:textSize="25sp" />
 
 
             <TextView
                 android:id="@+id/textViewItemsQuantity"
-                android:layout_marginTop="5dp"
-                android:textStyle="italic"
+                android:text="name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="10dp"
@@ -57,7 +56,7 @@
 
         <TextView
             android:id="@+id/textViewItemsPrice"
-            android:layout_marginTop="5dp"
+            android:text="name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="10dp"

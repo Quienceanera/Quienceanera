@@ -24,7 +24,7 @@ public class MenuAdapter extends FirebaseRecyclerAdapter<Menu, Viewholder> {
     protected void populateViewHolder(Viewholder viewHolder, Menu model, int position) {
         viewHolder.mTextViewMenuItemName.setText(model.getName());
         viewHolder.mTextViewMenuItemDescription.setText(model.getDetails());
-        viewHolder.mTextViewMenuItemPrice.setText(model.getPrice());
+        viewHolder.mTextViewMenuItemPrice.setText("$"+model.getPrice());
         Glide.with(mContext)
                 .load(model.getPhoto())
                 .centerCrop()

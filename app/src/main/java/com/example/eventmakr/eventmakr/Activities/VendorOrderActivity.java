@@ -26,11 +26,19 @@ public class VendorOrderActivity extends AppCompatActivity {
             }
         });
         getOrderDetailFragment();
+        getCartDetailList();
     }
     void getOrderDetailFragment(){
         getFragmentManager()
                 .beginTransaction()
-                .add(R.id.containerVendorOrder, FragmentUtil.getOrderDetailFragment())
+                .add(R.id.containerVendorOrderDetails, FragmentUtil.getOrderDetailFragment())
+                .commit();
+    }
+
+    void getCartDetailList() {
+        getFragmentManager()
+                .beginTransaction()
+                .add(R.id.containerVendorOrder, FragmentUtil.getOrderListItemFragment())
                 .commit();
     }
 }

@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +33,6 @@ public class CreateEventDialogFragment extends DialogFragment{
     private DatabaseReference mPushRef, mEventsRef;
     private int mImageId;
     private CalendarView mCalendarView;
-    private FloatingActionButton mFabCreateEvent, mFabCancelEvent;
     private Boolean mCheckFields = false;
     public static String mEventKey, mEventAddress, mEventDate, mEventName, mEventType;
 
@@ -45,16 +43,12 @@ public class CreateEventDialogFragment extends DialogFragment{
         final View view = inflater.inflate(R.layout.dialog_fragment_create_event, null);
         builder.setView(view);
 
-//        mFabCancelEvent = (FloatingActionButton) view.findViewById(R.id.fabCancelEvent);
-//        mFabCreateEvent = (FloatingActionButton) view.findViewById(R.id.fabCreateEvent);
         mEditTextZipCode = (EditText) view.findViewById(R.id.editTextZipCode);
         mEditTextEventName = (EditText) view.findViewById(R.id.editTextInputEventName);
         mCalendarView = (CalendarView) view.findViewById(R.id.calendarView);
         mSpinner = (Spinner) view.findViewById(R.id.spinner_occasion);
         mSpinner.setAdapter(new spinnerAdapter(getActivity(), R.layout.custom_spinner, R.id.textViewSpinner, Events));
 
-//        mFabCreateEvent.setOnClickListener(this);
-//        mFabCancelEvent.setOnClickListener(this);
 
         builder.setPositiveButton("CREATE", new DialogInterface.OnClickListener() {
             @Override

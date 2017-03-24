@@ -9,38 +9,39 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.eventmakr.eventmakr.Adapters.VendorOrderHomeAdapter;
-import com.example.eventmakr.eventmakr.Objects.VendorOrderHome;
+import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
+import com.example.eventmakr.eventmakr.Objects.Cart;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
-import com.example.eventmakr.eventmakr.ViewHolders.VendorOrderHomeViewholder;
+import com.example.eventmakr.eventmakr.ViewHolders.CartHomeViewholder;
 
-public class VendorOrderHomeListFragment extends Fragment {
-    private static final String TAG = "VendorOrderHomeListFragment";
+public class CartRecyclerFragment extends Fragment {
+    private static final String TAG = "CartRecyclerFragment";
     private RecyclerView mRecyclerView;
-    private VendorOrderHomeAdapter mAdapter;
+    private CartHomeAdapter mAdapter;
     private GridLayoutManager mLayoutManger;
 
-    public VendorOrderHomeListFragment() {
+    public CartRecyclerFragment() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-            mAdapter = new VendorOrderHomeAdapter(
-                    VendorOrderHome.class,
-                    R.layout.vendor_order_home_item,
-                    VendorOrderHomeViewholder.class,
-                    FirebaseUtil.getVendorSideVendorOrderHomeRef(),
+            mAdapter = new CartHomeAdapter(
+                    Cart.class,
+                    R.layout.fragment_cart_home_item,
+                    CartHomeViewholder.class,
+                    FirebaseUtil.getConsumerSideConsumerOrderInfoRef(),
                     getActivity());
+
         super.onCreate(savedInstanceState);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.vendor_order_home_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_cart_home_item_list, container, false);
         view.setTag(TAG);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewVendorOrderHomeList);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewCartHomeList);
         mLayoutManger = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManger);
         mRecyclerView.setAdapter(mAdapter);

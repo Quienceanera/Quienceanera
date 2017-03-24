@@ -3,7 +3,7 @@ package com.example.eventmakr.eventmakr.RecyclerFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,21 +19,19 @@ public class VendorOrderListFragment extends Fragment {
     private static final String TAG = "VendorOrderListFragment";
     private RecyclerView mRecyclerView;
     private VendorOrdersAdapter mAdapter;
-    private LinearLayoutManager mLayoutManger;
+    private GridLayoutManager mLayoutManger;
 
     public VendorOrderListFragment() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-//        if (EventsAdapter.mEventKey != null) {
             mAdapter = new VendorOrdersAdapter(
                     VendorOrderItem.class,
                     R.layout.vendor_order_item,
                     VendorOrderListViewholder.class,
                     FirebaseUtil.getVendorSideVendorOrderListRef(),
                     getActivity());
-//        }
         super.onCreate(savedInstanceState);
     }
 
@@ -43,7 +41,7 @@ public class VendorOrderListFragment extends Fragment {
         View view = inflater.inflate(R.layout.vendor_order_list, container, false);
         view.setTag(TAG);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewOrderList);
-        mLayoutManger = new LinearLayoutManager(getActivity());
+        mLayoutManger = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManger);
         mRecyclerView.setAdapter(mAdapter);
 //        mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {

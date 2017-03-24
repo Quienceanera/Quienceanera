@@ -131,8 +131,7 @@ public class FragmentUtil {
     }
 
     public static VendorInputFragment getVendorInputFragment () {
-        VendorInputFragment vendorInputFragment = new VendorInputFragment();
-        return vendorInputFragment;
+        return new VendorInputFragment();
     }
 
     public static ConsumerVendorProductItemFragment getConsumerVendorProductItemFragment () {

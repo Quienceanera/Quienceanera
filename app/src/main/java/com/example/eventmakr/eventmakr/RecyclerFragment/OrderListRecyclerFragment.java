@@ -3,7 +3,7 @@ package com.example.eventmakr.eventmakr.RecyclerFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +23,7 @@ public class OrderListRecyclerFragment extends Fragment {
     private static final String TAG = "OrderListRecyclerFragment";
     private RecyclerView mRecyclerView;
     private CartListAdapter mAdapter;
-    private LinearLayoutManager mLayoutManger;
+    private GridLayoutManager mLayoutManger;
 
     public OrderListRecyclerFragment() {
     }
@@ -55,7 +55,7 @@ public class OrderListRecyclerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cart_item_list, container, false);
         view.setTag(TAG);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewCartList);
-        mLayoutManger = new LinearLayoutManager(getActivity());
+        mLayoutManger = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManger);
         mRecyclerView.setAdapter(mAdapter);
 

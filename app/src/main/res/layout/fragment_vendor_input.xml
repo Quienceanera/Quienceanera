@@ -213,7 +213,7 @@
                     <ImageView
                         android:baselineAlignBottom="true"
                         android:layout_margin="5dp"
-                        android:src="@drawable/currency_usd"
+                        android:src="@drawable/dollar_sign"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -249,8 +249,9 @@
 
                 <TextView
                     android:text="Save"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                     android:elevation="4dp"
-                    android:textStyle="bold"
+                    android:textColor="@color/colorText"
                     android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

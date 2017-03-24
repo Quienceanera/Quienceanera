@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.ChatHomeFragment">
 
     <LinearLayout
         android:layout_centerInParent="true"
@@ -11,43 +11,29 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:text="O"
+            android:text="C"
             android:textColor="@color/logoColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Display4"
             android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:text="R"
+            android:text="H"
             android:textColor="@color/yellow"
             android:textAppearance="@style/TextAppearance.AppCompat.Display4"
             android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:text="D"
+            android:text="A"
             android:textColor="@color/green"
             android:textAppearance="@style/TextAppearance.AppCompat.Display4"
             android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:text="E"
+            android:text="T"
             android:textColor="@color/pink"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display4"
-            android:textSize="30sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="R"
-            android:textColor="@color/logoColor"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display4"
-            android:textSize="30sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="S"
-            android:textColor="@color/yellow"
             android:textAppearance="@style/TextAppearance.AppCompat.Display4"
             android:textSize="30sp"
             android:layout_width="wrap_content"
@@ -55,7 +41,7 @@
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/containerOrderHome"
+        android:id="@+id/containerChatHomeList"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

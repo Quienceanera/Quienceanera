@@ -13,7 +13,6 @@ public class CartListAdapter extends FirebaseRecyclerAdapter<Items, CartListView
     private Context mContext;
     public static String mVendorUid;
 
-
     public CartListAdapter(Class<Items> modelClass, int modelLayout, Class<CartListViewholder> viewHolderClass, Query ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
         this.mContext = context;
@@ -22,7 +21,10 @@ public class CartListAdapter extends FirebaseRecyclerAdapter<Items, CartListView
     @Override
     protected void populateViewHolder(final CartListViewholder viewHolder, final Items model, final int position) {
         viewHolder.mTextViewCartItemName.setText(model.getName());
-        viewHolder.mTextViewCartItemVendorName.setText("");
+//        if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
+//            viewHolder.mTextViewCartItemVendorName.setVisibility(View.GONE);
+//        }
+//        viewHolder.mTextViewCartItemVendorName.setText(model.getVendorName());
         viewHolder.mTextViewCartItemPrice.setText("$"+model.getPrice());
         viewHolder.mTextViewCartItemQuantity.setText("Qty: "+model.getQuantity());
         Glide.with(mContext)
@@ -33,7 +35,7 @@ public class CartListAdapter extends FirebaseRecyclerAdapter<Items, CartListView
         viewHolder.mCardViewCartItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                getCart();
+
             }
         });
     }

@@ -199,7 +199,6 @@
                 app:cardBackgroundColor="@color/tw__transparent"
                 app:cardUseCompatPadding="true"
                 app:cardElevation="2dp"
-                android:background="@drawable/bakeries"
                 android:layout_width="match_parent"
                 android:layout_height="200dp">
                 <RelativeLayout

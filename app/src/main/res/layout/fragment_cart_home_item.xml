@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:id="@+id/cardViewCartHome"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="1dp"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardViewCartView_helper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageViewCartHome"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/cartLayout1"
+            android:layout_marginStart="2dp"
+            android:layout_below="@+id/cardViewCartView_helper"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewCartHomeVendorName"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                android:textColor="@color/blue"
+                android:textSize="20sp"
+                android:text="vendorname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textViewCartHomeEventName"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textSize="15sp"
+                android:text="eventname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textViewCartHomeTime"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:text="Time"
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textViewCartHomeCount"
+                android:textStyle="italic"
+                android:text="Quantity"
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textViewCartHomePriceTotal"
+                android:text="total price"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+   </android.support.v7.widget.CardView>

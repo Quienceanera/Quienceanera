@@ -26,7 +26,7 @@
 
         <activity
             android:name=".Activities.MainActivity"
-            android:label="Quienceaneras"
+            android:label=" "
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -84,6 +84,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.EventActivity"
+            android:label=""
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".Activities.VendorExtrasActivity"
@@ -96,9 +97,11 @@
         </activity>
         <activity
             android:name=".Activities.ChatActivity"
+            android:label=""
             android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".Activities.VendorOrderActivity"
+            android:label=""
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activities.PayActivity"

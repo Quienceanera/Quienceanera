@@ -3,10 +3,12 @@ package com.example.eventmakr.eventmakr.Fragments.VendorFragments;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -23,9 +25,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import static android.R.attr.dial;
 import static android.app.Activity.RESULT_OK;
 
-public class VendorAddProductDialogFragment extends DialogFragment implements View.OnClickListener{
+public class VendorAddProductDialogFragment extends DialogFragment{
 
     private final static int SELECT_PHOTO = 0;
     private ProgressBar mProgressBar;
@@ -48,8 +51,6 @@ public class VendorAddProductDialogFragment extends DialogFragment implements Vi
         builder.setView(view);
 
         photoIntent();
-        mFabProductSave = (FloatingActionButton) view.findViewById(R.id.fabSaveProduct);
-        mFabProductCancel = (FloatingActionButton) view.findViewById(R.id.fabCancelProduct);
         mImageViewAddProduct = (ImageView) view.findViewById(R.id.imageViewAddProduct);
         mEditTextProductName = (EditText) view.findViewById(R.id.editTextProductName);
         mEditTextProductDescription = (EditText) view.findViewById(R.id.editTextAddProductDescription);
@@ -60,9 +61,18 @@ public class VendorAddProductDialogFragment extends DialogFragment implements Vi
 
         mStorageReference = mFirebaseStorage.getReference().child("vendor").child(mVendorUid).child("product");
 
-        mFabProductCancel.setOnClickListener(this);
-        mFabProductSave.setOnClickListener(this);
-
+        builder.setPositiveButton("ADD", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                getKey();
+            }
+        });
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dismiss();
+            }
+        });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
         return alertDialog;
@@ -105,10 +115,11 @@ public class VendorAddProductDialogFragment extends DialogFragment implements Vi
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     mProgressBar.setVisibility(View.INVISIBLE);
                     mProductImage = taskSnapshot.getDownloadUrl().toString();
-                    Toast.makeText(getActivity(), "Photo Uploaded", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(getActivity().findViewById(R.id.layoutVendorExtras), "Photo Uploaded!", Snackbar.LENGTH_SHORT).show();
                 }
             });
         } else {
+
         }
     }
 
@@ -118,19 +129,4 @@ public class VendorAddProductDialogFragment extends DialogFragment implements Vi
         startActivityForResult(pickPhotoIntent, SELECT_PHOTO);
     }
 
-
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        switch (id) {
-            case R.id.fabCancelProduct:
-                dismiss();
-                break;
-            case R.id.fabSaveProduct:
-                getKey();
-                dismiss();
-                break;
-            default:
-        }
-    }
 }

@@ -60,8 +60,6 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
 
         loadImages();
 
-        mTextViewVendorCount = (TextView) view.findViewById(R.id.textViewFoundVendors1);
-
         mCardViewCaterers.setOnClickListener(this);
         mCardViewMixologists.setOnClickListener(this);
         mCardViewFlorists.setOnClickListener(this);

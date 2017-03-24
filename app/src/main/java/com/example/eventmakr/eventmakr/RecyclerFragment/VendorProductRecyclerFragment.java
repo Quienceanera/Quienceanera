@@ -3,7 +3,7 @@ package com.example.eventmakr.eventmakr.RecyclerFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +20,8 @@ public class VendorProductRecyclerFragment extends Fragment {
     private static final String TAG = "VendorProductRecyclerFragment";
     private RecyclerView mRecyclerView;
     private MenuAdapter mMenuAdapter;
-    private LinearLayoutManager mLayoutManager;
+//    private LinearLayoutManager mLayoutManager;
+    private GridLayoutManager mLayoutManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,8 @@ public class VendorProductRecyclerFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_vendor_menu_item_list, container, false);
         rootView.setTag(TAG);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewMenuItemList);
-        mLayoutManager = new LinearLayoutManager(getActivity());
+//        mLayoutManager = new LinearLayoutManager(getActivity());
+        mLayoutManager = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mMenuAdapter);
         mLayoutManager.setItemPrefetchEnabled(false);

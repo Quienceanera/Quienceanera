@@ -20,7 +20,7 @@ public class CartListViewholder extends RecyclerView.ViewHolder {
         mCardViewCartItem = (CardView) itemView.findViewById(R.id.cardViewCartItem);
         mImageViewCartItem = (ImageView) itemView.findViewById(R.id.imageViewCartItem);
         mTextViewCartItemName = (TextView) itemView.findViewById(R.id.textViewCartItemName);
-        mTextViewCartItemVendorName = (TextView) itemView.findViewById(R.id.textViewCartItemVendorName);
+//        mTextViewCartItemVendorName = (TextView) itemView.findViewById(R.id.textViewCartItemVendorName);
         mTextViewCartItemPrice = (TextView) itemView.findViewById(R.id.textViewCartItemPrice);
         mTextViewCartItemQuantity = (TextView) itemView.findViewById(R.id.textViewCartItemQuantity);
 

@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Adapters.VendorOrderHomeAdapter;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
-import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,14 +47,12 @@ public class OrderDetailFragment extends android.app.Fragment {
         mTextViewOrderDetailAddress = (TextView) view.findViewById(R.id.textViewOrderDetailAddress);
         mTextViewOrderDetailCustomerName = (TextView) view.findViewById(R.id.textViewOrderDetailCustomerName);
 
-        getCartDetailList();
-
         mOrderInfoRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mOrderDetailDate = (String) dataSnapshot.child("eventDate").getValue();
                 mOrderDetailEvent = (String) dataSnapshot.child("eventName").getValue();
-//                mOrderDetailAddress = (String) dataSnapshot.child("eventAddress").getValue();
+                mOrderDetailAddress = (String) dataSnapshot.child("eventAddress").getValue();
                 mCustomerPhoto = (String) dataSnapshot.child("customerPhoto").getValue();
                 mCustomerName = (String) dataSnapshot.child("customerName").getValue();
 
@@ -66,7 +63,7 @@ public class OrderDetailFragment extends android.app.Fragment {
                 mTextViewOrderDetailCustomerName.setText(mCustomerName);
                 mTextViewOrderDetailDate.setText("Event date: "+mOrderDetailDate);
                 mTextViewOrderDetailEvent.setText("For "+mOrderDetailEvent);
-//                mTextViewOrderDetailAddress.setText("Zip: "+mOrderDetailAddress);
+                mTextViewOrderDetailAddress.setText("Zip: "+mOrderDetailAddress);
 
             }
 
@@ -79,11 +76,6 @@ public class OrderDetailFragment extends android.app.Fragment {
         return view;
     }
 
-    void getCartDetailList() {
-        getChildFragmentManager()
-                .beginTransaction()
-                .add(R.id.containerOrderDetailFragment, FragmentUtil.getOrderListItemFragment())
-                .commit();
-    }
+
 
 }

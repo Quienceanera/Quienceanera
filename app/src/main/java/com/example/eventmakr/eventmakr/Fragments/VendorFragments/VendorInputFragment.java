@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,7 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
     private final static int SELECT_PHOTO = 0;
     private String mName, mOwner, mContact, mId, mAddress, mZipcode, mDescription, mPrice, mLogo, mKey, mCategory, mVendorUid;
     public static String mVendorKey;
-    private CardView mButtonNext, mButtonSave;
+    private CardView mButtonSave;
     private ProgressBar mProgressBar;
     private StorageReference mStorageReference, mPhotoRef;
     private FirebaseStorage mFirebaseStorage = FirebaseStorage.getInstance();
@@ -43,9 +44,6 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
     private ImageView mImageViewLogo;
     private Uri mMediaUri;
     private View mView;
-    private RelativeLayout mLayout1, mLayout2;
-    private Boolean mStep1, mStep2, mStep3 = false;
-    private TextView mTextViewButton;
     private Context mContext;
     private EditText mEditTextName, mEditTextOwner, mEditTextContact, mEditTextDescription, mEditTextCategory, mEditTextAddress, mEditTextZipcode, mEditTextPrice;
 
@@ -63,9 +61,7 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_vendor_input, container, false);
-//        mButtonNext = (CardView) mView.findViewById(R.id.buttonNext);
         mButtonSave = (CardView) mView.findViewById(R.id.buttonSave);
-//        mTextViewButton = (TextView) mView.findViewById(R.id.textViewVendorInputButton);
         mEditTextName = (EditText) mView.findViewById(R.id.editTextVendorInputName);
         mEditTextOwner = (EditText) mView.findViewById(R.id.editTextVendorInputOwner);
         mEditTextContact = (EditText) mView.findViewById(R.id.editTextVendorInputContact);
@@ -75,8 +71,6 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
         mEditTextZipcode = (EditText) mView.findViewById(R.id.editTextVendorInputZipcode);
         mEditTextPrice = (EditText) mView.findViewById(R.id.editTextVendorInputPrice);
         mImageViewLogo = (ImageView) mView.findViewById(R.id.imageViewVendorInputLogo);
-//        mLayout1 = (RelativeLayout) mView.findViewById(R.id.layoutVendorInput);
-//        mLayout2 = (RelativeLayout) mView.findViewById(R.id.layoutVendorInput2);
         mProgressBar = (ProgressBar) mView.findViewById(R.id.progressBarVendorInput);
         mVendorUid = mFirebaseAuth.getCurrentUser().getUid();
 
@@ -85,7 +79,6 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
         if(mCategory != null) {
             mStorageReference = mFirebaseStorage.getReference().child("vendor").child(mCategory).child(mVendorUid);
         }
-//        mButtonNext.setOnClickListener(this);
         mButtonSave.setOnClickListener(this);
         mImageViewLogo.setOnClickListener(this);
 
@@ -139,12 +132,10 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                    mProgressBar.setVisibility(View.INVISIBLE);
                     mLogo = taskSnapshot.getDownloadUrl().toString();
-                    Toast.makeText(mContext, "Photo Uploaded", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(getActivity().findViewById(R.id.layoutVendorExtras), "Photo Uploaded", Snackbar.LENGTH_SHORT).show();
                 }
             });
-//            Toast.makeText(mContext, "if", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(mContext, "else", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -152,9 +143,7 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
-//            case R.id.buttonNext:
-//
-//                break;
+
             case R.id.buttonSave:
                 getKey();
                 break;
@@ -168,26 +157,4 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
 
     }
 
-
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
-
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        void onFragmentInteraction(Uri uri);
-//    }
 }

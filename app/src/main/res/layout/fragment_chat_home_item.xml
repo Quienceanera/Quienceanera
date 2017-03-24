@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:id="@+id/cardViewChatHome"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="2dp"
+    android:layout_height="100dp"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_alignParentStart="true"
+                android:id="@+id/imageViewChatHome"
+                app:border_color="@color/pink"
+                app:border_width="1dp"
+                android:layout_margin="10dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp" />
+
+            <LinearLayout
+            android:id="@+id/layoutChatHome1"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/imageViewChatHome"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewChatHomeVendorName"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                android:textColor="@color/blue"
+                android:text="vendorname"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/textViewChatHomeEventName"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:text="eventname"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/textViewChatHomeEventDate"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:text="date"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textViewChatHomeTime"
+                android:text="time"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+    </RelativeLayout>
+
+   </android.support.v7.widget.CardView>

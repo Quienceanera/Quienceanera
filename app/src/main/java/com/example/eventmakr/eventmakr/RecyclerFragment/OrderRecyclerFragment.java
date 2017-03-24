@@ -3,7 +3,7 @@ package com.example.eventmakr.eventmakr.RecyclerFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +22,7 @@ public class OrderRecyclerFragment extends Fragment{
     private static final String TAG = "OrderRecyclerFragment";
     private RecyclerView mRecyclerView;
     private ItemsAdapter mItemsAdapter;
-    private LinearLayoutManager mLayoutManager;
+    private GridLayoutManager mLayoutManager;
     private String mVendorUid;
 
     @ Override
@@ -38,16 +38,6 @@ public class OrderRecyclerFragment extends Fragment{
                         getActivity());
             }
         }
-//        if (ConsumerInputFragment.mEventKey != null) {
-//            if (mVendorUid != null) {
-//                mItemsAdapter = new ItemsAdapter(
-//                        Items.class,
-//                        R.layout.items_card_view,
-//                        Viewholder.class,
-//                        FirebaseUtil.getConsumerSideConsumerOrderRef().child(ConsumerInputFragment.mEventKey).child(mVendorUid),
-//                        getActivity());
-//            }
-//        }
         super.onCreate(savedInstanceState);
     }
 
@@ -57,7 +47,7 @@ public class OrderRecyclerFragment extends Fragment{
         View rootView = inflater.inflate(R.layout.fragment_items_list, container, false);
         rootView.setTag(TAG);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewItemsList);
-        mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        mLayoutManager = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mItemsAdapter);
         mLayoutManager.setItemPrefetchEnabled(false);

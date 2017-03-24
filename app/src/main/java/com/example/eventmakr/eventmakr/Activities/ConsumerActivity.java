@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ViewPagerAdapter;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ContactVendorFragment;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.github.florent37.viewanimator.ViewAnimator;
@@ -20,7 +21,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private ViewPagerAdapter mViewPagerAdapter;
-    public static Boolean mVendorMode, mConsumerMode;
+    public static Boolean mVendorMode, mConsumerMode, mContactVendor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +42,14 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
             mViewPagerAdapter.addFragments(FragmentUtil.getChatHomeFragment(), "");
             mViewPagerAdapter.addFragments(FragmentUtil.getCartFragment(), "");
             mViewPagerAdapter.addFragments(FragmentUtil.getUserFragment(), "");
+            if (ConsumerActivity.mContactVendor){
+                mViewPagerAdapter.getItem(1);
+            }
         }
 
         mViewPager.setAdapter(mViewPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
-
+        mContactVendor = false;
         mVendorMode = false;
         mConsumerMode = true;
 
@@ -74,18 +78,17 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                 .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fconf4.png?alt=media&token=00a359cd-4467-4b1c-938c-7c41d5f64f6e")
                 .crossFade()
                 .centerCrop()
-                .into(mImageViewMainBg);
+                .into(mImageViewMainBg2);
 
         ViewAnimator.animate(mImageViewMainBg)
-                .translationY(-1000,1600)
+                .translationY(-1200,1600)
                 .duration(35000)
                 .repeatCount(5)
                 .start();
 
         ViewAnimator.animate(mImageViewMainBg2)
-                .startDelay(30000)
-                .translationY(-1400,2000)
-                .duration(65000)
+                .translationY(-1500,2000)
+                .duration(60000)
                 .repeatCount(5)
                 .start();
     }
@@ -110,10 +113,6 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() > 0) {
-            getFragmentManager().popBackStack();
-        } else {
             super.onBackPressed();
-        }
     }
 }

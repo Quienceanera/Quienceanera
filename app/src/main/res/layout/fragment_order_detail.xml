@@ -6,20 +6,8 @@
     tools:context="com.example.eventmakr.eventmakr.Fragments.VendorFragments.OrderDetailFragment">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/cardViewOrderDetail_helper"
-            app:cardElevation="2dp"
-            app:cardUseCompatPadding="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-    <RelativeLayout
         android:id="@+id/layoutOrderDetail"
-        android:background="@color/light_transparent"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -29,8 +17,8 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"/>
 
-            <RelativeLayout
-                android:layout_margin="2dp"
+            <LinearLayout
+                android:layout_margin="5dp"
                 android:orientation="vertical"
                 android:layout_toEndOf="@+id/imageViewOrderDetail"
                 android:layout_width="wrap_content"
@@ -38,9 +26,9 @@
 
                 <TextView
                     android:id="@+id/textViewOrderDetailCustomerName"
-                    android:layout_marginTop="2dp"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                    android:textColor="@color/blue"
+                    android:textSize="35sp"
                     android:elevation="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -48,42 +36,26 @@
                 <TextView
                     android:id="@+id/textViewOrderDetailEventName"
                     android:layout_marginTop="2dp"
-                    android:layout_below="@id/textViewOrderDetailCustomerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold|italic"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:elevation="10dp"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/textViewOrderDetailDate"
-                    android:layout_marginTop="2dp"
-                    android:layout_below="@+id/textViewOrderDetailEventName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                     android:elevation="10dp" />
 
                 <TextView
                     android:id="@+id/textViewOrderDetailAddress"
-                    android:layout_marginTop="2dp"
-                    android:layout_below="@+id/textViewOrderDetailDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:elevation="10dp" />
 
-            </RelativeLayout>
-
-    </RelativeLayout>
-
-        </android.support.v7.widget.CardView>
-
-    <FrameLayout
-        android:layout_below="@+id/cardViewOrderDetail_helper"
-        android:id="@+id/containerOrderDetailFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
+            </LinearLayout>
 
     </RelativeLayout>
 

@@ -1,5 +1,6 @@
 package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.example.eventmakr.eventmakr.Objects.Cart;
@@ -127,6 +129,8 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                 VendorAdapter.mVendorName,
                 VendorAdapter.mVendorLogo,
                 VendorAdapter.mVendorUid,
+                FirebaseUtil.getUserName(),
+                FirebaseUtil.getUser().getPhotoUrl().toString(),
                 FirebaseUtil.getUid(),
                 mCurrentTimestamp,
                 EventsAdapter.mEventKey,
@@ -145,9 +149,6 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
 
         mUserMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid).push();
         mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef().push();
-
-//        mUserChatPushRef = mUserMessageRef.push();
-//        mChatKey = mUserChatPushRef.getKey();
 
         Message message = new Message(
                 mVendorWelcome,
@@ -200,5 +201,11 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                     EventsAdapter.mEventDate
             );
             mVendorCartRef.setValue(vendorOrderHome);
+        goToConsumerActivity();
+    }
+
+    void goToConsumerActivity(){
+        ConsumerActivity.mContactVendor = true;
+        startActivity(new Intent(getActivity(), ConsumerActivity.class));
     }
 }
