@@ -9,7 +9,7 @@
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
         <item name="android:colorForeground">@color/colorPrimaryDark</item>
         <item name="android:textColorPrimary">?android:attr/textColorTertiary</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryDark</item>
         <item name="android:colorBackground">@color/colorAccentLighter</item>
     </style>
 

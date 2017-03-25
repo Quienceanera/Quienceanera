@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonPlanning:
                 Intent consumerIntent = new Intent(MainActivity.this, ConsumerActivity.class);
                 startActivity(consumerIntent);
+                finish();
                 break;
             case R.id.buttonLogIn:
                 Intent signInIntent = new Intent(MainActivity.this, SignInActivity.class);
@@ -115,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.textView_imAVendor:
                 Intent vendorIntent = new Intent(MainActivity.this, VendorActivity.class);
                 startActivity(vendorIntent);
+                finish();
                 break;
             default:
         }
@@ -122,10 +124,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() > 0) {
-            getFragmentManager().popBackStack();
-        } else {
             super.onBackPressed();
-        }
     }
 }

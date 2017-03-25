@@ -14,7 +14,7 @@
             android:id="@+id/cardViewVendorMenuProfile"
             app:cardUseCompatPadding="true"
             app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/colorButtons"
+            app:cardBackgroundColor="@color/blue"
             android:layout_width="match_parent"
             android:layout_height="200dp">
 
@@ -55,7 +55,7 @@
             android:id="@+id/cardViewVendorMenuProducts"
             app:cardUseCompatPadding="true"
             app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/colorButtons"
+            app:cardBackgroundColor="@color/yellow"
             android:layout_width="match_parent"
             android:layout_height="200dp">
 
@@ -97,7 +97,7 @@
             android:id="@+id/cardViewVendorMenuDocuments"
             app:cardUseCompatPadding="true"
             app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/colorButtons"
+            app:cardBackgroundColor="@color/green"
             android:layout_width="match_parent"
             android:layout_height="200dp">
 

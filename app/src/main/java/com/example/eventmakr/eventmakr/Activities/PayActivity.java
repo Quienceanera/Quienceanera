@@ -2,10 +2,12 @@ package com.example.eventmakr.eventmakr.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -51,7 +53,11 @@ import io.fabric.sdk.android.Fabric;
 public class PayActivity extends FragmentActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private Toolbar mToolbar;
     private TextView mTextViewTotal;
+    private CardView mLayoutCreditCardForm;
+    private String mTokenString;
+    private Token mToken;
     public static final String PUBLISHABLE_KEY = "pk_test_meDPIZOcJTWc3P854aImTlNo";
+    public static final String SECRET_KEY = "sk_test_XRxN5L1wiHwLMOX3EiUYoiL9";
     private static final int LOAD_MASKED_WALLET_REQUEST_CODE = 1000;
     private static final int LOAD_FULL_WALLET_REQUEST_CODE = 1001;
     private SupportWalletFragment walletFragment;
@@ -63,9 +69,11 @@ public class PayActivity extends FragmentActivity implements GoogleApiClient.Con
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this);
+        com.stripe.Stripe.apiKey = PUBLISHABLE_KEY;
         setContentView(R.layout.activity_pay);
         mToolbar = (Toolbar) findViewById(R.id.toolbarPay);
         mTextViewTotal = (TextView) findViewById(R.id.textViewPayTotal);
+        mLayoutCreditCardForm = (CardView) findViewById(R.id.layoutCreditCardForm);
         mTextViewTotal.setText("Order Total:"+" $"+CartHomeAdapter.mTotalPrice);
         Log.i("totalprice", CartHomeAdapter.mTotalPrice);
         setActionBar(mToolbar);
@@ -81,7 +89,10 @@ public class PayActivity extends FragmentActivity implements GoogleApiClient.Con
         getCartListFragment();
         googleApiClient();
         isReadyToPay();
+    }
 
+    public void showCreditCardForm(View view){
+        mLayoutCreditCardForm.setVisibility(View.VISIBLE);
     }
 
     void googleApiClient(){
@@ -132,7 +143,7 @@ public class PayActivity extends FragmentActivity implements GoogleApiClient.Con
                 .setShippingAddressRequired(true)
 
                 // Price set as a decimal:
-                .setEstimatedTotalPrice("20.00")
+                .setEstimatedTotalPrice(CartHomeAdapter.mTotalPrice)
                 .setCurrencyCode("USD")
                 .build();
 
@@ -150,7 +161,7 @@ public class PayActivity extends FragmentActivity implements GoogleApiClient.Con
     public void submitCard(View view) {
         // TODO: replace with your own test key
         final String publishableApiKey = BuildConfig.DEBUG ?
-                "pk_test_6pRNASCoBOKtIshFeQd4XMUh" :
+                SECRET_KEY :
                 PUBLISHABLE_KEY;
 
         TextView cardNumberField = (TextView) findViewById(R.id.cardNumber);
@@ -163,35 +174,21 @@ public class PayActivity extends FragmentActivity implements GoogleApiClient.Con
                 Integer.valueOf(yearField.getText().toString()),
                 cvcField.getText().toString());
 
-        Stripe stripe = new Stripe();
-        stripe.createToken(card, publishableApiKey, new TokenCallback() {
+        final Stripe stripe = new Stripe();
+        stripe.createToken(
+                card,
+                SECRET_KEY,
+                new TokenCallback() {
+
             public void onSuccess(Token token) {
                 // TODO: Send Token information to your backend to initiate a charge
                 Toast.makeText(
                         getApplicationContext(),
                         "Token created: " + token.getId(),
                         Toast.LENGTH_LONG).show();
-
-                    // Charge the user's card:
-                Map<String, Object> params = new HashMap<String, Object>();
-                params.put("amount", 1000);
-                params.put("currency", "usd");
-                params.put("description", "Example charge");
-                params.put("source", token);
-
-                try {
-                    Charge charge = Charge.create(params);
-                } catch (AuthenticationException e) {
-                    e.printStackTrace();
-                } catch (InvalidRequestException e) {
-                    e.printStackTrace();
-                } catch (APIConnectionException e) {
-                    e.printStackTrace();
-                } catch (CardException e) {
-                    e.printStackTrace();
-                } catch (APIException e) {
-                    e.printStackTrace();
-                }
+                mToken = token;
+                mTokenString = token.getId();
+              new stripeTask().execute();
             }
 
             public void onError(Exception error) {
@@ -202,12 +199,44 @@ public class PayActivity extends FragmentActivity implements GoogleApiClient.Con
 
 
     }
+    class stripeTask extends AsyncTask<Token, Integer, String>{
+
+        @Override
+        protected String doInBackground(Token... params) {
+            Log.i("AsyncTask", mTokenString);
+             // Charge the user's card:
+            final Map<String, Object> cardParams = new HashMap<String, Object>();
+            cardParams.put("amount", CartHomeAdapter.mTotalPrice);
+            cardParams.put("currency", "usd");
+            cardParams.put("description", CartHomeAdapter.mVendorUid);
+            cardParams.put("source", mTokenString);
+
+            try {
+                Charge charge = Charge.create(cardParams);
+                Log.i("Charge", charge.getStatus());
+
+            } catch (AuthenticationException e) {
+                e.printStackTrace();
+            } catch (InvalidRequestException e) {
+                e.printStackTrace();
+            } catch (APIConnectionException e) {
+                e.printStackTrace();
+            } catch (CardException e) {
+                e.printStackTrace();
+            } catch (APIException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == LOAD_MASKED_WALLET_REQUEST_CODE) { // Unique, identifying constant
+        if (requestCode == LOAD_MASKED_WALLET_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 MaskedWallet maskedWallet = data.getParcelableExtra(WalletConstants.EXTRA_MASKED_WALLET);
                 FullWalletRequest fullWalletRequest = FullWalletRequest.newBuilder()
@@ -227,13 +256,10 @@ public class PayActivity extends FragmentActivity implements GoogleApiClient.Con
                 //A token will only be returned in production mode,
                 //i.e. WalletConstants.ENVIRONMENT_PRODUCTION
                 if (mEnvironment == WalletConstants.ENVIRONMENT_PRODUCTION) {
-//                    try {
-//                        Token token = .parseToken(tokenJSON);
-//                        // TODO: send token to your server
-//                    } catch (JSONException jsonException) {
-//                        // Log the error and notify Stripe helpß
-//
-//                    }
+                        // TODO: send token to your server
+                    mTokenString = tokenJSON;
+                        new stripeTask().execute();
+
                 }
             }
         } else {
