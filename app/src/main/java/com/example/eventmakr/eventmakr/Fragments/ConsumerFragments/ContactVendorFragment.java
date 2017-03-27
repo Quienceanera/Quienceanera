@@ -33,8 +33,8 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     private static final String TAG = "ContactVendorFragment";
     private TextView mTextViewTotal, mTextViewTotalQuantity;
     private CardView mButtonContactVendor;
-    private String mPrice, mQuantity, mKey, mChatWelcome;
-    private DatabaseReference mItemsRef, mUserCartRef, mVendorCartRef, mUserChatHomeRef, mVendorChatHomeRef, mUserMessageRef, mVendorMessageRef;
+    private String mPrice, mQuantity, mChatKey, mChatWelcome;
+    private DatabaseReference mDatabaseRef, mItemsRef, mUserCartRef, mVendorCartRef, mUserChatHomeRef, mVendorChatHomeRef, mUserMessageRef, mVendorMessageRef;
     private String mVendorUid, mVendorWelcome, mPriceTotal, mItemCount;
 
     public ContactVendorFragment() {
@@ -146,16 +146,17 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     void postMessage() {
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
-
-        mUserMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid).push();
-        mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef().push();
+        mDatabaseRef = FirebaseUtil.getBaseRef().push();
+        mChatKey = mDatabaseRef.getKey();
+        mUserMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid).child(mChatKey);
+        mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef().child(mChatKey);
 
         Message message = new Message(
                 mVendorWelcome,
                 VendorAdapter.mVendorName,
                 VendorAdapter.mVendorLogo,
                 EventsAdapter.mEventKey,
-                FirebaseUtil.getUid(),
+                mVendorUid,
                 mVendorUid,
                 mCurrentTimestamp
         );

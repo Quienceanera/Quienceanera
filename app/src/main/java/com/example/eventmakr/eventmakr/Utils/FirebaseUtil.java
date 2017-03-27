@@ -1,5 +1,7 @@
 package com.example.eventmakr.eventmakr.Utils;
 
+import android.util.Log;
+
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
@@ -50,8 +52,10 @@ public class FirebaseUtil {
 
     public static DatabaseReference getConsumerSideVendorMessageRef() {
         if (VendorAdapter.mVendorUid != null){
+            Log.i("CSideVMessageRef", VendorAdapter.mVendorUid);
             return getBaseRef().child("vendorMessage").child(VendorAdapter.mVendorUid).child(getUid());
         }else {
+            Log.i("CSideVMessageRef", ChatHomeAdapter.mVendorUid);
             return getBaseRef().child("vendorMessage").child(ChatHomeAdapter.mVendorUid).child(getUid());
         }
     }
@@ -74,6 +78,7 @@ public class FirebaseUtil {
             return getBaseRef().child("vendorOrderInfo").child(VendorAdapter.mVendorUid).child(EventsAdapter.mEventKey);
     }
 
+
     //TODO: Vendor Side
 
     public static DatabaseReference getVendorSideVendorProductRef() {
@@ -89,11 +94,16 @@ public class FirebaseUtil {
     }
 
     public static  DatabaseReference getVendorSideConsumerMessageRef() {
+        Log.i("VSideCMessageRef", ChatHomeAdapter.mConsumerUid+" "+ChatHomeAdapter.mEventKey);
         return getBaseRef().child("consumerMessage").child(ChatHomeAdapter.mConsumerUid).child(ChatHomeAdapter.mEventKey).child(getUid());
     }
 
     public static  DatabaseReference getVendorSideVendorOrderHomeRef() {
         return getBaseRef().child("vendorOrderInfo").child(FirebaseUtil.getUid());
+    }
+
+    public static  DatabaseReference getVendorSideConsumerOrderInfoRef() {
+        return getBaseRef().child("consumerOrderInfo").child(VendorOrderHomeAdapter.mCustomerUid).child(VendorOrderHomeAdapter.mEventKey).child(FirebaseUtil.getUid());
     }
 
     public static DatabaseReference getVendorSideVendorOrderListRef() {

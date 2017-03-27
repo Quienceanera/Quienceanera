@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +49,6 @@ public class ChatRecyclerFragment extends Fragment {
                     ChatHomeViewholder.class,
                     FirebaseUtil.getVendorSideVendorChatRef(),
                     getActivity());
-            Log.i("vendor mode", VendorActivity.mVendorMode.toString() + ConsumerActivity.mConsumerMode.toString());
         }
         super.onCreate(savedInstanceState);
     }

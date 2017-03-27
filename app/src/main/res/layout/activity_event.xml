@@ -91,7 +91,6 @@
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
-        android:layout_marginTop="5dp"
         android:layout_below="@+id/appBarEvents"
         android:id="@+id/containerEventActivity"
         android:layout_width="match_parent"

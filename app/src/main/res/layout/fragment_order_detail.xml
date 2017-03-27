@@ -19,6 +19,7 @@
 
             <LinearLayout
                 android:layout_margin="5dp"
+                android:id="@+id/layoutOrderDetail2"
                 android:orientation="vertical"
                 android:layout_toEndOf="@+id/imageViewOrderDetail"
                 android:layout_width="wrap_content"
@@ -56,6 +57,35 @@
                     android:elevation="10dp" />
 
             </LinearLayout>
+
+        <RelativeLayout
+            android:elevation="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBaseline="@+id/layoutOrderDetail2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+            android:id="@+id/textViewOrderDetailConfirm"
+                android:layout_marginTop="75dp"
+            android:text="Click To Confirm\nAnd Notify Customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabConfirm"
+                android:layout_marginTop="50dp"
+                android:layout_toEndOf="@+id/textViewOrderDetailConfirm"
+                app:useCompatPadding="true"
+                app:backgroundTint="@color/colorButtons"
+                app:fabSize="mini"
+                app:pressedTranslationZ="8dp"
+                app:elevation="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+
 
     </RelativeLayout>
 

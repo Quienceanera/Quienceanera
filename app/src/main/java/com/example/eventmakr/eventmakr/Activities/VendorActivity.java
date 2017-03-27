@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -45,6 +46,7 @@ public class VendorActivity extends AppCompatActivity{
 
         mVendorMode = true;
         ConsumerActivity.mConsumerMode = false;
+        Log.i("vendor mode", VendorActivity.mVendorMode.toString() + ConsumerActivity.mConsumerMode.toString());
 
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

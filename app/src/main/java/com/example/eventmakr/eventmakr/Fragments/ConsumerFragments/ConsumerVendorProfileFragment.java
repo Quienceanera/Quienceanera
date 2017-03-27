@@ -61,7 +61,7 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
         mLayoutContainer = (FrameLayout) view.findViewById(R.id.layoutConsumerVendorProfile);
         getVendorInfo();
         getChildRecyclerVendorProductItems();
-//        getChildMapFragment();
+        getChildMapFragment();
 
         mButtonMyItems.setOnClickListener(this);
         return view;
@@ -106,12 +106,12 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
                 .commit();
     }
 
-//    void getChildMapFragment () {
-//        getChildFragmentManager()
-//                .beginTransaction()
-//                .add(R.id.containerMapFragment, FragmentUtil.getMapFragment())
-//                .commit();
-//    }
+    void getChildMapFragment () {
+        getChildFragmentManager()
+                .beginTransaction()
+                .add(R.id.containerMapFragment, FragmentUtil.getMapFragment())
+                .commit();
+    }
 
     public void getVendorInfo() {
         mDatabaseReference.addValueEventListener(new ValueEventListener() {

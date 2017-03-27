@@ -12,7 +12,7 @@ public class CartHomeViewholder extends RecyclerView.ViewHolder {
 
     public CardView mCardViewCartHome;
     public ImageView mImageViewCartHome;
-    public TextView mTextViewCartHomeVendorName, mTextViewCartHomeTimestamp, mTextViewCartHomePriceTotal, mTextViewCartHomeCount, mTextViewEventName;
+    public TextView mTextViewCartHomeVendorName, mTextViewCartHomeTimestamp, mTextViewCartHomePriceTotal, mTextViewCartHomeCount, mTextViewEventName, mTextViewConfirm;
 
     public CartHomeViewholder(View itemView) {
         super(itemView);
@@ -24,6 +24,7 @@ public class CartHomeViewholder extends RecyclerView.ViewHolder {
         mTextViewCartHomePriceTotal = (TextView) itemView.findViewById(R.id.textViewCartHomePriceTotal);
         mTextViewCartHomeCount = (TextView) itemView.findViewById(R.id.textViewCartHomeCount);
         mTextViewEventName = (TextView) itemView.findViewById(R.id.textViewCartHomeEventName);
+        mTextViewConfirm = (TextView) itemView.findViewById(R.id.textViewCartConfirm);
 
     }
 }

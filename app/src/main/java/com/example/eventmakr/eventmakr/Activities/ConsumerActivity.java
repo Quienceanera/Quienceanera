@@ -1,16 +1,18 @@
 package com.example.eventmakr.eventmakr.Activities;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ViewPagerAdapter;
-import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ContactVendorFragment;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.CreateEventDialogFragment;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.github.florent37.viewanimator.ViewAnimator;
@@ -21,12 +23,18 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private ViewPagerAdapter mViewPagerAdapter;
+    private FloatingActionButton mFabNewEvent;
+    private CardView mCardViewCreateEvent;
     public static Boolean mVendorMode, mConsumerMode, mContactVendor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consumer);
+
+        mFabNewEvent = (FloatingActionButton) findViewById(R.id.fabNewEvent);
+        mCardViewCreateEvent = (CardView) findViewById(R.id.cardViewCreateEvent_helper);
+        mFabNewEvent.setOnClickListener(this);
 
         mImageViewBackGround = (ImageView) findViewById(R.id.imageViewBackground);
         mImageViewLogo = (ImageView) findViewById(R.id.imageViewConsumerLogo);
@@ -68,11 +76,11 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                 .crossFade()
                 .into(mImageViewLogo);
 
-        Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fconf2.png?alt=media&token=7cd08c24-fe3f-4b39-a847-92f1086e4031")
-                .crossFade()
-                .centerCrop()
-                .into(mImageViewMainBg);
+//        Glide.with(this)
+//                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fconf2.png?alt=media&token=7cd08c24-fe3f-4b39-a847-92f1086e4031")
+//                .crossFade()
+//                .centerCrop()
+//                .into(mImageViewMainBg);
 
         Glide.with(this)
                 .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fconf4.png?alt=media&token=00a359cd-4467-4b1c-938c-7c41d5f64f6e")
@@ -80,11 +88,11 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                 .centerCrop()
                 .into(mImageViewMainBg2);
 
-        ViewAnimator.animate(mImageViewMainBg)
-                .translationY(-1200,1600)
-                .duration(35000)
-                .repeatCount(5)
-                .start();
+//        ViewAnimator.animate(mImageViewMainBg)
+//                .translationY(-1200,1600)
+//                .duration(35000)
+//                .repeatCount(5)
+//                .start();
 
         ViewAnimator.animate(mImageViewMainBg2)
                 .translationY(-1500,2000)
@@ -101,14 +109,29 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                 .descelerate()
                 .duration(1000)
                 .start();
+
+        ViewAnimator.animate(mCardViewCreateEvent)
+                .flash()
+                .duration(1000)
+                .startDelay(5000)
+                .thenAnimate(mCardViewCreateEvent)
+                .fadeOut()
+                .duration(1000)
+                .start();
     }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
+            case R.id.fabNewEvent:
+                getCreateEventDialog();
             default:
         }
+    }
+
+    void getCreateEventDialog(){
+        new CreateEventDialogFragment().show(getFragmentManager(), "CreateEventDialogFragment");
     }
 
     @Override

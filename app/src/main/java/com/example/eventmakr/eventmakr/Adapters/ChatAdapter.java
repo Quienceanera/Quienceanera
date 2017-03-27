@@ -8,6 +8,8 @@ import android.view.View;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
+import com.example.eventmakr.eventmakr.Activities.VendorActivity;
 import com.example.eventmakr.eventmakr.Objects.Message;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -18,7 +20,7 @@ import com.google.firebase.database.Query;
 
 public class ChatAdapter extends FirebaseRecyclerAdapter<Message, Viewholder>{
     private Context context;
-    private String mUid, mChatKey, mRefKey;
+    private String mUid, mChatKey, mRefKey, mEventKey, mVendorUid;
     private Query mQuery;
 
     /**
@@ -44,18 +46,12 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Message, Viewholder>{
             viewHolder.mCardViewChat.setVisibility(View.INVISIBLE);
             viewHolder.mCircleImageViewChat.setVisibility(View.INVISIBLE);
 
-            for (int i = 0; i < position; i++) {
-                ViewAnimator.animate(viewHolder.mCardViewChatUser)
-                        .slideLeft()
-                        .duration(100)
-                        .start();
-                Log.i("for loop", String.valueOf(position));
-            }
-
             viewHolder.mCardViewChatUser.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    mChatKey = getItem(position).toString();
+                    mChatKey = getRef(position).getKey();
+                    mEventKey = model.getEventKey();
+                    mVendorUid = model.getVendorUid();
                     ViewAnimator.animate(viewHolder.mLayoutDeleteComment)
                             .slideRight()
                             .descelerate()
@@ -73,7 +69,7 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Message, Viewholder>{
             viewHolder.mFabDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    deleteComment();
+                    deleteMessage();
                     viewHolder.mCardViewChat.setVisibility(View.VISIBLE);
                     viewHolder.mLayoutDeleteComment.setVisibility(View.GONE);
                 }
@@ -118,8 +114,14 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Message, Viewholder>{
                 .start();
 
     }
-    private void deleteComment () {
-        FirebaseUtil.getConsumerSideConsumerMessageRef().child(mChatKey).removeValue();
+    private void deleteMessage() {
+        Log.i("Delete Message Key", mChatKey);
+        if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
+            FirebaseUtil.getVendorSideConsumerMessageRef().child(mChatKey).removeValue();
+            FirebaseUtil.getVendorSideVendorMessageRef().child(mChatKey).removeValue();
+        }else{
+            FirebaseUtil.getConsumerSideConsumerMessageRef().child(mEventKey).child(mVendorUid).child(mChatKey).removeValue();
+            FirebaseUtil.getConsumerSideVendorMessageRef().child(mChatKey).removeValue();
+        }
     }
-
 }

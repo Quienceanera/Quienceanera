@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,14 +90,17 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
     void postChat() {
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
+        mDatabaseRef = FirebaseUtil.getBaseRef().push();
+        mChatKey = mDatabaseRef.getKey();
+        Log.i("Chat Message Key", mChatKey);
         if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
 
-            mVendorMessageRef = FirebaseUtil.getVendorSideVendorMessageRef().push();
-            mConsumerMessageRef = FirebaseUtil.getVendorSideConsumerMessageRef().push();
+            mVendorMessageRef = FirebaseUtil.getVendorSideVendorMessageRef().child(mChatKey);
+            mConsumerMessageRef = FirebaseUtil.getVendorSideConsumerMessageRef().child(mChatKey);
 
         } else {
-                mConsumerMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid).push();
-                mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef().push();
+                mConsumerMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid).child(mChatKey);
+                mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef().child(mChatKey);
 
         }
         Message message = new Message(

@@ -25,8 +25,8 @@ public class EventsFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.events_fragment, container, false);
-        mFabNewEvent = (FloatingActionButton) view.findViewById(R.id.fabNewEvent);
-        mFabNewEvent.setOnClickListener(this);
+//        mFabNewEvent = (FloatingActionButton) view.findViewById(R.id.fabNewEvent);
+//        mFabNewEvent.setOnClickListener(this);
 
         getEventsList();
         return view;
