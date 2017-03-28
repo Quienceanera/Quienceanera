@@ -40,6 +40,9 @@ public class VendorOrderHomeListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.vendor_order_home_list, container, false);
         view.setTag(TAG);
+        if (container != null){
+            container.removeAllViews();
+        }
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewVendorOrderHomeList);
         mLayoutManger = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManger);

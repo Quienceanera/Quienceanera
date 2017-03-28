@@ -19,6 +19,7 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.Objects.Events;
 import com.example.eventmakr.eventmakr.R;
@@ -53,7 +54,15 @@ public class CreateEventDialogFragment extends DialogFragment{
         builder.setPositiveButton("CREATE", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                createEvent();
+                if (mEditTextEventName.getText().toString().isEmpty() ||
+                        mEditTextZipCode.getText().toString().isEmpty() ||
+                        mCalendarView.toString().isEmpty()|| mSpinner.toString().isEmpty()){
+                    Log.i("is empty", "True");
+                    Toast.makeText(getActivity(), "Please specify a Date, Event, Name, and Zip", Toast.LENGTH_SHORT).show();
+                } else{
+                    Log.i("is empty", "false");
+                    createEvent();
+                }
             }
         });
         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,6 @@ public class VendorProfileProductRecyclerFragment extends Fragment {
                 Viewholder.class,
                 FirebaseUtil.getConsumerSideVendorProductRef(),
                 getActivity());
-        mLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         super.onCreate(savedInstanceState);
     }
 
@@ -39,9 +39,12 @@ public class VendorProfileProductRecyclerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_vendor_menu_item_list, container, false);
         rootView.setTag(TAG);
+        if (container != null){
+            container.removeAllViews();
+        }
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewMenuItemList);
-        mRecyclerView.setLayoutManager(mLayoutManager);
         mLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mVendorProfileProductAdapter);
         mLayoutManager.setItemPrefetchEnabled(false);
         return rootView;
@@ -52,6 +55,7 @@ public class VendorProfileProductRecyclerFragment extends Fragment {
         super.onDestroy();
         if (mVendorProfileProductAdapter != null) {
             mVendorProfileProductAdapter.cleanup();
+            Log.i(getTag(), "On Destroy");
         }
     }
 }

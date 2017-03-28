@@ -46,6 +46,9 @@ public class OrderRecyclerFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_items_list, container, false);
         rootView.setTag(TAG);
+        if (container != null){
+            container.removeAllViews();
+        }
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewItemsList);
         mLayoutManager = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManager);

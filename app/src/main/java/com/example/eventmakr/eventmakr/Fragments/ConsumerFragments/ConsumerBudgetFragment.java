@@ -38,8 +38,7 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
         mCategory = ConsumerVendorCategoryFragment.mCategory;
         if (mCategory != null) {
         }
-
-
+        VendorAdapter.mPriceRange = "$";
     }
 
     @Override
@@ -65,6 +64,13 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
                 } if (progress == 2) {
                     VendorAdapter.mPriceRange = "$$$";
                     getUpdateChildRecyclerVendorFragment();
+                }
+                if (VendorAdapter.mPriceRange == "$$"){
+                    progress = 1;
+                } if (VendorAdapter.mPriceRange == "$$$"){
+                    progress = 2;
+                } if (VendorAdapter.mPriceRange == "$"){
+                    progress = 0;
                 }
             }
         });

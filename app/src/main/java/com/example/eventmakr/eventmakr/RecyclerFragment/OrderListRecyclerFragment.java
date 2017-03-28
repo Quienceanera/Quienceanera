@@ -30,7 +30,7 @@ public class OrderListRecyclerFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        if (EventsAdapter.mEventKey != null) {
+        if (EventsAdapter.mEventKey != null && ConsumerActivity.mConsumerMode) {
             mAdapter = new CartListAdapter(
                     Items.class,
                     R.layout.fragment_cart_item,
@@ -54,6 +54,9 @@ public class OrderListRecyclerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart_item_list, container, false);
         view.setTag(TAG);
+        if (container != null){
+            container.removeAllViews();
+        }
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewCartList);
         mLayoutManger = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManger);

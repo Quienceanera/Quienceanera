@@ -2,7 +2,6 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -136,7 +135,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
                 getConsumerBudgetFragment();
                 break;
             case R.id.cardViewPartySupplies:
-                mCategory = "PartySupplie";
+                mCategory = "Party Supplies";
                 getConsumerBudgetFragment();
                 break;
             case R.id.cardViewDjs:
@@ -144,7 +143,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
                 getConsumerBudgetFragment();
                 break;
             case R.id.cardViewBakeries:
-                mCategory = "Bakerie";
+                mCategory = "Bakeries";
                 getConsumerBudgetFragment();
                 break;
             default:
@@ -155,7 +154,6 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("onresume", "onresume");
         if (mLayoutVendors.isShown()){
             ViewAnimator.animate(mLayout1)
                     .fadeIn()
@@ -171,8 +169,6 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
                     .duration(500)
                     .descelerate()
                     .start();
-            Log.i("onresume", "onresume2");
-
         }
 
     }
@@ -180,7 +176,6 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
     @Override
     public void onStart() {
         super.onStart();
-        Log.i("onstart", "onstart");
 
     }
 

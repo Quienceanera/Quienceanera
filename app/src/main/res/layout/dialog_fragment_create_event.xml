@@ -70,6 +70,8 @@
                 <EditText
                     android:id="@+id/editTextInputEventName"
                     android:hint="Name Your Event"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -91,6 +93,7 @@
                     android:hint="Zip Code"
                     android:inputType="number"
                     android:maxLength="5"
+                    android:minEms="5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -98,35 +101,5 @@
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
-
-    <!--<LinearLayout-->
-        <!--android:elevation="6dp"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_below="@+id/cardViewEdittext_helper"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content">-->
-
-        <!--<android.support.design.widget.FloatingActionButton-->
-            <!--android:layout_margin="5dp"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:backgroundTint="@color/colorButtons"-->
-            <!--app:elevation="6dp"-->
-            <!--app:fabSize="mini"-->
-            <!--app:srcCompat="@drawable/cancel"-->
-            <!--android:id="@+id/fabCancelEvent" />-->
-
-        <!--<android.support.design.widget.FloatingActionButton-->
-            <!--android:layout_margin="5dp"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--app:elevation="6dp"-->
-            <!--android:backgroundTint="@color/colorButtons"-->
-            <!--app:fabSize="mini"-->
-            <!--app:srcCompat="@drawable/check"-->
-            <!--android:id="@+id/fabCreateEvent" />-->
-
-    <!--</LinearLayout>-->
 
 </RelativeLayout>

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toolbar;
@@ -35,16 +34,7 @@ public class EventActivity extends AppCompatActivity {
             }
         });
 
-//        mBackGround = (ImageView) findViewById(R.id.imageViewBackgroundEvents);
-//        loadBackGround();
     }
-//    void loadBackGround(){
-//        Glide.with(this)
-//                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fcupcakebw.jpg?alt=media&token=6f2ad4a1-9b52-489c-832e-31d2fc241ae4")
-//                .centerCrop()
-//                .crossFade()
-//                .into(mBackGround);
-//    }
 
     @Override
     protected void onPostResume() {
@@ -55,14 +45,17 @@ public class EventActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.i("OnStop", "Stopped");
     }
 
     void getVendorCategory(){
         getFragmentManager()
                 .beginTransaction()
-                .add(R.id.containerEventActivity, FragmentUtil.getConsumerVendorCategoryFragment())
+                .replace(R.id.containerEventActivity, FragmentUtil.getConsumerVendorCategoryFragment())
                 .commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

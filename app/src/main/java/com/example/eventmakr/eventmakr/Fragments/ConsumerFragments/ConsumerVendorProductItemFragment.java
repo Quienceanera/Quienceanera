@@ -89,9 +89,10 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                         .load(mProductImage)
                         .centerCrop()
                         .into(mImageViewProductItem);
+
                 mTextViewProductItemName.setText(mProductName);
                 mTextViewProductItemDetails.setText(mProductDetails);
-                mTextViewProductItemPrice.setText("$ " + mProductPrice);
+                mTextViewProductItemPrice.setText("$ " + mProductPrice+" ea");
                 mTextViewProductVendorName.setText(VendorAdapter.mVendorName);
 
                 mEditTextQuantity.addTextChangedListener(new TextWatcher() {
@@ -123,9 +124,11 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         int id = view.getId();
         switch (id) {
             case R.id.buttonProductItemSelect:
-                if (mEditTextQuantity != null){
-                    getKey();
+                if (mEditTextQuantity.getText().toString().isEmpty()){
+                    Snackbar.make(getActivity().findViewById(R.id.layoutEvent),"CHOOSE A QUANTITY FIRST", Snackbar.LENGTH_SHORT).show();
                 }else {
+                    Log.i("EditTextQty", "Not Null");
+                    getKey();
                 }
                 break;
                 default:
@@ -164,7 +167,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                     mProductKey,
                     mProductQuantity,
                     mProductPrice,
-                    "totalPrice",
+                    null,
                     mProductName,
                     mProductImage
             );

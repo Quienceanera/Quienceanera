@@ -41,6 +41,9 @@ public class CartRecyclerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart_home_item_list, container, false);
         view.setTag(TAG);
+        if (container != null){
+            container.removeAllViews();
+        }
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewCartHomeList);
         mLayoutManger = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManger);

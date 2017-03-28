@@ -1,6 +1,8 @@
 package com.example.eventmakr.eventmakr.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -26,6 +28,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
     private FloatingActionButton mFabNewEvent;
     private CardView mCardViewCreateEvent;
     public static Boolean mVendorMode, mConsumerMode, mContactVendor;
+    private CoordinatorLayout mLayoutConsumer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
 
         mFabNewEvent = (FloatingActionButton) findViewById(R.id.fabNewEvent);
         mCardViewCreateEvent = (CardView) findViewById(R.id.cardViewCreateEvent_helper);
+        mLayoutConsumer = (CoordinatorLayout) findViewById(R.id.layoutConsumer);
         mFabNewEvent.setOnClickListener(this);
 
         mImageViewBackGround = (ImageView) findViewById(R.id.imageViewBackground);
@@ -60,8 +64,6 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         mContactVendor = false;
         mVendorMode = false;
         mConsumerMode = true;
-
-//        Snackbar.make(findViewById(R.id.layoutConsumer), "Choose or create an event to get started!", Snackbar.LENGTH_SHORT).show();
     }
 
     void loadBackground() {
@@ -76,27 +78,15 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                 .crossFade()
                 .into(mImageViewLogo);
 
-//        Glide.with(this)
-//                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fconf2.png?alt=media&token=7cd08c24-fe3f-4b39-a847-92f1086e4031")
-//                .crossFade()
-//                .centerCrop()
-//                .into(mImageViewMainBg);
-
         Glide.with(this)
                 .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fconf4.png?alt=media&token=00a359cd-4467-4b1c-938c-7c41d5f64f6e")
                 .crossFade()
                 .centerCrop()
                 .into(mImageViewMainBg2);
 
-//        ViewAnimator.animate(mImageViewMainBg)
-//                .translationY(-1200,1600)
-//                .duration(35000)
-//                .repeatCount(5)
-//                .start();
-
         ViewAnimator.animate(mImageViewMainBg2)
-                .translationY(-1500,2000)
-                .duration(60000)
+                .translationY(-1600,2200)
+                .duration(70000)
                 .repeatCount(5)
                 .start();
     }
@@ -110,14 +100,13 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                 .duration(1000)
                 .start();
 
-        ViewAnimator.animate(mCardViewCreateEvent)
-                .flash()
-                .duration(1000)
-                .startDelay(5000)
-                .thenAnimate(mCardViewCreateEvent)
-                .fadeOut()
-                .duration(1000)
-                .start();
+//        ViewAnimator.animate(mCardViewCreateEvent)
+//                .startDelay(5000)
+//                .thenAnimate(mCardViewCreateEvent)
+//                .fadeOut()
+//                .duration(1000)
+//                .andAnimate(mFabNewEvent)
+//                .start();
     }
 
     @Override
@@ -137,5 +126,6 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onBackPressed() {
             super.onBackPressed();
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

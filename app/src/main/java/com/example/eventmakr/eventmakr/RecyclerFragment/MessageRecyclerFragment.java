@@ -44,7 +44,6 @@ public class MessageRecyclerFragment extends Fragment {
                     mContext);
         } else {
             mVendorUid = ChatHomeAdapter.mVendorUid;
-
             mAdapter = new ChatAdapter(
                     Message.class,
                     R.layout.fragment_chat_item,
@@ -61,16 +60,13 @@ public class MessageRecyclerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat_item_list, container, false);
         view.setTag(TAG);
+        if (container != null){
+            container.removeAllViews();
+        }
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewChatList);
         mLayoutManger = new LinearLayoutManager(mContext);
         mLayoutManger.setStackFromEnd(true);
-//        if (mLayoutManger != null){
-//            mLayoutManger = new LinearLayoutManager(mContext);
-//            mLayoutManger.setStackFromEnd(true);
-//            mRecyclerView.setLayoutManager(mLayoutManger);
-//        } else {
-            mRecyclerView.setLayoutManager(mLayoutManger);
-//        }
+        mRecyclerView.setLayoutManager(mLayoutManger);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override

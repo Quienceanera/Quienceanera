@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,61 +9,62 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/layoutTop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-    <ImageView
-        android:id="@+id/imageViewVendorInputLogo"
-        android:scaleType="centerCrop"
-        android:elevation="2dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
-
-            <ProgressBar
-                android:id="@+id/progressBarVendorInput"
-                android:layout_centerInParent="true"
-                android:layout_margin="5dp"
-                android:visibility="gone"
-                android:elevation="4dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_centerInParent="true"
-            android:id="@+id/TextViewVendorInputHint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Your logo here!"/>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabVendorInputAddLogo"
-            app:backgroundTint="@color/colorButtons"
-            android:src="@drawable/camera"
-            app:useCompatPadding="true"
-            app:elevation="6dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/imageViewVendorInputLogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        </RelativeLayout>
-
         <ScrollView
-            android:layout_below="@+id/layoutTop"
-            android:layout_above="@+id/buttonSave"
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/layoutSlider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <FrameLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <RelativeLayout
+                    android:id="@+id/layoutTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageViewVendorInputLogo"
+                        android:scaleType="centerCrop"
+                        android:elevation="2dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarVendorInput"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="5dp"
+                        android:visibility="gone"
+                        android:elevation="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:id="@+id/TextViewVendorInputHint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your logo here!"/>
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fabVendorInputAddLogo"
+                        app:backgroundTint="@color/colorButtons"
+                        android:src="@drawable/camera"
+                        app:useCompatPadding="true"
+                        app:elevation="6dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignBottom="@+id/imageViewVendorInputLogo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/layoutVendorInput"
+                android:layout_below="@+id/layoutTop"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -80,13 +81,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
-                    <EditText
-                        android:padding="16dp"
-                        android:id="@+id/editTextVendorInputName"
-                        android:inputType="textPersonName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="What is your business name?" />
+                    <!--<android.support.design.widget.TextInputLayout-->
+                        <!--android:id="@+id/textLayoutVendorInputName"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content">-->
+                        <EditText
+                            android:padding="16dp"
+                            android:id="@+id/editTextVendorInputName"
+                            android:inputType="textPersonName|textCapWords"
+                            android:maxLines="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="What is your business name?" />
+                    <!--</android.support.design.widget.TextInputLayout>-->
+
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -101,8 +110,9 @@
                     <EditText
                         android:padding="16dp"
                         android:id="@+id/editTextVendorInputOwner"
-                        android:inputType="textPersonName"
+                        android:inputType="textPersonName|textCapWords"
                         android:layout_below="@+id/editTextVendorInputName"
+                        android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="What is the owners name?" />
@@ -122,7 +132,8 @@
                     <EditText
                         android:padding="16dp"
                         android:id="@+id/editTextVendorInputContact"
-                        android:inputType="textPersonName"
+                        android:inputType="textPersonName|textCapWords"
+                        android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Who will be your customer contact?" />
@@ -143,13 +154,12 @@
                     <EditText
                         android:padding="16dp"
                         android:id="@+id/editTextVendorInputDescription"
-                        android:inputType="textMultiLine"
+                        android:inputType="textMultiLine|textCapSentences"
+                        android:maxLines="2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Give a description of your business" />
                 </LinearLayout>
-
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -187,54 +197,97 @@
                         <EditText
                             android:padding="16dp"
                             android:id="@+id/editTextVendorInputAddress"
-                            android:inputType="textPostalAddress"
+                            android:inputType="textPostalAddress|textCapWords"
+                            android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:hint="Business address        " />
+                            android:hint="Business Address        " />
 
                         <EditText
                             android:paddingTop="16dp"
                             android:paddingBottom="16dp"
                             android:id="@+id/editTextVendorInputZipcode"
                             android:inputType="number"
+                            android:maxLines="1"
                             android:ems="5"
+                            android:minEms="5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Zip code" />
 
                 </LinearLayout>
 
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:baselineAlignBottom="true"
-                        android:layout_margin="5dp"
-                        android:src="@drawable/dollar_sign"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <EditText
-                        android:padding="16dp"
-                        android:id="@+id/editTextVendorInputPrice"
-                        android:inputType="text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Price range? $, $$, or $$$" />
-
-                </LinearLayout>
-
             </LinearLayout>
 
-            </FrameLayout>
+            </RelativeLayout>
 
         </ScrollView>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/layoutSlider"
+            android:layout_above="@+id/buttonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:src="@drawable/dollar_sign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.github.channguyen.rsv.RangeSliderView
+                android:id="@+id/rangeSliderVendorInput"
+                app:filledColor="@color/yellow"
+                app:rangeCount="3"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
+                android:elevation="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/$1"
+                    android:text="$"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/$2"
+                    android:text="$"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/yellow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/$3"
+                    android:text="$"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/green"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
         <android.support.v7.widget.CardView
             android:id="@+id/buttonSave"
+            android:isScrollContainer="false"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             app:cardCornerRadius="5dp"
@@ -263,4 +316,4 @@
 
     </RelativeLayout>
 
-</FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

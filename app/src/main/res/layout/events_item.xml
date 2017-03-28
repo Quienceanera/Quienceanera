@@ -20,7 +20,7 @@
             app:cardCornerRadius="4dp"
             app:cardElevation="2dp"
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="150dp">
 
             <TextView
                 android:layout_alignParentEnd="true"
@@ -42,7 +42,6 @@
 
         <RelativeLayout
             android:elevation="10dp"
-            android:background="@drawable/pinknav"
             android:layout_alignParentBottom="true"
             android:layout_width="wrap_content"
             android:layout_height="50dp">
@@ -51,12 +50,13 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
                 android:layout_margin="5dp"
-                android:textColor="@color/colorText"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                android:textColor="@color/blue"
                 android:id="@+id/textViewEventsType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="10dp"
-                android:textSize="25sp" />
+                android:textSize="30sp" />
 
         </RelativeLayout>
 
@@ -66,6 +66,7 @@
             android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <Button
                 android:id="@+id/editButton"
                 android:textAllCaps="true"
@@ -73,19 +74,10 @@
                 android:text="search\nvendors"
                 android:elevation="2dp"
                 android:textColor="@color/colorText"
-                android:background="@color/tw__transparent"
+                android:background="@color/colorButtons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/selectButton"
-                android:textAllCaps="true"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
-                android:textColor="@color/colorText"
-                android:text="select\nevent"
-                android:elevation="2dp"
-                android:background="@color/tw__transparent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
     </RelativeLayout>

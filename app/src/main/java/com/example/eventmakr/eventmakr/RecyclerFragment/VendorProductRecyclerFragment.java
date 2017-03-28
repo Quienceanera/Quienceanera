@@ -39,8 +39,10 @@ public class VendorProductRecyclerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_vendor_menu_item_list, container, false);
         rootView.setTag(TAG);
+        if (container != null){
+            container.removeAllViews();
+        }
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewMenuItemList);
-//        mLayoutManager = new LinearLayoutManager(getActivity());
         mLayoutManager = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mMenuAdapter);

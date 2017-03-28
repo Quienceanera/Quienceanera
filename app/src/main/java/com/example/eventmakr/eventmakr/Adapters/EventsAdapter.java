@@ -26,6 +26,9 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
 
     @Override
     protected void populateViewHolder(final EventsViewholder viewHolder, final Events model, final int position) {
+
+
+
         viewHolder.mTextViewEvents.setText(model.getEventName());
         viewHolder.mTextViewEventsDate.setText(model.getEventDate());
         String type = model.getEventType();
@@ -85,7 +88,7 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
             }
         });
 
-        viewHolder.mButtonSelect.setOnClickListener(new View.OnClickListener() {
+        viewHolder.mImageViewEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mEventKey = getRef(position).getKey();
