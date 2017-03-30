@@ -1,17 +1,25 @@
 package com.example.eventmakr.eventmakr.Adapters;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
+import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
+import com.example.eventmakr.eventmakr.Activities.VendorActivity;
 import com.example.eventmakr.eventmakr.Objects.Items;
+import com.example.eventmakr.eventmakr.R;
+import com.example.eventmakr.eventmakr.Utils.DeleteUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.CartListViewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.geniusforapp.fancydialog.FancyAlertDialog;
 import com.google.firebase.database.Query;
 
 public class CartListAdapter extends FirebaseRecyclerAdapter<Items, CartListViewholder>{
+    private static final String TAG = CartListAdapter.class.getSimpleName();
     private Context mContext;
-    public static String mVendorUid;
+    public static String mVendorUid, mCartItemKey, mCartItemName;
 
     public CartListAdapter(Class<Items> modelClass, int modelLayout, Class<CartListViewholder> viewHolderClass, Query ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
@@ -20,11 +28,8 @@ public class CartListAdapter extends FirebaseRecyclerAdapter<Items, CartListView
 
     @Override
     protected void populateViewHolder(final CartListViewholder viewHolder, final Items model, final int position) {
+        Log.i(TAG,TAG);
         viewHolder.mTextViewCartItemName.setText(model.getName());
-//        if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
-//            viewHolder.mTextViewCartItemVendorName.setVisibility(View.GONE);
-//        }
-//        viewHolder.mTextViewCartItemVendorName.setText(model.getVendorName());
         viewHolder.mTextViewCartItemPrice.setText("$"+model.getPrice());
         viewHolder.mTextViewCartItemQuantity.setText("Qty: "+model.getQuantity());
         Glide.with(mContext)
@@ -35,9 +40,40 @@ public class CartListAdapter extends FirebaseRecyclerAdapter<Items, CartListView
         viewHolder.mCardViewCartItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
+        if (!VendorActivity.mVendorMode && ConsumerActivity.mConsumerMode) {
+            Log.i("Mode", VendorActivity.mVendorMode.toString()+" "+ConsumerActivity.mConsumerMode.toString());
+            viewHolder.mCardViewCartItem.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    mCartItemKey = getRef(position).getKey();
+                    mCartItemName = model.getName();
+                    FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(mContext)
+                            .setImageRecourse(R.drawable.delete)
+                            .setTextTitle("Delete?")
+                            .setTextSubTitle(CartListAdapter.mCartItemName)
+                            .setNegativeButtonText("Cancel")
+                            .setPositiveButtonText("Yes")
+                            .setOnNegativeClicked(new FancyAlertDialog.OnNegativeClicked() {
+                                @Override
+                                public void OnClick(View view, Dialog dialog) {
+                                    dialog.dismiss();
+                                }
+                            })
+                            .setOnPositiveClicked(new FancyAlertDialog.OnPositiveClicked() {
+                                @Override
+                                public void OnClick(View view, Dialog dialog) {
+                                    DeleteUtil.deleteOrderListItem();
+                                    dialog.dismiss();
+                                }
+                            })
+                            .build();
+                    alert.show();
+                    return false;
+                }
+            });
+        }
     }
 
 }

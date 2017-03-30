@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="FancyDialog-0.0.8">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/b8055a197025f566e680d32ca3a55aae854b4384/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/b8055a197025f566e680d32ca3a55aae854b4384/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.geniusforapp.fancydialog/FancyDialog/0.0.8/e93cd3ba49b17df9af132e756bea98f874d77918/FancyDialog-0.0.8-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

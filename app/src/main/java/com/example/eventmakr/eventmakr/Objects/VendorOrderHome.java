@@ -10,11 +10,12 @@ public class VendorOrderHome {
     private String eventKey;
     private String eventName;
     private String eventDate;
+    private String zipCode;
 
     public VendorOrderHome() {
     }
 
-    public VendorOrderHome(String customerName, String customerPhoto, String customerUid, String totalPrice, String totalQuantity, String timestamp, String eventKey, String eventName, String eventDate) {
+    public VendorOrderHome(String customerName, String customerPhoto, String customerUid, String totalPrice, String totalQuantity, String timestamp, String eventKey, String eventName, String eventDate, String zipCode) {
         this.customerName = customerName;
         this.customerPhoto = customerPhoto;
         this.customerUid = customerUid;
@@ -24,6 +25,7 @@ public class VendorOrderHome {
         this.eventKey = eventKey;
         this.eventName = eventName;
         this.eventDate = eventDate;
+        this.zipCode = zipCode;
     }
 
     public String getCustomerName() {
@@ -78,7 +80,7 @@ public class VendorOrderHome {
         return eventKey;
     }
 
-    public void setKey(String eventKey) {
+    public void setEventKey(String eventKey) {
         this.eventKey = eventKey;
     }
 
@@ -96,5 +98,13 @@ public class VendorOrderHome {
 
     public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 }

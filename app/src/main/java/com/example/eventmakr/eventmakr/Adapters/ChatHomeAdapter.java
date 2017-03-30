@@ -15,6 +15,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 
 public class ChatHomeAdapter extends FirebaseRecyclerAdapter<ChatHome, ChatHomeViewholder>{
+    private static final String TAG = ChatHomeAdapter.class.getSimpleName();
     private Context mContext;
     public static String mVendorUid, mConsumerUid, mEventKey, mVendorName;
 
@@ -26,6 +27,7 @@ public class ChatHomeAdapter extends FirebaseRecyclerAdapter<ChatHome, ChatHomeV
 
     @Override
     protected void populateViewHolder(final ChatHomeViewholder viewHolder, final ChatHome model, final int position) {
+        Log.i(TAG,TAG);
         mVendorUid = model.getVendorUid();
         if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
             viewHolder.mTextViewChatHomeVendorName.setText(model.getConsumerName());
@@ -55,14 +57,10 @@ public class ChatHomeAdapter extends FirebaseRecyclerAdapter<ChatHome, ChatHomeV
                 mEventKey = model.getEventKey();
                 mVendorName = model.getVendorName();
                 Log.i("ConsumerUID", mConsumerUid +" "+ mEventKey);
-
                 getChat();
             }
         });
     }
-//    private void deleteComment () {
-//        FirebaseUtil.getMessageRef().child(mChatKey).removeValue();
-//    }
 
     private void getChat() {
         if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){

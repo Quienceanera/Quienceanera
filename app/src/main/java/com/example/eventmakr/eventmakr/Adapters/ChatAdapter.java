@@ -19,6 +19,7 @@ import com.github.florent37.viewanimator.ViewAnimator;
 import com.google.firebase.database.Query;
 
 public class ChatAdapter extends FirebaseRecyclerAdapter<Message, Viewholder>{
+    private static final String TAG = ChatAdapter.class.getSimpleName();
     private Context context;
     private String mUid, mChatKey, mRefKey, mEventKey, mVendorUid;
     private Query mQuery;
@@ -39,6 +40,7 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Message, Viewholder>{
 
     @Override
     protected void populateViewHolder(final Viewholder viewHolder, final Message model, final int position) {
+        Log.i(TAG,TAG);
         mUid = FirebaseUtil.getUid();
         if (mUid.equals(model.getCustomerUid())) {
             viewHolder.mTextViewChatUser.setText(model.getText());

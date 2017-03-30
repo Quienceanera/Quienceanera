@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -15,12 +14,12 @@ import com.example.eventmakr.eventmakr.R;
 import com.github.florent37.viewanimator.ViewAnimator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.nvanbenschoten.motion.ParallaxImageView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private CardView mButtonPlanning, mButtonLogIn;
-    private TextView mTextViewVendor;
+    private CardView mButtonPlanning, mButtonLogIn, mButtonVendor;
     private ParallaxImageView mBackground;
     private CardView mCardView1, mCardView2;
     private FirebaseUser mFirebaseUser;
@@ -38,14 +37,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mButtonPlanning = (CardView) findViewById(R.id.buttonPlanning);
         mButtonLogIn = (CardView) findViewById(R.id.buttonLogIn);
-        mTextViewVendor = (TextView)  findViewById(R.id.textView_imAVendor);
+        mButtonVendor = (CardView) findViewById(R.id.buttonVendor);
 
         mBackground = (ParallaxImageView) findViewById(R.id.parallaxBackground);
         loadParallaxBg();
 
         mButtonPlanning.setOnClickListener(this);
         mButtonLogIn.setOnClickListener(this);
-        mTextViewVendor.setOnClickListener(this);
+        mButtonVendor.setOnClickListener(this);
 
         if (mFirebaseUser == null) {
             ViewAnimator.animate(mButtonLogIn)
@@ -58,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mButtonLogIn.setVisibility(View.GONE);
             Log.i("User", "Logged in");
         }
+        System.out.println("MainActivity.onCreate: " + FirebaseInstanceId.getInstance().getToken());
+
     }
 
         void loadParallaxBg(){
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent signInIntent = new Intent(MainActivity.this, SignInActivity.class);
                 startActivity(signInIntent);
                 break;
-            case R.id.textView_imAVendor:
+            case R.id.buttonVendor:
                 Intent vendorIntent = new Intent(MainActivity.this, VendorActivity.class);
                 startActivity(vendorIntent);
                 finish();

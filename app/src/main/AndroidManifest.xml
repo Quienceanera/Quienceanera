@@ -19,7 +19,9 @@
         android:icon="@drawable/logoi"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:supportsRtl">
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />
@@ -85,7 +87,7 @@
         <activity
             android:name=".Activities.EventActivity"
             android:label=""
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activities.VendorExtrasActivity"
             android:label=""
@@ -98,7 +100,7 @@
         <activity
             android:name=".Activities.ChatActivity"
             android:label=""
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activities.VendorOrderActivity"
             android:label=""
@@ -106,13 +108,27 @@
         <activity
             android:name=".Activities.PayActivity"
             android:label=""
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan"></activity>
 
-        </activity>
+        <service
+            android:name=".Utils.MyFirebaseInstanceIdService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".Utils.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <meta-data
             android:name="io.fabric.ApiKey"
-            tools:replace="android:value"
-            android:value="5adf99f87778dc4c7d2baf42764e3f49ee7cfb38" />
+            android:value="5adf99f87778dc4c7d2baf42764e3f49ee7cfb38"
+            tools:replace="android:value" />
     </application>
 
 </manifest>

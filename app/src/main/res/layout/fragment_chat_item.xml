@@ -95,7 +95,6 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         app:cardCornerRadius="10dp"
-        app:cardBackgroundColor="@android:drawable/screen_background_dark_transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -110,7 +109,7 @@
                 android:textSize="20sp"
                 android:elevation="6dp"
                 android:padding="2dp"
-                android:textColor="@color/colorText"
+                android:textColor="@color/blue"
                 android:textAlignment="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

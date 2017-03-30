@@ -1,7 +1,9 @@
 package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +21,7 @@ import com.example.eventmakr.eventmakr.Objects.VendorOrderHome;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
+import com.geniusforapp.fancydialog.FancyAlertDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +39,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     private String mPrice, mQuantity, mChatKey, mChatWelcome;
     private DatabaseReference mDatabaseRef, mItemsRef, mUserCartRef, mVendorCartRef, mUserChatHomeRef, mVendorChatHomeRef, mUserMessageRef, mVendorMessageRef;
     private String mVendorUid, mVendorWelcome, mPriceTotal, mItemCount;
+    private FloatingActionButton mFabRecommendVendor;
 
     public ContactVendorFragment() {
         // Required empty public constructor
@@ -69,8 +73,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     }
 
     void getTotalPrice () {
-            mItemsRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(mVendorUid);
-
+        mItemsRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(mVendorUid);
         mItemsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -92,7 +95,6 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                 mQuantity = String.valueOf(quantity);
                 Log.i("Total Price", String.valueOf(sum));
                 Log.i("Quantity", String.valueOf(quantity));
-                ;
             }
 
             @Override
@@ -115,15 +117,15 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     void contactVendor () {
         mVendorWelcome = "Chat with us here!";
         pushToChatHome();
+        Log.i("Contact Vendor", "True");
     }
-
 
     void pushToChatHome() {
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
 
         mUserChatHomeRef = getConsumerSideConsumerChatRef().child(EventsAdapter.mEventKey).child(mVendorUid);
-        mVendorChatHomeRef = FirebaseUtil.getConsumerSideVendorChatRef().push();
+        mVendorChatHomeRef = FirebaseUtil.getConsumerSideVendorChatRef().child(FirebaseUtil.getUid());
 
         ChatHome chatHome = new ChatHome(
                 VendorAdapter.mVendorName,
@@ -140,14 +142,14 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
             mUserChatHomeRef.setValue(chatHome);
             mVendorChatHomeRef.setValue(chatHome);
             postMessage();
+        Log.i("Push to chat home", "True");
     }
-
 
     void postMessage() {
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
         final String mCurrentTimestamp = time.format(new Date());
         mDatabaseRef = FirebaseUtil.getBaseRef().push();
-        mChatKey = mDatabaseRef.getKey();
+        mChatKey = "1";
         mUserMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid).child(mChatKey);
         mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef().child(mChatKey);
 
@@ -165,6 +167,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
         mVendorMessageRef.setValue(message);
 
         pushToCart();
+        Log.i("Post Message", "True");
     }
 
     void pushToCart () {
@@ -199,10 +202,26 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                     mCurrentTimestamp,
                     EventsAdapter.mEventKey,
                     EventsAdapter.mEventName,
-                    EventsAdapter.mEventDate
+                    EventsAdapter.mEventDate,
+                    EventsAdapter.mEventAddress
             );
             mVendorCartRef.setValue(vendorOrderHome);
-        goToConsumerActivity();
+        FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(getActivity())
+                .setImageRecourse(R.drawable.message_text_outline2)
+                .setTextTitle("Contacted!")
+                .setTitleColor(R.color.blue)
+                .setTextSubTitle("View your messages and orders in the Chat and Cart tabs!")
+                .setPositiveButtonText("Continue")
+                .setOnPositiveClicked(new FancyAlertDialog.OnPositiveClicked() {
+                    @Override
+                    public void OnClick(View view, Dialog dialog) {
+                        goToConsumerActivity();
+                        dialog.dismiss();
+                    }
+                })
+                .build();
+        alert.show();
+        Log.i("Push to Cart", "True");
     }
 
     void goToConsumerActivity(){

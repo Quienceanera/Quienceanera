@@ -54,9 +54,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
             mViewPagerAdapter.addFragments(FragmentUtil.getChatHomeFragment(), "");
             mViewPagerAdapter.addFragments(FragmentUtil.getCartFragment(), "");
             mViewPagerAdapter.addFragments(FragmentUtil.getUserFragment(), "");
-            if (ConsumerActivity.mContactVendor){
-                mViewPagerAdapter.getItem(1);
-            }
+
         }
 
         mViewPager.setAdapter(mViewPagerAdapter);
@@ -64,6 +62,42 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         mContactVendor = false;
         mVendorMode = false;
         mConsumerMode = true;
+
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (tab.getPosition() == 0){
+                    ViewAnimator.animate(mFabNewEvent)
+                            .bounceIn()
+                            .duration(500)
+                            .andAnimate(mCardViewCreateEvent)
+                            .zoomIn()
+                            .descelerate()
+                            .duration(300)
+                            .start();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                if (tab.getPosition() == 0){
+                    ViewAnimator.animate(mFabNewEvent)
+                            .bounceOut()
+                            .duration(300)
+                            .andAnimate(mCardViewCreateEvent)
+                            .zoomOut()
+                            .descelerate()
+                            .duration(300)
+                            .start();
+                }
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+//        makeUserProfile();
     }
 
     void loadBackground() {
@@ -99,14 +133,6 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                 .descelerate()
                 .duration(1000)
                 .start();
-
-//        ViewAnimator.animate(mCardViewCreateEvent)
-//                .startDelay(5000)
-//                .thenAnimate(mCardViewCreateEvent)
-//                .fadeOut()
-//                .duration(1000)
-//                .andAnimate(mFabNewEvent)
-//                .start();
     }
 
     @Override
@@ -118,6 +144,18 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
             default:
         }
     }
+
+//    void makeUserProfile(){
+//        User user = new User(
+//                FirebaseUtil.getUserName(),
+//                FirebaseUtil.getUid(),
+//                FirebaseUtil.getUser().getEmail(),
+//                null,
+//                false,
+//                false
+//        );
+//        FirebaseUtil.getConsumerProfileRef().setValue(user);
+//    }
 
     void getCreateEventDialog(){
         new CreateEventDialogFragment().show(getFragmentManager(), "CreateEventDialogFragment");

@@ -45,6 +45,9 @@
                     <TextView
                         android:layout_centerInParent="true"
                         android:id="@+id/TextViewVendorInputHint"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                        android:textSize="20sp"
+                        android:textColor="@color/yellow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Your logo here!"/>
@@ -154,7 +157,7 @@
                     <EditText
                         android:padding="16dp"
                         android:id="@+id/editTextVendorInputDescription"
-                        android:inputType="textMultiLine|textCapSentences"
+                        android:inputType="textCapSentences"
                         android:maxLines="2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -211,6 +214,7 @@
                             android:maxLines="1"
                             android:ems="5"
                             android:minEms="5"
+                            android:maxLength="5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Zip code" />

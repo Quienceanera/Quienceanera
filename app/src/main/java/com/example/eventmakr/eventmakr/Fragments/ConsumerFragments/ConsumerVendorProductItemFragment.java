@@ -3,6 +3,7 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -125,7 +126,10 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         switch (id) {
             case R.id.buttonProductItemSelect:
                 if (mEditTextQuantity.getText().toString().isEmpty()){
-                    Snackbar.make(getActivity().findViewById(R.id.layoutEvent),"CHOOSE A QUANTITY FIRST", Snackbar.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.layoutEvent),"Choose a Quantity", Snackbar.LENGTH_SHORT);
+                    view = snackbar.getView();
+                    view.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.blue));
+                    snackbar.show();
                 }else {
                     Log.i("EditTextQty", "Not Null");
                     getKey();
@@ -177,7 +181,11 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
 
     }
     void returnToVendorProfile () {
-        Snackbar.make(getActivity().findViewById(R.id.layoutEvent),"ADDED TO CART!", Snackbar.LENGTH_SHORT).show();
+
+        Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.layoutEvent),"Added to Cart!", Snackbar.LENGTH_SHORT);
+        View view = snackbar.getView();
+        view.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.green));
+        snackbar.show();
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.containerEventActivity, FragmentUtil.getConsumerVendorProfileFragment())

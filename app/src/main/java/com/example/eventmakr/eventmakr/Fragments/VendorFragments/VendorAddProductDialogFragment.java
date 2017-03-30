@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -27,8 +29,9 @@ import com.google.firebase.storage.UploadTask;
 
 import static android.R.attr.dial;
 import static android.app.Activity.RESULT_OK;
+import static android.support.design.widget.Snackbar.make;
 
-public class VendorAddProductDialogFragment extends DialogFragment{
+public class VendorAddProductDialogFragment extends DialogFragment implements View.OnClickListener{
 
     private final static int SELECT_PHOTO = 0;
     private ProgressBar mProgressBar;
@@ -42,6 +45,7 @@ public class VendorAddProductDialogFragment extends DialogFragment{
     private EditText mEditTextProductName, mEditTextProductDescription, mEditTextProductPrice;
     private String mKey, mProductName, mProductDescription, mProductImage, mProductPrice, mVendorUid;
     public static String mVendorKey;
+    private String REQUIRED = "Required";
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -50,8 +54,12 @@ public class VendorAddProductDialogFragment extends DialogFragment{
         final View view = inflater.inflate(R.layout.dialog_fragment_vendor_menu_add, null);
         builder.setView(view);
 
+        setCancelable(false);
+
         photoIntent();
         mImageViewAddProduct = (ImageView) view.findViewById(R.id.imageViewAddProduct);
+        mFabProductCancel = (FloatingActionButton) view.findViewById(R.id.fabCancel);
+        mFabProductSave = (FloatingActionButton) view.findViewById(R.id.fabAdd);
         mEditTextProductName = (EditText) view.findViewById(R.id.editTextProductName);
         mEditTextProductDescription = (EditText) view.findViewById(R.id.editTextAddProductDescription);
         mEditTextProductPrice = (EditText) view.findViewById(R.id.editTextAddProductPrice);
@@ -61,21 +69,34 @@ public class VendorAddProductDialogFragment extends DialogFragment{
 
         mStorageReference = mFirebaseStorage.getReference().child("vendor").child(mVendorUid).child("product");
 
-        builder.setPositiveButton("ADD", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                getKey();
-            }
-        });
-        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dismiss();
-            }
-        });
+        mFabProductCancel.setOnClickListener(this);
+        mFabProductSave.setOnClickListener(this);
+
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
         return alertDialog;
+    }
+
+    void getStrings(){
+        mProductName = mEditTextProductName.getText().toString();
+        mProductDescription = mEditTextProductDescription.getText().toString();
+        mProductPrice = mEditTextProductPrice.getText().toString();
+        if (mProductName.isEmpty()||
+                mProductDescription.isEmpty()||
+                mProductPrice.isEmpty()||
+                mProductImage.isEmpty()){
+            if (TextUtils.isEmpty(mProductName)){
+                mEditTextProductName.setError("Can not be empty");
+            }
+            if (TextUtils.isEmpty(mProductDescription)){
+                mEditTextProductDescription.setError("Can not be empty");
+            }
+            if (TextUtils.isEmpty(mProductPrice)){
+                mEditTextProductPrice.setError("Can not be empty");
+            }
+        } else{
+            getKey();
+        }
     }
 
     void getKey () {
@@ -85,9 +106,6 @@ public class VendorAddProductDialogFragment extends DialogFragment{
         databasePush();
     }
     void databasePush () {
-        mProductName = mEditTextProductName.getText().toString();
-        mProductDescription = mEditTextProductDescription.getText().toString();
-        mProductPrice = mEditTextProductPrice.getText().toString();
 
         Menu menu = new Menu(
                 mProductName,
@@ -99,8 +117,8 @@ public class VendorAddProductDialogFragment extends DialogFragment{
                 FirebaseUtil.getUserName()
         );
         mPushRef.setValue(menu);
+        dismiss();
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -115,7 +133,11 @@ public class VendorAddProductDialogFragment extends DialogFragment{
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     mProgressBar.setVisibility(View.INVISIBLE);
                     mProductImage = taskSnapshot.getDownloadUrl().toString();
-                    Snackbar.make(getActivity().findViewById(R.id.layoutVendorExtras), "Photo Uploaded!", Snackbar.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.layoutVendorExtras), "Photo Uploaded!", Snackbar.LENGTH_SHORT);
+                    View view = snackbar.getView();
+                    view.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.blue));
+                    snackbar.show();
+
                 }
             });
         } else {
@@ -129,4 +151,21 @@ public class VendorAddProductDialogFragment extends DialogFragment{
         startActivityForResult(pickPhotoIntent, SELECT_PHOTO);
     }
 
+    @Override
+    public void onResume() {
+        getDialog().getWindow().setBackgroundDrawableResource(R.drawable.tw__transparent);
+        super.onResume();
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.fabAdd:
+                getStrings();
+                break;
+            case R.id.fabCancel:
+                dismiss();
+        }
+    }
 }

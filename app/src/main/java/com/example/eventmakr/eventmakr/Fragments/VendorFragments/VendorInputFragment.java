@@ -15,14 +15,19 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Activities.VendorActivity;
 import com.example.eventmakr.eventmakr.Objects.Vendor;
+import com.example.eventmakr.eventmakr.Objects.VendorUser;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.github.channguyen.rsv.RangeSliderView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -39,7 +44,7 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
     private StorageReference mStorageReference, mPhotoRef;
     private FirebaseStorage mFirebaseStorage = FirebaseStorage.getInstance();
     private FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
-    private DatabaseReference mDatabaseRef;
+    private DatabaseReference mDatabaseRef, mProfileRef;
     private DatabaseReference mPushRef;
     private ImageView mImageViewLogo;
     private Uri mMediaUri;
@@ -47,14 +52,17 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
     private RangeSliderView mRangeSlider;
     private TextView m$, m$$, m$$$;
     private EditText mEditTextName, mEditTextOwner, mEditTextContact, mEditTextDescription, mEditTextCategory, mEditTextAddress, mEditTextZipcode, mEditTextPrice;
-
+    private String REQUIRED = "Required";
     public VendorInputFragment() {
         // Required empty public constructor
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mProfileRef = FirebaseUtil.getVendorSideProfileRef();
+        mPrice = "$";
     }
 
     @Override
@@ -76,6 +84,7 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
         m$$ = (TextView) mView.findViewById(R.id.$2);
         m$$$ = (TextView) mView.findViewById(R.id.$3);
         mRangeSlider = (RangeSliderView) mView.findViewById(R.id.rangeSliderVendorInput);
+        getProfileDetails();
 
         mRangeSlider.setOnSlideListener(new RangeSliderView.OnSlideListener() {
             @Override
@@ -105,63 +114,98 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
 
         if(mCategory != null) {
             mStorageReference = mFirebaseStorage.getReference().child("vendor").child(mCategory).child(mVendorUid);
+            mDatabaseRef = FirebaseUtil.getVendorRef().child(mCategory).child(FirebaseUtil.getUid());
         }
+
+
         mButtonSave.setOnClickListener(this);
         mImageViewLogo.setOnClickListener(this);
-
 
         return mView;
     }
 
+    void getProfileDetails(){
+        mProfileRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    mName = dataSnapshot.child("name").getValue().toString();
+                    mOwner = dataSnapshot.child("owner").getValue().toString();
+                    mContact = dataSnapshot.child("contact").getValue().toString();
+                    mAddress = dataSnapshot.child("address").getValue().toString();
+                    mZipcode = dataSnapshot.child("zipcode").getValue().toString();
+                    mDescription = dataSnapshot.child("description").getValue().toString();
+                    mPrice = dataSnapshot.child("price").getValue().toString();
+                    mCategory = dataSnapshot.child("category").getValue().toString();
+                    mLogo = dataSnapshot.child("logo").getValue().toString();
+
+                    Glide.with(getActivity())
+                            .load(mLogo)
+                            .centerCrop()
+                            .into(mImageViewLogo);
+                    mEditTextName.setText(mName);
+                    mEditTextOwner.setText(mOwner);
+                    mEditTextContact.setText(mContact);
+                    mEditTextAddress.setText(mAddress);
+                    mEditTextZipcode.setText(mZipcode);
+                    mEditTextDescription.setText(mDescription);
+                    mEditTextCategory.setText(mCategory);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     public void getStrings(){
-        if (mEditTextName.getText().toString().isEmpty()||
-                mEditTextOwner.getText().toString().isEmpty()||
-                mEditTextContact.getText().toString().isEmpty()||
-                mEditTextAddress.getText().toString().isEmpty()||
-                mEditTextZipcode.getText().toString().isEmpty()||
-                mEditTextDescription.getText().toString().isEmpty()||
+        mName = mEditTextName.getText().toString();
+        mOwner = mEditTextOwner.getText().toString();
+        mContact = mEditTextContact.getText().toString();
+        mAddress = mEditTextAddress.getText().toString();
+        mZipcode = mEditTextZipcode.getText().toString();
+        mDescription = mEditTextDescription.getText().toString();
+        mCategory = mEditTextCategory.getText().toString();
+
+        if (mName.isEmpty()||
+                mOwner.isEmpty()||
+                mContact.isEmpty()||
+                mAddress.isEmpty()||
+                mZipcode.isEmpty()||
+                mDescription.isEmpty()||
                 mPrice.isEmpty()||
-                mImageViewLogo == null){
-            Toast.makeText(getActivity(), "Please finish form before saving", Toast.LENGTH_SHORT).show();
-        }else{
-            mName = mEditTextName.getText().toString();
-            mOwner = mEditTextOwner.getText().toString();
-            mContact = mEditTextContact.getText().toString();
-            mAddress = mEditTextAddress.getText().toString();
-            mZipcode = mEditTextZipcode.getText().toString();
-            mDescription = mEditTextDescription.getText().toString();
+                mImageViewLogo.getDrawable() == null){
+
+            if (mImageViewLogo.getDrawable() == null){
+                Toast.makeText(getActivity(), "Please upload a photo", Toast.LENGTH_SHORT).show();
+            }
             if (TextUtils.isEmpty(mName)){
-                mEditTextName.setError("");
+                mEditTextName.setError(REQUIRED);
             }
             if (TextUtils.isEmpty(mOwner)){
-                mEditTextOwner.setError("");
+                mEditTextOwner.setError(REQUIRED);
             }
             if (TextUtils.isEmpty(mContact)){
-                mEditTextContact.setError("");
+                mEditTextContact.setError(REQUIRED);
             }
             if (TextUtils.isEmpty(mAddress)){
-                mEditTextAddress.setError("");
+                mEditTextAddress.setError(REQUIRED);
             }
             if (TextUtils.isEmpty(mZipcode)){
-                mEditTextZipcode.setError("");
+                mEditTextZipcode.setError(REQUIRED);
             }
             if (TextUtils.isEmpty(mDescription)){
-                mEditTextDescription.setError("");
+                mEditTextDescription.setError(REQUIRED);
             }
-//            getKey();
+        }else{
+            getKey();
         }
     }
 
-//    void validateFields(){
-//        if (mName.isEmpty()||mOwner.isEmpty()||mContact.isEmpty()||mAddress.isEmpty()||mZipcode.isEmpty()||mDescription.isEmpty()||mPrice.isEmpty()||mImageViewLogo == null){
-//            Toast.makeText(getActivity(), "Please Finish Form Before Saving", Toast.LENGTH_SHORT).show();
-//        }else{
-//            getKey();
-//        }
-//    }
-
     public void getKey () {
-        mCategory = mEditTextCategory.getText().toString();
         mDatabaseRef = FirebaseUtil.getVendorRef().child(mCategory).child(FirebaseUtil.getUid());
         mPushRef = mDatabaseRef;
         mVendorKey = mPushRef.getKey();
@@ -181,7 +225,23 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
                 mLogo,
                 mCategory
         );
+
+        VendorUser vendorUser = new VendorUser(
+                mName,
+                mOwner,
+                mContact,
+                mVendorUid,
+                mVendorKey,
+                mAddress,
+                mZipcode,
+                mDescription,
+                mPrice,
+                mLogo,
+                mCategory,
+                "true"
+        );
         mPushRef.setValue(vendor);
+        mProfileRef.setValue(vendorUser);
         startActivity(new Intent(getActivity(), VendorActivity.class));
     }
 

@@ -2,6 +2,7 @@ package com.example.eventmakr.eventmakr.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
@@ -32,6 +33,7 @@ public class VendorAdapter extends FirebaseRecyclerAdapter<Vendor, Viewholder> {
 
     @Override
     protected void populateViewHolder(final Viewholder viewHolder, final Vendor model, final int position) {
+        Log.i(TAG,TAG);
         mVendorUid = getRef(position).getKey();
 
         mVendorLogo = model.getLogo();

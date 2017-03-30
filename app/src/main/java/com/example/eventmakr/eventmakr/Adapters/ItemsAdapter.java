@@ -1,6 +1,7 @@
 package com.example.eventmakr.eventmakr.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
@@ -12,7 +13,7 @@ import com.google.firebase.database.Query;
 
 public class ItemsAdapter extends FirebaseRecyclerAdapter<Items, Viewholder> {
 
-    private static final String TAG = Items.class.getSimpleName();
+    private static final String TAG = ItemsAdapter.class.getSimpleName();
     private Context mContext;
     public static String mItemsKey;
     private DatabaseReference mItemsRef;
@@ -24,6 +25,7 @@ public class ItemsAdapter extends FirebaseRecyclerAdapter<Items, Viewholder> {
 
     @Override
     protected void populateViewHolder(Viewholder viewHolder, final Items model, int position) {
+        Log.i(TAG,TAG);
         viewHolder.mTextViewItemsName.setText(model.getName());
         viewHolder.mTextViewItemsQuantity.setText(model.getQuantity());
         viewHolder.mTextViewItemsPrice.setText("$" + model.getPrice());

@@ -4,11 +4,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,14 +25,16 @@ import android.widget.Toast;
 import com.example.eventmakr.eventmakr.Objects.Events;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
+import com.geniusforapp.fancydialog.FancyAlertDialog;
 import com.google.firebase.database.DatabaseReference;
 
-public class CreateEventDialogFragment extends DialogFragment{
+public class CreateEventDialogFragment extends DialogFragment implements View.OnClickListener{
     private Spinner mSpinner;
     private String[] Events = {"Choose an Event","Quienceanera", "Birthday", "Wedding", "Baby Shower", "Graduation"};
     private String mEventZipCode, mEventId, mEventPhoto, mUid;
     private EditText mEditTextZipCode, mEditTextEventName;
     private DatabaseReference mPushRef, mEventsRef;
+    private FloatingActionButton mFabCreate, mFabCancel;
     private int mImageId;
     private CalendarView mCalendarView;
     private Boolean mCheckFields = false;
@@ -44,33 +47,18 @@ public class CreateEventDialogFragment extends DialogFragment{
         final View view = inflater.inflate(R.layout.dialog_fragment_create_event, null);
         builder.setView(view);
 
+        getHelpPrompt();
+
         mEditTextZipCode = (EditText) view.findViewById(R.id.editTextZipCode);
         mEditTextEventName = (EditText) view.findViewById(R.id.editTextInputEventName);
         mCalendarView = (CalendarView) view.findViewById(R.id.calendarView);
+        mFabCancel = (FloatingActionButton) view.findViewById(R.id.fabCancel);
+        mFabCreate = (FloatingActionButton) view.findViewById(R.id.fabCreate);
         mSpinner = (Spinner) view.findViewById(R.id.spinner_occasion);
         mSpinner.setAdapter(new spinnerAdapter(getActivity(), R.layout.custom_spinner, R.id.textViewSpinner, Events));
 
-
-        builder.setPositiveButton("CREATE", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (mEditTextEventName.getText().toString().isEmpty() ||
-                        mEditTextZipCode.getText().toString().isEmpty() ||
-                        mCalendarView.toString().isEmpty()|| mSpinner.toString().isEmpty()){
-                    Log.i("is empty", "True");
-                    Toast.makeText(getActivity(), "Please specify a Date, Event, Name, and Zip", Toast.LENGTH_SHORT).show();
-                } else{
-                    Log.i("is empty", "false");
-                    createEvent();
-                }
-            }
-        });
-        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dismiss();
-            }
-        });
+        mFabCreate.setOnClickListener(this);
+        mFabCancel.setOnClickListener(this);
 
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -87,7 +75,7 @@ public class CreateEventDialogFragment extends DialogFragment{
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                mEventDate = String.valueOf(month +"-"+ dayOfMonth +"-"+ year);
+                mEventDate = String.valueOf(month +"/"+ dayOfMonth +"/"+ year);
                 Log.i("Event Date", mEventDate);
             }
         });
@@ -95,6 +83,49 @@ public class CreateEventDialogFragment extends DialogFragment{
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
         return alertDialog;
+    }
+
+    void getHelpPrompt(){
+        final FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(getActivity())
+                .setImageRecourse(R.drawable.help_circle)
+                .setTextTitle("Create Event!")
+                .setTitleColor(R.color.blue)
+                .setTextSubTitle("Choose A Date\n&\nEnter Your Details")
+                .setPositiveButtonText("Okay!")
+                .setOnPositiveClicked(new FancyAlertDialog.OnPositiveClicked() {
+                    @Override
+                    public void OnClick(View view, Dialog dialog) {
+                        dialog.dismiss();
+                    }
+                })
+                .build();
+        alert.show();
+    }
+
+    void checkFields(){
+        mEventName = mEditTextEventName.getText().toString();
+        mEventAddress = mEditTextZipCode.getText().toString();
+
+        mEventType = mSpinner.toString();
+
+        if (mEventName.isEmpty() ||
+                mEventAddress.isEmpty() ||
+                mEventDate.isEmpty()||
+                mEventType.isEmpty()){
+            if (TextUtils.isEmpty(mEventName)){
+                mEditTextEventName.setError("Can not be empty");
+            }
+            if (TextUtils.isEmpty(mEventAddress)){
+                mEditTextZipCode.setError("Can not be empty");
+            }
+            if (TextUtils.isEmpty(mEventType)){
+                Toast.makeText(getActivity(), "Choose A Date", Toast.LENGTH_SHORT).show();
+            }
+            Log.i("is empty", "True");
+        } else{
+            Log.i("is empty", "false");
+            createEvent();
+        }
     }
 
 
@@ -117,7 +148,22 @@ public class CreateEventDialogFragment extends DialogFragment{
         );
         mPushRef.setValue(events);
         mEventKey = mEventId;
+        dismiss();
     }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.fabCreate:
+                checkFields();
+                break;
+            case R.id.fabCancel:
+                dismiss();
+                break;
+        }
+    }
+
     public class spinnerAdapter extends ArrayAdapter {
         public spinnerAdapter(@NonNull Context context, @LayoutRes int resource, @IdRes int text, @NonNull Object[] objects) {
             super(context, resource, text, objects);
@@ -135,5 +181,10 @@ public class CreateEventDialogFragment extends DialogFragment{
         public View getView(int position, View convertView, ViewGroup parent) {
             return getCustomView(position, convertView, parent);
         }
+    }
+    @Override
+    public void onResume() {
+        getDialog().getWindow().setBackgroundDrawableResource(R.drawable.tw__transparent);
+        super.onResume();
     }
 }

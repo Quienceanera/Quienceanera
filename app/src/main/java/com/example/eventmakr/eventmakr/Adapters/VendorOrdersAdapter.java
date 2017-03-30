@@ -1,9 +1,9 @@
 package com.example.eventmakr.eventmakr.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.bumptech.glide.Glide;
-import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.Objects.VendorOrderItem;
 import com.example.eventmakr.eventmakr.ViewHolders.VendorOrderListViewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -11,7 +11,7 @@ import com.google.firebase.database.Query;
 
 public class VendorOrdersAdapter extends FirebaseRecyclerAdapter<VendorOrderItem, VendorOrderListViewholder> {
 
-    private static final String TAG = Items.class.getSimpleName();
+    private static final String TAG = VendorOrdersAdapter.class.getSimpleName();
     private Context mContext;
 
     public VendorOrdersAdapter(Class<VendorOrderItem> modelClass, int modelLayout, Class<VendorOrderListViewholder> viewHolderClass, Query ref, Context context) {
@@ -29,12 +29,6 @@ public class VendorOrdersAdapter extends FirebaseRecyclerAdapter<VendorOrderItem
                 .load(model.getPhoto())
                 .centerCrop()
                 .into(viewHolder.mImageViewOrderItem);
-
-//        viewHolder.mCardViewOrderItem.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                getCart();
-//            }
-//        });
+        Log.i(TAG,TAG);
     }
 }

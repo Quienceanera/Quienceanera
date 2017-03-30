@@ -2,6 +2,7 @@ package com.example.eventmakr.eventmakr.Utils;
 
 import android.util.Log;
 
+import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
@@ -33,7 +34,17 @@ public class FirebaseUtil {
         return getBaseRef().child("vendor");
     }
 
+    public static DatabaseReference getFeedbackRef(){
+        return getBaseRef().child("feedback").child(FirebaseUtil.getUid());
+    }
+
+
     //TODO: Consumer Side
+
+    public static DatabaseReference getConsumerProfileRef(){
+        return getBaseRef().child("consumerProfile").child(FirebaseUtil.getUid());
+    }
+
     public static DatabaseReference getEventsRef() {
         return getBaseRef().child("consumerEvent").child(FirebaseUtil.getUid());
     }
@@ -64,7 +75,13 @@ public class FirebaseUtil {
     }
 
     public static  DatabaseReference getConsumerSideVendorOrderRef() {
+        if (VendorAdapter.mVendorUid != null) {
             return getBaseRef().child("vendorOrder").child(VendorAdapter.mVendorUid).child(EventsAdapter.mEventKey);
+        }
+        if (CartHomeAdapter.mVendorUid != null) {
+            return getBaseRef().child("vendorOrder").child(CartHomeAdapter.mVendorUid).child(EventsAdapter.mEventKey);
+        }
+        return null;
     }
 
     public static  DatabaseReference getConsumerSideConsumerOrderRef() {
@@ -75,7 +92,13 @@ public class FirebaseUtil {
             return getBaseRef().child("consumerOrderInfo").child(FirebaseUtil.getUid()).child(EventsAdapter.mEventKey);
     }
     public static  DatabaseReference getConsumerSideVendorOrderInfoRef() {
+        if (VendorAdapter.mVendorUid != null){
             return getBaseRef().child("vendorOrderInfo").child(VendorAdapter.mVendorUid).child(EventsAdapter.mEventKey);
+        }
+        if (CartHomeAdapter.mVendorUid != null){
+            return getBaseRef().child("vendorOrderInfo").child(CartHomeAdapter.mVendorUid).child(EventsAdapter.mEventKey);
+        }
+        return null;
     }
 
 
@@ -108,6 +131,10 @@ public class FirebaseUtil {
 
     public static DatabaseReference getVendorSideVendorOrderListRef() {
         return getBaseRef().child("vendorOrder").child(getUid()).child(VendorOrderHomeAdapter.mEventKey);
+    }
+
+    public static DatabaseReference getVendorSideProfileRef(){
+        return getBaseRef().child("vendorProfile").child(getUid());
     }
 
 }

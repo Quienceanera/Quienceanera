@@ -3,6 +3,7 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -82,7 +83,10 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
         int id = view.getId();
         switch (id) {
             case R.id.fabSend:
-                postChat();
+                if (TextUtils.isEmpty(mEditTextChat.getText().toString())){
+                }else {
+                    postChat();
+                }
                 break;
             default:
         }

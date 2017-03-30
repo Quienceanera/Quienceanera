@@ -1,5 +1,6 @@
 package com.example.eventmakr.eventmakr.Fragments.VendorFragments;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Adapters.VendorOrderHomeAdapter;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
+import com.geniusforapp.fancydialog.FancyAlertDialog;
 import com.github.florent37.viewanimator.ViewAnimator;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,11 +26,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class OrderDetailFragment extends android.app.Fragment implements View.OnClickListener{
 
     private CircleImageView mImageViewOrderDetail;
-    private TextView mTextViewOrderDetailDate, mTextViewOrderDetailEvent, mTextViewOrderDetailAddress, mTextViewOrderDetailCustomerName, mTextViewOrderDetailConfirm;
-    private String mOrderDetailDate, mOrderDetailEvent, mOrderDetailAddress, mCustomerPhoto, mCustomerName, mCustomerUid;
+    private TextView mTextViewOrderDetailDate, mTextViewOrderDetailEvent, mTextViewOrderDetailAddress, mTextViewOrderDetailCustomerName;
+    private String mOrderDetailDate, mOrderDetailEvent, mOrderDetailAddress, mCustomerPhoto, mCustomerName, mCustomerUid, mConfirm, mConfirmNotify;
     private DatabaseReference mVendorOrderInfoRef, mConsumerOrderInfoRef;
     private FloatingActionButton mFabConfirm;
     private Boolean mProcessConfirm;
+    private int mImage;
 
     public OrderDetailFragment() {
         // Required empty public constructor
@@ -52,7 +55,6 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
         mTextViewOrderDetailEvent = (TextView) view.findViewById(R.id.textViewOrderDetailEventName);
         mTextViewOrderDetailAddress = (TextView) view.findViewById(R.id.textViewOrderDetailAddress);
         mTextViewOrderDetailCustomerName = (TextView) view.findViewById(R.id.textViewOrderDetailCustomerName);
-        mTextViewOrderDetailConfirm = (TextView) view.findViewById(R.id.textViewOrderDetailConfirm);
 
         mFabConfirm = (FloatingActionButton) view.findViewById(R.id.fabConfirm);
         mFabConfirm.setOnClickListener(this);
@@ -63,7 +65,7 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mOrderDetailDate = (String) dataSnapshot.child("eventDate").getValue();
                 mOrderDetailEvent = (String) dataSnapshot.child("eventName").getValue();
-                mOrderDetailAddress = (String) dataSnapshot.child("eventAddress").getValue();
+                mOrderDetailAddress = (String) dataSnapshot.child("zipCode").getValue();
                 mCustomerPhoto = (String) dataSnapshot.child("customerPhoto").getValue();
                 mCustomerName = (String) dataSnapshot.child("customerName").getValue();
 
@@ -80,6 +82,7 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
                     Log.i("Datasnapshot", "True");
                     mConsumerOrderInfoRef.child("confirm").setValue("true");
                     mFabConfirm.setImageResource(R.drawable.checkbox_marked_circle);
+
 
                 }else{
                     mFabConfirm.setImageResource(R.drawable.check_circle_outline);
@@ -105,14 +108,20 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
                 if (mProcessConfirm){
                     if (dataSnapshot.hasChild(FirebaseUtil.getUid())){
                         mVendorOrderInfoRef.child(FirebaseUtil.getUid()).removeValue();
-
                         mProcessConfirm = false;
                         Log.i("DataSnapshot 1", dataSnapshot.toString());
+                        mConfirm = "Confirmation Canceled";
+                        mConfirmNotify = "Customer Has Been Notified!";
+                        mImage = R.drawable.check_circle_outline2;
+                        showConfirmationStatus();
                     }else{
                         mVendorOrderInfoRef.child(FirebaseUtil.getUid()).setValue("true");
-
                         mProcessConfirm = false;
                         Log.i("DataSnapshot 2", dataSnapshot.toString());
+                        mConfirm = "Confirmed!";
+                        mConfirmNotify = "Customer Has Been Notified!";
+                        mImage = R.drawable.checkbox_marked_circle2;
+                        showConfirmationStatus();
                     }
                 }
             }
@@ -123,22 +132,29 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
         });
     }
 
+    void showConfirmationStatus(){
+        FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(getActivity())
+                .setImageRecourse(mImage)
+                .setTextTitle(mConfirm)
+                .setTitleColor(R.color.blue)
+                .setTextSubTitle(mConfirmNotify)
+                .setPositiveButtonText("Okay")
+                .setOnPositiveClicked(new FancyAlertDialog.OnPositiveClicked() {
+                    @Override
+                    public void OnClick(View view, Dialog dialog) {
+                        dialog.dismiss();
+                    }
+                })
+                .build();
+        alert.show();
+    }
+
     @Override
     public void onResume() {
         super.onResume();
         ViewAnimator.animate(mFabConfirm)
                 .bounceIn()
-                .duration(1000)
-                .andAnimate(mTextViewOrderDetailConfirm)
-                .fadeIn()
-                .duration(1000)
-                .thenAnimate(mTextViewOrderDetailConfirm)
-                .flash()
-                .duration(500)
-                .startDelay(2000)
-                .thenAnimate(mTextViewOrderDetailConfirm)
-                .fadeOut()
-                .duration(1000)
+                .duration(1500)
                 .start();
     }
 

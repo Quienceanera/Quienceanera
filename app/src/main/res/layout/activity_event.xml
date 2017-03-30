@@ -26,11 +26,11 @@
             android:layout_gravity="top"
             android:elevation="4dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="90dp"
             android:fitsSystemWindows="true">
 
             <LinearLayout
-                android:layout_gravity="center"
+                android:layout_gravity="center|top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -85,8 +85,16 @@
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
-        </Toolbar>
 
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabRecommendVendor"
+                android:src="@drawable/store"
+                app:useCompatPadding="true"
+                android:layout_gravity="end|top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 

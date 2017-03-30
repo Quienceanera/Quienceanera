@@ -17,7 +17,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import static android.graphics.Color.rgb;
+
 public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderHome, VendorOrderHomeViewholder>{
+    private final static String TAG = VendorOrderHomeAdapter.class.getSimpleName();
     private Context mContext;
     public static String mCustomerUid, mEventKey, mTotalPrice, mOrderHomeKey;
     private Query mRef;
@@ -32,6 +35,7 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
 
     @Override
     protected void populateViewHolder(final VendorOrderHomeViewholder viewHolder, final VendorOrderHome model, final int position) {
+        Log.i(TAG,TAG);
         mOrderHomeKey = getRef(position).getKey();
 
         mDatabaseConfirm = FirebaseUtil.getVendorSideVendorOrderHomeRef().child(mOrderHomeKey);
@@ -39,8 +43,8 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
         viewHolder.mTextViewVendorOrderHomeCustomerName.setText(model.getCustomerName());
         viewHolder.mTextViewVendorOrderHomeEventName.setText("For " + model.getEventName());
         viewHolder.mTextViewVendorOrderHomeTimestamp.setText("Submitted On: " + model.getTimestamp());
-        viewHolder.mTextViewVendorOrderHomePriceTotal.setText("Total Price: " + model.getTotalPrice());
-        viewHolder.mTextViewVendorOrderHomeCount.setText("Quantity " + model.getTotalQuantity());
+        viewHolder.mTextViewVendorOrderHomePriceTotal.setText("Total Price: $" + model.getTotalPrice());
+        viewHolder.mTextViewVendorOrderHomeCount.setText("Quantity: " + model.getTotalQuantity());
         Glide.with(mContext)
                 .load(model.getCustomerPhoto())
                 .centerCrop()
@@ -63,9 +67,11 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
                 if (dataSnapshot.hasChild(FirebaseUtil.getUid())){
                     Log.i("Datasnapshot", "True");
                     viewHolder.mTextViewConfirm.setText("Order Confirmed!");
+                    viewHolder.mCardViewVendorOrderHome.setCardBackgroundColor(rgb(175,209,54));
                 }else{
                     Log.i("Datasnapshot", "false");
                     viewHolder.mTextViewConfirm.setText("Awaiting Confirmation");
+                    viewHolder.mCardViewVendorOrderHome.setCardBackgroundColor(rgb(255,255,255));
                 }
             }
 
