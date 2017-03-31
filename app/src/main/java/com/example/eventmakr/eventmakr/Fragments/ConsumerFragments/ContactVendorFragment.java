@@ -215,16 +215,20 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                     @Override
                     public void OnClick(View view, Dialog dialog) {
                         dialog.dismiss();
+                        restartActivity();
                     }
                 })
                 .build();
         alert.show();
-        restartActivity();
         Log.i("Push to Cart", "True");
     }
 
     void restartActivity(){
         CartHomeAdapter.mConfirm = "true";
+        getFragmentManager()
+                .beginTransaction()
+                .remove(FragmentUtil.getCartDetailFragment())
+                .commit();
         startActivity(new Intent(getActivity(), PayActivity.class));
     }
 }

@@ -12,10 +12,11 @@ import android.widget.Toolbar;
 
 import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ConsumerViewPagerAdapter;
+import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ContactVendorFragment;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.CartFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.ChatFragment;
 import com.example.eventmakr.eventmakr.R;
-import com.example.eventmakr.eventmakr.RecyclerFragment.OrderListRecyclerFragment;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
 import java.util.Objects;
@@ -32,9 +33,10 @@ public class PayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
+        VendorActivity.mVendorMode = false;
         mToolbar = (Toolbar) findViewById(R.id.toolbarPay);
         setActionBar(mToolbar);
-        mToolbar.setNavigationIcon(R.drawable.arrow_left);
+        mToolbar.setNavigationIcon(R.drawable.close);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +53,7 @@ public class PayActivity extends AppCompatActivity {
 
         if (Objects.equals(CartHomeAdapter.mConfirm, "true")){
             Log.i(TAG+"2", CartHomeAdapter.mConfirm);
-            mViewPagerAdapter.addFragments(new OrderListRecyclerFragment(), "");
+            mViewPagerAdapter.addFragments(new CartFragment(), "");
             mViewPagerAdapter.addFragments(new ChatFragment(),"");
             mLayoutCheckOut.setVisibility(View.VISIBLE);
         } else{
@@ -106,7 +108,11 @@ public class PayActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(PayActivity.this, VendorActivity.class));
+        if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode && EventsAdapter.mEventKey == null){
+            startActivity(new Intent(PayActivity.this, VendorActivity.class));
+        }else{
+            startActivity(new Intent(PayActivity.this, ConsumerActivity.class));
+        }
         super.onBackPressed();
     }
 }

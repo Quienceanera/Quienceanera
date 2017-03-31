@@ -13,6 +13,7 @@ import android.widget.EditText;
 
 import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
 import com.example.eventmakr.eventmakr.Activities.VendorActivity;
+import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Objects.Message;
@@ -103,7 +104,7 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
             mConsumerMessageRef = FirebaseUtil.getVendorSideConsumerMessageRef().child(mChatKey);
 
         } else {
-                mConsumerMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(mVendorUid).child(mChatKey);
+                mConsumerMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(CartHomeAdapter.mVendorUid).child(mChatKey);
                 mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef().child(mChatKey);
 
         }
@@ -112,8 +113,8 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
                 mUsername,
                 mPhotoUrl,
                 EventsAdapter.mEventKey,
-                mUid,
-                mVendorUid,
+                FirebaseUtil.getUid(),
+                CartHomeAdapter.mVendorUid,
                 mCurrentTimestamp
         );
 

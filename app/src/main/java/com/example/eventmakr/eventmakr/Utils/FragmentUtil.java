@@ -6,12 +6,12 @@ import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerVendo
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerVendorProductItemFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerVendorProfileFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ContactVendorFragment;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.CartFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.EventsFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.MenuItemFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.CartDetailFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.CartHomeFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.ChatFragment;
-import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.ChatHomeFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.NavBar;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.PayFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.UserFragment;
@@ -108,9 +108,9 @@ public class FragmentUtil {
         return new MessageRecyclerFragment();
     }
 
-    public static ChatHomeFragment getChatHomeFragment () {
-        ChatHomeFragment chatHomeFragment = new ChatHomeFragment();
-        return chatHomeFragment;
+    public static CartFragment getChatHomeFragment () {
+        CartFragment cartFragment = new CartFragment();
+        return cartFragment;
     }
 
     public static CartHomeFragment getCartFragment () {

@@ -17,7 +17,7 @@ public class VendorExtrasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vendor_extras);
         android.widget.Toolbar toolbar = (android.widget.Toolbar) findViewById(R.id.toolbar);
         setActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.arrow_left);
+        toolbar.setNavigationIcon(R.drawable.close);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

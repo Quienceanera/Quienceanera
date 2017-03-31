@@ -27,7 +27,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
     private ViewPagerAdapter mViewPagerAdapter;
     private FloatingActionButton mFabNewEvent;
     private CardView mCardViewCreateEvent;
-    public static Boolean mVendorMode, mConsumerMode, mContactVendor;
+    public static Boolean mVendorMode, mConsumerMode;
     private CoordinatorLayout mLayoutConsumer;
 
     @Override
@@ -51,15 +51,13 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         mViewPagerAdapter = new ViewPagerAdapter(getFragmentManager(), this);
         mViewPagerAdapter.addFragments(FragmentUtil.getEventsFragment(), "");
         if (EventsAdapter.mEventKey != null){
-            mViewPagerAdapter.addFragments(FragmentUtil.getChatHomeFragment(), "");
             mViewPagerAdapter.addFragments(FragmentUtil.getCartFragment(), "");
             mViewPagerAdapter.addFragments(FragmentUtil.getUserFragment(), "");
-
+//            mTabLayout.getTabAt(1).select();
         }
 
         mViewPager.setAdapter(mViewPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
-        mContactVendor = false;
         mVendorMode = false;
         mConsumerMode = true;
 
@@ -163,7 +161,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onBackPressed() {
-            super.onBackPressed();
         startActivity(new Intent(this, MainActivity.class));
+        super.onBackPressed();
     }
 }

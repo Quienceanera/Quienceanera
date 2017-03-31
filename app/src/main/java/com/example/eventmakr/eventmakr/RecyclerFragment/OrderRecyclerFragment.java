@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
-import com.example.eventmakr.eventmakr.Adapters.ItemsAdapter;
+import com.example.eventmakr.eventmakr.Adapters.PreCartAdapter;
 import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -21,7 +21,7 @@ public class OrderRecyclerFragment extends Fragment{
 
     private static final String TAG = "OrderRecyclerFragment";
     private RecyclerView mRecyclerView;
-    private ItemsAdapter mItemsAdapter;
+    private PreCartAdapter mPreCartAdapter;
     private GridLayoutManager mLayoutManager;
     private String mVendorUid;
 
@@ -29,7 +29,7 @@ public class OrderRecyclerFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState){
         if (EventsAdapter.mEventKey != null){
             if (CartHomeAdapter.mVendorUid != null) {
-                mItemsAdapter = new ItemsAdapter(
+                mPreCartAdapter = new PreCartAdapter(
                         Items.class,
                         R.layout.items_card_view,
                         Viewholder.class,
@@ -51,7 +51,7 @@ public class OrderRecyclerFragment extends Fragment{
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewItemsList);
         mLayoutManager = new GridLayoutManager(getActivity(), 3);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mItemsAdapter);
+        mRecyclerView.setAdapter(mPreCartAdapter);
         mLayoutManager.setItemPrefetchEnabled(false);
 
         return rootView;
@@ -60,8 +60,8 @@ public class OrderRecyclerFragment extends Fragment{
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mItemsAdapter != null) {
-            mItemsAdapter.cleanup();
+        if (mPreCartAdapter != null) {
+            mPreCartAdapter.cleanup();
         }
 
     }

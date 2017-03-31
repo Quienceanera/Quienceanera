@@ -29,7 +29,7 @@ public class VendorOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vendor_order);
         mToolbar = (Toolbar) findViewById(R.id.toolbarVendorOrder);
         setActionBar(mToolbar);
-        mToolbar.setNavigationIcon(R.drawable.arrow_left);
+        mToolbar.setNavigationIcon(R.drawable.close);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

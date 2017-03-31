@@ -67,7 +67,7 @@ public class FirebaseUtil {
             return getBaseRef().child("vendorMessage").child(CartHomeAdapter.mVendorUid).child(getUid());
         }else {
             Log.i("CSideVMessageRef", ChatHomeAdapter.mVendorUid);
-            return getBaseRef().child("vendorMessage").child(ChatHomeAdapter.mVendorUid).child(getUid());
+            return getBaseRef().child("vendorMessage").child(CartHomeAdapter.mVendorUid).child(getUid());
         }
     }
     public static DatabaseReference getConsumerSideVendorProductRef() {

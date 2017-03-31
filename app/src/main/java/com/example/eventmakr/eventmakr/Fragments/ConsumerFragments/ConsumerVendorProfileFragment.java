@@ -2,8 +2,8 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +50,7 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_consumer_vendor_profile, container, false);
-        mButtonMyItems = (CardView) view.findViewById(R.id.buttonMyItems);
+//        mButtonMyItems = (CardView) view.findViewById(R.id.buttonMyItems);
         mCardViewMap = (CardView) view.findViewById(R.id.cardViewMap);
         mCardViewVendorProfile = (CardView) view.findViewById(R.id.cardViewVendorProfile);
         mImageViewVendorProfile = (ImageView) view.findViewById(R.id.imageViewVendorProfile);
@@ -63,7 +63,7 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
         getChildRecyclerVendorProductItems();
         getChildMapFragment();
 
-        mButtonMyItems.setOnClickListener(this);
+//        mButtonMyItems.setOnClickListener(this);
         return view;
     }
 
@@ -71,32 +71,17 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
     public void onResume() {
         super.onResume();
 
-        ViewAnimator.animate(mCardViewVendorProfile)
-                .slideLeft()
-                .duration(800)
-                .andAnimate(mTextViewVendorName)
-                .slideRight()
-                .duration(700)
-                .andAnimate(mTextViewVendorDescription)
-                .slideRight()
-                .duration(600)
-                .andAnimate(mTextViewVendorAddress)
-                .slideRight()
-                .duration(500)
-                .andAnimate(mCardViewMap)
-                .slideTop()
-                .duration(600)
-                .andAnimate(mLayoutProductList)
-                .slideLeft()
-                .duration(800)
+    }
+
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ViewAnimator.animate(mLayoutContainer)
+                .slideBottom()
+                .duration(300)
                 .descelerate()
                 .start();
-        mLayoutContainer.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mLayoutContainer.setVisibility(View.VISIBLE);
-            }
-        },200);
     }
 
     void getChildRecyclerVendorProductItems () {
@@ -129,8 +114,6 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
                 mTextViewVendorName.setText(mVendorName);
                 mTextViewVendorDescription.setText(mVendorDescription);
                 mTextViewVendorAddress.setText(mVendorAddress);
-
-                Log.i("Vendor Info ",mVendorCategory +" "+ mVendorLogo +" "+ mVendorName +" "+ mVendorDescription);
             }
 
             @Override
@@ -144,18 +127,18 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
-            case R.id.buttonMyItems:
-                getContactVendorFragment();
+//            case R.id.buttonMyItems:
+//                getContactVendorFragment();
         }
 
     }
 
-    public void getContactVendorFragment () {
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.containerEventActivity, FragmentUtil.getContactVendorFragment())
-                .addToBackStack(null)
-                .commit();
-    }
+//    public void getContactVendorFragment () {
+//        getFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.containerEventActivity, FragmentUtil.getContactVendorFragment())
+//                .addToBackStack(null)
+//                .commit();
+//    }
 
 }

@@ -30,7 +30,7 @@ public class EventActivity extends AppCompatActivity {
 
 
         mToolbar = (Toolbar) findViewById(R.id.toolbarEvents);
-        mToolbar.setNavigationIcon(R.drawable.arrow_left);
+        mToolbar.setNavigationIcon(R.drawable.close);
         mLayoutEvent = (CoordinatorLayout) findViewById(R.id.layoutEvent);
         mFabRecommendVendor = (FloatingActionButton) findViewById(R.id.fabRecommendVendor);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {

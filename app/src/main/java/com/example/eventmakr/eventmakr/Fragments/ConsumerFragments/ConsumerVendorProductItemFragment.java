@@ -24,7 +24,6 @@ import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.Objects.VendorOrderItem;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
-import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -82,7 +81,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     }
 
     public void getProductInfo() {
-        mUserMenuRef.child(mProductKey).addValueEventListener(new ValueEventListener() {
+        mUserMenuRef.child(VendorProfileProductAdapter.mProductKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mProductImage = (String) dataSnapshot.child("photo").getValue();
@@ -157,29 +156,29 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
 
         if (EventsAdapter.mEventKey != null) {
             Items items = new Items(
-                    mProductKey,
+                    VendorProfileProductAdapter.mProductKey,
                     mProductQuantity,
                     mProductPrice,
                     null,
                     mProductName,
                     mProductImage,
                     VendorAdapter.mVendorName,
-                    mKey,
+                    VendorAdapter.mVendorUid,
                     VendorAdapter.mVendorUid
             );
-            mUserCartRef.child(mKey).setValue(items);
+            mUserCartRef.child(VendorProfileProductAdapter.mProductKey).setValue(items);
         }
 
         if (EventsAdapter.mEventKey != null) {
             VendorOrderItem vendorOrderItem = new VendorOrderItem(
-                    mProductKey,
+                    VendorProfileProductAdapter.mProductKey,
                     mProductQuantity,
                     mProductPrice,
                     null,
                     mProductName,
                     mProductImage
             );
-            mVendorCartRef.child(mKey).setValue(vendorOrderItem);
+            mVendorCartRef.child(VendorProfileProductAdapter.mProductKey).setValue(vendorOrderItem);
         }
         pushToCart();
     }
@@ -231,12 +230,15 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         View view = snackbar.getView();
         view.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.green));
         snackbar.show();
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.containerEventActivity, FragmentUtil.getConsumerVendorProfileFragment())
-                .disallowAddToBackStack()
-                .commit();
+        getActivity().onBackPressed();
+//        getFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.containerEventActivity, FragmentUtil.getConsumerVendorProfileFragment())
+//                .disallowAddToBackStack()
+//                .commit();
     }
+
+
 
 
 }

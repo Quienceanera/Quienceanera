@@ -40,7 +40,7 @@ public class VendorActivity extends AppCompatActivity{
         mViewPager = (ViewPager) findViewById(R.id.viewpagerVendor);
         mViewPagerAdapter = new VendorViewPagerAdapter(getFragmentManager(), this);
         mViewPagerAdapter.addFragments(new VendorOrderHome(), "");
-//        mViewPagerAdapter.addFragments(new ChatHomeFragment(), "");
+//        mViewPagerAdapter.addFragments(new CartFragment(), "");
         mViewPagerAdapter.addFragments(new VendorMenuFragment(), "");
 
         mViewPager.setAdapter(mViewPagerAdapter);

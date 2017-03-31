@@ -42,7 +42,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
 
     private int[] iconResId = {
             R.drawable.home_outline,
-            R.drawable.message_text_outline,
             R.drawable.cart_outline,
             R.drawable.face
     };

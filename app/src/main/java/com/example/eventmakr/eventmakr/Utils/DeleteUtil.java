@@ -3,8 +3,8 @@ package com.example.eventmakr.eventmakr.Utils;
 import android.util.Log;
 
 import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
-import com.example.eventmakr.eventmakr.Adapters.CartListAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
+import com.example.eventmakr.eventmakr.Adapters.PreCartAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorProductsAdapter;
 
 public abstract class DeleteUtil {
@@ -21,9 +21,9 @@ public abstract class DeleteUtil {
     }
 
     public static void deleteOrderListItem(){
-        Log.i("Delete: Cart Item Key", CartListAdapter.mCartItemKey +" "+CartListAdapter.mVendorUid);
-        FirebaseUtil.getConsumerSideVendorOrderRef().child(CartListAdapter.mCartItemKey).removeValue();
-        FirebaseUtil.getConsumerSideConsumerOrderRef().child(CartHomeAdapter.mVendorUid).child(CartListAdapter.mCartItemKey).removeValue();
+        Log.i("Delete: Cart Item Key", PreCartAdapter.mPreCartItemKey +" "+PreCartAdapter.mVendorUid);
+        FirebaseUtil.getConsumerSideVendorOrderRef().child(PreCartAdapter.mPreCartItemKey).removeValue();
+        FirebaseUtil.getConsumerSideConsumerOrderRef().child(PreCartAdapter.mVendorUid).child(PreCartAdapter.mPreCartItemKey).removeValue();
     }
 
     public static void deleteOrderHomeItem(){

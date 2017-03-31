@@ -216,7 +216,7 @@
                 style="@style/MyCustomTabLayout"
                 app:tabMode="fixed"
                 app:tabGravity="fill"
-                app:tabBackground="@color/colorPrimary"
+                android:background="@color/colorPrimary"
                 app:tabSelectedTextColor="@color/colorButtons"
                 android:id="@+id/tabLayoutPay"
                 android:layout_width="match_parent"

@@ -42,7 +42,7 @@ public class ChatRecyclerFragment extends Fragment {
                         getActivity());
             }
 
-        if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
+        if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode && EventsAdapter.mEventKey == null){
             mAdapter = new ChatHomeAdapter(
                     ChatHome.class,
                     R.layout.fragment_chat_home_item,

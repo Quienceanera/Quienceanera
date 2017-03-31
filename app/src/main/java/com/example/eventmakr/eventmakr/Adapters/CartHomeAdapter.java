@@ -58,7 +58,7 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
                 mTotalPrice = model.getPriceTotal();
                 mVendorName = model.getVendorName();
                 mVendorLogo = model.getVendorLogo();
-                mConfirm = model.getConfirm();
+                mConfirm = model.getReady();
                 getCart();
             }
         });

@@ -13,13 +13,13 @@ public class Cart {
     private String vendorName;
     private String vendorLogo;
     private String timeStamp;
-    private String confirm;
+    private String ready;
     private String paid;
 
     public Cart() {
     }
 
-    public Cart(String eventDate, String eventType, String eventAddress, String eventName, String eventKey, String consumerUid, String vendorUid, String priceTotal, String itemCount, String vendorName, String vendorLogo, String timeStamp, String confirm, String paid) {
+    public Cart(String eventDate, String eventType, String eventAddress, String eventName, String eventKey, String consumerUid, String vendorUid, String priceTotal, String itemCount, String vendorName, String vendorLogo, String timeStamp, String ready, String paid) {
         this.eventDate = eventDate;
         this.eventType = eventType;
         this.eventAddress = eventAddress;
@@ -32,7 +32,7 @@ public class Cart {
         this.vendorName = vendorName;
         this.vendorLogo = vendorLogo;
         this.timeStamp = timeStamp;
-        this.confirm = confirm;
+        this.ready = ready;
         this.paid = paid;
     }
 
@@ -132,12 +132,12 @@ public class Cart {
         this.timeStamp = timeStamp;
     }
 
-    public String getConfirm() {
-        return confirm;
+    public String getReady() {
+        return ready;
     }
 
-    public void setConfirm(String confirm) {
-        this.confirm = confirm;
+    public void setReady(String ready) {
+        this.ready = ready;
     }
 
     public String getPaid() {
