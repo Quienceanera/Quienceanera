@@ -50,6 +50,9 @@ public class VendorExtrasActivity extends AppCompatActivity {
                 .commit();
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(VendorExtrasActivity.this, VendorActivity.class));
+        super.onBackPressed();
+    }
 }

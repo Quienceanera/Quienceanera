@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorProfileProductAdapter;
+import com.example.eventmakr.eventmakr.Objects.Cart;
 import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.Objects.VendorOrderItem;
 import com.example.eventmakr.eventmakr.R;
@@ -28,6 +29,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class ConsumerVendorProductItemFragment extends android.app.Fragment implements View.OnClickListener {
@@ -159,9 +163,9 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                     null,
                     mProductName,
                     mProductImage,
-                    mVendorName,
+                    VendorAdapter.mVendorName,
                     mKey,
-                    mVendorUid
+                    VendorAdapter.mVendorUid
             );
             mUserCartRef.child(mKey).setValue(items);
         }
@@ -177,11 +181,52 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
             );
             mVendorCartRef.child(mKey).setValue(vendorOrderItem);
         }
-        returnToVendorProfile();
-
+        pushToCart();
     }
-    void returnToVendorProfile () {
 
+    void pushToCart () {
+        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
+        final String mCurrentTimestamp = time.format(new Date());
+
+        mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(VendorAdapter.mVendorUid);
+
+        Cart cart = new Cart(
+                EventsAdapter.mEventDate,
+                EventsAdapter.mEventType,
+                EventsAdapter.mEventAddress,
+                EventsAdapter.mEventName,
+                EventsAdapter.mEventKey,
+                FirebaseUtil.getUid(),
+                VendorAdapter.mVendorUid,
+                null,
+                null,
+                VendorAdapter.mVendorName,
+                VendorAdapter.mVendorLogo,
+                mCurrentTimestamp,
+                "false",
+                "false"
+        );
+        mUserCartRef.setValue(cart);
+
+//        FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(getActivity())
+//                .setImageRecourse(R.drawable.message_text_outline2)
+//                .setTextTitle(CartHomeAdapter.mVendorName+" Has Been Contacted!")
+//                .setTitleColor(R.color.blue)
+//                .setTextSubTitle("View your messages and orders in the Chat tabs!")
+//                .setPositiveButtonText("Continue")
+//                .setOnPositiveClicked(new FancyAlertDialog.OnPositiveClicked() {
+//                    @Override
+//                    public void OnClick(View view, Dialog dialog) {
+//                        dialog.dismiss();
+//                    }
+//                })
+//                .build();
+//        alert.show();
+        Log.i("Push to Cart", "True");
+        returnToVendorProfile();
+    }
+
+    void returnToVendorProfile () {
         Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.layoutEvent),"Added to Cart!", Snackbar.LENGTH_SHORT);
         View view = snackbar.getView();
         view.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.green));

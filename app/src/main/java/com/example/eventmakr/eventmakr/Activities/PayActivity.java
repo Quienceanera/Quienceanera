@@ -1,83 +1,39 @@
 package com.example.eventmakr.eventmakr.Activities;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 import android.widget.Toolbar;
 
 import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
+import com.example.eventmakr.eventmakr.Adapters.ConsumerViewPagerAdapter;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ContactVendorFragment;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.ChatFragment;
 import com.example.eventmakr.eventmakr.R;
+import com.example.eventmakr.eventmakr.RecyclerFragment.OrderListRecyclerFragment;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.BooleanResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.wallet.Cart;
-import com.google.android.gms.wallet.FullWallet;
-import com.google.android.gms.wallet.FullWalletRequest;
-import com.google.android.gms.wallet.IsReadyToPayRequest;
-import com.google.android.gms.wallet.MaskedWallet;
-import com.google.android.gms.wallet.MaskedWalletRequest;
-import com.google.android.gms.wallet.PaymentMethodTokenizationParameters;
-import com.google.android.gms.wallet.PaymentMethodTokenizationType;
-import com.google.android.gms.wallet.Wallet;
-import com.google.android.gms.wallet.WalletConstants;
-import com.google.android.gms.wallet.fragment.SupportWalletFragment;
-import com.google.android.gms.wallet.fragment.WalletFragmentInitParams;
-import com.stripe.android.Stripe;
-import com.stripe.android.TokenCallback;
-import com.stripe.android.model.Card;
-import com.stripe.android.model.Token;
-import com.stripe.exception.APIConnectionException;
-import com.stripe.exception.APIException;
-import com.stripe.exception.AuthenticationException;
-import com.stripe.exception.CardException;
-import com.stripe.exception.InvalidRequestException;
-import com.stripe.model.Charge;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Objects;
 
-import io.fabric.sdk.android.BuildConfig;
-import io.fabric.sdk.android.Fabric;
-
-public class PayActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class PayActivity extends AppCompatActivity {
+    private static final String TAG = PayActivity.class.getSimpleName();
     private Toolbar mToolbar;
-    private TextView mTextViewTotal;
-    private CardView mLayoutCreditCardForm;
-    private String mTokenString;
-    private Token mToken;
-    public static final String PUBLISHABLE_KEY = "pk_test_meDPIZOcJTWc3P854aImTlNo";
-    public static final String SECRET_KEY = "sk_test_XRxN5L1wiHwLMOX3EiUYoiL9";
-    private static final int LOAD_MASKED_WALLET_REQUEST_CODE = 1000;
-    private static final int LOAD_FULL_WALLET_REQUEST_CODE = 1001;
-    private SupportWalletFragment walletFragment;
-    private GoogleApiClient mGoogleApiClient;
-    private IsReadyToPayRequest isReadyToPayRequest = IsReadyToPayRequest.newBuilder().build();
-    public static final int mEnvironment = WalletConstants.ENVIRONMENT_TEST;
+    private TabLayout mTabLayout;
+    private ViewPager mViewPager;
+    private ConsumerViewPagerAdapter mViewPagerAdapter;
+    private LinearLayout mLayoutConfirm, mLayoutChat, mLayoutCheckOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this);
-        com.stripe.Stripe.apiKey = PUBLISHABLE_KEY;
         setContentView(R.layout.activity_pay);
         mToolbar = (Toolbar) findViewById(R.id.toolbarPay);
-        mTextViewTotal = (TextView) findViewById(R.id.textViewPayTotal);
-        mLayoutCreditCardForm = (CardView) findViewById(R.id.layoutCreditCardForm);
-        mTextViewTotal.setText("Order Total:"+" $"+CartHomeAdapter.mTotalPrice);
-        Log.i("totalprice", CartHomeAdapter.mTotalPrice);
         setActionBar(mToolbar);
-
         mToolbar.setNavigationIcon(R.drawable.arrow_left);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,186 +41,59 @@ public class PayActivity extends AppCompatActivity implements GoogleApiClient.Co
                 startActivity(new Intent(PayActivity.this, ConsumerActivity.class));
             }
         });
-        getCartDetailFragment();
-        getCartListFragment();
-        googleApiClient();
-        isReadyToPay();
-    }
+        mLayoutChat = (LinearLayout) findViewById(R.id.layoutChatBanner);
+        mLayoutCheckOut = (LinearLayout) findViewById(R.id.layoutCheckOutBanner);
+        mLayoutConfirm = (LinearLayout) findViewById(R.id.layoutConfirmBanner);
+        mTabLayout = (TabLayout) findViewById(R.id.tabLayoutPay);
+        mViewPager = (ViewPager) findViewById(R.id.viewpagerPay);
+        mViewPagerAdapter = new ConsumerViewPagerAdapter(getFragmentManager(), this);
+        Log.i(TAG+"1", CartHomeAdapter.mConfirm);
 
-    public void showCreditCardForm(View view){
-        mLayoutCreditCardForm.setVisibility(View.VISIBLE);
-    }
+        if (Objects.equals(CartHomeAdapter.mConfirm, "true")){
+            Log.i(TAG+"2", CartHomeAdapter.mConfirm);
+            mViewPagerAdapter.addFragments(new OrderListRecyclerFragment(), "");
+            mViewPagerAdapter.addFragments(new ChatFragment(),"");
+            mLayoutCheckOut.setVisibility(View.VISIBLE);
+        } else{
+            mViewPagerAdapter.addFragments(new ContactVendorFragment(), "");
+            mLayoutConfirm.setVisibility(View.VISIBLE);
+        }
 
-    void googleApiClient(){
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Wallet.API, new Wallet.WalletOptions.Builder()
-                        .setEnvironment(WalletConstants.ENVIRONMENT_TEST)
-                        .setTheme(WalletConstants.THEME_LIGHT)
-                        .build())
-                .build();
-    }
+        mViewPager.setAdapter(mViewPagerAdapter);
+        mTabLayout.setupWithViewPager(mViewPager);
 
-    void isReadyToPay(){
-        Wallet.Payments.isReadyToPay(mGoogleApiClient, isReadyToPayRequest).setResultCallback(
-                new ResultCallback<BooleanResult>() {
-                    @Override
-                    public void onResult(@NonNull BooleanResult booleanResult) {
-                        if (booleanResult.getStatus().isSuccess()) {
-                            if (booleanResult.getValue()) {
-                                showAndroidPay();
-                            } else {
-                                // Hide Android Pay buttons, show a message that Android Pay
-                                // cannot be used yet, and display a traditional checkout button
-                            }
-                        } else {
-                            // Error making isReadyToPay call
-                            Log.i("isReadyToPay:", booleanResult.getStatus().toString());
-                        }
-                    }
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (tab.getPosition() == 0 && Objects.equals(CartHomeAdapter.mConfirm, "true")){
+                    mLayoutConfirm.setVisibility(View.VISIBLE);
+                    mLayoutChat.setVisibility(View.GONE);
+                    mLayoutCheckOut.setVisibility(View.GONE);
                 }
-        );
-    }
-
-    public void showAndroidPay() {
-        walletFragment =
-                (SupportWalletFragment) getSupportFragmentManager().findFragmentById(R.id.wallet_fragment);
-        MaskedWalletRequest maskedWalletRequest = MaskedWalletRequest.newBuilder()
-                // Request credit card tokenization with Stripe by specifying tokenization parameters:
-                .setPaymentMethodTokenizationParameters(PaymentMethodTokenizationParameters.newBuilder()
-                        .setPaymentMethodTokenizationType(PaymentMethodTokenizationType.PAYMENT_GATEWAY)
-                        .addParameter("gateway", "stripe")
-                        .addParameter("stripe:publishableKey", PUBLISHABLE_KEY)
-                        .addParameter("stripe:version", com.stripe.android.BuildConfig.VERSION_NAME)
-                        .build())
-
-                // You want the shipping address:
-                .setShippingAddressRequired(true)
-
-                // Price set as a decimal:
-                .setEstimatedTotalPrice(CartHomeAdapter.mTotalPrice)
-                .setCurrencyCode("USD")
-                .build();
-
-        // Set the parameters:
-        WalletFragmentInitParams initParams = WalletFragmentInitParams.newBuilder()
-                .setMaskedWalletRequest(maskedWalletRequest)
-                .setMaskedWalletRequestCode(LOAD_MASKED_WALLET_REQUEST_CODE)
-                .build();
-
-        // Initialize the fragment:
-        walletFragment.initialize(initParams);
-
-    }
-
-    public void submitCard(View view) {
-        // TODO: replace with your own test key
-        final String publishableApiKey = BuildConfig.DEBUG ?
-                SECRET_KEY :
-                PUBLISHABLE_KEY;
-
-        TextView cardNumberField = (TextView) findViewById(R.id.cardNumber);
-        TextView monthField = (TextView) findViewById(R.id.month);
-        TextView yearField = (TextView) findViewById(R.id.year);
-        TextView cvcField = (TextView) findViewById(R.id.cvc);
-
-        Card card = new Card(cardNumberField.getText().toString(),
-                Integer.valueOf(monthField.getText().toString()),
-                Integer.valueOf(yearField.getText().toString()),
-                cvcField.getText().toString());
-
-        final Stripe stripe = new Stripe();
-        stripe.createToken(
-                card,
-                SECRET_KEY,
-                new TokenCallback() {
-
-            public void onSuccess(Token token) {
-                // TODO: Send Token information to your backend to initiate a charge
-                Toast.makeText(
-                        getApplicationContext(),
-                        "Token created: " + token.getId(),
-                        Toast.LENGTH_LONG).show();
-                mToken = token;
-                mTokenString = token.getId();
-              new stripeTask().execute();
+                if (tab.getPosition() == 0){
+                    mLayoutConfirm.setVisibility(View.GONE);
+                    mLayoutChat.setVisibility(View.GONE);
+                    mLayoutCheckOut.setVisibility(View.VISIBLE);
+                }
+                if (tab.getPosition() == 1){
+                    mLayoutConfirm.setVisibility(View.GONE);
+                    mLayoutChat.setVisibility(View.VISIBLE);
+                    mLayoutCheckOut.setVisibility(View.GONE);
+                }
             }
 
-            public void onError(Exception error) {
-                Log.d("Stripe", error.getLocalizedMessage());
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
 
-
-
-    }
-    class stripeTask extends AsyncTask<Token, Integer, String>{
-
-        @Override
-        protected String doInBackground(Token... params) {
-            Log.i("AsyncTask", mTokenString);
-             // Charge the user's card:
-            final Map<String, Object> cardParams = new HashMap<String, Object>();
-            cardParams.put("amount", CartHomeAdapter.mTotalPrice);
-            cardParams.put("currency", "usd");
-            cardParams.put("description", CartHomeAdapter.mVendorUid);
-            cardParams.put("source", mTokenString);
-
-            try {
-                Charge charge = Charge.create(cardParams);
-                Log.i("Charge", charge.getStatus());
-
-            } catch (AuthenticationException e) {
-                e.printStackTrace();
-            } catch (InvalidRequestException e) {
-                e.printStackTrace();
-            } catch (APIConnectionException e) {
-                e.printStackTrace();
-            } catch (CardException e) {
-                e.printStackTrace();
-            } catch (APIException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == LOAD_MASKED_WALLET_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                MaskedWallet maskedWallet = data.getParcelableExtra(WalletConstants.EXTRA_MASKED_WALLET);
-                FullWalletRequest fullWalletRequest = FullWalletRequest.newBuilder()
-                        .setCart(Cart.newBuilder()
-                                .setCurrencyCode("USD")
-                                .setTotalPrice(CartHomeAdapter.mTotalPrice)
-                                .build())
-                        .setGoogleTransactionId(maskedWallet.getGoogleTransactionId())
-                        .build();
-                Wallet.Payments.loadFullWallet(mGoogleApiClient, fullWalletRequest, LOAD_FULL_WALLET_REQUEST_CODE);
-            }
-        } else if (requestCode == LOAD_FULL_WALLET_REQUEST_CODE) {
-            // Unique, identifying constant
-            if (resultCode == Activity.RESULT_OK) {
-                FullWallet fullWallet = data.getParcelableExtra(WalletConstants.EXTRA_FULL_WALLET);
-                String tokenJSON = fullWallet.getPaymentMethodToken().getToken();
-                //A token will only be returned in production mode,
-                //i.e. WalletConstants.ENVIRONMENT_PRODUCTION
-                if (mEnvironment == WalletConstants.ENVIRONMENT_PRODUCTION) {
-                        // TODO: send token to your server
-                    mTokenString = tokenJSON;
-                        new stripeTask().execute();
-
-                }
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
+        getCartDetailFragment();
     }
 
     void getCartDetailFragment(){
@@ -275,35 +104,9 @@ public class PayActivity extends AppCompatActivity implements GoogleApiClient.Co
 
     }
 
-    void getCartListFragment(){
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.containerPay, FragmentUtil.getOrderListItemFragment())
-                .commit();
-    }
-
-    public void onStart() {
-        super.onStart();
-        mGoogleApiClient.connect();
-    }
-
-    public void onStop() {
-        super.onStop();
-        mGoogleApiClient.disconnect();
-    }
-
     @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+    public void onBackPressed() {
+        startActivity(new Intent(PayActivity.this, VendorActivity.class));
+        super.onBackPressed();
     }
 }

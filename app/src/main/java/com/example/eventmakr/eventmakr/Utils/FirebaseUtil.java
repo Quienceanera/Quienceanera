@@ -58,13 +58,13 @@ public class FirebaseUtil {
     }
 
     public static DatabaseReference getConsumerSideVendorChatRef() {
-        return getBaseRef().child("vendorChat").child(VendorAdapter.mVendorUid);
+        return getBaseRef().child("vendorChat").child(CartHomeAdapter.mVendorUid);
     }
 
     public static DatabaseReference getConsumerSideVendorMessageRef() {
-        if (VendorAdapter.mVendorUid != null){
-            Log.i("CSideVMessageRef", VendorAdapter.mVendorUid);
-            return getBaseRef().child("vendorMessage").child(VendorAdapter.mVendorUid).child(getUid());
+        if (CartHomeAdapter.mVendorUid != null){
+            Log.i("CSideVMessageRef", CartHomeAdapter.mVendorUid);
+            return getBaseRef().child("vendorMessage").child(CartHomeAdapter.mVendorUid).child(getUid());
         }else {
             Log.i("CSideVMessageRef", ChatHomeAdapter.mVendorUid);
             return getBaseRef().child("vendorMessage").child(ChatHomeAdapter.mVendorUid).child(getUid());
@@ -113,12 +113,12 @@ public class FirebaseUtil {
     }
 
     public static DatabaseReference getVendorSideVendorMessageRef() {
-        return getBaseRef().child("vendorMessage").child(getUid()).child(ChatHomeAdapter.mConsumerUid);
+        return getBaseRef().child("vendorMessage").child(getUid()).child(VendorOrderHomeAdapter.mCustomerUid);
     }
 
     public static  DatabaseReference getVendorSideConsumerMessageRef() {
-        Log.i("VSideCMessageRef", ChatHomeAdapter.mConsumerUid+" "+ChatHomeAdapter.mEventKey);
-        return getBaseRef().child("consumerMessage").child(ChatHomeAdapter.mConsumerUid).child(ChatHomeAdapter.mEventKey).child(getUid());
+//        Log.i("VSideCMessageRef", ChatHomeAdapter.mConsumerUid+" "+ChatHomeAdapter.mEventKey);
+        return getBaseRef().child("consumerMessage").child(VendorOrderHomeAdapter.mCustomerUid).child(VendorOrderHomeAdapter.mEventKey).child(getUid());
     }
 
     public static  DatabaseReference getVendorSideVendorOrderHomeRef() {

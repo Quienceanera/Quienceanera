@@ -14,13 +14,13 @@ import com.example.eventmakr.eventmakr.R;
 
 import java.util.ArrayList;
 
-public class VendorViewPagerAdapter extends FragmentStatePagerAdapter{
+public class VendorOrderViewPagerAdapter extends FragmentStatePagerAdapter{
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private ArrayList<String> mTitles = new ArrayList<>();
     private ArrayList<Integer> mIcons = new ArrayList<>();
     private Context mContext;
 
-    public VendorViewPagerAdapter(android.app.FragmentManager fm, Activity context) {
+    public VendorOrderViewPagerAdapter(android.app.FragmentManager fm, Activity context) {
         super(fm);
         this.mContext = context;
     }
@@ -42,7 +42,7 @@ public class VendorViewPagerAdapter extends FragmentStatePagerAdapter{
 
     private int[] iconResId = {
             R.drawable.home_outline,
-            R.drawable.account_card_details,
+            R.drawable.message_text_outline,
     };
 
     @Override

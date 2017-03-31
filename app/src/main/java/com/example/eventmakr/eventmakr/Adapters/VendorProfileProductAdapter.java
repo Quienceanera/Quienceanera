@@ -31,6 +31,7 @@ public class VendorProfileProductAdapter extends FirebaseRecyclerAdapter<Menu, V
         Glide.with(mContext)
                 .load(model.getPhoto())
                 .centerCrop()
+                .thumbnail(0.5f)
                 .into(viewHolder.mImageViewVendorProductItem);
 
         viewHolder.mImageViewVendorProductItem.setOnClickListener(new View.OnClickListener() {

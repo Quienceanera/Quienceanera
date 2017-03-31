@@ -7,7 +7,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MyFirebaseInstanceIdService extends com.google.firebase.iid.FirebaseInstanceIdService {
     private static final String TAG = "MyFirebaseIIDService";
-    private static final String TOPIC = " ";
+    private static final String TOPIC = "topic";
     @Override
     public void onTokenRefresh() {
         // Get updated InstanceID token.

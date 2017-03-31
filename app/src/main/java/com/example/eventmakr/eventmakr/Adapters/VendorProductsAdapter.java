@@ -16,13 +16,13 @@ import com.geniusforapp.fancydialog.FancyAlertDialog;
 import com.github.florent37.viewanimator.ViewAnimator;
 import com.google.firebase.database.Query;
 
-public class MenuAdapter extends FirebaseRecyclerAdapter<Menu, Viewholder> {
+public class VendorProductsAdapter extends FirebaseRecyclerAdapter<Menu, Viewholder> {
 
-    private  static final String TAG = MenuAdapter.class.getSimpleName();
+    private  static final String TAG = VendorProductsAdapter.class.getSimpleName();
     private Context mContext;
     public static String mProductKey;
 
-    public MenuAdapter(Class<Menu> modelClass, int modelLayout, Class<Viewholder> viewHolderClass, Query ref, Context context) {
+    public VendorProductsAdapter(Class<Menu> modelClass, int modelLayout, Class<Viewholder> viewHolderClass, Query ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
         this.mContext = context;
     }

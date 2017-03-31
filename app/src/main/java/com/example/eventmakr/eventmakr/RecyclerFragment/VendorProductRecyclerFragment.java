@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.eventmakr.eventmakr.Adapters.MenuAdapter;
+import com.example.eventmakr.eventmakr.Adapters.VendorProductsAdapter;
 import com.example.eventmakr.eventmakr.Objects.Menu;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -19,13 +19,13 @@ public class VendorProductRecyclerFragment extends Fragment {
 
     private static final String TAG = "VendorProductRecyclerFragment";
     private RecyclerView mRecyclerView;
-    private MenuAdapter mMenuAdapter;
+    private VendorProductsAdapter mVendorProductsAdapter;
 //    private LinearLayoutManager mLayoutManager;
     private GridLayoutManager mLayoutManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        mMenuAdapter = new MenuAdapter(
+        mVendorProductsAdapter = new VendorProductsAdapter(
                 Menu.class,
                 R.layout.menu_card_view,
                 Viewholder.class,
@@ -45,7 +45,7 @@ public class VendorProductRecyclerFragment extends Fragment {
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewMenuItemList);
         mLayoutManager = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mMenuAdapter);
+        mRecyclerView.setAdapter(mVendorProductsAdapter);
         mLayoutManager.setItemPrefetchEnabled(false);
         return rootView;
     }
@@ -53,8 +53,8 @@ public class VendorProductRecyclerFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mMenuAdapter != null) {
-            mMenuAdapter.cleanup();
+        if (mVendorProductsAdapter != null) {
+            mVendorProductsAdapter.cleanup();
         }
     }
 }

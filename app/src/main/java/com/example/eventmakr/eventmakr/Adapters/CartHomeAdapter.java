@@ -28,7 +28,8 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
     private Context mContext;
     private DatabaseReference mDatabaseConfirm;
     private int mPosition;
-    public static String mVendorUid, mTotalPrice, mCartHomeKey, mCartHomeName;
+    public static String mTotalPrice, mCartHomeKey, mCartHomeName;
+    public static String mVendorUid, mCategory, mPriceRange, mVendorLogo, mVendorName, mConfirm;
 
     public CartHomeAdapter(Class<Cart> modelClass, int modelLayout, Class<CartHomeViewholder> viewHolderClass, Query ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
@@ -39,8 +40,7 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
     protected void populateViewHolder(final CartHomeViewholder viewHolder, final Cart model,  int position) {
         Log.i(TAG,TAG);
         mPosition = position;
-        mDatabaseConfirm = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(model.getVendorUid());
-        mDatabaseConfirm.keepSynced(true);
+
         viewHolder.mTextViewCartHomeVendorName.setText(model.getVendorName());
         viewHolder.mTextViewEventName.setText("For "+model.getEventName());
         viewHolder.mTextViewCartHomeTimestamp.setText("Submitted On: "+model.getTimeStamp());
@@ -56,6 +56,9 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
             public void onClick(View v) {
                 mVendorUid = model.getVendorUid();
                 mTotalPrice = model.getPriceTotal();
+                mVendorName = model.getVendorName();
+                mVendorLogo = model.getVendorLogo();
+                mConfirm = model.getConfirm();
                 getCart();
             }
         });
@@ -90,6 +93,8 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
                 return false;
             }
         });
+        mDatabaseConfirm = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(model.getVendorUid());
+        mDatabaseConfirm.keepSynced(true);
 
         mDatabaseConfirm.addValueEventListener(new ValueEventListener() {
             @Override

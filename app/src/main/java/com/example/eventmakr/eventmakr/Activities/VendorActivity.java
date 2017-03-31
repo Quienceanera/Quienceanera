@@ -1,5 +1,6 @@
 package com.example.eventmakr.eventmakr.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -10,13 +11,13 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Adapters.VendorViewPagerAdapter;
-import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.ChatHomeFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorMenuFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorOrderHome;
 import com.example.eventmakr.eventmakr.R;
 import com.github.florent37.viewanimator.ViewAnimator;
 
 public class VendorActivity extends AppCompatActivity{
+    private static final String TAG = VendorActivity.class.getSimpleName();
     private ImageView mImageViewBackground, mImageViewLogo, mImageViewMainBg, mImageViewMainBg2;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -27,6 +28,7 @@ public class VendorActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor);
+        Log.i(TAG, TAG);
 
         mImageViewBackground = (ImageView) findViewById(R.id.imageViewBackgroundVendor);
         mImageViewLogo = (ImageView) findViewById(R.id.imageViewVendorLogo);
@@ -38,7 +40,7 @@ public class VendorActivity extends AppCompatActivity{
         mViewPager = (ViewPager) findViewById(R.id.viewpagerVendor);
         mViewPagerAdapter = new VendorViewPagerAdapter(getFragmentManager(), this);
         mViewPagerAdapter.addFragments(new VendorOrderHome(), "");
-        mViewPagerAdapter.addFragments(new ChatHomeFragment(), "");
+//        mViewPagerAdapter.addFragments(new ChatHomeFragment(), "");
         mViewPagerAdapter.addFragments(new VendorMenuFragment(), "");
 
         mViewPager.setAdapter(mViewPagerAdapter);
@@ -66,7 +68,6 @@ public class VendorActivity extends AppCompatActivity{
         });
 
     }
-
 
     void loadBackground() {
 //        if (FirebaseUtil.getUser().getPhotoUrl()!= null){
@@ -114,7 +115,6 @@ public class VendorActivity extends AppCompatActivity{
                 .start();
     }
 
-
     @Override
     protected void onPostResume() {
         super.onPostResume();
@@ -146,6 +146,7 @@ public class VendorActivity extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
+        startActivity(new Intent(VendorActivity.this, MainActivity.class));
             super.onBackPressed();
     }
 }

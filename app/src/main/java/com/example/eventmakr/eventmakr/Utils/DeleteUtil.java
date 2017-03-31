@@ -5,7 +5,7 @@ import android.util.Log;
 import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.CartListAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
-import com.example.eventmakr.eventmakr.Adapters.MenuAdapter;
+import com.example.eventmakr.eventmakr.Adapters.VendorProductsAdapter;
 
 public abstract class DeleteUtil {
     public static void getDeleteEvent(){
@@ -17,7 +17,7 @@ public abstract class DeleteUtil {
     }
 
     public static void deleteProductItem(){
-        FirebaseUtil.getVendorSideVendorProductRef().child(MenuAdapter.mProductKey).removeValue();
+        FirebaseUtil.getVendorSideVendorProductRef().child(VendorProductsAdapter.mProductKey).removeValue();
     }
 
     public static void deleteOrderListItem(){

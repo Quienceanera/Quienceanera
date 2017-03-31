@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ItemsAdapter;
-import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -27,14 +27,13 @@ public class OrderRecyclerFragment extends Fragment{
 
     @ Override
     public void onCreate(Bundle savedInstanceState){
-        mVendorUid = VendorAdapter.mVendorUid;
         if (EventsAdapter.mEventKey != null){
-            if (mVendorUid != null) {
+            if (CartHomeAdapter.mVendorUid != null) {
                 mItemsAdapter = new ItemsAdapter(
                         Items.class,
                         R.layout.items_card_view,
                         Viewholder.class,
-                        FirebaseUtil.getConsumerSideConsumerOrderRef().child(mVendorUid),
+                        FirebaseUtil.getConsumerSideConsumerOrderRef().child(CartHomeAdapter.mVendorUid),
                         getActivity());
             }
         }
@@ -50,7 +49,7 @@ public class OrderRecyclerFragment extends Fragment{
             container.removeAllViews();
         }
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewItemsList);
-        mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        mLayoutManager = new GridLayoutManager(getActivity(), 3);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mItemsAdapter);
         mLayoutManager.setItemPrefetchEnabled(false);
