@@ -19,6 +19,7 @@ import com.nvanbenschoten.motion.ParallaxImageView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private static final String TAG = MainActivity.class.getSimpleName();
     private CardView mButtonPlanning, mButtonLogIn, mButtonVendor;
     private ParallaxImageView mBackground;
     private CardView mCardView1, mCardView2;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.i(TAG, TAG);
 
         mCardView1 = (CardView) findViewById(R.id.cardView1);
         mCardView2 = (CardView) findViewById(R.id.cardView2);

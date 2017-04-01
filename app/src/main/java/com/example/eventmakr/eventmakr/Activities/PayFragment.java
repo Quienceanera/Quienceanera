@@ -1,4 +1,4 @@
-package com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments;
+package com.example.eventmakr.eventmakr.Activities;
 
 
 import android.app.Activity;
@@ -53,6 +53,7 @@ import io.fabric.sdk.android.Fabric;
 
 public class PayFragment extends FragmentActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
+    private static final String TAG = PayFragment.class.getSimpleName();
     private TextView mTextViewTotal;
     private CardView mLayoutCreditCardForm;
     private String mTokenString;
@@ -71,7 +72,10 @@ public class PayFragment extends FragmentActivity implements GoogleApiClient.Con
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this);
+        Log.i(TAG, TAG);
         com.stripe.Stripe.apiKey = PUBLISHABLE_KEY;
+        googleApiClient();
+//        isReadyToPay();
 
     }
 
@@ -79,8 +83,8 @@ public class PayFragment extends FragmentActivity implements GoogleApiClient.Con
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
         mTextViewTotal = (TextView) findViewById(R.id.textViewPayTotal);
         mLayoutCreditCardForm = (CardView) findViewById(R.id.layoutCreditCardForm);
-        mTextViewTotal.setText("Order Total:"+" $"+CartHomeAdapter.mTotalPrice);
-        Log.i("totalprice", CartHomeAdapter.mTotalPrice);
+//        mTextViewTotal.setText("Order Total:"+" $"+CartHomeAdapter.mTotalPrice);
+//        Log.i("totalprice", CartHomeAdapter.mTotalPrice);
         return super.onCreateView(parent, name, context, attrs);
     }
 
@@ -221,8 +225,6 @@ public class PayFragment extends FragmentActivity implements GoogleApiClient.Con
             }
             return null;
         }
-
-
     }
 
     @Override
@@ -235,7 +237,7 @@ public class PayFragment extends FragmentActivity implements GoogleApiClient.Con
                 FullWalletRequest fullWalletRequest = FullWalletRequest.newBuilder()
                         .setCart(Cart.newBuilder()
                                 .setCurrencyCode("USD")
-                                .setTotalPrice(CartHomeAdapter.mTotalPrice)
+                                .setTotalPrice("20.00")
                                 .build())
                         .setGoogleTransactionId(maskedWallet.getGoogleTransactionId())
                         .build();
@@ -259,21 +261,6 @@ public class PayFragment extends FragmentActivity implements GoogleApiClient.Con
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-
-//    void getCartDetailFragment(){
-//        getFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.containerPayDetails, FragmentUtil.getCartDetailFragment())
-//                .commit();
-//
-//    }
-//
-//    void getCartListFragment(){
-//        getFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.containerPay, FragmentUtil.getOrderListItemFragment())
-//                .commit();
-//    }
 
     public void onStart() {
         super.onStart();

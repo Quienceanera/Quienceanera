@@ -1,6 +1,7 @@
 package com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class CartDetailFragment extends android.app.Fragment {
-
+    private static final String TAG = CartDetailFragment.class.getSimpleName();
     private ImageView mImageViewCartDetail;
     private TextView mTextViewCartDetailDate, mTextViewCartDetailEvent, mTextViewCartDetailAddress, mTextViewcartDetailVendorName;
     private String mCartDetailDate, mCartDetailEvent, mCartDetailAddress, mVendorLogo, mVendorName;
@@ -31,6 +32,7 @@ public class CartDetailFragment extends android.app.Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, TAG);
         mCartInfoRef = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(CartHomeAdapter.mVendorUid);
     }
 

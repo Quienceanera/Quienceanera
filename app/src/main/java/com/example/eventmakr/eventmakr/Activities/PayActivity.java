@@ -32,6 +32,7 @@ public class PayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, TAG);
         setContentView(R.layout.activity_pay);
         VendorActivity.mVendorMode = false;
         mToolbar = (Toolbar) findViewById(R.id.toolbarPay);
@@ -83,7 +84,6 @@ public class PayActivity extends AppCompatActivity {
                     mLayoutCheckOut.setVisibility(View.GONE);
                 }
             }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
 
@@ -95,15 +95,18 @@ public class PayActivity extends AppCompatActivity {
             }
         });
 
+
+
         getCartDetailFragment();
     }
+
+
 
     void getCartDetailFragment(){
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.containerPayDetails, FragmentUtil.getCartDetailFragment())
                 .commit();
-
     }
 
     @Override

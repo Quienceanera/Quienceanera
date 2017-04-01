@@ -3,6 +3,7 @@ package com.example.eventmakr.eventmakr.ViewHolders;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ public class CartListViewholder extends RecyclerView.ViewHolder {
     public CardView mCardViewCartItem;
     public ImageView mImageViewCartItem;
     public TextView mTextViewCartItemName, mTextViewCartItemVendorName, mTextViewCartItemPrice, mTextViewCartItemQuantity;
+    public ImageButton mIconInstructions;
 
     public CartListViewholder(View itemView) {
         super(itemView);
@@ -23,6 +25,6 @@ public class CartListViewholder extends RecyclerView.ViewHolder {
 //        mTextViewCartItemVendorName = (TextView) itemView.findViewById(R.id.textViewCartItemVendorName);
         mTextViewCartItemPrice = (TextView) itemView.findViewById(R.id.textViewCartItemPrice);
         mTextViewCartItemQuantity = (TextView) itemView.findViewById(R.id.textViewCartItemQuantity);
-
+        mIconInstructions = (ImageButton) itemView.findViewById(R.id.iconInstructions);
     }
 }

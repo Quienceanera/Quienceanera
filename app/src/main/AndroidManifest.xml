@@ -101,6 +101,7 @@
             android:name=".Activities.ChatActivity"
             android:label=""
             android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".Activities.PayFragment"/>
         <activity
             android:name=".Activities.VendorOrderActivity"
             android:label=""

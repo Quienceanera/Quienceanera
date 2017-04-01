@@ -2,6 +2,7 @@ package com.example.eventmakr.eventmakr.Fragments.VendorFragments;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ public class VendorProductFragment extends android.app.Fragment implements View.
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_vendor_menu_add, container, false);
-
+        Log.i(TAG, TAG);
         mFabAddProduct = (FloatingActionButton) view.findViewById(R.id.fabAddMenuItem);
         mFabAddProduct.setOnClickListener(this);
         getMenuList();

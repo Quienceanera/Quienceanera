@@ -3,7 +3,6 @@ package com.example.eventmakr.eventmakr.Fragments.VendorFragments;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,12 +10,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.Objects.Menu;
 import com.example.eventmakr.eventmakr.R;
@@ -27,12 +26,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import static android.R.attr.dial;
 import static android.app.Activity.RESULT_OK;
-import static android.support.design.widget.Snackbar.make;
 
 public class VendorAddProductDialogFragment extends DialogFragment implements View.OnClickListener{
 
+    private static final String TAG = VendorAddProductDialogFragment.class.getSimpleName();
     private final static int SELECT_PHOTO = 0;
     private ProgressBar mProgressBar;
     private StorageReference mStorageReference, mPhotoRef;
@@ -53,7 +51,7 @@ public class VendorAddProductDialogFragment extends DialogFragment implements Vi
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.dialog_fragment_vendor_menu_add, null);
         builder.setView(view);
-
+        Log.i(TAG, TAG);
         setCancelable(false);
 
         photoIntent();

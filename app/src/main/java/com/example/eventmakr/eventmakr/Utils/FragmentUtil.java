@@ -12,8 +12,7 @@ import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.MenuItemFragm
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.CartDetailFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.CartHomeFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.ChatFragment;
-import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.NavBar;
-import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.PayFragment;
+import com.example.eventmakr.eventmakr.Activities.PayFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.UserFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.OrderDetailFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorInputFragment;
@@ -155,11 +154,6 @@ public class FragmentUtil {
         return new OrderRecyclerFragment();
     }
 
-
-    public static NavBar getNavBar () {
-        NavBar navBar = new NavBar();
-        return navBar;
-    }
 
     //TODO: Vendor Fragments
 

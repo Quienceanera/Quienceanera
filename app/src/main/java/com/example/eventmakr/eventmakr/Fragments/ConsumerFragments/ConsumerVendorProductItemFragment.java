@@ -1,5 +1,6 @@
 package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -24,6 +25,7 @@ import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.Objects.VendorOrderItem;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
+import com.geniusforapp.fancydialog.FancyAlertDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +35,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class ConsumerVendorProductItemFragment extends android.app.Fragment implements View.OnClickListener {
+public class ConsumerVendorProductItemFragment extends android.app.Fragment implements SpecialInstructionsDialogFragment.DialogListener{
     private static final String TAG = "ConsumerVendorProductItemFragment";
 //    private OnFragmentInteractionListener mListener;
     private CardView mButtonProductItemSelect;
@@ -43,7 +45,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     private ImageView mImageViewProductItem;
     private TextView mTextViewProductItemName, mTextViewProductItemDetails, mTextViewProductItemPrice, mTextViewProductVendorName;
     public static String mProductKey;
-    private String mProductImage, mProductName, mProductDetails, mProductPrice, mProductQuantity, mVendorUid, mUid, mKey, mVendorName;
+    private String mProductImage, mProductName, mProductDetails, mProductPrice, mProductQuantity, mVendorUid, mUid, mKey, mVendorName, mInstructions1;
     private EditText mEditTextQuantity;
 
     public ConsumerVendorProductItemFragment() {
@@ -53,6 +55,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i("Fragment", TAG);
         mContext = getActivity();
         mProductKey = mVendorProfileProductAdapter.mProductKey;
         mVendorUid = mVendorProfileProductAdapter.mVendorUid;
@@ -76,7 +79,21 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
 
         getProductInfo();
 
-        mButtonProductItemSelect.setOnClickListener(this);
+        mButtonProductItemSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mEditTextQuantity.getText().toString().isEmpty()){
+                    Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.layoutEvent),"Choose a Quantity", Snackbar.LENGTH_SHORT);
+                    view = snackbar.getView();
+                    view.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.blue));
+                    snackbar.show();
+                }else {
+                    Log.i("EditTextQty", "Not Null");
+                    mProductQuantity = mEditTextQuantity.getText().toString();
+                    getSpecialInstructions();
+                }
+            }
+        });
         return view;
     }
 
@@ -123,26 +140,46 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         });
     }
 
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        switch (id) {
-            case R.id.buttonProductItemSelect:
-                if (mEditTextQuantity.getText().toString().isEmpty()){
-                    Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.layoutEvent),"Choose a Quantity", Snackbar.LENGTH_SHORT);
-                    view = snackbar.getView();
-                    view.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.blue));
-                    snackbar.show();
-                }else {
-                    Log.i("EditTextQty", "Not Null");
-                    getKey();
-                }
-                break;
-                default:
-        }
-
+    void getSpecialInstructions(){
+                FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(getActivity())
+                .setImageRecourse(R.drawable.lead_pencil)
+                .setTextTitle("Add Special Instructions?")
+                .setTitleColor(R.color.blue)
+                .setPositiveButtonText("Yes")
+                        .setNegativeButtonText("No")
+                .setOnPositiveClicked(new FancyAlertDialog.OnPositiveClicked() {
+                    @Override
+                    public void OnClick(View view, Dialog dialog) {
+                        dialog.dismiss();
+                        getSpecialInstructionsDialogFragment();
+                    }
+                })
+                        .setOnNegativeClicked(new FancyAlertDialog.OnNegativeClicked() {
+                            @Override
+                            public void OnClick(View view, Dialog dialog) {
+                                dialog.dismiss();
+                                getKey();
+                            }
+                        })
+                .build();
+        alert.show();
     }
-    void getKey () {
+
+    void getSpecialInstructionsDialogFragment(){
+        SpecialInstructionsDialogFragment specialInstructionsDialogFragment = new SpecialInstructionsDialogFragment();
+                specialInstructionsDialogFragment.setTargetFragment(ConsumerVendorProductItemFragment.this, 300);
+
+        specialInstructionsDialogFragment.show(getFragmentManager(),"SpecialInstructionsDialogFragment");
+    }
+
+    @Override
+    public void onFinish(String mInstructions) {
+        mInstructions1 = mInstructions;
+        getKey();
+    }
+
+
+   public void getKey () {
             mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(VendorAdapter.mVendorUid);
             Log.i("EventAdapter Key", EventsAdapter.mEventKey);
         mVendorCartRef = FirebaseUtil.getConsumerSideVendorOrderRef();
@@ -152,14 +189,13 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     }
 
     public void addToMyItems() {
-        mProductQuantity = mEditTextQuantity.getText().toString();
 
         if (EventsAdapter.mEventKey != null) {
             Items items = new Items(
                     VendorProfileProductAdapter.mProductKey,
                     mProductQuantity,
                     mProductPrice,
-                    null,
+                    mInstructions1,
                     mProductName,
                     mProductImage,
                     VendorAdapter.mVendorName,
@@ -174,7 +210,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                     VendorProfileProductAdapter.mProductKey,
                     mProductQuantity,
                     mProductPrice,
-                    null,
+                    mInstructions1,
                     mProductName,
                     mProductImage
             );
@@ -207,20 +243,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         );
         mUserCartRef.setValue(cart);
 
-//        FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(getActivity())
-//                .setImageRecourse(R.drawable.message_text_outline2)
-//                .setTextTitle(CartHomeAdapter.mVendorName+" Has Been Contacted!")
-//                .setTitleColor(R.color.blue)
-//                .setTextSubTitle("View your messages and orders in the Chat tabs!")
-//                .setPositiveButtonText("Continue")
-//                .setOnPositiveClicked(new FancyAlertDialog.OnPositiveClicked() {
-//                    @Override
-//                    public void OnClick(View view, Dialog dialog) {
-//                        dialog.dismiss();
-//                    }
-//                })
-//                .build();
-//        alert.show();
+
         Log.i("Push to Cart", "True");
         returnToVendorProfile();
     }
@@ -231,14 +254,5 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         view.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.green));
         snackbar.show();
         getActivity().onBackPressed();
-//        getFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.containerEventActivity, FragmentUtil.getConsumerVendorProfileFragment())
-//                .disallowAddToBackStack()
-//                .commit();
     }
-
-
-
-
 }

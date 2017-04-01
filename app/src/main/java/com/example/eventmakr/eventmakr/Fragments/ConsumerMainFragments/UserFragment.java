@@ -1,6 +1,7 @@
 package com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class UserFragment extends android.app.Fragment {
-
+    private static final String TAG = UserFragment.class.getSimpleName();
     private CircleImageView mCircleImageViewUser;
     private TextView mTextViewUserName, mTextViewUserEmail, mTextViewUserLocation;
     public UserFragment() {
@@ -24,7 +25,7 @@ public class UserFragment extends android.app.Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.i(TAG, TAG);
     }
 
     @Override

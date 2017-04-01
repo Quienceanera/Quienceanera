@@ -29,6 +29,7 @@ import com.geniusforapp.fancydialog.FancyAlertDialog;
 import com.google.firebase.database.DatabaseReference;
 
 public class CreateEventDialogFragment extends DialogFragment implements View.OnClickListener{
+    private static final String TAG = CreateEventDialogFragment.class.getSimpleName();
     private Spinner mSpinner;
     private String[] Events = {"Choose an Event","Quienceanera", "Birthday", "Wedding", "Baby Shower", "Graduation"};
     private String mEventZipCode, mEventId, mEventPhoto, mUid;
@@ -46,7 +47,7 @@ public class CreateEventDialogFragment extends DialogFragment implements View.On
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.dialog_fragment_create_event, null);
         builder.setView(view);
-
+        Log.i(TAG, TAG);
         getHelpPrompt();
 
         mEditTextZipCode = (EditText) view.findViewById(R.id.editTextZipCode);

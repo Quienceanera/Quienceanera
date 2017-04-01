@@ -5,7 +5,7 @@ public class Items {
     public String key;
     public String quantity;
     public String price;
-    public String totalPrice;
+    public String instructions;
     public String name;
     public String photo;
     public String vendorName;
@@ -15,11 +15,11 @@ public class Items {
     public Items() {
     }
 
-    public Items(String key, String quantity, String price, String totalPrice, String name, String photo, String vendorName, String vendorKey, String vendorId) {
+    public Items(String key, String quantity, String price, String instructions, String name, String photo, String vendorName, String vendorKey, String vendorId) {
         this.key = key;
         this.quantity = quantity;
         this.price = price;
-        this.totalPrice = totalPrice;
+        this.instructions = instructions;
         this.name = name;
         this.photo = photo;
         this.vendorName = vendorName;
@@ -51,12 +51,12 @@ public class Items {
         this.price = price;
     }
 
-    public String getTotalPrice() {
-        return totalPrice;
+    public String getInstructions() {
+        return instructions;
     }
 
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
 
     public String getName() {

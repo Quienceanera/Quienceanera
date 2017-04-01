@@ -25,6 +25,7 @@ public class VendorProfileProductRecyclerFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.i("Recycler", TAG);
         mVendorProfileProductAdapter = new VendorProfileProductAdapter(
                 Menu.class,
                 R.layout.vendor_product_card_view,

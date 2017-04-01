@@ -41,7 +41,7 @@ public class ConsumerViewPagerAdapter extends FragmentStatePagerAdapter{
     }
 
     private int[] iconResId = {
-            R.drawable.home_outline,
+            R.drawable.menu,
             R.drawable.message_text_outline,
     };
 

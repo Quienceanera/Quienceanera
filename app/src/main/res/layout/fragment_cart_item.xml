@@ -72,6 +72,17 @@
 
     </LinearLayout>
 
+        <ImageButton
+            android:visibility="gone"
+            android:id="@+id/iconInstructions"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/cardViewCartItem_helper"
+            android:layout_margin="5dp"
+            android:src="@drawable/lead_pencil"
+            android:background="@color/tw__transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </RelativeLayout>
 
 

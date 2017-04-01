@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toolbar;
@@ -16,6 +17,7 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
 public class VendorOrderActivity extends AppCompatActivity {
+    private static final String TAG = VendorOrderActivity.class.getSimpleName();
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -27,6 +29,7 @@ public class VendorOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_order);
+        Log.i(TAG, TAG);
         mToolbar = (Toolbar) findViewById(R.id.toolbarVendorOrder);
         setActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.close);

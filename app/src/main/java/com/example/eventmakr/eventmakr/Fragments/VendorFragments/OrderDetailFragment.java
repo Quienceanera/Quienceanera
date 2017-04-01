@@ -24,7 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class OrderDetailFragment extends android.app.Fragment implements View.OnClickListener{
-
+    private static final String TAG = OrderDetailFragment.class.getSimpleName();
     private CircleImageView mImageViewOrderDetail;
     private TextView mTextViewOrderDetailDate, mTextViewOrderDetailEvent, mTextViewOrderDetailAddress, mTextViewOrderDetailCustomerName;
     private String mOrderDetailDate, mOrderDetailEvent, mOrderDetailAddress, mCustomerPhoto, mCustomerName, mCustomerUid, mConfirm, mConfirmNotify;
@@ -40,6 +40,7 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, TAG);
             mVendorOrderInfoRef = FirebaseUtil.getVendorSideVendorOrderHomeRef().child(VendorOrderHomeAdapter.mEventKey);
         mConsumerOrderInfoRef = FirebaseUtil.getVendorSideConsumerOrderInfoRef();
 

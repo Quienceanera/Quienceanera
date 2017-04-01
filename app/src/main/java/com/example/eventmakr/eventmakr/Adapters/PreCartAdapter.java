@@ -39,30 +39,30 @@ public class PreCartAdapter extends FirebaseRecyclerAdapter<Items, Viewholder> {
                 .load(model.getPhoto())
                 .centerCrop()
                 .into(viewHolder.mImageViewItems);
-//
-//        mItemsRef = FirebaseUtil.getUserCartRef().child(model.getVendorId());
-//        mItemsRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//            for (DataSnapshot child: dataSnapshot.child("price").getChildren()) {
-//                String mChildPrice = child.getKey();
-//                Log.i("Price ", mChildPrice);
-//
-//            }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
 
-        viewHolder.mImageViewItems.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        if (model.getInstructions() != null) {
+            viewHolder.mIconInstructions.setVisibility(View.VISIBLE);
+            viewHolder.mImageViewItems.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(mContext)
+                            .setTextTitle("Special Instructions")
+                            .setTextSubTitle(model.getInstructions())
+                            .setTitleColor(R.color.blue)
+                            .setPositiveButtonText("Okay")
+                            .setOnPositiveClicked(new FancyAlertDialog.OnPositiveClicked() {
+                                @Override
+                                public void OnClick(View view, Dialog dialog) {
+                                    dialog.dismiss();
+                                }
+                            })
+                            .build();
+                    alert.show();
+                }
+            });
+        }
 
-            }
-        });
+
         Log.i("Mode", VendorActivity.mVendorMode.toString()+" "+ ConsumerActivity.mConsumerMode.toString());
         if (!VendorActivity.mVendorMode && ConsumerActivity.mConsumerMode) {
 

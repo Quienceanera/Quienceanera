@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class VendorInputFragment extends android.app.Fragment implements View.OnClickListener{
 
+    private static final String TAG = VendorInputFragment.class.getSimpleName();
     private final static int SELECT_PHOTO = 0;
     private String mName, mOwner, mContact, mId, mAddress, mZipcode, mDescription, mPrice, mLogo, mKey, mCategory, mVendorUid;
     public static String mVendorKey;
@@ -61,6 +63,7 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, TAG);
         mProfileRef = FirebaseUtil.getVendorSideProfileRef();
         mPrice = "$";
     }

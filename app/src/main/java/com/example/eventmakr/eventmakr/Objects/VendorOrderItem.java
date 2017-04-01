@@ -5,18 +5,18 @@ public class VendorOrderItem {
     public String itemKey;
     public String quantity;
     public String price;
-    public String totalPrice;
+    public String instructions;
     public String name;
     public String photo;
 
     public VendorOrderItem() {
     }
 
-    public VendorOrderItem(String itemKey, String quantity, String price, String totalPrice, String name, String photo) {
+    public VendorOrderItem(String itemKey, String quantity, String price, String instructions, String name, String photo) {
         this.itemKey = itemKey;
         this.quantity = quantity;
         this.price = price;
-        this.totalPrice = totalPrice;
+        this.instructions = instructions;
         this.name = name;
         this.photo = photo;
     }
@@ -45,12 +45,12 @@ public class VendorOrderItem {
         this.price = price;
     }
 
-    public String getTotalPrice() {
-        return totalPrice;
+    public String getInstructions() {
+        return instructions;
     }
 
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
 
     public String getName() {

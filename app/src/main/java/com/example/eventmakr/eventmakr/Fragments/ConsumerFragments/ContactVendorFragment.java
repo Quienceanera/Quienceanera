@@ -46,6 +46,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, TAG);
     }
 
     @Override

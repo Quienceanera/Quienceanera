@@ -6,6 +6,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class Viewholder extends RecyclerView.ViewHolder {
     public RelativeLayout mLayoutDeleteComment, mLayoutChatItem;
     public EditText mEditTextChat;
     public ImageView mImageViewPrice1, mImageViewPrice2, mImageViewPrice3;
+    public ImageButton mIconInstructions;
 
     public Viewholder(View itemView) {
         super(itemView);
@@ -63,6 +65,9 @@ public class Viewholder extends RecyclerView.ViewHolder {
         mTextViewItemsName = (TextView) itemView.findViewById(R.id.textViewItemsName);
         mTextViewItemsQuantity = (TextView) itemView.findViewById(R.id.textViewItemsQuantity);
         mTextViewItemsPrice = (TextView) itemView.findViewById(R.id.textViewItemsPrice);
+
+        //ImageButton
+        mIconInstructions = (ImageButton) itemView.findViewById(R.id.iconInstructions);
 
         //FloatingActionButtons
         mFabCancel = (FloatingActionButton) itemView.findViewById(R.id.fabCancel);

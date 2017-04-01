@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toolbar;
@@ -15,6 +16,8 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
 public class EventActivity extends AppCompatActivity {
+
+    private static final String TAG = EventActivity.class.getSimpleName();
     private Toolbar mToolbar;
     private FloatingActionButton mFabRecommendVendor;
     private CoordinatorLayout mLayoutEvent;
@@ -26,8 +29,7 @@ public class EventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
-
-
+        Log.i(TAG, TAG);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbarEvents);
         mToolbar.setNavigationIcon(R.drawable.close);

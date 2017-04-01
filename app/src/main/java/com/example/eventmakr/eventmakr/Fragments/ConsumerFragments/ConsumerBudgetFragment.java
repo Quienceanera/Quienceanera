@@ -35,6 +35,7 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, TAG);
         mCategory = ConsumerVendorCategoryFragment.mCategory;
         if (mCategory != null) {
         }

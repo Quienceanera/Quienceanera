@@ -28,7 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ChatFragment extends android.app.Fragment implements View.OnClickListener {
-
+    private static final String TAG = ChatFragment.class.getSimpleName();
     private String mPhotoUrl, mUsername, mUid, mChatPath, mChatKey, mVendorUid;
     private DatabaseReference mDatabaseReference, mDatabaseRef, mConsumerSideVendorRef, mVendorMessageRef, mConsumerMessageRef;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -43,6 +43,7 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, TAG);
         mPhotoUrl = mAuth.getCurrentUser().getPhotoUrl().toString();
         mUsername = mAuth.getCurrentUser().getDisplayName();
         mUid = mAuth.getCurrentUser().getUid();

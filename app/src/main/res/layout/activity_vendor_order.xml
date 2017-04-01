@@ -146,8 +146,6 @@
             style="@style/MyCustomTabLayout"
             app:tabMode="fixed"
             app:tabGravity="fill"
-            app:tabBackground="@color/colorPrimary"
-            app:tabSelectedTextColor="@color/colorButtons"
             android:id="@+id/tabLayoutVendorOrder"
             android:layout_width="match_parent"
             android:layout_height="35dp">

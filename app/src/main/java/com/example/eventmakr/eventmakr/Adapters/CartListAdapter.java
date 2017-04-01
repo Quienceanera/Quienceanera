@@ -1,13 +1,16 @@
 package com.example.eventmakr.eventmakr.Adapters;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Objects.Items;
+import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.ViewHolders.CartListViewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.geniusforapp.fancydialog.FancyAlertDialog;
 import com.google.firebase.database.Query;
 
 public class CartListAdapter extends FirebaseRecyclerAdapter<Items, CartListViewholder>{
@@ -31,11 +34,27 @@ public class CartListAdapter extends FirebaseRecyclerAdapter<Items, CartListView
                 .centerCrop()
                 .into(viewHolder.mImageViewCartItem);
 
-        viewHolder.mCardViewCartItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
+        if (model.getInstructions() != null) {
+            viewHolder.mIconInstructions.setVisibility(View.VISIBLE);
+            viewHolder.mCardViewCartItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(mContext)
+                            .setTextTitle("Special Instructions")
+                            .setTextSubTitle(model.getInstructions())
+                            .setTitleColor(R.color.blue)
+                            .setPositiveButtonText("Okay")
+                            .setOnPositiveClicked(new FancyAlertDialog.OnPositiveClicked() {
+                                @Override
+                                public void OnClick(View view, Dialog dialog) {
+                                    dialog.dismiss();
+                                }
+                            })
+                            .build();
+                    alert.show();
+                }
+            });
+        }
 //        if (!VendorActivity.mVendorMode && ConsumerActivity.mConsumerMode) {
 //            Log.i("Mode", VendorActivity.mVendorMode.toString()+" "+ConsumerActivity.mConsumerMode.toString());
 //            viewHolder.mCardViewCartItem.setOnLongClickListener(new View.OnLongClickListener() {

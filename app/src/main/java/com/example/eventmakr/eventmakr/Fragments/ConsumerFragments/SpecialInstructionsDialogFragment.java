@@ -12,35 +12,37 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.eventmakr.eventmakr.Objects.Feedback;
 import com.example.eventmakr.eventmakr.R;
-import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.google.firebase.database.DatabaseReference;
 
-public class RecommendVendorDialogFragment extends DialogFragment{
-    private static final String TAG = RecommendVendorDialogFragment.class.getSimpleName();
-    private String mFeedBack, mFeedbackKey;
-    private EditText mEditTextRecommendVendor;
-    private DatabaseReference mPushRef, mFeedBackRef;
+public class SpecialInstructionsDialogFragment extends DialogFragment{
+    private static final String TAG = SpecialInstructionsDialogFragment.class.getSimpleName();
+    public static String mInstructions;
+    private EditText mEditTextSpecialInstructions;
+    private DatabaseReference mPushRef, mInstructionsRef;
+
+    public interface DialogListener {
+        void onFinish(String mInstructions);
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View view = inflater.inflate(R.layout.dialog_fragment_recommend_vendor, null);
+        final View view = inflater.inflate(R.layout.dialog_fragment_special_instructions, null);
         builder.setView(view);
         Log.i(TAG, TAG);
-        mEditTextRecommendVendor = (EditText) view.findViewById(R.id.editTextRecommendVendor);
+        mEditTextSpecialInstructions = (EditText) view.findViewById(R.id.editTextInstructions);
 
         builder.setPositiveButton("SEND", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mFeedBack = mEditTextRecommendVendor.getText().toString();
+                mInstructions = mEditTextSpecialInstructions.getText().toString();
 
-                if (TextUtils.isEmpty(mFeedBack)){
+                if (TextUtils.isEmpty(mInstructions)){
                     Toast.makeText(getActivity(), "Canceled", Toast.LENGTH_SHORT).show();
                 }else{
-                    sendRecommendation();
+                    sendBackResult();
                 }
             }
         });
@@ -56,16 +58,22 @@ public class RecommendVendorDialogFragment extends DialogFragment{
         alertDialog.show();
         return alertDialog;
     }
-    void sendRecommendation() {
-        mFeedBackRef = FirebaseUtil.getFeedbackRef();
-        mPushRef = mFeedBackRef.push();
-        mFeedbackKey = mPushRef.getKey();
-        Feedback feedback = new Feedback(
-                FirebaseUtil.getUid(),
-                FirebaseUtil.getUserName(),
-                mFeedBack
-        );
-        mPushRef.setValue(feedback);
+
+    public void sendBackResult(){
+        DialogListener listener = (DialogListener) getTargetFragment();
+        listener.onFinish(mEditTextSpecialInstructions.getText().toString());
+        dismiss();
     }
+//    void sendRecommendation() {
+//        mInstructionsRef = FirebaseUtil.getFeedbackRef();
+//        mPushRef = mInstructionsRef.push();
+//        mInstructionsKey = mPushRef.getKey();
+//        Feedback feedback = new Feedback(
+//                FirebaseUtil.getUid(),
+//                FirebaseUtil.getUserName(),
+//                mInstructions
+//        );
+//        mPushRef.setValue(feedback);
+//    }
 
 }
