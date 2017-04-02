@@ -6,223 +6,29 @@
     android:layout_height="match_parent"
     tools:context="com.example.eventmakr.eventmakr.Activities.VendorActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <RelativeLayout
         android:id="@+id/layoutVendors"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/topPanelLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/layoutVendorMenu1"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <include layout="@layout/layout_vendor_menu_1" />
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardViewCaterers"
-                app:cardBackgroundColor="@color/tw__transparent"
-                app:cardUseCompatPadding="true"
-                app:cardElevation="2dp"
-                android:layout_width="135dp"
-                android:layout_height="190dp">
+        <include layout="@layout/layout_vendor_menu_2" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/imageViewCaterers"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                    <TextView
-                        android:text="CATERERS"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentStart="true"
-                        android:padding="5dp"
-                        android:background="@drawable/pinktoolbar"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp" />
-
-                </RelativeLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardViewMixologists"
-                android:layout_toEndOf="@id/cardViewCaterers"
-                app:cardBackgroundColor="@color/tw__transparent"
-                app:cardUseCompatPadding="true"
-                app:cardElevation="2dp"
-                android:layout_width="135dp"
-                android:layout_height="190dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/imageViewMixologists"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                    <TextView
-                        android:text="@string/mixologists"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentStart="true"
-                        android:background="@drawable/pinktoolbar"
-                        android:padding="5dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp" />
-
-                </RelativeLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardViewFlorists"
-                android:layout_toEndOf="@id/cardViewMixologists"
-                app:cardBackgroundColor="@color/tw__transparent"
-                app:cardUseCompatPadding="true"
-                app:cardElevation="2dp"
-                android:layout_width="135dp"
-                android:layout_height="190dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/imageViewFlorists"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                    <TextView
-                        android:text="@string/florists"
-                        android:textStyle="bold"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentStart="true"
-                        android:background="@drawable/pinktoolbar"
-
-                        android:padding="5dp"
-                        android:textColor="@color/colorText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp" />
-
-                </RelativeLayout>
-
-            </android.support.v7.widget.CardView>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/layoutVendor2"
-            android:layout_below="@+id/layoutVendorMenu1"
-            android:layout_centerHorizontal="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardViewPartySupplies"
-                app:cardBackgroundColor="@color/tw__transparent"
-                app:cardUseCompatPadding="true"
-                app:cardElevation="2dp"
-                android:layout_width="205dp"
-                android:layout_height="180dp">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:id="@+id/imageViewPartySupplies"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                    <TextView
-                        android:text="@string/party_supplies"
-                        android:textStyle="bold"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentStart="true"
-                        android:background="@drawable/pinktoolbar"
-                        android:padding="5dp"
-                        android:textColor="@color/colorText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp" />
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardViewDjs"
-                app:cardUseCompatPadding="true"
-                android:layout_toEndOf="@+id/cardViewPartySupplies"
-                app:cardBackgroundColor="@color/tw__transparent"
-                app:cardElevation="2dp"
-                android:layout_width="205dp"
-                android:layout_height="180dp">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:id="@+id/imageViewDjs"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                    <TextView
-                        android:text="@string/djs"
-                        android:textStyle="bold"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentStart="true"
-                        android:padding="5dp"
-                        android:textColor="@color/colorText"
-                        android:background="@drawable/pinktoolbar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp" />
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/layoutVendor3"
-            android:layout_below="@+id/layoutVendor2"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardViewBakeries"
-                app:cardBackgroundColor="@color/tw__transparent"
-                app:cardUseCompatPadding="true"
-                app:cardElevation="2dp"
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:id="@+id/imageViewBakeries"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                    <TextView
-                        android:text="@string/bakeries"
-                        android:textStyle="bold"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentStart="true"
-                        android:background="@drawable/pinktoolbar"
-                        android:padding="5dp"
-                        android:textColor="@color/colorText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp" />
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-
-        </RelativeLayout>
+        <include layout="@layout/layout_vendor_menu_3" />
 
     </RelativeLayout>
+
+    </ScrollView>
 
 </FrameLayout>

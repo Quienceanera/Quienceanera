@@ -129,20 +129,27 @@
             android:layout_width="match_parent"
             android:layout_height="60dp" >
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_centerInParent="true"
                     android:text="ADD TO ORDER"
+                    android:layout_gravity="center"
                     android:textColor="@color/colorText"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                     android:elevation="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-            </RelativeLayout>
+                <ImageView
+                    android:src="@drawable/cart_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
 
         </android.support.v7.widget.CardView>
 

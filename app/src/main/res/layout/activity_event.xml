@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     android:fitsSystemWindows="true"
     tools:context="com.example.eventmakr.eventmakr.Activities.EventActivity">
 
@@ -15,8 +16,8 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarEvents"
-        android:background="@android:color/transparent"
         app:elevation="2dp"
+        android:background="@color/tw__transparent"
         android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

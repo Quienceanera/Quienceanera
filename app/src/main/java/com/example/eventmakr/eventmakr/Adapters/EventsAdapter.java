@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
-import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
 import com.example.eventmakr.eventmakr.Activities.EventActivity;
 import com.example.eventmakr.eventmakr.Objects.Events;
@@ -15,7 +14,6 @@ import com.example.eventmakr.eventmakr.Utils.DeleteUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.EventsViewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.geniusforapp.fancydialog.FancyAlertDialog;
-import com.github.florent37.viewanimator.ViewAnimator;
 import com.google.firebase.database.Query;
 
 public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewholder>{
@@ -35,49 +33,46 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
         Log.i(TAG,TAG);
         viewHolder.mTextViewEvents.setText(model.getEventName());
         viewHolder.mTextViewEventsDate.setText(model.getEventDate());
+        viewHolder.mTextViewEventsZip.setText(model.getEventZip());
         String type = model.getEventType();
-        switch (type) {
-            case "Wedding":
-                Glide.with(mContext)
-                        .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fwedding.jpg?alt=media&token=c155bd76-6e1a-4fb6-b775-8ca72b893126")
-                        .crossFade()
-                        .centerCrop()
-                        .into(viewHolder.mImageViewEvents);
-                break;
-            case "Quienceanera":
-                Glide.with(mContext)
-                        .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fmobile_bg.jpg?alt=media&token=8930f92d-f5f0-45dd-b9f9-51775faac1e2")
-                        .crossFade()
-                        .centerCrop()
-                        .into(viewHolder.mImageViewEvents);
-                break;
-            case "Birthday":
-                Glide.with(mContext)
-                        .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fbirthday.jpg?alt=media&token=9ae47551-bcbe-44cb-aaab-6fe2699311dd")
-                        .crossFade()
-                        .centerCrop()
-                        .into(viewHolder.mImageViewEvents);
-                break;
-            case "Baby Shower":
-                Glide.with(mContext)
-                        .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fbaby.jpg?alt=media&token=a804bad3-cb61-4690-91d4-879c031102a5")
-                        .crossFade()
-                        .centerCrop()
-                        .into(viewHolder.mImageViewEvents);
-                break;
-            case "Graduation":
-                Glide.with(mContext)
-                        .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fgraduation.jpg?alt=media&token=d86c1680-0bfa-4349-b872-009a6097a530")
-                        .crossFade()
-                        .centerCrop()
-                        .into(viewHolder.mImageViewEvents);
-                break;
-            default:
-        }
-                    ViewAnimator.animate(viewHolder.mCardViewEvents)
-                            .slideBottom()
-                            .duration(300)
-                            .start();
+//        switch (type) {
+//            case "Wedding":
+//                Glide.with(mContext)
+//                        .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fwedding.jpg?alt=media&token=c155bd76-6e1a-4fb6-b775-8ca72b893126")
+//                        .crossFade()
+//                        .centerCrop()
+//                        .into(viewHolder.mImageViewEvents);
+//                break;
+//            case "Quienceanera":
+//                Glide.with(mContext)
+//                        .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fmobile_bg.jpg?alt=media&token=8930f92d-f5f0-45dd-b9f9-51775faac1e2")
+//                        .crossFade()
+//                        .centerCrop()
+//                        .into(viewHolder.mImageViewEvents);
+//                break;
+//            case "Birthday":
+//                Glide.with(mContext)
+//                        .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fbirthday.jpg?alt=media&token=9ae47551-bcbe-44cb-aaab-6fe2699311dd")
+//                        .crossFade()
+//                        .centerCrop()
+//                        .into(viewHolder.mImageViewEvents);
+//                break;
+//            case "Baby Shower":
+//                Glide.with(mContext)
+//                        .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fbaby.jpg?alt=media&token=a804bad3-cb61-4690-91d4-879c031102a5")
+//                        .crossFade()
+//                        .centerCrop()
+//                        .into(viewHolder.mImageViewEvents);
+//                break;
+//            case "Graduation":
+//                Glide.with(mContext)
+//                        .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fgraduation.jpg?alt=media&token=d86c1680-0bfa-4349-b872-009a6097a530")
+//                        .crossFade()
+//                        .centerCrop()
+//                        .into(viewHolder.mImageViewEvents);
+//                break;
+//            default:
+//        }
 
         viewHolder.mButtonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +87,7 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
             }
         });
 
-        viewHolder.mImageViewEvents.setOnClickListener(new View.OnClickListener() {
+        viewHolder.mCardViewEventsHelper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mEventKey = getRef(position).getKey();
@@ -104,13 +99,13 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
                 restartActivity();
             }
         });
-        viewHolder.mImageViewEvents.setOnLongClickListener(new View.OnLongClickListener() {
+        viewHolder.mCardViewEventsHelper.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 mEventKey = getRef(position).getKey();
                 FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(mContext)
                         .setImageRecourse(R.drawable.delete)
-                        .setTextTitle("Delete Event And All It's Content?")
+                        .setTextTitle("Delete "+model.getEventName()+"And All It's Content?")
                         .setTitleColor(R.color.blue)
                         .setTextSubTitle("For: "+model.getEventName())
                         .setNegativeButtonText("Cancel")

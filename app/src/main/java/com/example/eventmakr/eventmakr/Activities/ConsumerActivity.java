@@ -18,6 +18,7 @@ import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.CreateEventDi
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.github.florent37.viewanimator.ViewAnimator;
+import com.google.firebase.database.DatabaseReference;
 
 public class ConsumerActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,6 +28,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
     private ViewPagerAdapter mViewPagerAdapter;
     private FloatingActionButton mFabNewEvent;
     private CardView mCardViewCreateEvent;
+    private DatabaseReference mDatabaseNewMessage;
     public static Boolean mVendorMode, mConsumerMode;
     private CoordinatorLayout mLayoutConsumer;
 

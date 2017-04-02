@@ -15,6 +15,7 @@ import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.CartHomeViewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.geniusforapp.fancydialog.FancyAlertDialog;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +27,7 @@ import static android.graphics.Color.rgb;
 public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewholder>{
     public final static String TAG = CartHomeAdapter.class.getSimpleName();
     private Context mContext;
-    private DatabaseReference mDatabaseConfirm;
+    private DatabaseReference mDatabaseConfirm, mDatabaseNewMessage;
     private int mPosition;
     public static String mTotalPrice, mCartHomeKey, mCartHomeName;
     public static String mVendorUid, mCategory, mPriceRange, mVendorLogo, mVendorName, mConfirm;
@@ -44,7 +45,7 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
         viewHolder.mTextViewCartHomeVendorName.setText(model.getVendorName());
         viewHolder.mTextViewEventName.setText("For "+model.getEventName());
         viewHolder.mTextViewCartHomeTimestamp.setText("Submitted On: "+model.getTimeStamp());
-        viewHolder.mTextViewCartHomePriceTotal.setText("Total Price: $"+model.getPriceTotal());
+        viewHolder.mTextViewCartHomePriceTotal.setText("Total: $"+model.getPriceTotal());
         viewHolder.mTextViewCartHomeCount.setText("Qty: "+model.getItemCount());
         Glide.with(mContext)
                 .load(model.getVendorLogo())
@@ -108,6 +109,37 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
                     viewHolder.mTextViewConfirm.setText("      Awaiting\nConfirmation");
                     viewHolder.mCardViewCartHome.setCardBackgroundColor(rgb(255,255,255));
                 }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDatabaseNewMessage = FirebaseUtil.getConsumerSideConsumerMessageRef().child(model.getVendorUid());
+        mDatabaseNewMessage.keepSynced(true);
+
+        mDatabaseNewMessage.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Log.i("On Child Added", s);
+                viewHolder.mNotificationMessage.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
             }
 
             @Override

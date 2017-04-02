@@ -30,7 +30,6 @@ public class VendorProductsAdapter extends FirebaseRecyclerAdapter<Menu, Viewhol
     @Override
     protected void populateViewHolder(Viewholder viewHolder, final Menu model, int position) {
         Log.i(TAG,TAG);
-        mProductKey = getRef(position).getKey();
         viewHolder.mTextViewMenuItemName.setText(model.getName());
         viewHolder.mTextViewMenuItemDescription.setText(model.getDetails());
         viewHolder.mTextViewMenuItemPrice.setText("$"+model.getPrice());
@@ -47,7 +46,7 @@ public class VendorProductsAdapter extends FirebaseRecyclerAdapter<Menu, Viewhol
         viewHolder.mCardViewMenuItem.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-
+                mProductKey = model.getKey();
                 FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder((VendorExtrasActivity)mContext)
                         .setImageRecourse(R.drawable.delete)
                         .setTextTitle("Delete?")

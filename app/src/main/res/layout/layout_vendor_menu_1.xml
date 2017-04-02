@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/layoutVendorMenu1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:showIn="@layout/fragment_consumer_vendor">
+
+    <TextView
+        android:id="@+id/textViewFood"
+        android:text="FOOD"
+        android:textColor="@color/blue"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardViewCaterers"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="2dp"
+            android:layout_width="130dp"
+            android:layout_height="140dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_margin="1dp"
+                    android:layout_above="@+id/caterers"
+                    android:id="@+id/imageViewCaterers"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:text="CATERERS"
+                    android:id="@+id/caterers"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="5dp"
+                    android:textColor="@color/pink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardViewFoodTrucks"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="2dp"
+            android:layout_width="130dp"
+            android:layout_height="140dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_margin="1dp"
+                    android:layout_above="@+id/foodTrucks"
+                    android:id="@+id/imageViewFoodTrucks"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:text="FOOD TRUCKS"
+                    android:id="@+id/foodTrucks"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="5dp"
+                    android:textColor="@color/pink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardViewBakeries"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="2dp"
+            android:layout_width="130dp"
+            android:layout_height="140dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_margin="1dp"
+                    android:layout_above="@+id/bakeries"
+                    android:id="@+id/imageViewBakeries"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:text="@string/bakeries"
+                    android:id="@+id/bakeries"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="5dp"
+                    android:textColor="@color/pink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardViewOrganic"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="2dp"
+            android:layout_width="130dp"
+            android:layout_height="140dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_margin="1dp"
+                    android:layout_above="@+id/organic"
+                    android:id="@+id/imageViewOrganic"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:text="AMERICAN"
+                    android:id="@+id/organic"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="5dp"
+                    android:textColor="@color/pink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+</HorizontalScrollView>
+
+</LinearLayout>
