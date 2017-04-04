@@ -80,6 +80,7 @@ public class MessageRecyclerFragment extends Fragment {
                 }
             }
         });
+
         return view;
     }
 

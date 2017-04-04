@@ -106,6 +106,9 @@ public class CreateEventDialogFragment extends DialogFragment implements View.On
     void checkFields(){
         mEventName = mEditTextEventName.getText().toString();
         mEventAddress = mEditTextZipCode.getText().toString();
+        if (mEventDate == null){
+            mEventDate = "";
+        }
 
         mEventType = mSpinner.toString();
 

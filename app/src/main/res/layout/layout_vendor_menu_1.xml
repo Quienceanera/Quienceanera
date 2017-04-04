@@ -12,7 +12,8 @@
         android:id="@+id/textViewFood"
         android:text="FOOD"
         android:textColor="@color/blue"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:layout_marginStart="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

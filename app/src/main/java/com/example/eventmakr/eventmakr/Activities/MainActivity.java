@@ -10,7 +10,9 @@ import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.eventmakr.eventmakr.Objects.User;
 import com.example.eventmakr.eventmakr.R;
+import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.github.florent37.viewanimator.ViewAnimator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CardView mCardView1, mCardView2;
     private FirebaseUser mFirebaseUser;
     private FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             mButtonLogIn.setVisibility(View.GONE);
             Log.i("User", "Logged in");
+            addUserToDatabase(mFirebaseUser);
         }
         System.out.println("MainActivity.onCreate: " + FirebaseInstanceId.getInstance().getToken());
 
@@ -71,6 +75,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(mBackground);
     }
+
+    private void addUserToDatabase(FirebaseUser firebaseUser){
+        User user = new User(
+                firebaseUser.getDisplayName(),
+                firebaseUser.getUid(),
+                firebaseUser.getEmail(),
+                firebaseUser.getPhotoUrl() == null ? "" : firebaseUser.getPhotoUrl().toString(),
+                "false",
+                "false"
+        );
+        FirebaseUtil.getBaseRef().child("users").child(user.getUid()).setValue(user);
+
+        String instanceId = FirebaseInstanceId.getInstance().getToken();
+        if (instanceId != null){
+            FirebaseUtil.getBaseRef().child("users").child(firebaseUser.getUid()).child("instanceId").setValue(instanceId);
+        }
+    }
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+//    }
 
     @Override
     protected void onResume() {

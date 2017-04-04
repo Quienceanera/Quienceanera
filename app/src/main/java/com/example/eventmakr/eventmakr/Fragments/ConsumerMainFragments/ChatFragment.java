@@ -16,10 +16,12 @@ import com.example.eventmakr.eventmakr.Activities.VendorActivity;
 import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ChatHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
+import com.example.eventmakr.eventmakr.Adapters.VendorOrderHomeAdapter;
 import com.example.eventmakr.eventmakr.Objects.Message;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
+import com.example.eventmakr.eventmakr.Utils.MyFirebaseMessagingService;
 import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +34,8 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
     private String mPhotoUrl, mUsername, mUid, mChatPath, mChatKey, mVendorUid;
     private DatabaseReference mDatabaseReference, mDatabaseRef, mConsumerSideVendorRef, mVendorMessageRef, mConsumerMessageRef;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private MyFirebaseMessagingService myFirebaseMessagingService;
+    private String SENDER_ID = FirebaseUtil.getUid();
     private Viewholder mViewHolder;
     private FloatingActionButton mFabSend;
     private EditText mEditTextChat;
@@ -103,29 +107,46 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
 
             mVendorMessageRef = FirebaseUtil.getVendorSideVendorMessageRef().child(mChatKey);
             mConsumerMessageRef = FirebaseUtil.getVendorSideConsumerMessageRef().child(mChatKey);
+            mDatabaseReference = FirebaseUtil.getBaseRef().child("notifications").child("messages").push();
 
         } else {
                 mConsumerMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(CartHomeAdapter.mVendorUid).child(mChatKey);
                 mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef().child(mChatKey);
+            mDatabaseReference = FirebaseUtil.getBaseRef().child("notifications").child("messages").push();
+
 
         }
-        Message message = new Message(
-                mEditTextChat.getText().toString(),
-                mUsername,
-                mPhotoUrl,
-                EventsAdapter.mEventKey,
-                FirebaseUtil.getUid(),
-                CartHomeAdapter.mVendorUid,
-                mCurrentTimestamp
-        );
+
+
+
 
         if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
+            Message message = new Message(
+                    mEditTextChat.getText().toString(),
+                    FirebaseUtil.getUserName(),
+                    FirebaseUtil.getUser().getPhotoUrl().toString(),
+                    VendorOrderHomeAdapter.mEventKey,
+                    FirebaseUtil.getUid(),
+                    VendorOrderHomeAdapter.mCustomerUid,
+                    mCurrentTimestamp
+            );
             mVendorMessageRef.setValue(message);
             mConsumerMessageRef.setValue(message);
+            mDatabaseReference.setValue(message);
             mEditTextChat.setText("");
         } else {
+            Message message = new Message(
+                    mEditTextChat.getText().toString(),
+                    mUsername,
+                    mPhotoUrl,
+                    EventsAdapter.mEventKey,
+                    FirebaseUtil.getUid(),
+                    CartHomeAdapter.mVendorUid,
+                    mCurrentTimestamp
+            );
             mConsumerMessageRef.setValue(message);
             mVendorMessageRef.setValue(message);
+            mDatabaseReference.setValue(message);
             mEditTextChat.setText("");
         }
     }

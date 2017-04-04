@@ -139,7 +139,7 @@ public class VendorAddProductDialogFragment extends DialogFragment implements Vi
                 }
             });
         } else {
-
+            dismiss();
         }
     }
 
