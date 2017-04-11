@@ -21,7 +21,7 @@ public class VendorAdapter extends FirebaseRecyclerAdapter<Vendor, Viewholder> {
     private Context mContext;
     private Intent mIntent;
     private Query mQuery;
-    public static String mVendorUid, mCategory, mPriceRange, mVendorLogo, mVendorName;
+    public static String mVendorUid, mCategory, mPriceRange, mVendorLogo, mVendorName, mPlaceId;
 
     public VendorAdapter(Class<Vendor> modelClass, int modelLayout, Class<Viewholder> viewHolderClass,final Query ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
@@ -35,7 +35,7 @@ public class VendorAdapter extends FirebaseRecyclerAdapter<Vendor, Viewholder> {
     protected void populateViewHolder(final Viewholder viewHolder, final Vendor model, final int position) {
         Log.i(TAG,TAG);
         mVendorUid = getRef(position).getKey();
-
+        mPlaceId = model.getPlaceId();
         mVendorLogo = model.getLogo();
         mVendorUid = model.getVendorUid();
         mVendorName = model.getName();
@@ -69,6 +69,11 @@ public class VendorAdapter extends FirebaseRecyclerAdapter<Vendor, Viewholder> {
         viewHolder.mCardViewVendorItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mVendorUid = getRef(position).getKey();
+                mPlaceId = model.getPlaceId();
+                mVendorLogo = model.getLogo();
+                mVendorUid = model.getVendorUid();
+                mVendorName = model.getName();
                 getVendorProfile();
             }
         });

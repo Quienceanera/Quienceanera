@@ -117,9 +117,6 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
 
         }
 
-
-
-
         if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
             Message message = new Message(
                     mEditTextChat.getText().toString(),

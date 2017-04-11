@@ -26,8 +26,8 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private ViewPagerAdapter mViewPagerAdapter;
-    private FloatingActionButton mFabNewEvent;
-    private CardView mCardViewCreateEvent;
+    private FloatingActionButton mFabNewEvent, mFabSearchVendors;
+    private CardView mCardViewCreateEvent, mCardViewSearchVendors;
     private DatabaseReference mDatabaseNewMessage;
     public static Boolean mVendorMode, mConsumerMode;
     private CoordinatorLayout mLayoutConsumer;
@@ -38,9 +38,13 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_consumer);
 
         mFabNewEvent = (FloatingActionButton) findViewById(R.id.fabNewEvent);
+        mFabSearchVendors = (FloatingActionButton) findViewById(R.id.fabSearchVendor);
         mCardViewCreateEvent = (CardView) findViewById(R.id.cardViewCreateEvent_helper);
+        mCardViewSearchVendors = (CardView) findViewById(R.id.cardViewSearchVendor_helper);
         mLayoutConsumer = (CoordinatorLayout) findViewById(R.id.layoutConsumer);
+
         mFabNewEvent.setOnClickListener(this);
+        mFabSearchVendors.setOnClickListener(this);
 
         mImageViewBackGround = (ImageView) findViewById(R.id.imageViewBackground);
         mImageViewLogo = (ImageView) findViewById(R.id.imageViewConsumerLogo);
@@ -52,6 +56,9 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         mViewPager = (ViewPager) findViewById(R.id.viewpagerConsumer);
         mViewPagerAdapter = new ViewPagerAdapter(getFragmentManager(), this);
         mViewPagerAdapter.addFragments(FragmentUtil.getEventsFragment(), "");
+
+        mFabSearchVendors.setVisibility(View.GONE);
+        mCardViewSearchVendors.setVisibility(View.GONE);
         if (EventsAdapter.mEventKey != null){
             mViewPagerAdapter.addFragments(FragmentUtil.getCartFragment(), "");
             mViewPagerAdapter.addFragments(FragmentUtil.getUserFragment(), "");
@@ -68,9 +75,21 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
             public void onTabSelected(TabLayout.Tab tab) {
                 if (tab.getPosition() == 0){
                     ViewAnimator.animate(mFabNewEvent)
-                            .bounceIn()
-                            .duration(500)
+                            .rollIn()
+                            .duration(300)
                             .andAnimate(mCardViewCreateEvent)
+                            .zoomIn()
+                            .descelerate()
+                            .duration(300)
+                            .start();
+                }
+                if (tab.getPosition() == 1){
+                    mFabSearchVendors.setVisibility(View.VISIBLE);
+                    mCardViewSearchVendors.setVisibility(View.VISIBLE);
+                    ViewAnimator.animate(mFabSearchVendors)
+                            .rollIn()
+                            .duration(300)
+                            .andAnimate(mCardViewSearchVendors)
                             .zoomIn()
                             .descelerate()
                             .duration(300)
@@ -82,9 +101,19 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
             public void onTabUnselected(TabLayout.Tab tab) {
                 if (tab.getPosition() == 0){
                     ViewAnimator.animate(mFabNewEvent)
-                            .bounceOut()
+                            .rollOut()
                             .duration(300)
                             .andAnimate(mCardViewCreateEvent)
+                            .zoomOut()
+                            .descelerate()
+                            .duration(300)
+                            .start();
+                }
+                if (tab.getPosition() == 1){
+                    ViewAnimator.animate(mFabSearchVendors)
+                            .rollOut()
+                            .duration(300)
+                            .andAnimate(mCardViewSearchVendors)
                             .zoomOut()
                             .descelerate()
                             .duration(300)
@@ -141,6 +170,8 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         switch (id) {
             case R.id.fabNewEvent:
                 getCreateEventDialog();
+            case R.id.fabSearchVendor:
+                getEventsActivity();
             default:
         }
     }
@@ -159,6 +190,10 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
 
     void getCreateEventDialog(){
         new CreateEventDialogFragment().show(getFragmentManager(), "CreateEventDialogFragment");
+    }
+
+    void getEventsActivity(){
+        startActivity(new Intent(this, EventActivity.class));
     }
 
     @Override

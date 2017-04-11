@@ -78,6 +78,7 @@ public class CartDetailFragment extends android.app.Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        
     }
 
 //    @Override

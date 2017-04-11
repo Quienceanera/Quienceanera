@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
-
 import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
 import com.example.eventmakr.eventmakr.Activities.VendorActivity;
@@ -33,7 +32,7 @@ public class PreCartAdapter extends FirebaseRecyclerAdapter<Items, Viewholder> {
     protected void populateViewHolder(Viewholder viewHolder, final Items model, int position) {
         Log.i(TAG,TAG);
         viewHolder.mTextViewItemsName.setText(model.getName());
-        viewHolder.mTextViewItemsQuantity.setText(model.getQuantity());
+        viewHolder.mTextViewItemsQuantity.setText("Qty: " + model.getQuantity());
         viewHolder.mTextViewItemsPrice.setText("$" + model.getPrice());
         Glide.with(mContext)
                 .load(model.getPhoto())
@@ -61,7 +60,6 @@ public class PreCartAdapter extends FirebaseRecyclerAdapter<Items, Viewholder> {
                 }
             });
         }
-
 
         Log.i("Mode", VendorActivity.mVendorMode.toString()+" "+ ConsumerActivity.mConsumerMode.toString());
         if (!VendorActivity.mVendorMode && ConsumerActivity.mConsumerMode) {

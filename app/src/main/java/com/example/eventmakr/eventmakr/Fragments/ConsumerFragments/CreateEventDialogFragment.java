@@ -3,24 +3,16 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.Objects.Events;
 import com.example.eventmakr.eventmakr.R;
@@ -55,24 +47,24 @@ public class CreateEventDialogFragment extends DialogFragment implements View.On
         mCalendarView = (CalendarView) view.findViewById(R.id.calendarView);
         mFabCancel = (FloatingActionButton) view.findViewById(R.id.fabCancel);
         mFabCreate = (FloatingActionButton) view.findViewById(R.id.fabCreate);
-        mSpinner = (Spinner) view.findViewById(R.id.spinner_occasion);
-        mSpinner.setAdapter(new spinnerAdapter(getActivity(), R.layout.custom_spinner, R.id.textViewSpinner, Events));
+//        mSpinner = (Spinner) view.findViewById(R.id.spinner_occasion);
+//        mSpinner.setAdapter(new spinnerAdapter(getActivity(), R.layout.custom_spinner, R.id.textViewSpinner, Events));
 
         mFabCreate.setOnClickListener(this);
         mFabCancel.setOnClickListener(this);
 
-        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mEventType = parent.getItemAtPosition(position).toString();
-                mImageId = (int) parent.getItemIdAtPosition(position);
-                Log.i("Event Type", mEventType + " " + mImageId);
-                mCheckFields = true;
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+//        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                mEventType = parent.getItemAtPosition(position).toString();
+//                mImageId = (int) parent.getItemIdAtPosition(position);
+//                Log.i("Event Type", mEventType + " " + mImageId);
+//                mCheckFields = true;
+//            }
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//            }
+//        });
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -91,7 +83,7 @@ public class CreateEventDialogFragment extends DialogFragment implements View.On
                 .setImageRecourse(R.drawable.help_circle)
                 .setTextTitle("Create Event!")
                 .setTitleColor(R.color.blue)
-                .setTextSubTitle("Choose A Date\n&\nEnter Your Details")
+                .setTextSubTitle("Choose A Date & Enter Your Details")
                 .setPositiveButtonText("Okay!")
                 .setOnPositiveClicked(new FancyAlertDialog.OnPositiveClicked() {
                     @Override
@@ -110,21 +102,20 @@ public class CreateEventDialogFragment extends DialogFragment implements View.On
             mEventDate = "";
         }
 
-        mEventType = mSpinner.toString();
+//        mEventType = mSpinner.toString();
 
         if (mEventName.isEmpty() ||
                 mEventAddress.isEmpty() ||
-                mEventDate.isEmpty()||
-                mEventType.isEmpty()){
+                mEventDate.isEmpty()){
             if (TextUtils.isEmpty(mEventName)){
                 mEditTextEventName.setError("Can not be empty");
             }
             if (TextUtils.isEmpty(mEventAddress)){
                 mEditTextZipCode.setError("Can not be empty");
             }
-            if (TextUtils.isEmpty(mEventType)){
-                Toast.makeText(getActivity(), "Choose A Date", Toast.LENGTH_SHORT).show();
-            }
+//            if (TextUtils.isEmpty(mEventType)){
+//                Toast.makeText(getActivity(), "Choose A Date", Toast.LENGTH_SHORT).show();
+//            }
             Log.i("is empty", "True");
         } else{
             Log.i("is empty", "false");
@@ -145,7 +136,7 @@ public class CreateEventDialogFragment extends DialogFragment implements View.On
                 mEventId,
                 mEventName,
                 mEventDate,
-                mEventType,
+                null,
                 mEventPhoto,
                 mEventZipCode,
                 mUid
@@ -168,24 +159,24 @@ public class CreateEventDialogFragment extends DialogFragment implements View.On
         }
     }
 
-    public class spinnerAdapter extends ArrayAdapter {
-        public spinnerAdapter(@NonNull Context context, @LayoutRes int resource, @IdRes int text, @NonNull Object[] objects) {
-            super(context, resource, text, objects);
-        }
-        public View getCustomView(int position, View convertView, ViewGroup parent){
-            LayoutInflater inflater = getActivity().getLayoutInflater();
-            View layout = inflater.inflate(R.layout.custom_spinner, parent, false);
-            TextView mTextViewSpinnner = (TextView) layout.findViewById(R.id.textViewSpinner);
-            mTextViewSpinnner.setText(Events[position]);
-            return layout;
-        }
-        public View getDropDown(int position, View convertView, ViewGroup parent) {
-            return getCustomView(position, convertView, parent);
-        }
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return getCustomView(position, convertView, parent);
-        }
-    }
+//    public class spinnerAdapter extends ArrayAdapter {
+//        public spinnerAdapter(@NonNull Context context, @LayoutRes int resource, @IdRes int text, @NonNull Object[] objects) {
+//            super(context, resource, text, objects);
+//        }
+//        public View getCustomView(int position, View convertView, ViewGroup parent){
+//            LayoutInflater inflater = getActivity().getLayoutInflater();
+//            View layout = inflater.inflate(R.layout.custom_spinner, parent, false);
+//            TextView mTextViewSpinnner = (TextView) layout.findViewById(R.id.textViewSpinner);
+//            mTextViewSpinnner.setText(Events[position]);
+//            return layout;
+//        }
+//        public View getDropDown(int position, View convertView, ViewGroup parent) {
+//            return getCustomView(position, convertView, parent);
+//        }
+//        public View getView(int position, View convertView, ViewGroup parent) {
+//            return getCustomView(position, convertView, parent);
+//        }
+//    }
     @Override
     public void onResume() {
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.tw__transparent);

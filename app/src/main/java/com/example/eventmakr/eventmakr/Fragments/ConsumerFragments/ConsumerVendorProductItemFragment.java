@@ -142,6 +142,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
 
     void getSpecialInstructions(){
                 FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(getActivity())
+                        .setBackgroundColor(R.color.colorAccentLighter)
                 .setImageRecourse(R.drawable.lead_pencil)
                 .setTextTitle("Add Special Instructions?")
                 .setTitleColor(R.color.blue)

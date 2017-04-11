@@ -6,20 +6,20 @@ public class Message {
     private String user;
     private String photoUrl;
     private String eventKey;
-    private String customerUid;
-    private String vendorUid;
+    private String senderUid;
+    private String receiverUid;
     private String timestamp;
 
     public Message() {
     }
 
-    public Message(String text, String user, String photoUrl, String eventKey, String customerUid, String vendorUid, String timestamp) {
+    public Message(String text, String user, String photoUrl, String eventKey, String senderUid, String receiverUid, String timestamp) {
         this.text = text;
         this.user = user;
         this.photoUrl = photoUrl;
         this.eventKey = eventKey;
-        this.customerUid = customerUid;
-        this.vendorUid = vendorUid;
+        this.senderUid = senderUid;
+        this.receiverUid = receiverUid;
         this.timestamp = timestamp;
     }
 
@@ -55,20 +55,20 @@ public class Message {
         this.eventKey = eventKey;
     }
 
-    public String getCustomerUid() {
-        return customerUid;
+    public String getSenderUid() {
+        return senderUid;
     }
 
-    public void setCustomerUid(String customerUid) {
-        this.customerUid = customerUid;
+    public void setSenderUid(String senderUid) {
+        this.senderUid = senderUid;
     }
 
-    public String getVendorUid() {
-        return vendorUid;
+    public String getReceiverUid() {
+        return receiverUid;
     }
 
-    public void setVendorUid(String vendorUid) {
-        this.vendorUid = vendorUid;
+    public void setReceiverUid(String receiverUid) {
+        this.receiverUid = receiverUid;
     }
 
     public String getTimestamp() {

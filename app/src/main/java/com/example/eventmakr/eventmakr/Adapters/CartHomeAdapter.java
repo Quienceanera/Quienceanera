@@ -42,6 +42,11 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
         Log.i(TAG,TAG);
         mPosition = position;
 
+        if (model.getItemCount() == null || model.getPriceTotal() == null){
+            viewHolder.mTextViewCartHomePriceTotal.setVisibility(View.GONE);
+            viewHolder.mTextViewCartHomeCount.setVisibility(View.GONE);
+        }
+
         viewHolder.mTextViewCartHomeVendorName.setText(model.getVendorName());
         viewHolder.mTextViewEventName.setText("For "+model.getEventName());
         viewHolder.mTextViewCartHomeTimestamp.setText("Submitted On: "+model.getTimeStamp());

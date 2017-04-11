@@ -42,6 +42,10 @@
         <item name="tabSelectedTextColor">?android:textColorPrimary</item>
     </style>
 
+    <style name="MyCustomRatingsBar" parent="Base.Widget.AppCompat.RatingBar">
+        <item name="android:color">@color/green</item>
+        </style>
+
     <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/fabColor</item>

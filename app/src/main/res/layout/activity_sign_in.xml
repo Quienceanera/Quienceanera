@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,14 +7,81 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.eventmakr.eventmakr.Activities.SignInActivity">
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_centerInParent="true"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/fragmentGoogleSignIn"
-        android:name="com.example.eventmakr.eventmakr.Fragments.SignInFragments.GoogleSignInFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_google_sign_in" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/layoutSignInBanner"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="S"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                android:textColor="@color/logoColor"
+                android:textSize="30sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="I"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                android:textColor="@color/yellow"
+                android:textSize="30sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="G"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="N"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                android:textColor="@color/pink"
+                android:textSize="30sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text=" "
+                android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                android:textColor="@color/logoColor"
+                android:textSize="30sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="I"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                android:textColor="@color/yellow"
+                android:textSize="30sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="N"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                android:textColor="@color/green"
+                android:textSize="30sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_centerInParent="true"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/fragmentGoogleSignIn"
+            android:name="com.example.eventmakr.eventmakr.Fragments.SignInFragments.GoogleSignInFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_google_sign_in" />
+
+    </RelativeLayout>
 
 
-</RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

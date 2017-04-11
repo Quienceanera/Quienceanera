@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
+import com.google.android.gms.ads.AdView;
 
 public class ConsumerVendorCategoryFragment extends android.app.Fragment implements View.OnClickListener {
 
@@ -30,6 +31,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
     private ImageView mImageViewDjs, mImageViewLive, mImageViewInstrument, mImageViewVocal;
     private ImageView mImageViewCaterers, mImageViewBakeries, mImageViewFoodTrucks, mImageViewOrganic;
     private ImageView mImageViewMixologists, mImageViewKegs, mImageViewWholesale, mImageViewWine;
+
 
     public ConsumerVendorCategoryFragment() {
         // Required empty public constructor
@@ -104,7 +106,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
 
     void loadImages () {
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fcatering.jpg?alt=media&token=48e8ee01-c0f8-44aa-9ea0-fc958cbfee8b")
+                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fcaterers.png?alt=media&token=726a98cc-307f-4cd2-9c1b-35370a2b8e36")
                 .centerCrop()
                 .crossFade()
                 .thumbnail(0.1f)
@@ -113,7 +115,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
 
 
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fbakeries.jpg?alt=media&token=88e2324b-8f50-4c8f-bbab-d056b26d7f4c")
+                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fbakeries.jpg?alt=media&token=544ed26b-6112-4d6a-b3c7-3ecafa3adfa4")
                 .centerCrop()
                 .crossFade()
                 .thumbnail(0.1f)
@@ -167,7 +169,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(mImageViewVocal);
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fmixoligists.jpg?alt=media&token=afa9b638-f30e-49c2-bdd1-8b01f08626df")
+                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fmixologists.jpg?alt=media&token=fde6dbba-c7af-41a5-b17a-2859bccd4f27")
                 .centerCrop()
                 .crossFade()
                 .thumbnail(0.1f)

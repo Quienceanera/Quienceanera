@@ -14,6 +14,8 @@ import android.widget.Toolbar;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.RecommendVendorDialogFragment;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
+import com.github.florent37.viewanimator.ViewAnimator;
+import com.google.android.gms.ads.AdView;
 
 public class EventActivity extends AppCompatActivity {
 
@@ -25,6 +27,8 @@ public class EventActivity extends AppCompatActivity {
     private String mEventTypeUrl;
     private Context mContext;
 
+    private AdView mAdView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,9 @@ public class EventActivity extends AppCompatActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.toolbarEvents);
         mToolbar.setNavigationIcon(R.drawable.close);
+//        mAdView = (AdView) findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
         mLayoutEvent = (CoordinatorLayout) findViewById(R.id.layoutEvent);
         mFabRecommendVendor = (FloatingActionButton) findViewById(R.id.fabRecommendVendor);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -58,6 +65,11 @@ public class EventActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
         getVendorCategory();
+        ViewAnimator.animate(mAdView)
+                .slideBottom()
+                .duration(300)
+                .descelerate()
+                .start();
     }
 
     @Override

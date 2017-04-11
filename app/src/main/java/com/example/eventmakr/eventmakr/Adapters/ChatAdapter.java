@@ -42,7 +42,7 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Message, Viewholder>{
     protected void populateViewHolder(final Viewholder viewHolder, final Message model, final int position) {
         Log.i(TAG,TAG);
         mUid = FirebaseUtil.getUid();
-        if (mUid.equals(model.getCustomerUid())) {
+        if (mUid.equals(model.getSenderUid())) {
             viewHolder.mTextViewChatUser.setText(model.getText());
             viewHolder.mCardViewChatUser.setVisibility(View.VISIBLE);
             viewHolder.mCardViewChat.setVisibility(View.INVISIBLE);
@@ -53,7 +53,7 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Message, Viewholder>{
                 public boolean onLongClick(View view) {
                     mChatKey = getRef(position).getKey();
                     mEventKey = model.getEventKey();
-                    mVendorUid = model.getVendorUid();
+                    mVendorUid = model.getReceiverUid();
                     ViewAnimator.animate(viewHolder.mLayoutDeleteComment)
                             .slideRight()
                             .descelerate()

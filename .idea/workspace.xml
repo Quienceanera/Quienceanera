@@ -14,27 +14,53 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="info" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb6bb096-8663-4ee7-90a5-8db1f12109bd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/firebase_ads_10_0_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/store2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fab_create_event.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fab_search_vendors.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/raw/map_style" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/MapsActivity.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/google-services.json" afterPath="$PROJECT_DIR$/app/google-services.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/ConsumerActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/ConsumerActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/EventActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/EventActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/CartHomeAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/CartHomeAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/ChatAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/ChatAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/EventsAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/EventsAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/PreCartAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/PreCartAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/VendorAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/VendorAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ConsumerVendorCategoryFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ConsumerVendorCategoryFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ConsumerVendorProductItemFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ConsumerVendorProductItemFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ConsumerVendorProfileFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ConsumerVendorProfileFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ContactVendorFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ContactVendorFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/CreateEventDialogFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/CreateEventDialogFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerMainFragments/CartDetailFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerMainFragments/CartDetailFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerMainFragments/ChatFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerMainFragments/ChatFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/VendorFragments/VendorAddProductDialogFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/VendorFragments/VendorAddProductDialogFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/User.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/ChatRecyclerFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/ChatRecyclerFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/MessageRecyclerFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/MessageRecyclerFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/MyFirebaseInstanceIdService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/MyFirebaseInstanceIdService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/MyFirebaseMessagingService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/MyFirebaseMessagingService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/Message.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/Message.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/Vendor.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/Vendor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/FirebaseUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/FirebaseUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/FragmentUtil.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/FragmentUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_consumer.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_consumer.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_event.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_event.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_order_detail.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_order_detail.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_in.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_in.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_fragment_create_event.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_fragment_create_event.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/events_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/events_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_cart_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_cart_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_consumer_vendor_profile.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_consumer_vendor_profile.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_vendor_menu_1.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_vendor_menu_1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_vendor_menu_2.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_vendor_menu_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_vendor_menu_3.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_vendor_menu_3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/vendor_order_home_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/vendor_order_home_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/vendor_product_card_view.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/vendor_product_card_view.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
     </list>
     <ignored path="Quienceanera.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,122 +93,57 @@
     <favorites_list name="Quienceanera" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="MessageRecyclerFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/MessageRecyclerFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-450">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding>
-                <element signature="e#2866#3441#0" expanded="true" />
-                <element signature="e#3440#3441#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChatFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerMainFragments/ChatFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="683">
-              <caret line="130" column="29" selection-start-line="130" selection-start-column="29" selection-end-line="130" selection-end-column="29" />
-              <folding>
-                <element signature="method#onCreate#0;class#ChatFragment#0" expanded="false" />
-                <element signature="method#onCreateView#0;class#ChatFragment#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateEventDialogFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/CreateEventDialogFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1048">
-              <caret line="108" column="30" selection-start-line="108" selection-start-column="30" selection-end-line="108" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Message.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/Message.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1075">
-              <caret line="95" column="0" selection-start-line="95" selection-start-column="2" selection-end-line="105" selection-end-column="7" />
-              <folding>
-                <element signature="method#loadParallaxBg#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#onClick#0;class#MainActivity#0" expanded="false" />
-                <marker date="1491269405358" expanded="false" signature="3793:3895" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyFirebaseMessagingService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/MyFirebaseMessagingService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="750">
-              <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyFirebaseInstanceIdService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/MyFirebaseInstanceIdService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="700">
-              <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="29" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider editor-type-id="android-manifest">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2389">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5379775">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+          <file leaf-file-name="CartDetailFragment.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerMainFragments/CartDetailFragment.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1318">
+                  <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ConsumerActivity.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/ConsumerActivity.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-2782">
+                  <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+                  <folding>
+                    <element signature="method#loadBackground#0;class#ConsumerActivity#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="EventActivity.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/EventActivity.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="150">
+                  <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="ASClass" />
-        <option value="Class" />
         <option value="layoutResourceFile_vertical" />
         <option value="resourceFile" />
         <option value="layoutResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -702,6 +663,11 @@
                 <option name="description" value="Prepare com.android.support.test:runner:0.5" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="prepareComAndroidSupportTestRunner05Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.google.firebase:firebase-ads:10.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComGoogleFirebaseFirebaseAds1001Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Runs lint on the Release build." />
@@ -1841,6 +1807,11 @@
                 <option name="name" value="prepareComAndroidSupportTestRunner05Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.google.firebase:firebase-ads:10.0.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComGoogleFirebaseFirebaseAds1001Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Runs lint on the Release build." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="lintRelease" />
@@ -2501,7 +2472,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="C:\Users\bboyc\Desktop\Android Projects\Quienceanera" value="4456486636801" />
-        <entry key="C:\Users\bboyc\Desktop\AndroidProjects\Quienceanera" value="4463652221674" />
+        <entry key="C:\Users\bboyc\Desktop\AndroidProjects\Quienceanera" value="4464771083489" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2810,44 +2781,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerMainFragments/CartDetailFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerMainFragments/CartFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerMainFragments/CartHomeFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerMainFragments/EventsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerMainFragments/UserFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/VendorFragments/OrderDetailFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/VendorFragments/VendorInputFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/VendorFragments/VendorMenuFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/VendorFragments/VendorOrderHome.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/VendorFragments/VendorProductFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/CartRecyclerFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/OrderListRecyclerFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/VendorOrderHomeListFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/VendorOrderListFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/OrderRecyclerFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/EventRecyclerFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/VendorProductRecyclerFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/VendorProfileProductRecyclerFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/VendorRecyclerFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_pay.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/VendorProductsAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/cart_plus.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_product_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/ViewHolders/CartHomeViewholder.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_cart_home_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_vendor_order.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/CartHomeAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/ConsumerActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/ViewHolders/EventsViewholder.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/EventsAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/events_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/calendar.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_consumer_vendor.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/gradient.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ConsumerVendorCategoryFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_event.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/layout_vendor_menu_2.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/layout_vendor_menu_1.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/layout_vendor_menu_3.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/VendorFragments/VendorAddProductDialogFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/vendor_order_home_item.xml" />
@@ -2857,18 +2792,54 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/MyFirebaseMessagingService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/MyFirebaseInstanceIdService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/User.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/Message.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/CreateEventDialogFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerMainFragments/ChatFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/layout_vendor_menu_1.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/layout_vendor_menu_2.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_in.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_fragment_create_event.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/CreateEventDialogFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ConsumerVendorCategoryFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/MapsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_event.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/VendorFragments/OrderDetailFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/CartHomeAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/FirebaseUtil.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/EventsAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_cart_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/PreCartAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/create_event_fab.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_consumer.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/store2.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fab_create_event.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fab_search_vendors.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/Vendor.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/VendorAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/GooglePlacesFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/FragmentUtil.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/raw/map_style" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ConsumerVendorProfileFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_consumer_vendor_profile.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/vendor_product_card_view.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/events_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/Message.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ContactVendorFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/EventActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerMainFragments/CartDetailFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ConsumerVendorProductItemFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/ConsumerActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="3934" />
-    <option name="y" value="69" />
-    <option name="width" value="1629" />
-    <option name="height" value="1394" />
+    <option name="x" value="3829" />
+    <option name="y" value="-11" />
+    <option name="width" value="2809" />
+    <option name="height" value="1642" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -2914,8 +2885,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2990,7 +2959,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -3007,11 +2978,12 @@
       <recent name="com.example.eventmakr.eventmakr.Activities" />
     </key>
     <key name="android.template.packageName">
+      <recent name="com.example.eventmakr.eventmakr" />
       <recent name="com.example.eventmakr.eventmakr.Activities" />
     </key>
     <key name="android.template.parentActivityClass">
-      <recent name="com.example.eventmakr.eventmakr.Activities.VendorActivity" />
       <recent name="" />
+      <recent name="com.example.eventmakr.eventmakr.Activities.VendorActivity" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.eventmakr.eventmakr.Fragments.ConsumerFragments" />
@@ -3021,8 +2993,8 @@
       <recent name="com.example.eventmakr.eventmakr.RecyclerFragment" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\bboyc\Desktop\AndroidProjects\Quienceanera\app\src\main\res\layout" />
       <recent name="C:\Users\bboyc\Desktop\AndroidProjects\Quienceanera\app\src\main\res\drawable" />
+      <recent name="C:\Users\bboyc\Desktop\AndroidProjects\Quienceanera\app\src\main\res\layout" />
       <recent name="C:\Users\bboyc\Desktop\Android Projects\Quienceanera\app\src\main\res\layout" />
     </key>
   </component>
@@ -3631,7 +3603,14 @@
       <option name="project" value="LOCAL" />
       <updated>1491175018018</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="adds cloud funtion support&#10;">
+      <created>1491272696579</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1491272696579</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -3667,33 +3646,33 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="3934" y="69" width="1629" height="1394" extended-state="0" />
+    <frame x="3829" y="-11" width="2809" height="1642" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22761194" sideWeight="0.4897511" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22707424" sideWeight="0.4897511" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22778258" sideWeight="0.501609" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.8852459" sideWeight="0.49536708" order="8" side_tool="false" content_ui="tabs" x="4007" y="186" width="2249" height="1400" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34733364" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.027436823" sideWeight="0.501609" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.82093865" sideWeight="0.49536708" order="8" side_tool="false" content_ui="tabs" x="1224" y="663" width="198" height="68" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3479543" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25798103" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959446" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.67903364" sideWeight="0.498391" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24979888" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959446" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23157208" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17987467" sideWeight="0.49698016" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5839695" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32656133" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263538" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984716" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29927593" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26649466" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299758" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36940297" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25864843" sideWeight="0.50301987" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3701,7 +3680,7 @@
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Assistant" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.68448025" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Assistant" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39439735" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -3767,7 +3746,8 @@
     <MESSAGE value="added contact vendor and chat into consumer pay activity" />
     <MESSAGE value="app working well" />
     <MESSAGE value="redesign vendor category" />
-    <option name="LAST_COMMIT_MESSAGE" value="redesign vendor category" />
+    <MESSAGE value="adds cloud funtion support&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="adds cloud funtion support&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3776,104 +3756,44 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/VendorOrderHomeListFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/MessageRecyclerFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+        <state relative-caret-position="25">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/VendorOrderListFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ConsumerVendorCategoryFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+        <state relative-caret-position="460">
+          <caret line="33" column="3" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/OrderRecyclerFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/CreateEventDialogFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+        <state relative-caret-position="-405">
+          <caret line="108" column="36" selection-start-line="108" selection-start-column="36" selection-end-line="108" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/EventRecyclerFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/VendorProductRecyclerFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/VendorProfileProductRecyclerFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/VendorRecyclerFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_consumer_vendor_profile.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sign_in.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/VendorProductsAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="636">
-          <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/cart_plus.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_vendor_input.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-25">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/ViewHolders/CartHomeViewholder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="21" column="91" selection-start-line="21" selection-start-column="91" selection-end-line="21" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/VendorOrderActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
-          <caret line="30" column="47" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
+          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_fragment_create_event.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="40" column="10" selection-start-line="40" selection-start-column="10" selection-end-line="56" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -3882,56 +3802,151 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="800">
-          <caret line="208" column="51" selection-start-line="208" selection-start-column="51" selection-end-line="208" selection-end-column="51" />
-          <folding>
-            <element signature="e#930#4372#0" expanded="false" />
-            <element signature="e#4390#6267#0" expanded="false" />
-            <element signature="e#6285#9342#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="1147">
+          <caret line="126" column="21" selection-start-line="126" selection-start-column="11" selection-end-line="184" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/ConsumerActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="99" column="28" selection-start-line="99" selection-start-column="28" selection-end-line="99" selection-end-column="28" />
-          <folding>
-            <element signature="method#loadBackground#0;class#ConsumerActivity#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="1375">
+          <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_cart_home_item.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="113" column="36" selection-start-line="113" selection-start-column="36" selection-end-line="113" selection-end-column="36" />
+          <folding>
+            <marker date="1491415664530" expanded="false" signature="4678:4694" ph="&quot;LOG IN&quot;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/VendorFragments/OrderDetailFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="72" column="40" selection-start-line="72" selection-start-column="40" selection-end-line="72" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3180">
+          <caret line="155" column="0" selection-start-line="155" selection-start-column="0" selection-end-line="157" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/FirebaseUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1725">
+          <caret line="73" column="9" selection-start-line="73" selection-start-column="9" selection-end-line="73" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/PreCartAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/CartListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="46" column="50" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_cart_item.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="48" column="51" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_chat_item.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/CartHomeAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="54" column="28" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/store.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/ViewHolders/EventsViewholder.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/store2.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="25" column="86" selection-start-line="25" selection-start-column="86" selection-end-line="25" selection-end-column="86" />
+        <state relative-caret-position="150">
+          <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_product_item.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/EventsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2135">
+          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_consumer.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="135" column="53" selection-start-line="135" selection-start-column="53" selection-end-line="135" selection-end-column="53" />
+        <state relative-caret-position="1088">
+          <caret line="78" column="47" selection-start-line="78" selection-start-column="47" selection-end-line="78" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/calendar.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fab_create_event.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fab_search_vendors.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
@@ -3939,80 +3954,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/EventsAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
-          <caret line="35" column="65" selection-start-line="35" selection-start-column="65" selection-end-line="35" selection-end-column="65" />
-          <folding>
-            <element signature="e#1690#1715#0" expanded="false" />
-            <element signature="e#4952#6438#0" expanded="false" />
-            <element signature="e#6437#6438#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/FirebaseUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="51" column="36" selection-start-line="51" selection-start-column="36" selection-end-line="51" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/ChatAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1389">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_vendor_order.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="129" column="50" selection-start-line="129" selection-start-column="50" selection-end-line="129" selection-end-column="50" />
-          <folding>
-            <element signature="e#917#3534#0" expanded="false" />
-            <element signature="e#1174#1547#0" expanded="false" />
-            <element signature="e#1568#1938#0" expanded="false" />
-            <element signature="e#1959#2328#0" expanded="false" />
-            <element signature="e#2349#2717#0" expanded="false" />
-            <element signature="e#3552#5429#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/CartHomeAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1886">
-          <caret line="119" column="95" selection-start-line="119" selection-start-column="95" selection-end-line="119" selection-end-column="95" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/events_item.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="668">
-          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ContactVendorFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="897">
-          <caret line="54" column="60" selection-start-line="54" selection-start-column="60" selection-end-line="54" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_contact_vendor.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_google_places.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
@@ -4023,28 +3965,158 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/VendorAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/GooglePlacesFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/EventActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="661">
-          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+        <state relative-caret-position="918">
+          <caret line="81" column="34" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_consumer_vendor.xml">
-      <provider selected="true" editor-type-id="android-designer2">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ConsumerBudgetFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/GooglePlacesFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1120">
+          <caret line="61" column="58" selection-start-line="61" selection-start-column="58" selection-end-line="61" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.android/build-cache/0f65f1585eafd2d28b502f8973e926ae065b1561/output/jars/classes.jar!/com/google/android/gms/maps/MapFragment.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="744">
+          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml">
+      <provider editor-type-id="android-designer2">
         <state />
       </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/raw/map_style">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="992">
+          <caret line="248" column="1" selection-start-line="248" selection-start-column="1" selection-end-line="248" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="45" column="47" selection-start-line="45" selection-start-column="47" selection-end-line="45" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/attrs.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/FragmentUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="148" column="25" selection-start-line="148" selection-start-column="25" selection-end-line="148" selection-end-column="25" />
+          <folding>
+            <element signature="e#6306#6307#0" expanded="false" />
+            <element signature="e#6346#6347#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/VendorAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1070">
+          <caret line="75" column="46" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/Vendor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/MapsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_consumer_vendor_profile.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/vendor_product_card_view.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ConsumerVendorProfileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="793">
+          <caret line="114" column="39" selection-start-line="114" selection-start-column="39" selection-end-line="114" selection-end-column="39" />
+          <folding>
+            <element signature="e#3771#4472#0" expanded="true" />
+            <element signature="e#4471#4472#0" expanded="true" />
+            <element signature="method#onViewCreated#0;class#ConsumerVendorProfileFragment#0" expanded="false" />
+            <element signature="method#getChildRecyclerVendorProductItems#0;class#ConsumerVendorProfileFragment#0" expanded="false" />
+            <element signature="method#onClick#0;class#ConsumerVendorProfileFragment#0" expanded="false" />
+            <element signature="method#onConnectionFailed#0;class#ConsumerVendorProfileFragment#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4053,209 +4125,102 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="1175">
+          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
           <folding>
-            <element signature="e#1229#3968#0" expanded="false" />
+            <marker date="1491341626013" expanded="false" signature="5123:5150" ph="&quot;ca-app-pub-1700195790577663/6756962433&quot;" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/gradient.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ConsumerVendorCategoryFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="275" column="43" selection-start-line="275" selection-start-column="43" selection-end-line="275" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_vendor_menu_3.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/events_item.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+        <state relative-caret-position="350">
+          <caret line="49" column="47" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/app/Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="795" column="26" selection-start-line="795" selection-start-column="26" selection-end-line="795" selection-end-column="26" />
           <folding>
-            <element signature="e#1432#1709#0" expanded="false" />
+            <element signature="e#30692#30693#0" expanded="true" />
+            <element signature="e#30757#30758#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_vendor_menu_2.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ConsumerVendorProductItemFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="16" column="35" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#2531#3411#0" expanded="false" />
-            <element signature="e#3729#4629#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_vendor_menu_1.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
-          <folding>
-            <element signature="e#1293#2189#0" expanded="false" />
-            <element signature="e#2508#3413#0" expanded="false" />
-            <element signature="e#3730#4634#0" expanded="false" />
-            <element signature="e#4950#5843#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/VendorFragments/VendorAddProductDialogFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="149" column="5" selection-start-line="149" selection-start-column="5" selection-end-line="149" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_order_detail.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/vendor_order_home_item.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="63" column="27" selection-start-line="63" selection-start-column="3" selection-end-line="64" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2389">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/ChatRecyclerFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="925">
-          <caret line="74" column="5" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="58" column="47" selection-start-line="58" selection-start-column="47" selection-end-line="58" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/MyFirebaseMessagingService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Utils/MyFirebaseInstanceIdService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="29" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/RecyclerFragment/MessageRecyclerFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-450">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding>
-            <element signature="e#2866#3441#0" expanded="true" />
-            <element signature="e#3440#3441#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1075">
-          <caret line="95" column="0" selection-start-line="95" selection-start-column="2" selection-end-line="105" selection-end-column="7" />
-          <folding>
-            <element signature="method#loadParallaxBg#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onClick#0;class#MainActivity#0" expanded="false" />
-            <marker date="1491269405358" expanded="false" signature="3793:3895" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/CreateEventDialogFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1048">
-          <caret line="108" column="30" selection-start-line="108" selection-start-column="30" selection-end-line="108" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-25/android.jar!/android/R.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="951" column="32" selection-start-line="951" selection-start-column="32" selection-end-line="951" selection-end-column="32" />
+        <state relative-caret-position="3525">
+          <caret line="144" column="70" selection-start-line="144" selection-start-column="70" selection-end-line="144" selection-end-column="70" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerMainFragments/ChatFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="683">
-          <caret line="130" column="29" selection-start-line="130" selection-start-column="29" selection-end-line="130" selection-end-column="29" />
+        <state relative-caret-position="143">
+          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerFragments/ContactVendorFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="793">
+          <caret line="212" column="0" selection-start-line="211" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
           <folding>
-            <element signature="method#onCreate#0;class#ChatFragment#0" expanded="false" />
-            <element signature="method#onCreateView#0;class#ChatFragment#0" expanded="false" />
+            <element signature="method#pushToChatHome#0;class#ContactVendorFragment#0" expanded="false" />
+            <element signature="e#9147#9412#0" expanded="true" />
+            <element signature="e#9411#9412#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Objects/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Adapters/ChatAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Fragments/ConsumerMainFragments/CartDetailFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1318">
+          <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/EventActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/eventmakr/eventmakr/Activities/ConsumerActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2782">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="method#loadBackground#0;class#ConsumerActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>

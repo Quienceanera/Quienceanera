@@ -52,15 +52,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mButtonVendor.setOnClickListener(this);
 
         if (mFirebaseUser == null) {
-            ViewAnimator.animate(mButtonLogIn)
-                    .fadeIn()
-                    .duration(1300)
-                    .start();
-            mButtonLogIn.setVisibility(View.VISIBLE);
+            startSignInActivity();
+//            ViewAnimator.animate(mButtonLogIn)
+//                    .fadeIn()
+//                    .duration(1300)
+//                    .start();
+//            mButtonLogIn.setVisibility(View.VISIBLE);
             Log.i("User", "Not logged in");
         } else {
-            mButtonLogIn.setVisibility(View.GONE);
+//            mButtonLogIn.setVisibility(View.GONE);
             Log.i("User", "Logged in");
+
             addUserToDatabase(mFirebaseUser);
         }
         System.out.println("MainActivity.onCreate: " + FirebaseInstanceId.getInstance().getToken());
@@ -116,11 +118,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .andAnimate(mCardView2)
                     .translationX(0, 800)
                     .duration(1000)
-                    .andAnimate(mButtonPlanning)
+                    .andAnimate(mButtonPlanning, mButtonVendor)
                     .slideBottom()
                     .duration(1200)
                     .start();
             mButtonPlanning.setVisibility(View.VISIBLE);
+            mButtonVendor.setVisibility(View.VISIBLE);
 
             Handler handler = new Handler();
             handler.postDelayed(new Runnable(){
@@ -136,6 +139,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBackground.unregisterSensorManager();
     }
 
+    void startSignInActivity(){
+        Intent signInIntent = new Intent(MainActivity.this, SignInActivity.class);
+        startActivity(signInIntent);
+    }
+
     @Override
     public void onClick(View view) {
         int id = view.getId();
@@ -146,8 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.buttonLogIn:
-                Intent signInIntent = new Intent(MainActivity.this, SignInActivity.class);
-                startActivity(signInIntent);
+
                 break;
             case R.id.buttonVendor:
                 Intent vendorIntent = new Intent(MainActivity.this, VendorActivity.class);

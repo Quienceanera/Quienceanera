@@ -114,7 +114,8 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
 
     void contactVendor () {
         mVendorWelcome = "Chat with us here!";
-        pushToChatHome();
+//        pushToChatHome();
+        postMessage();
         Log.i("Contact Vendor", "True");
     }
 
@@ -156,7 +157,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                 CartHomeAdapter.mVendorName,
                 CartHomeAdapter.mVendorLogo,
                 EventsAdapter.mEventKey,
-                CartHomeAdapter.mVendorUid,
+                FirebaseUtil.getUid(),
                 CartHomeAdapter.mVendorUid,
                 mCurrentTimestamp
         );
@@ -208,9 +209,10 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
             mVendorCartRef.setValue(vendorOrderHome);
         FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(getActivity())
                 .setImageRecourse(R.drawable.message_text_outline2)
-                .setTextTitle(CartHomeAdapter.mVendorName+" Has Been Contacted!")
+                .setBackgroundColor(R.color.colorAccentLighter)
+                .setTextTitle(CartHomeAdapter.mVendorName)
                 .setTitleColor(R.color.blue)
-                .setTextSubTitle("View your messages and orders in the Chat tabs!")
+                .setTextSubTitle("Has Been Contacted!")
                 .setPositiveButtonText("Continue")
                 .setOnPositiveClicked(new FancyAlertDialog.OnPositiveClicked() {
                     @Override

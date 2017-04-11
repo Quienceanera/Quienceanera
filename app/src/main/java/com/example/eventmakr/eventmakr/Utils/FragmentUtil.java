@@ -1,18 +1,18 @@
 package com.example.eventmakr.eventmakr.Utils;
 
 
+import com.example.eventmakr.eventmakr.Activities.PayFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerBudgetFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerVendorCategoryFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerVendorProductItemFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerVendorProfileFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ContactVendorFragment;
-import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.CartFragment;
-import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.EventsFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.MenuItemFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.CartDetailFragment;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.CartFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.CartHomeFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.ChatFragment;
-import com.example.eventmakr.eventmakr.Activities.PayFragment;
+import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.EventsFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.UserFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.OrderDetailFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorInputFragment;
