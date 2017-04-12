@@ -45,6 +45,7 @@ public class PreCartAdapter extends FirebaseRecyclerAdapter<Items, Viewholder> {
                 @Override
                 public void onClick(View v) {
                     FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(mContext)
+                            .setBackgroundColor(R.color.colorAccentLighter)
                             .setTextTitle("Special Instructions")
                             .setTextSubTitle(model.getInstructions())
                             .setTitleColor(R.color.blue)
@@ -71,6 +72,7 @@ public class PreCartAdapter extends FirebaseRecyclerAdapter<Items, Viewholder> {
                     mPreCartItemName = model.getName();
                     mVendorUid = model.getVendorId();
                     FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(mContext)
+                            .setBackgroundColor(R.color.colorAccentLighter)
                             .setImageRecourse(R.drawable.delete)
                             .setTextTitle("Delete?")
                             .setTextSubTitle(model.getName())

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorMenuFragment;
 import com.example.eventmakr.eventmakr.R;
@@ -12,6 +13,7 @@ import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
 public class VendorExtrasActivity extends AppCompatActivity {
     private static final String TAG = VendorExtrasActivity.class.getSimpleName();
+    private LinearLayout mProfileBanner, mProductBanner, mDocumentsBanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,16 +29,21 @@ public class VendorExtrasActivity extends AppCompatActivity {
                 startActivity(new Intent(VendorExtrasActivity.this, VendorActivity.class));
             }
         });
+        mProfileBanner = (LinearLayout) findViewById(R.id.profileBanner);
+        mProductBanner = (LinearLayout) findViewById(R.id.productsBanner);
+        mDocumentsBanner = (LinearLayout) findViewById(R.id.documentsBanner);
 
 
         if (VendorMenuFragment.mFragmentIntent == 1){
             getVendorInputFragment();
+            mProfileBanner.setVisibility(View.VISIBLE);
         }
         if (VendorMenuFragment.mFragmentIntent == 2){
-
+            mDocumentsBanner.setVisibility(View.VISIBLE);
         }
         if (VendorMenuFragment.mFragmentIntent == 3){
             getVendorProductFragment();
+            mProductBanner.setVisibility(View.VISIBLE);
         }
     }
 

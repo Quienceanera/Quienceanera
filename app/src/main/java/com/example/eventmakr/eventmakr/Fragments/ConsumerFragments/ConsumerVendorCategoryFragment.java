@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
-import com.google.android.gms.ads.AdView;
 
 public class ConsumerVendorCategoryFragment extends android.app.Fragment implements View.OnClickListener {
 
@@ -306,7 +305,6 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
     }
 
     public void getConsumerBudgetFragment() {
-
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.containerEventActivity, FragmentUtil.getConsumerBudgetFragment())

@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
 //            mButtonLogIn.setVisibility(View.GONE);
             Log.i("User", "Logged in");
-
             addUserToDatabase(mFirebaseUser);
         }
         System.out.println("MainActivity.onCreate: " + FirebaseInstanceId.getInstance().getToken());

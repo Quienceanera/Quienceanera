@@ -2,18 +2,20 @@
 <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layoutVendor3"
     android:orientation="vertical"
-    android:layout_below="@+id/layoutVendor2"
+    android:id="@+id/layoutVendor2"
+    android:layout_below="@+id/layoutVendorMenu1"
+    android:layout_centerHorizontal="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:showIn="@layout/fragment_consumer_vendor">
 
     <TextView
-        android:text="MUSIC"
-        android:textColor="@color/green"
+        android:text="DRINKS"
+        android:textColor="@color/yellow"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:layout_marginStart="2dp"
+        android:textSize="40sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -21,15 +23,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="220dp">
+        android:layout_height="300dp">
 
         <android.support.v7.widget.CardView
-            android:id="@+id/cardViewDjs"
+            android:id="@+id/cardViewMixologists"
             app:cardUseCompatPadding="true"
             app:cardElevation="2dp"
-            android:layout_width="180dp"
+            android:layout_width="230dp"
             android:layout_height="match_parent">
 
             <RelativeLayout
@@ -38,14 +41,14 @@
 
                 <ImageView
                     android:layout_margin="1dp"
-                    android:layout_above="@+id/djs"
-                    android:id="@+id/imageViewDjs"
+                    android:layout_above="@+id/mixologists"
+                    android:id="@+id/imageViewMixologists"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
                 <TextView
-                    android:text="DJS"
-                    android:id="@+id/djs"
+                    android:text="MIXOLOGISTS"
+                    android:id="@+id/mixologists"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentBottom="true"
                     android:padding="5dp"
@@ -58,43 +61,11 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:id="@+id/cardViewLive"
-            app:cardUseCompatPadding="true"
-            app:cardElevation="2dp"
-            android:layout_width="180dp"
-            android:layout_height="match_parent">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_margin="1dp"
-                    android:layout_above="@+id/live"
-                    android:id="@+id/imageViewlive"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <TextView
-                    android:text="LIVE"
-                    android:id="@+id/live"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:padding="5dp"
-                    android:textColor="@color/pink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp" />
-
-            </RelativeLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/cardViewInstrument"
+            android:id="@+id/cardViewWine"
             app:cardUseCompatPadding="true"
             app:cardElevation="2dp"
             android:layout_width="130dp"
-            android:layout_height="match_parent">
+            android:layout_height="140dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -102,14 +73,14 @@
 
                 <ImageView
                     android:layout_margin="1dp"
-                    android:layout_above="@+id/instrument"
-                    android:id="@+id/imageViewInstrument"
+                    android:layout_above="@+id/wine"
+                    android:id="@+id/imageViewWine"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
                 <TextView
-                    android:text="INSTRUMENT"
-                    android:id="@+id/instrument"
+                    android:text="WINE"
+                    android:id="@+id/wine"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentBottom="true"
                     android:padding="5dp"
@@ -122,11 +93,11 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:id="@+id/cardViewVocal"
+            android:id="@+id/cardViewKegs"
             app:cardUseCompatPadding="true"
             app:cardElevation="2dp"
             android:layout_width="130dp"
-            android:layout_height="match_parent">
+            android:layout_height="140dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -134,14 +105,14 @@
 
                 <ImageView
                     android:layout_margin="1dp"
-                    android:layout_above="@+id/vocal"
-                    android:id="@+id/imageViewVocal"
+                    android:layout_above="@+id/kegs"
+                    android:id="@+id/imageViewKegs"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
                 <TextView
-                    android:text="VOCAL"
-                    android:id="@+id/vocal"
+                    android:text="KEGS"
+                    android:id="@+id/kegs"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentBottom="true"
                     android:padding="5dp"
@@ -153,10 +124,38 @@
 
         </android.support.v7.widget.CardView>
 
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardViewWholesale"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="2dp"
+            android:layout_width="130dp"
+            android:layout_height="140dp">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
+                <ImageView
+                    android:layout_margin="1dp"
+                    android:layout_above="@+id/wholesale"
+                    android:id="@+id/imageViewWholesale"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
+                <TextView
+                    android:text="WHOLESALE"
+                    android:id="@+id/wholesale"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="5dp"
+                    android:textColor="@color/pink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
     </LinearLayout>
-
 </HorizontalScrollView>
+
 </LinearLayout>

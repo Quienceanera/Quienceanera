@@ -32,6 +32,8 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
     private FloatingActionButton mFabConfirm;
     private Boolean mProcessConfirm;
     private int mImage;
+    private ValueEventListener mValueEventListener;
+
 
     public OrderDetailFragment() {
         // Required empty public constructor
@@ -59,7 +61,6 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
 
         mFabConfirm = (FloatingActionButton) view.findViewById(R.id.fabConfirm);
         mFabConfirm.setOnClickListener(this);
-
 
         mVendorOrderInfoRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -103,7 +104,7 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
 
     public void confirmProcess(){
         mProcessConfirm = true;
-        mVendorOrderInfoRef.addValueEventListener(new ValueEventListener() {
+        mValueEventListener = mVendorOrderInfoRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (mProcessConfirm){
@@ -135,6 +136,7 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
 
     void showConfirmationStatus(){
         FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(getActivity())
+                .setBackgroundColor(R.color.colorAccentLighter)
                 .setImageRecourse(mImage)
                 .setTextTitle(mConfirm)
                 .setTitleColor(R.color.blue)
@@ -157,6 +159,14 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
                 .bounceIn()
                 .duration(1500)
                 .start();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mValueEventListener != null){
+            mVendorOrderInfoRef.removeEventListener(mValueEventListener);
+        }
     }
 
     @Override

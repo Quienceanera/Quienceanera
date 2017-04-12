@@ -65,6 +65,7 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
             public boolean onLongClick(View v) {
                 mEventKey = getRef(position).getKey();
                 FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(mContext)
+                        .setBackgroundColor(R.color.colorAccentLighter)
                         .setImageRecourse(R.drawable.delete)
                         .setTextTitle("Delete "+model.getEventName()+" And All It's Content?")
                         .setTitleColor(R.color.blue)
@@ -82,7 +83,7 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
                             public void OnClick(View view, Dialog dialog) {
                                 DeleteUtil.getDeleteEvent();
                                 dialog.dismiss();
-                                restartActivity();
+//                                restartActivity();
                             }
                         })
                         .build();
@@ -90,6 +91,7 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
                 return false;
             }
         });
+
     }
 
     private void getEventsActivity() {

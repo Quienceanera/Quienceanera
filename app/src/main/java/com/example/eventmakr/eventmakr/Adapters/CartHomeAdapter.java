@@ -45,6 +45,7 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
         if (model.getItemCount() == null || model.getPriceTotal() == null){
             viewHolder.mTextViewCartHomePriceTotal.setVisibility(View.GONE);
             viewHolder.mTextViewCartHomeCount.setVisibility(View.GONE);
+            viewHolder.mYellowBorder.setVisibility(View.GONE);
         }
 
         viewHolder.mTextViewCartHomeVendorName.setText(model.getVendorName());
@@ -75,6 +76,7 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
                 mCartHomeName = model.getEventName();
                 mVendorUid = model.getVendorUid();
                 FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(mContext)
+                        .setBackgroundColor(R.color.colorAccentLighter)
                         .setImageRecourse(R.drawable.delete)
                         .setTextTitle("Delete Order?")
                         .setTitleColor(R.color.blue)

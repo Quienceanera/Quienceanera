@@ -43,8 +43,9 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
         viewHolder.mTextViewVendorOrderHomeCustomerName.setText(model.getCustomerName());
         viewHolder.mTextViewVendorOrderHomeEventName.setText("For " + model.getEventName());
         viewHolder.mTextViewVendorOrderHomeTimestamp.setText("Submitted On: " + model.getTimestamp());
-        viewHolder.mTextViewVendorOrderHomePriceTotal.setText("Total Price: $" + model.getTotalPrice());
-        viewHolder.mTextViewVendorOrderHomeCount.setText("Quantity: " + model.getTotalQuantity());
+        viewHolder.mTextViewVendorOrderHomePriceTotal.setText("Total: $" + model.getTotalPrice());
+        viewHolder.mTextViewVendorOrderHomeCount.setText("Qty: " + model.getTotalQuantity());
+
         Glide.with(mContext)
                 .load(model.getCustomerPhoto())
                 .centerCrop()
@@ -56,7 +57,6 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
                 mCustomerUid = model.getCustomerUid();
                 mEventKey = model.getEventKey();
                 mTotalPrice = model.getTotalPrice();
-
                 getOrders();
             }
         });

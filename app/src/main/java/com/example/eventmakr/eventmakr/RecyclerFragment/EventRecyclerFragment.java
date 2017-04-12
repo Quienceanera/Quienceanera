@@ -16,12 +16,14 @@ import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.EventsViewholder;
 import com.github.florent37.viewanimator.ViewAnimator;
+import com.google.firebase.database.Query;
 
 public class EventRecyclerFragment extends Fragment {
     private static final String TAG = "EventRecyclerFragment";
     private RecyclerView mRecyclerView;
     private EventsAdapter mAdapter;
     private LinearLayoutManager mLayoutManger;
+    private Query mQuery;
 
     public EventRecyclerFragment() {
     }
@@ -29,11 +31,12 @@ public class EventRecyclerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, TAG);
+        mQuery = FirebaseUtil.getEventsRef().orderByChild("eventDate");
         mAdapter = new EventsAdapter(
                 Events.class,
                 R.layout.events_item,
                 EventsViewholder.class,
-                FirebaseUtil.getEventsRef(),
+                mQuery,
                 getActivity());
         super.onCreate(savedInstanceState);
     }

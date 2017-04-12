@@ -13,6 +13,7 @@ public class CartHomeViewholder extends RecyclerView.ViewHolder {
     public CardView mCardViewCartHome;
     public ImageView mImageViewCartHome, mNotificationMessage;
     public TextView mTextViewCartHomeVendorName, mTextViewCartHomeTimestamp, mTextViewCartHomePriceTotal, mTextViewCartHomeCount, mTextViewEventName, mTextViewConfirm;
+    public View mYellowBorder;
 
     public CartHomeViewholder(View itemView) {
         super(itemView);
@@ -26,6 +27,9 @@ public class CartHomeViewholder extends RecyclerView.ViewHolder {
         mTextViewCartHomeCount = (TextView) itemView.findViewById(R.id.textViewCartHomeCount);
         mTextViewEventName = (TextView) itemView.findViewById(R.id.textViewCartHomeEventName);
         mTextViewConfirm = (TextView) itemView.findViewById(R.id.textViewCartConfirm);
+
+        mYellowBorder = itemView.findViewById(R.id.yellowBorder);
+
 
     }
 }

@@ -37,7 +37,6 @@ import java.util.Date;
 
 public class ConsumerVendorProductItemFragment extends android.app.Fragment implements SpecialInstructionsDialogFragment.DialogListener{
     private static final String TAG = "ConsumerVendorProductItemFragment";
-//    private OnFragmentInteractionListener mListener;
     private CardView mButtonProductItemSelect;
     private Context mContext;
     private DatabaseReference mUserCartRef, mVendorCartRef, mPushRef, mUserMenuRef;
@@ -62,7 +61,6 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         mVendorName = mVendorProfileProductAdapter.mVendorName;
         mUid = FirebaseUtil.getUser().getUid();
         mUserMenuRef = FirebaseUtil.getConsumerSideVendorProductRef();
-
     }
 
     @Override
@@ -243,7 +241,6 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                 "false"
         );
         mUserCartRef.setValue(cart);
-
 
         Log.i("Push to Cart", "True");
         returnToVendorProfile();

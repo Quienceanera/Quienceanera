@@ -44,7 +44,9 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         mLayoutConsumer = (CoordinatorLayout) findViewById(R.id.layoutConsumer);
 
         mFabNewEvent.setOnClickListener(this);
-        mFabSearchVendors.setOnClickListener(this);
+        if (EventsAdapter.mEventKey != null){
+            mFabSearchVendors.setOnClickListener(this);
+        }
 
         mImageViewBackGround = (ImageView) findViewById(R.id.imageViewBackground);
         mImageViewLogo = (ImageView) findViewById(R.id.imageViewConsumerLogo);
@@ -62,7 +64,6 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         if (EventsAdapter.mEventKey != null){
             mViewPagerAdapter.addFragments(FragmentUtil.getCartFragment(), "");
             mViewPagerAdapter.addFragments(FragmentUtil.getUserFragment(), "");
-//            mTabLayout.getTabAt(1).select();
         }
 
         mViewPager.setAdapter(mViewPagerAdapter);
@@ -162,6 +163,9 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                 .descelerate()
                 .duration(1000)
                 .start();
+        if (EventsAdapter.mEventKey != null){
+            mViewPager.arrowScroll(2);
+        }
     }
 
     @Override
@@ -170,8 +174,10 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         switch (id) {
             case R.id.fabNewEvent:
                 getCreateEventDialog();
+                break;
             case R.id.fabSearchVendor:
                 getEventsActivity();
+                break;
             default:
         }
     }

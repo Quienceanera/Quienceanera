@@ -157,8 +157,8 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                 CartHomeAdapter.mVendorName,
                 CartHomeAdapter.mVendorLogo,
                 EventsAdapter.mEventKey,
-                FirebaseUtil.getUid(),
                 CartHomeAdapter.mVendorUid,
+                FirebaseUtil.getUid(),
                 mCurrentTimestamp
         );
 

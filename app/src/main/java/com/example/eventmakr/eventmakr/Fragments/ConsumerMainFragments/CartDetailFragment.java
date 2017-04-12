@@ -24,6 +24,7 @@ public class CartDetailFragment extends android.app.Fragment {
     private TextView mTextViewCartDetailDate, mTextViewCartDetailEvent, mTextViewCartDetailAddress, mTextViewcartDetailVendorName;
     private String mCartDetailDate, mCartDetailEvent, mCartDetailAddress, mVendorLogo, mVendorName;
     private DatabaseReference mCartInfoRef;
+    private ValueEventListener mValueEventListener;
 
     public CartDetailFragment() {
         // Required empty public constructor
@@ -46,7 +47,7 @@ public class CartDetailFragment extends android.app.Fragment {
             mTextViewCartDetailAddress = (TextView) view.findViewById(R.id.textViewCartDetailAddress);
             mTextViewcartDetailVendorName = (TextView) view.findViewById(R.id.textViewCartDetailVendorName);
 
-            mCartInfoRef.addValueEventListener(new ValueEventListener() {
+            mValueEventListener = mCartInfoRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     mCartDetailDate = (String) dataSnapshot.child("eventDate").getValue();
@@ -78,17 +79,12 @@ public class CartDetailFragment extends android.app.Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        
     }
 
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        getFragmentManager()
-//                .beginTransaction()
-//                .remove(this)
-//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-//                .commit();
-//    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        mCartInfoRef.removeEventListener(mValueEventListener);
+    }
 
 }
