@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -56,10 +57,13 @@ public class CartDetailFragment extends android.app.Fragment {
                     mVendorLogo = (String) dataSnapshot.child("vendorLogo").getValue();
                     mVendorName = (String) dataSnapshot.child("vendorName").getValue();
 
-                    Glide.with(getActivity())
-                            .load(mVendorLogo)
-                            .centerCrop()
-                            .into(mImageViewCartDetail);
+                    if (CartDetailFragment.this.isAdded()){
+                        Glide.with(mImageViewCartDetail.getContext())
+                                .load(mVendorLogo)
+                                .centerCrop()
+                                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                .into(mImageViewCartDetail);
+                    }
                     mTextViewcartDetailVendorName.setText(mVendorName);
                     mTextViewCartDetailDate.setText("Event date: " + mCartDetailDate);
                     mTextViewCartDetailEvent.setText("For " + mCartDetailEvent);
@@ -77,14 +81,11 @@ public class CartDetailFragment extends android.app.Fragment {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
     public void onStop() {
         super.onStop();
-        mCartInfoRef.removeEventListener(mValueEventListener);
+        if (mValueEventListener != null){
+            mCartInfoRef.removeEventListener(mValueEventListener);
+        }
     }
 
 }

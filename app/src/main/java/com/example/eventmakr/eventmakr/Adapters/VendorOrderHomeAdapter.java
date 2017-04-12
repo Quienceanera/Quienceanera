@@ -1,16 +1,19 @@
 package com.example.eventmakr.eventmakr.Adapters;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
-
 import com.bumptech.glide.Glide;
 import com.example.eventmakr.eventmakr.Activities.VendorOrderActivity;
 import com.example.eventmakr.eventmakr.Objects.VendorOrderHome;
+import com.example.eventmakr.eventmakr.R;
+import com.example.eventmakr.eventmakr.Utils.DeleteUtil;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.ViewHolders.VendorOrderHomeViewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.geniusforapp.fancydialog.FancyAlertDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,6 +64,41 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
             }
         });
 
+        viewHolder.mCardViewVendorOrderHome.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mOrderHomeKey = getRef(position).getKey();
+                mCustomerUid = model.getCustomerUid();
+                mEventKey = model.getEventKey();
+
+                FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(mContext)
+                        .setBackgroundColor(R.color.colorAccentLighter)
+                        .setImageRecourse(R.drawable.delete)
+                        .setTextTitle("Delete "+model.getEventName()+" And All It's Content?")
+                        .setTitleColor(R.color.blue)
+                        .setTextSubTitle("For: "+model.getEventName())
+                        .setNegativeButtonText("Cancel")
+                        .setPositiveButtonText("Yes")
+                        .setOnNegativeClicked(new FancyAlertDialog.OnNegativeClicked() {
+                            @Override
+                            public void OnClick(View view, Dialog dialog) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setOnPositiveClicked(new FancyAlertDialog.OnPositiveClicked() {
+                            @Override
+                            public void OnClick(View view, Dialog dialog) {
+                                DeleteUtil.deleteVendorOrderHomeItem();
+                                dialog.dismiss();
+                            }
+                        })
+                        .build();
+                alert.show();
+
+                return false;
+            }
+        });
+
         mDatabaseConfirm.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -82,6 +120,7 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
         });
 
     }
+
     private void getOrders() {
         mContext.startActivity(new Intent(mContext, VendorOrderActivity.class));
     }

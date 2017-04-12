@@ -32,4 +32,17 @@ public class VendorOrdersFragment extends Fragment {
                 .add(R.id.containerVendorOrders, FragmentUtil.getOrderListItemFragment())
                 .commit();
     }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d(TAG, "onDetach");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+
+    }
 }

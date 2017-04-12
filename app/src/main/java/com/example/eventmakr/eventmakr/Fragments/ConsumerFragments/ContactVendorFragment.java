@@ -149,7 +149,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
         final String mCurrentTimestamp = time.format(new Date());
         mDatabaseRef = FirebaseUtil.getBaseRef().push();
         mChatKey = "1";
-        mUserMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(CartHomeAdapter.mVendorUid).child(mChatKey);
+        mUserMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(mChatKey);
         mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef().child(mChatKey);
 
         Message message = new Message(

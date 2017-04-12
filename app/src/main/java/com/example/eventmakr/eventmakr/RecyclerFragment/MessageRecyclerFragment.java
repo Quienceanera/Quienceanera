@@ -13,9 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
 import com.example.eventmakr.eventmakr.Activities.VendorActivity;
-import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ChatAdapter;
-import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Objects.Message;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -49,7 +47,7 @@ public class MessageRecyclerFragment extends Fragment {
                     Message.class,
                     R.layout.fragment_chat_item,
                     Viewholder.class,
-                    FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(CartHomeAdapter.mVendorUid),
+                    FirebaseUtil.getConsumerSideConsumerMessageRef(),
                     mContext);
         }
 

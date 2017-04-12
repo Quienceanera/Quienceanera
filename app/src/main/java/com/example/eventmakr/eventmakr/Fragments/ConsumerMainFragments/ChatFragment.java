@@ -110,7 +110,7 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
             mDatabaseReference = FirebaseUtil.getBaseRef().child("notifications").child("messages").push();
 
         } else {
-                mConsumerMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(EventsAdapter.mEventKey).child(CartHomeAdapter.mVendorUid).child(mChatKey);
+                mConsumerMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(mChatKey);
                 mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef().child(mChatKey);
             mDatabaseReference = FirebaseUtil.getBaseRef().child("notifications").child("messages").push();
         }

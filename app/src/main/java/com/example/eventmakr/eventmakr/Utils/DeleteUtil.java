@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.PreCartAdapter;
+import com.example.eventmakr.eventmakr.Adapters.VendorOrderHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.VendorProductsAdapter;
 
 public abstract class DeleteUtil {
@@ -29,5 +30,12 @@ public abstract class DeleteUtil {
     public static void deleteOrderHomeItem(){
         FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(CartHomeAdapter.mVendorUid).removeValue();
         FirebaseUtil.getConsumerSideVendorOrderInfoRef().removeValue();
+    }
+
+    public static void deleteVendorOrderHomeItem(){
+        FirebaseUtil.getVendorSideVendorOrderHomeRef().child(VendorOrderHomeAdapter.mOrderHomeKey).removeValue();
+        FirebaseUtil.getVendorSideVendorOrderListRef().removeValue();
+        FirebaseUtil.getVendorSideVendorMessageRef().removeValue();
+
     }
 }

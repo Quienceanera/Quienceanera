@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.eventmakr.eventmakr.Adapters.VendorOrderHomeAdapter;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
@@ -33,7 +34,6 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
     private Boolean mProcessConfirm;
     private int mImage;
     private ValueEventListener mValueEventListener;
-
 
     public OrderDetailFragment() {
         // Required empty public constructor
@@ -71,10 +71,14 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
                 mCustomerPhoto = (String) dataSnapshot.child("customerPhoto").getValue();
                 mCustomerName = (String) dataSnapshot.child("customerName").getValue();
 
-                Glide.with(getActivity())
-                        .load(mCustomerPhoto)
-                        .centerCrop()
-                        .into(mImageViewOrderDetail);
+                if (OrderDetailFragment.this.isAdded()){
+                    Glide.with(mImageViewOrderDetail.getContext())
+                            .load(mCustomerPhoto)
+                            .centerCrop()
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .into(mImageViewOrderDetail);
+                }
+
                 mTextViewOrderDetailCustomerName.setText(mCustomerName);
                 mTextViewOrderDetailDate.setText("Event date: "+mOrderDetailDate);
                 mTextViewOrderDetailEvent.setText("For "+mOrderDetailEvent);
@@ -167,6 +171,13 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
         if (mValueEventListener != null){
             mVendorOrderInfoRef.removeEventListener(mValueEventListener);
         }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.i(TAG, "onDetatch");
+
     }
 
     @Override
