@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class ConsumerViewPagerAdapter extends FragmentStatePagerAdapter{
     private ArrayList<Fragment> mFragments = new ArrayList<>();
-    private ArrayList<String> mTitles = new ArrayList<>();
+//    private ArrayList<String> mTitles = new ArrayList<>();
     private ArrayList<Integer> mIcons = new ArrayList<>();
     private Context mContext;
 
@@ -27,7 +27,7 @@ public class ConsumerViewPagerAdapter extends FragmentStatePagerAdapter{
 
     public void addFragments (Fragment mFragments, String mTitles){
         this.mFragments.add(mFragments);
-        this.mTitles.add(mTitles);
+//        this.mTitles.add(mTitles);
     }
 
     @Override

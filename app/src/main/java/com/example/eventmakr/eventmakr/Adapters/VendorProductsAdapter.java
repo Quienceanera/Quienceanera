@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
-import com.example.eventmakr.eventmakr.Activities.VendorExtrasActivity;
 import com.example.eventmakr.eventmakr.Objects.Menu;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.DeleteUtil;
@@ -47,7 +46,7 @@ public class VendorProductsAdapter extends FirebaseRecyclerAdapter<Menu, Viewhol
             @Override
             public boolean onLongClick(View v) {
                 mProductKey = model.getKey();
-                FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder((VendorExtrasActivity)mContext)
+                FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(mContext)
                         .setImageRecourse(R.drawable.delete)
                         .setTextTitle("Delete?")
                         .setTitleColor(R.color.blue)
@@ -73,5 +72,4 @@ public class VendorProductsAdapter extends FirebaseRecyclerAdapter<Menu, Viewhol
             }
         });
     }
-
 }

@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class ChatFragment extends android.app.Fragment implements View.OnClickListener {
     private static final String TAG = ChatFragment.class.getSimpleName();
@@ -48,9 +49,12 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, TAG);
-        mPhotoUrl = mAuth.getCurrentUser().getPhotoUrl().toString();
-        mUsername = mAuth.getCurrentUser().getDisplayName();
-        mUid = mAuth.getCurrentUser().getUid();
+        if (mAuth.getCurrentUser() != null){
+            mPhotoUrl = mAuth.getCurrentUser().getPhotoUrl().toString();
+            mUsername = mAuth.getCurrentUser().getDisplayName();
+            mUid = mAuth.getCurrentUser().getUid();
+        }
+
         mVendorUid = ChatHomeAdapter.mVendorUid;
 
         getChildMessagesList();
@@ -90,6 +94,7 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
         switch (id) {
             case R.id.fabSend:
                 if (TextUtils.isEmpty(mEditTextChat.getText().toString())){
+                    mEditTextChat.setError("Empty");
                 }else {
                     postChat();
                 }
@@ -98,7 +103,7 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
         }
     }
     void postChat() {
-        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
+        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm", Locale.US);
         final String mCurrentTimestamp = time.format(new Date());
         mDatabaseRef = FirebaseUtil.getBaseRef().push();
         mChatKey = mDatabaseRef.getKey();

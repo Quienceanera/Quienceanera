@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -42,8 +43,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class ConsumerVendorProfileFragment extends android.app.Fragment implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks, OnMapReadyCallback {
-    private static final String TAG = "ConsumerVendorProfileFragment";
+public class ConsumerVendorProfileFragment extends android.app.Fragment implements GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks, OnMapReadyCallback {
+    private static final String TAG = "VendorProfileFragment";
     private CardView mButtonMyItems, mCardViewMap, mCardViewVendorProfile;
     private Context mContext;
     private DatabaseReference mDatabaseReference;
@@ -53,7 +54,8 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
     private LatLng mLatLng;
     private RatingBar mRatingBar;
     private String mVendorLogo, mVendorName, mVendorDescription, mVendorAddress;
-    private FrameLayout mLayoutProductList, mLayoutContainer;
+    private RelativeLayout mLayoutContainer;
+    private FrameLayout mLayoutProductList;
     private GoogleApiClient mGoogleApiClient;
     private GoogleMap mMap;
     private boolean mapReady = false;
@@ -89,7 +91,7 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
                             mRatingBar.setRating(mPlace.getRating());
                             Log.i("Vendor Profile",  mPlace.getLatLng().toString());
                         } else {
-//                            Log.e(TAG, "Place not found");
+                            Log.e("Vendor Profile", "Place not found");
                         }
                         places.release();
                     }
@@ -107,7 +109,7 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
         mTextViewVendorDescription = (TextView) view.findViewById(R.id.textViewVendorDetails);
         mTextViewVendorAddress = (TextView) view.findViewById(R.id.textViewVendorAddress);
         mLayoutProductList = (FrameLayout) view.findViewById(R.id.containerRecyclerVendorProductItemList);
-        mLayoutContainer = (FrameLayout) view.findViewById(R.id.layoutConsumerVendorProfile);
+        mLayoutContainer = (RelativeLayout) view.findViewById(R.id.layoutConsumerVendorProfile);
         mRatingBar = (RatingBar) view.findViewById(R.id.ratingBar);
 
         getVendorInfo();
@@ -159,16 +161,6 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
 
             }
         });
-    }
-
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        switch (id) {
-//            case R.id.buttonMyItems:
-//                getContactVendorFragment();
-        }
-
     }
 
     @Override

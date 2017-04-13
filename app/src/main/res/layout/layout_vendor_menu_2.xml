@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:id="@+id/layoutVendor2"
-    android:layout_weight="1"
     android:layout_below="@+id/layoutVendorMenu1"
     android:layout_centerHorizontal="true"
     android:layout_width="match_parent"

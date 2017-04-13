@@ -18,9 +18,9 @@ import com.example.eventmakr.eventmakr.ViewHolders.CartHomeViewholder;
 
 public class CartRecyclerFragment extends Fragment {
     private static final String TAG = "CartRecyclerFragment";
-    private RecyclerView mRecyclerView;
+    RecyclerView mRecyclerView;
     private CartHomeAdapter mAdapter;
-    private GridLayoutManager mLayoutManger;
+    GridLayoutManager mLayoutManger;
 
     public CartRecyclerFragment() {
     }

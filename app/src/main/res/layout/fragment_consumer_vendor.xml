@@ -1,4 +1,4 @@
-<FrameLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.eventmakr.eventmakr.Activities.VendorActivity">
 
-    <ScrollView
-        android:layout_marginTop="2dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <!--<ScrollView-->
+        <!--android:layout_marginTop="2dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
 
     <RelativeLayout
         android:id="@+id/layoutVendors"
@@ -30,6 +30,6 @@
 
     </RelativeLayout>
 
-    </ScrollView>
+    <!--</ScrollView>-->
 
-</FrameLayout>
+</ScrollView>

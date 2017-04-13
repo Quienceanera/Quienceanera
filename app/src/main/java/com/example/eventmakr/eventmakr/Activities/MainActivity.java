@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ParallaxImageView mBackground;
     private CardView mCardView1, mCardView2;
     private FirebaseUser mFirebaseUser;
-    private FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+    private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     @Override
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i(TAG, TAG);
+        mFirebaseAuth = FirebaseAuth.getInstance();
 
         mCardView1 = (CardView) findViewById(R.id.cardView1);
         mCardView2 = (CardView) findViewById(R.id.cardView2);

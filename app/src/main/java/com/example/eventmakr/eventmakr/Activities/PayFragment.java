@@ -202,7 +202,7 @@ public class PayFragment extends FragmentActivity implements GoogleApiClient.Con
         protected String doInBackground(Token... params) {
             Log.i("AsyncTask", mTokenString);
             // Charge the user's card:
-            final Map<String, Object> cardParams = new HashMap<String, Object>();
+            final Map<String, Object> cardParams = new HashMap<>();
             cardParams.put("amount", CartHomeAdapter.mTotalPrice);
             cardParams.put("currency", "usd");
             cardParams.put("description", CartHomeAdapter.mVendorUid);
@@ -214,13 +214,13 @@ public class PayFragment extends FragmentActivity implements GoogleApiClient.Con
 
             } catch (AuthenticationException e) {
                 e.printStackTrace();
-            } catch (InvalidRequestException e) {
+            } catch (APIException e) {
                 e.printStackTrace();
-            } catch (APIConnectionException e) {
+            } catch (InvalidRequestException e) {
                 e.printStackTrace();
             } catch (CardException e) {
                 e.printStackTrace();
-            } catch (APIException e) {
+            } catch (APIConnectionException e) {
                 e.printStackTrace();
             }
             return null;

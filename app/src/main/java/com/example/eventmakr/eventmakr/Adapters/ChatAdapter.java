@@ -20,9 +20,9 @@ import com.google.firebase.database.Query;
 
 public class ChatAdapter extends FirebaseRecyclerAdapter<Message, Viewholder>{
     private static final String TAG = ChatAdapter.class.getSimpleName();
-    private Context context;
-    private String mUid, mChatKey, mRefKey, mEventKey, mVendorUid;
-    private Query mQuery;
+    Context context;
+    String mUid, mChatKey, mRefKey, mEventKey, mVendorUid;
+    Query mQuery;
 
     /**
      * @param modelClass      Firebase will marshall the data at a location into an instance of a class that you provide

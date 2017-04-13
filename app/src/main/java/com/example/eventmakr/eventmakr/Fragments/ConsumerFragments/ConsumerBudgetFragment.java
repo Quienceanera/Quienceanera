@@ -26,7 +26,7 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
     private FrameLayout mLayoutVendorRecycler;
     static final int REQUESTCODE = 1;
 
-    private OnFragmentInteractionListener mListener;
+//    private OnFragmentInteractionListener mListener;
 
     public ConsumerBudgetFragment() {
         // Required empty public constructor
@@ -37,8 +37,8 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
         super.onCreate(savedInstanceState);
         Log.i(TAG, TAG);
         mCategory = ConsumerVendorCategoryFragment.mCategory;
-        if (mCategory != null) {
-        }
+//        if (mCategory != null) {
+//        }
         VendorAdapter.mPriceRange = "$";
     }
 
@@ -66,17 +66,15 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
                     VendorAdapter.mPriceRange = "$$$";
                     getUpdateChildRecyclerVendorFragment();
                 }
-                if (VendorAdapter.mPriceRange == "$$"){
-                    progress = 1;
-                } if (VendorAdapter.mPriceRange == "$$$"){
-                    progress = 2;
-                } if (VendorAdapter.mPriceRange == "$"){
-                    progress = 0;
-                }
+//                if (VendorAdapter.mPriceRange.equals("$$")){
+//                    progress = 1;
+//                } if (VendorAdapter.mPriceRange.equals("$$$")){
+//                    progress = 2;
+//                } if (VendorAdapter.mPriceRange.equals("$")){
+//                    progress = 0;
+//                }
             }
         });
-
-
 
         getChildRecyclerVendorFragment();
 
@@ -110,11 +108,11 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
 
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        mListener = null;
+//    }
 
     @Override
     public void onClick(View view) {

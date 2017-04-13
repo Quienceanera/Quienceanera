@@ -81,7 +81,7 @@
             android:text="Awaiting Confirmation"
             android:layout_alignBaseline="@+id/checkBoxOrderItem"
             android:layout_toStartOf="@+id/checkBoxOrderItem"
-            android:textSize="8sp"
+            android:textSize="12sp"
             android:textColor="@color/com_facebook_blue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

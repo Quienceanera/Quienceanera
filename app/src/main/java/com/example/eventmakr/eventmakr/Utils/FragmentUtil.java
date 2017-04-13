@@ -66,8 +66,7 @@ public class FragmentUtil {
     }
 
     public static ConsumerBudgetFragment getConsumerBudgetFragment() {
-        ConsumerBudgetFragment consumerBudgetFragment = new ConsumerBudgetFragment();
-        return consumerBudgetFragment;
+        return new ConsumerBudgetFragment();
     }
 
     public static ConsumerVendorCategoryFragment getConsumerVendorCategoryFragment() {
@@ -75,28 +74,23 @@ public class FragmentUtil {
     }
 
     public static ConsumerVendorProfileFragment getConsumerVendorProfileFragment () {
-        ConsumerVendorProfileFragment consumerVendorProfileFragment = new ConsumerVendorProfileFragment();
-        return consumerVendorProfileFragment;
+        return new ConsumerVendorProfileFragment();
     }
 
     public static MenuItemFragment getMenuItemFragment () {
-        MenuItemFragment menuItemFragment = new MenuItemFragment();
-        return menuItemFragment;
+        return new MenuItemFragment();
     }
 
     public static ContactVendorFragment getContactVendorFragment () {
-        ContactVendorFragment contactVendorFragment = new ContactVendorFragment();
-        return contactVendorFragment;
+        return new ContactVendorFragment();
     }
 
     public static UserFragment getUserFragment () {
-        UserFragment userFragment = new UserFragment();
-        return userFragment;
+        return new UserFragment();
     }
 
     public static ChatFragment getChatFragment () {
-        ChatFragment chatFragment = new ChatFragment();
-        return chatFragment;
+        return new ChatFragment();
     }
 
     public static ChatRecyclerFragment getChatHomeItemFragment(){
@@ -108,13 +102,11 @@ public class FragmentUtil {
     }
 
     public static CartFragment getChatHomeFragment () {
-        CartFragment cartFragment = new CartFragment();
-        return cartFragment;
+        return new CartFragment();
     }
 
     public static CartHomeFragment getCartFragment () {
-        CartHomeFragment cartHomeFragment = new CartHomeFragment();
-        return cartHomeFragment;
+        return new CartHomeFragment();
     }
 
     public static CartRecyclerFragment getCartHomeItemFragment () {
@@ -134,8 +126,7 @@ public class FragmentUtil {
     }
 
     public static ConsumerVendorProductItemFragment getConsumerVendorProductItemFragment () {
-        ConsumerVendorProductItemFragment consumerVendorProductItemFragment = new ConsumerVendorProductItemFragment();
-        return consumerVendorProductItemFragment;
+        return new ConsumerVendorProductItemFragment();
     }
 
     public static VendorRecyclerFragment getRecyclerVendorFragment () {

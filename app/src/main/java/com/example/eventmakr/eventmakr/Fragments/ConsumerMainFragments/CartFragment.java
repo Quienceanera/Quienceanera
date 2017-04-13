@@ -14,7 +14,7 @@ import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 
 public class CartFragment extends android.app.Fragment {
     private static final String TAG = CartFragment.class.getSimpleName();
-    private CardView mButtonCheckout;
+    CardView mButtonCheckout;
 
     public CartFragment() {
         // Required empty public constructor

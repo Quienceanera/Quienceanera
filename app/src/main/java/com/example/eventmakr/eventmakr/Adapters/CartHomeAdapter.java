@@ -26,8 +26,8 @@ import static android.graphics.Color.rgb;
 public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewholder>{
     public final static String TAG = CartHomeAdapter.class.getSimpleName();
     private Context mContext;
-    private DatabaseReference mDatabaseConfirm, mDatabaseNewMessage;
-    private int mPosition;
+    DatabaseReference mDatabaseConfirm, mDatabaseNewMessage;
+    int mPosition;
     public static String mTotalPrice, mCartHomeKey, mCartHomeName;
     public static String mVendorUid, mCategory, mPriceRange, mVendorLogo, mVendorName, mConfirm;
 

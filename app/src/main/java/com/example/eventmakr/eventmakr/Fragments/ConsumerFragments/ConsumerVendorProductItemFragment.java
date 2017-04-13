@@ -33,6 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class ConsumerVendorProductItemFragment extends android.app.Fragment implements SpecialInstructionsDialogFragment.DialogListener{
@@ -219,7 +220,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     }
 
     void pushToCart () {
-        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
+        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm", Locale.US);
         final String mCurrentTimestamp = time.format(new Date());
 
         mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(VendorAdapter.mVendorUid);

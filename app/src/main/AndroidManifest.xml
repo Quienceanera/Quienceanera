@@ -21,7 +21,8 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:supportsRtl">
+        tools:replace="android:supportsRtl"
+        android:fullBackupContent="@xml/backup_descriptor">
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />

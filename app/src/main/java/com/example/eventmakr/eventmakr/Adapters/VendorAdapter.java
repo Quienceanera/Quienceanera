@@ -46,7 +46,7 @@ public class VendorAdapter extends FirebaseRecyclerAdapter<Vendor, Viewholder> {
                     .load(model.getLogo())
                     .centerCrop()
                     .into(viewHolder.mImageViewVendor);
-        } else if (model.getPrice() != (mPriceRange)){
+        } else if (model.getPrice().equals(mPriceRange)){
             viewHolder.mCardViewVendorItem.setVisibility(View.GONE);
 //                    viewHolder.mCardViewVendorItem.clearFocus();
         }

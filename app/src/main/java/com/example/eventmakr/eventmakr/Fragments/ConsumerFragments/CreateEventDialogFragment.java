@@ -23,7 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 public class CreateEventDialogFragment extends DialogFragment implements View.OnClickListener{
     private static final String TAG = CreateEventDialogFragment.class.getSimpleName();
     private Spinner mSpinner;
-    private String[] Events = {"Choose an Event","Quienceanera", "Birthday", "Wedding", "Baby Shower", "Graduation"};
+//    private String[] Events = {"Choose an Event","Quienceanera", "Birthday", "Wedding", "Baby Shower", "Graduation"};
     private String mEventZipCode, mEventId, mEventPhoto, mUid;
     private EditText mEditTextZipCode, mEditTextEventName;
     private DatabaseReference mPushRef, mEventsRef;

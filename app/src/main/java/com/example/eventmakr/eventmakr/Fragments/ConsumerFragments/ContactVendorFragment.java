@@ -14,7 +14,6 @@ import com.example.eventmakr.eventmakr.Activities.PayActivity;
 import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Objects.Cart;
-import com.example.eventmakr.eventmakr.Objects.ChatHome;
 import com.example.eventmakr.eventmakr.Objects.Message;
 import com.example.eventmakr.eventmakr.Objects.VendorOrderHome;
 import com.example.eventmakr.eventmakr.R;
@@ -28,8 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static com.example.eventmakr.eventmakr.Utils.FirebaseUtil.getConsumerSideConsumerChatRef;
+import java.util.Locale;
 
 public class ContactVendorFragment extends android.app.Fragment implements View.OnClickListener{
     private static final String TAG = "ContactVendorFragment";
@@ -78,7 +76,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                 int sum = 0;
                 int quantity = 0;
                 for (DataSnapshot child: dataSnapshot.getChildren()) {
-                    int mChildrenNum = ((int) dataSnapshot.getChildrenCount());
+//                    int mChildrenNum = ((int) dataSnapshot.getChildrenCount());
                     Float mChildPrice = Float.parseFloat(child.child("price").getValue().toString());
                     int mChildQuantity = Integer.valueOf(child.child("quantity").getValue().toString());
                     double mChildTotal = mChildPrice * mChildQuantity;
@@ -119,33 +117,33 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
         Log.i("Contact Vendor", "True");
     }
 
-    void pushToChatHome() {
-        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
-        final String mCurrentTimestamp = time.format(new Date());
-
-        mUserChatHomeRef = getConsumerSideConsumerChatRef().child(EventsAdapter.mEventKey).child(CartHomeAdapter.mVendorUid);
-        mVendorChatHomeRef = FirebaseUtil.getConsumerSideVendorChatRef().child(FirebaseUtil.getUid());
-
-        ChatHome chatHome = new ChatHome(
-                CartHomeAdapter.mVendorName,
-                CartHomeAdapter.mVendorLogo,
-                CartHomeAdapter.mVendorUid,
-                FirebaseUtil.getUserName(),
-                FirebaseUtil.getUser().getPhotoUrl().toString(),
-                FirebaseUtil.getUid(),
-                mCurrentTimestamp,
-                EventsAdapter.mEventKey,
-                EventsAdapter.mEventName,
-                EventsAdapter.mEventDate
-            );
-            mUserChatHomeRef.setValue(chatHome);
-            mVendorChatHomeRef.setValue(chatHome);
-            postMessage();
-        Log.i("Push to chat home", "True");
-    }
+//    void pushToChatHome() {
+//        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm", Locale.US);
+//        final String mCurrentTimestamp = time.format(new Date());
+//
+//        mUserChatHomeRef = getConsumerSideConsumerChatRef().child(EventsAdapter.mEventKey).child(CartHomeAdapter.mVendorUid);
+//        mVendorChatHomeRef = FirebaseUtil.getConsumerSideVendorChatRef().child(FirebaseUtil.getUid());
+//
+//        ChatHome chatHome = new ChatHome(
+//                CartHomeAdapter.mVendorName,
+//                CartHomeAdapter.mVendorLogo,
+//                CartHomeAdapter.mVendorUid,
+//                FirebaseUtil.getUserName(),
+//                FirebaseUtil.getUser().getPhotoUrl().toString(),
+//                FirebaseUtil.getUid(),
+//                mCurrentTimestamp,
+//                EventsAdapter.mEventKey,
+//                EventsAdapter.mEventName,
+//                EventsAdapter.mEventDate
+//            );
+//            mUserChatHomeRef.setValue(chatHome);
+//            mVendorChatHomeRef.setValue(chatHome);
+//            postMessage();
+//        Log.i("Push to chat home", "True");
+//    }
 
     void postMessage() {
-        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
+        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm", Locale.US);
         final String mCurrentTimestamp = time.format(new Date());
         mDatabaseRef = FirebaseUtil.getBaseRef().push();
         mChatKey = "1";
@@ -170,7 +168,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
     }
 
     void pushToCart () {
-        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm");
+        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm", Locale.US);
         final String mCurrentTimestamp = time.format(new Date());
 
         mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(CartHomeAdapter.mVendorUid);
