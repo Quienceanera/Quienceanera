@@ -65,6 +65,24 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:elevation="10dp"
+            android:layout_below="@+id/vendorOrderLayout2"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:visibility="gone"
+                android:layout_margin="5dp"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/notificationMessage"
+                android:src="@drawable/message_text_outline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_margin="5dp"
             android:id="@+id/imageViewVendorOrderHome"

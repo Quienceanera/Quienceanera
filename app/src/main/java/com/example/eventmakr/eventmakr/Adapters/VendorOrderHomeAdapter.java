@@ -28,7 +28,7 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
     public static String mCustomerUid, mEventKey, mTotalPrice, mOrderHomeKey;
     private Query mRef;
     private Boolean mProcessConfirm = false;
-    private DatabaseReference mDatabaseConfirm;
+    private DatabaseReference mDatabaseConfirm, mDatabaseNewMessage;
 
     public VendorOrderHomeAdapter(Class<VendorOrderHome> modelClass, int modelLayout, Class<VendorOrderHomeViewholder> viewHolderClass, Query ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
@@ -60,6 +60,7 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
                 mCustomerUid = model.getCustomerUid();
                 mEventKey = model.getEventKey();
                 mTotalPrice = model.getTotalPrice();
+                mDatabaseNewMessage.removeValue();
                 getOrders();
             }
         });
@@ -110,6 +111,24 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
                     Log.i("Datasnapshot", "false");
                     viewHolder.mTextViewConfirm.setText("Awaiting Confirmation");
                     viewHolder.mCardViewVendorOrderHome.setCardBackgroundColor(rgb(255,255,255));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mDatabaseNewMessage = FirebaseUtil.getBaseRef().child("newMessage").child(FirebaseUtil.getUid()).child(model.getEventKey());
+        mDatabaseNewMessage.keepSynced(true);
+        mDatabaseNewMessage.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    Log.i(TAG, dataSnapshot.toString());
+                    viewHolder.mNotificationMessage.setVisibility(View.VISIBLE);
+                }else {
+                    viewHolder.mNotificationMessage.setVisibility(View.GONE);
                 }
             }
 

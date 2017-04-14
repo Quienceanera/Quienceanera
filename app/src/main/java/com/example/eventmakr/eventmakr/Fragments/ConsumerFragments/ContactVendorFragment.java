@@ -205,6 +205,8 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
                     EventsAdapter.mEventAddress
             );
             mVendorCartRef.setValue(vendorOrderHome);
+        FirebaseUtil.getNotificationRef().child("orders").push().setValue(vendorOrderHome);
+
         FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(getActivity())
                 .setImageRecourse(R.drawable.message_text_outline2)
                 .setBackgroundColor(R.color.colorAccentLighter)

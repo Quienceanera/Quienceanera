@@ -33,7 +33,7 @@ import java.util.Locale;
 public class ChatFragment extends android.app.Fragment implements View.OnClickListener {
     private static final String TAG = ChatFragment.class.getSimpleName();
     private String mPhotoUrl, mUsername, mUid, mChatPath, mChatKey, mVendorUid;
-    private DatabaseReference mDatabaseReference, mDatabaseRef, mConsumerSideVendorRef, mVendorMessageRef, mConsumerMessageRef;
+    private DatabaseReference mDatabaseReference, mDatabaseRef, mNewMessageRef, mVendorMessageRef, mConsumerMessageRef;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private MyFirebaseMessagingService myFirebaseMessagingService;
     private String SENDER_ID = FirebaseUtil.getUid();
@@ -112,12 +112,14 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
 
             mVendorMessageRef = FirebaseUtil.getVendorSideVendorMessageRef().child(mChatKey);
             mConsumerMessageRef = FirebaseUtil.getVendorSideConsumerMessageRef().child(mChatKey);
-            mDatabaseReference = FirebaseUtil.getBaseRef().child("notifications").child("messages").push();
+            mDatabaseReference = FirebaseUtil.getNotificationRef().child("messages").push();
+            mNewMessageRef = FirebaseUtil.getBaseRef().child("newMessage").child(VendorOrderHomeAdapter.mCustomerUid).child(VendorOrderHomeAdapter.mEventKey).push();
 
         } else {
                 mConsumerMessageRef = FirebaseUtil.getConsumerSideConsumerMessageRef().child(mChatKey);
                 mVendorMessageRef = FirebaseUtil.getConsumerSideVendorMessageRef().child(mChatKey);
-            mDatabaseReference = FirebaseUtil.getBaseRef().child("notifications").child("messages").push();
+            mDatabaseReference = FirebaseUtil.getNotificationRef().child("messages").push();
+            mNewMessageRef = FirebaseUtil.getBaseRef().child("newMessage").child(CartHomeAdapter.mVendorUid).child(EventsAdapter.mEventKey).push();
         }
 
         if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
@@ -133,6 +135,7 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
             mVendorMessageRef.setValue(message);
             mConsumerMessageRef.setValue(message);
             mDatabaseReference.setValue(message);
+            mNewMessageRef.setValue("true");
             mEditTextChat.setText("");
         } else {
             Message message = new Message(
@@ -147,6 +150,7 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
             mConsumerMessageRef.setValue(message);
             mVendorMessageRef.setValue(message);
             mDatabaseReference.setValue(message);
+            mNewMessageRef.setValue("true");
             mEditTextChat.setText("");
         }
     }

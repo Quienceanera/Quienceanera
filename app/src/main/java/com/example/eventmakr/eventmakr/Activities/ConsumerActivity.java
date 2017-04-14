@@ -182,18 +182,6 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-//    void makeUserProfile(){
-//        User user = new User(
-//                FirebaseUtil.getUserName(),
-//                FirebaseUtil.getUid(),
-//                FirebaseUtil.getUser().getEmail(),
-//                null,
-//                false,
-//                false
-//        );
-//        FirebaseUtil.getConsumerProfileRef().setValue(user);
-//    }
-
     void getCreateEventDialog(){
         new CreateEventDialogFragment().show(getFragmentManager(), "CreateEventDialogFragment");
     }

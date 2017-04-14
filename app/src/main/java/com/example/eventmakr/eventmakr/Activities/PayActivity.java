@@ -1,12 +1,17 @@
 package com.example.eventmakr.eventmakr.Activities;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Slide;
+import android.transition.Transition;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.Toolbar;
 
@@ -34,6 +39,9 @@ public class PayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.i(TAG, TAG);
         setContentView(R.layout.activity_pay);
+        getEnterAnimation();
+
+
         VendorActivity.mVendorMode = false;
         mToolbar = (Toolbar) findViewById(R.id.toolbarPay);
         setActionBar(mToolbar);
@@ -52,6 +60,10 @@ public class PayActivity extends AppCompatActivity {
         mViewPagerAdapter = new ConsumerViewPagerAdapter(getFragmentManager(), this);
         Log.i(TAG+"1", CartHomeAdapter.mConfirm);
 
+//        getCartDetailFragment();
+    }
+
+    void getlayout(){
         if (Objects.equals(CartHomeAdapter.mConfirm, "true")){
             Log.i(TAG+"2", CartHomeAdapter.mConfirm);
             mViewPagerAdapter.addFragments(new CartFragment(), "");
@@ -95,27 +107,61 @@ public class PayActivity extends AppCompatActivity {
             }
         });
 
-
-
-        getCartDetailFragment();
     }
 
+    private void getEnterAnimation() {
+        Slide slide = new Slide(Gravity.RIGHT);
+        slide.setInterpolator(AnimationUtils.loadInterpolator(this, android.R.interpolator.linear_out_slow_in));
+        getWindow().setEnterTransition(slide);
+        slide.addListener(new Transition.TransitionListener() {
+            @Override
+            public void onTransitionStart(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionEnd(Transition transition) {
+                getCartDetailFragment();
+                getlayout();
+            }
+
+            @Override
+            public void onTransitionCancel(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionPause(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionResume(Transition transition) {
+
+            }
+        });
+
+    }
 
 
     void getCartDetailFragment(){
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.containerPayDetails, FragmentUtil.getCartDetailFragment())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
     }
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
+
         if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode && EventsAdapter.mEventKey == null){
+            supportFinishAfterTransition();
             startActivity(new Intent(PayActivity.this, VendorActivity.class));
         }else{
+            supportFinishAfterTransition();
             startActivity(new Intent(PayActivity.this, ConsumerActivity.class));
         }
-        super.onBackPressed();
     }
 }

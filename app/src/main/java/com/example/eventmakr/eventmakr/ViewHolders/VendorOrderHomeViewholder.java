@@ -4,6 +4,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.eventmakr.eventmakr.R;
@@ -14,6 +15,7 @@ public class VendorOrderHomeViewholder extends RecyclerView.ViewHolder {
 
     public CardView mCardViewVendorOrderHome;
     public CircleImageView mImageViewVendorOrderHome;
+    public ImageView mNotificationMessage;
     public TextView mTextViewVendorOrderHomeCustomerName, mTextViewVendorOrderHomeTimestamp, mTextViewVendorOrderHomePriceTotal, mTextViewVendorOrderHomeCount, mTextViewVendorOrderHomeEventName, mTextViewConfirm;
     public CheckBox mCheckBoxVendorOrderHome;
 
@@ -28,5 +30,7 @@ public class VendorOrderHomeViewholder extends RecyclerView.ViewHolder {
         mTextViewVendorOrderHomeCount = (TextView) itemView.findViewById(R.id.textViewVendorOrderHomeCount);
         mTextViewVendorOrderHomeEventName = (TextView) itemView.findViewById(R.id.textViewVendorOrderHomeEventName);
         mTextViewConfirm = (TextView) itemView.findViewById(R.id.textViewConfirm);
+        mNotificationMessage = (ImageView) itemView.findViewById(R.id.notificationMessage);
+
     }
 }

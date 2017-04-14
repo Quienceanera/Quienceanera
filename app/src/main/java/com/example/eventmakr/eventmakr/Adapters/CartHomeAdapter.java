@@ -1,8 +1,10 @@
 package com.example.eventmakr.eventmakr.Adapters;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.util.Log;
 import android.view.View;
 
@@ -30,6 +32,7 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
     int mPosition;
     public static String mTotalPrice, mCartHomeKey, mCartHomeName;
     public static String mVendorUid, mCategory, mPriceRange, mVendorLogo, mVendorName, mConfirm;
+    private View mTransitionView;
 
     public CartHomeAdapter(Class<Cart> modelClass, int modelLayout, Class<CartHomeViewholder> viewHolderClass, Query ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
@@ -40,6 +43,8 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
     protected void populateViewHolder(final CartHomeViewholder viewHolder, final Cart model,  int position) {
         Log.i(TAG,TAG);
         mPosition = position;
+        mTransitionView = viewHolder.mImageViewCartHome;
+
 
         if (model.getItemCount() == null || model.getPriceTotal() == null){
             viewHolder.mTextViewCartHomePriceTotal.setVisibility(View.GONE);
@@ -65,6 +70,7 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
                 mVendorName = model.getVendorName();
                 mVendorLogo = model.getVendorLogo();
                 mConfirm = model.getReady();
+                mDatabaseNewMessage.removeValue();
                 getCart();
             }
         });
@@ -122,40 +128,29 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
 
             }
         });
+        mDatabaseNewMessage = FirebaseUtil.getBaseRef().child("newMessage").child(FirebaseUtil.getUid()).child(model.getEventKey());
+        mDatabaseNewMessage.keepSynced(true);
+        mDatabaseNewMessage.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    Log.i(TAG, dataSnapshot.toString());
+                    viewHolder.mNotificationMessage.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolder.mNotificationMessage.setVisibility(View.GONE);
+                }
+            }
 
-//        mDatabaseNewMessage = FirebaseUtil.getConsumerSideConsumerMessageRef().child(model.getVendorUid());
-//        mDatabaseNewMessage.keepSynced(true);
-//
-//        mDatabaseNewMessage.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                Log.i("On Child Added", s);
-//                viewHolder.mNotificationMessage.setVisibility(View.VISIBLE);
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void getCart() {
-        mContext.startActivity(new Intent(mContext, PayActivity.class));
+        Intent intent = new Intent(mContext, PayActivity.class);
+        ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) mContext, mTransitionView, "toCartDetail");
+        mContext.startActivity(intent, optionsCompat.toBundle());
     }
 }

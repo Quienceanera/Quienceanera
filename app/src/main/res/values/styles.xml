@@ -11,6 +11,7 @@
         <item name="android:textColorPrimary">?android:attr/textColorTertiary</item>
         <item name="android:statusBarColor">?attr/colorPrimaryDark</item>
         <item name="android:colorBackground">@color/colorAccentLighter</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

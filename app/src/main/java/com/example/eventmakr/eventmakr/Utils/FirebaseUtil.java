@@ -41,6 +41,10 @@ public class FirebaseUtil {
 
     //TODO: Consumer Side
 
+    public static DatabaseReference getNotificationRef(){
+        return getBaseRef().child("notifications");
+    }
+
     public static DatabaseReference getConsumerProfileRef(){
         return getBaseRef().child("consumerProfile").child(FirebaseUtil.getUid());
     }
