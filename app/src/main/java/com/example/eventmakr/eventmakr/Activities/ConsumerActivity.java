@@ -5,9 +5,13 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.transition.Explode;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -18,34 +22,51 @@ import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.CreateEventDi
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.github.florent37.viewanimator.ViewAnimator;
+import com.google.android.gms.appinvite.AppInviteInvitation;
 import com.google.firebase.database.DatabaseReference;
 
 public class ConsumerActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public final String TAG = ConsumerActivity.class.getSimpleName();
     private ImageView mImageViewBackGround, mImageViewLogo, mImageViewMainBg, mImageViewMainBg2;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private ViewPagerAdapter mViewPagerAdapter;
-    private FloatingActionButton mFabNewEvent, mFabSearchVendors;
-    private CardView mCardViewCreateEvent, mCardViewSearchVendors;
+    private FloatingActionButton mFabNewEvent, mFabSearchVendors, mFabSendInvite;
+    private CardView mCardViewCreateEvent, mCardViewSearchVendors, mCardViewSendInvite;
     private DatabaseReference mDatabaseNewMessage;
     public static Boolean mVendorMode, mConsumerMode;
     private CoordinatorLayout mLayoutConsumer;
+    private final int REQUEST_INVITE = 1;
+    public static int mFabWidth, mFabPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consumer);
 
+        View decor = getWindow().getDecorView();
+        View statusBar = decor.findViewById(android.R.id.statusBarBackground);
+        View navBar = decor.findViewById(android.R.id.navigationBarBackground);
+
+        Explode explode = new Explode();
+        explode.excludeTarget(R.id.imageViewCartHome, true);
+        explode.excludeTarget(statusBar, true);
+        explode.excludeTarget(navBar, true);
+        getWindow().setExitTransition(explode);
+
         mFabNewEvent = (FloatingActionButton) findViewById(R.id.fabNewEvent);
         mFabSearchVendors = (FloatingActionButton) findViewById(R.id.fabSearchVendor);
+        mFabSendInvite = (FloatingActionButton) findViewById(R.id.fabSendInvite);
         mCardViewCreateEvent = (CardView) findViewById(R.id.cardViewCreateEvent_helper);
         mCardViewSearchVendors = (CardView) findViewById(R.id.cardViewSearchVendor_helper);
+        mCardViewSendInvite = (CardView) findViewById(R.id.cardViewSendInvite_helper);
         mLayoutConsumer = (CoordinatorLayout) findViewById(R.id.layoutConsumer);
 
         mFabNewEvent.setOnClickListener(this);
         if (EventsAdapter.mEventKey != null){
             mFabSearchVendors.setOnClickListener(this);
+            mFabSendInvite.setOnClickListener(this);
         }
 
         mImageViewBackGround = (ImageView) findViewById(R.id.imageViewBackground);
@@ -61,6 +82,9 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
 
         mFabSearchVendors.setVisibility(View.GONE);
         mCardViewSearchVendors.setVisibility(View.GONE);
+
+        mFabSendInvite.setVisibility(View.GONE);
+        mCardViewSendInvite.setVisibility(View.GONE);
         if (EventsAdapter.mEventKey != null){
             mViewPagerAdapter.addFragments(FragmentUtil.getCartFragment(), "");
             mViewPagerAdapter.addFragments(FragmentUtil.getUserFragment(), "");
@@ -96,6 +120,18 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                             .duration(300)
                             .start();
                 }
+                if (tab.getPosition() == 2){
+                    mFabSendInvite.setVisibility(View.VISIBLE);
+                    mCardViewSendInvite.setVisibility(View.VISIBLE);
+                    ViewAnimator.animate(mFabSendInvite)
+                            .rollIn()
+                            .duration(300)
+                            .andAnimate(mCardViewSendInvite)
+                            .zoomIn()
+                            .descelerate()
+                            .duration(300)
+                            .start();
+                }
             }
 
             @Override
@@ -120,6 +156,16 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                             .duration(300)
                             .start();
                 }
+                if (tab.getPosition() == 2){
+                    ViewAnimator.animate(mFabSendInvite)
+                            .rollOut()
+                            .duration(300)
+                            .andAnimate(mCardViewSendInvite)
+                            .zoomOut()
+                            .descelerate()
+                            .duration(300)
+                            .start();
+                }
             }
 
             @Override
@@ -127,7 +173,8 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
-//        makeUserProfile();
+
+
     }
 
     void loadBackground() {
@@ -163,9 +210,8 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                 .descelerate()
                 .duration(1000)
                 .start();
-        if (EventsAdapter.mEventKey != null){
-            mViewPager.arrowScroll(2);
-        }
+
+
     }
 
     @Override
@@ -178,7 +224,50 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
             case R.id.fabSearchVendor:
                 getEventsActivity();
                 break;
+            case R.id.fabSendInvite:
+                onInviteClicked();
+                break;
             default:
+        }
+    }
+
+    private void onInviteClicked() {
+        Intent intent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
+                .setMessage(getString(R.string.invitation_message))
+//                .setDeepLink(Uri.parse(getString(R.string.invitation_deep_link)))
+//                .setCustomImage(Uri.parse(getString(R.string.invitation_custom_image)))
+//                .setCallToActionText(getString(R.string.invitation_cta))
+                .setEmailHtmlContent("&lthtml&gt&ltbody&gt"
+                        + "&lta href=\"%%APPINVITE_LINK_PLACEHOLDER%%\"&gtXYZ Free Trial&lt/a&gt"
+                        + "\n" +
+                        "Your invited!\n" +
+                        "No Images? Click here\n" +
+                        "\n" +
+                        "\n" +
+                        " \n" +
+                        "Quienceaneras\n" +
+                        "Unsubscribe\n")
+                .setEmailSubject("Quienceaneras")
+                .build();
+        startActivityForResult(intent, REQUEST_INVITE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "onActivityResult: requestCode=" + requestCode + ", resultCode=" + resultCode);
+
+        if (requestCode == REQUEST_INVITE) {
+            if (resultCode == RESULT_OK) {
+                // Get the invitation IDs of all sent messages
+                String[] ids = AppInviteInvitation.getInvitationIds(resultCode, data);
+                for (String id : ids) {
+                    Log.d(TAG, "onActivityResult: sent invitation " + id);
+                }
+            } else {
+                // Sending failed or it was canceled, show failure message to the user
+                // ...
+            }
         }
     }
 
@@ -187,7 +276,14 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
     }
 
     void getEventsActivity(){
-        startActivity(new Intent(this, EventActivity.class));
+        mFabWidth = mFabSearchVendors.getWidth();
+
+        Intent intent = new Intent(this, EventActivity.class);
+        ActivityCompat.startActivity(this, intent,
+                ActivityOptionsCompat.
+                        makeSceneTransitionAnimation(this, mFabSearchVendors, "reveal")
+                        .toBundle());
+//        startActivity(new Intent(this, EventActivity.class));
     }
 
     @Override

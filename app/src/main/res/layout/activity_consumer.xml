@@ -4,7 +4,8 @@
     android:id="@+id/layoutConsumer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:clipToPadding="false"
+    android:clipChildren="false"
     tools:context="com.example.eventmakr.eventmakr.Activities.VendorActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -77,5 +78,6 @@
 
     <include layout="@layout/fab_create_event" />
     <include layout="@layout/fab_search_vendors" />
+    <include layout="@layout/fab_send_invite"/>
 
 </android.support.design.widget.CoordinatorLayout>

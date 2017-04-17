@@ -85,11 +85,11 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
                 .setResultCallback(new ResultCallback<PlaceBuffer>() {
                     @Override
                     public void onResult(@NonNull PlaceBuffer places) {
-                        if(places.getStatus().isSuccess() && places.getCount() > 0){
+                        if (places.getStatus().isSuccess() && places.getCount() > 0) {
                             final Place mPlace = places.get(0);
                             mLatLng = mPlace.getLatLng();
                             mRatingBar.setRating(mPlace.getRating());
-                            Log.i("Vendor Profile",  mPlace.getLatLng().toString());
+                            Log.i("Vendor Profile", mPlace.getLatLng().toString());
                         } else {
                             Log.e("Vendor Profile", "Place not found");
                         }
@@ -114,10 +114,9 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
 
         getVendorInfo();
         getChildRecyclerVendorProductItems();
-            mGoogleApiClient.connect();
+        mGoogleApiClient.connect();
         return view;
     }
-
 
 
     @Override
@@ -130,7 +129,7 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
                 .start();
     }
 
-    void getChildRecyclerVendorProductItems () {
+    void getChildRecyclerVendorProductItems() {
         getChildFragmentManager()
                 .beginTransaction()
                 .add(R.id.containerRecyclerVendorProductItemList, FragmentUtil.getRecyclerVendorProfileProductItemFragment())
@@ -171,7 +170,7 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mGoogleApiClient.stopAutoManage((FragmentActivity)getActivity());
+        mGoogleApiClient.stopAutoManage((FragmentActivity) getActivity());
         mGoogleApiClient.disconnect();
     }
 
@@ -181,9 +180,25 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
         mMap = googleMap;
         mapReady = true;
 
-        MapStyleOptions styleOptions = MapStyleOptions.loadRawResourceStyle(getActivity(),R.raw.map_style);
+        MapStyleOptions styleOptions = MapStyleOptions.loadRawResourceStyle(getActivity(), R.raw.map_style);
 
-            CameraPosition target = CameraPosition.builder().target(mLatLng).zoom(14).build();
+        CameraPosition target = CameraPosition.builder().target(mLatLng).zoom(14).build();
+//        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            //    ActivityCompat#requestPermissions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for ActivityCompat#requestPermissions for more details.
+//            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)){
+//
+//            }else{
+////                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, );
+//            }
+//            return;
+//        }
+//            mMap.setMyLocationEnabled(true);
             mMap.addMarker(new MarkerOptions().position(mLatLng).title(mVendorName));
             mMap.moveCamera(CameraUpdateFactory.newCameraPosition(target));
 

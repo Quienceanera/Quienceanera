@@ -38,6 +38,7 @@ public class EventsFragment extends Fragment implements View.OnClickListener{
         getChildFragmentManager()
                 .beginTransaction()
                 .add(R.id.containerEvents, FragmentUtil.getEventsList())
+                .setCustomAnimations(R.animator.fragment_slide_left_enter, R.animator.fragment_slide_left_exit)
                 .commit();
     }
 

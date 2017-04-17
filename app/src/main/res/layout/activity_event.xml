@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layoutEvent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:visibility="visible"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
     android:fitsSystemWindows="true"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.eventmakr.eventmakr.Activities.EventActivity">
@@ -15,7 +15,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabRevealTarget"
+            android:transitionName="reveal"
+            android:src="@drawable/store2"
+            android:backgroundTint="@color/colorButtons"
+            app:useCompatPadding="true"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarEvents"
         app:elevation="2dp"
         android:background="@color/tw__transparent"
@@ -101,8 +112,8 @@
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
+        android:visibility="invisible"
         android:layout_below="@+id/appBarEvents"
-
         android:id="@+id/containerEventActivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

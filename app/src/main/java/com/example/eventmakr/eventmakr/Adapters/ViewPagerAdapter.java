@@ -2,6 +2,7 @@ package com.example.eventmakr.eventmakr.Adapters;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v13.app.FragmentStatePagerAdapter;
@@ -19,15 +20,16 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
 //    private ArrayList<String> mTitles = new ArrayList<>();
     private ArrayList<Integer> mIcons = new ArrayList<>();
     private Context mContext;
+    private FragmentTransaction mFragmentTransaction;
 
     public ViewPagerAdapter(android.app.FragmentManager fm, Activity context) {
         super(fm);
+
         this.mContext = context;
     }
 
-    public void addFragments (android.app.Fragment mFragments, String mTitles){
+    public void addFragments (android.app.Fragment mFragments, String titles){
         this.mFragments.add(mFragments);
-//        this.mTitles.add(mTitles);
     }
 
     @Override

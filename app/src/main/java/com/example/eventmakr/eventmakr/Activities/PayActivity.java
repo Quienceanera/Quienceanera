@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Fade;
 import android.transition.Slide;
 import android.transition.Transition;
 import android.util.Log;
@@ -17,7 +18,6 @@ import android.widget.Toolbar;
 
 import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ConsumerViewPagerAdapter;
-import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ContactVendorFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.CartFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.ChatFragment;
@@ -39,7 +39,9 @@ public class PayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.i(TAG, TAG);
         setContentView(R.layout.activity_pay);
-        getEnterAnimation();
+//        getEnterAnimation();
+        getWindow().setEnterTransition(new Fade(Fade.IN));
+        getWindow().setExitTransition(new Fade(Fade.OUT));
 
 
         VendorActivity.mVendorMode = false;
@@ -59,11 +61,6 @@ public class PayActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.viewpagerPay);
         mViewPagerAdapter = new ConsumerViewPagerAdapter(getFragmentManager(), this);
         Log.i(TAG+"1", CartHomeAdapter.mConfirm);
-
-//        getCartDetailFragment();
-    }
-
-    void getlayout(){
         if (Objects.equals(CartHomeAdapter.mConfirm, "true")){
             Log.i(TAG+"2", CartHomeAdapter.mConfirm);
             mViewPagerAdapter.addFragments(new CartFragment(), "");
@@ -107,6 +104,8 @@ public class PayActivity extends AppCompatActivity {
             }
         });
 
+        getCartDetailFragment();
+
     }
 
     private void getEnterAnimation() {
@@ -116,13 +115,11 @@ public class PayActivity extends AppCompatActivity {
         slide.addListener(new Transition.TransitionListener() {
             @Override
             public void onTransitionStart(Transition transition) {
-
             }
 
             @Override
             public void onTransitionEnd(Transition transition) {
-                getCartDetailFragment();
-                getlayout();
+
             }
 
             @Override
@@ -143,7 +140,6 @@ public class PayActivity extends AppCompatActivity {
 
     }
 
-
     void getCartDetailFragment(){
         getFragmentManager()
                 .beginTransaction()
@@ -155,13 +151,13 @@ public class PayActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
-        if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode && EventsAdapter.mEventKey == null){
-            supportFinishAfterTransition();
-            startActivity(new Intent(PayActivity.this, VendorActivity.class));
-        }else{
-            supportFinishAfterTransition();
-            startActivity(new Intent(PayActivity.this, ConsumerActivity.class));
-        }
+        supportFinishAfterTransition();
+//        if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode && EventsAdapter.mEventKey == null){
+//            supportFinishAfterTransition();
+//            startActivity(new Intent(PayActivity.this, VendorActivity.class));
+//        }else{
+//            supportFinishAfterTransition();
+//            startActivity(new Intent(PayActivity.this, ConsumerActivity.class));
+//        }
     }
 }

@@ -41,5 +41,9 @@
     <string name="google_maps_key">AIzaSyA1fbeNPW4anzd5fS0rYsMJnXpTZ3pDnsw</string>
     <string name="title_activity_vendor_extras">VendorExtrasActivity</string>
     <string name="banner_ad_unit_id">ca-app-pub-1700195790577663/6756962433</string>
+    <string name="invitation_title">Quienceaneras</string>
+    <string name="invitation_message">Thought you might like this : )</string>
+    <string name="invitation_custom_image"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Flogoi.png]]></string>
+    <string name="invitation_cta">Try it out!</string>
 
 </resources>

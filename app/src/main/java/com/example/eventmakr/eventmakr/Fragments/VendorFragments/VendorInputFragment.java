@@ -266,6 +266,7 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
                 }
             });
         } else {
+            Log.i(TAG, "Photo Upload Failed");
         }
     }
 

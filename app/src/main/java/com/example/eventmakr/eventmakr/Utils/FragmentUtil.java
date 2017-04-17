@@ -70,6 +70,7 @@ public class FragmentUtil {
     }
 
     public static ConsumerVendorCategoryFragment getConsumerVendorCategoryFragment() {
+
         return new ConsumerVendorCategoryFragment();
     }
 

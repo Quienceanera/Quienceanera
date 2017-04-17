@@ -43,7 +43,7 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
     protected void populateViewHolder(final CartHomeViewholder viewHolder, final Cart model,  int position) {
         Log.i(TAG,TAG);
         mPosition = position;
-        mTransitionView = viewHolder.mImageViewCartHome;
+        mTransitionView = viewHolder.mImageViewCartHome.findViewById(R.id.imageViewCartHome);
 
 
         if (model.getItemCount() == null || model.getPriceTotal() == null){
@@ -149,8 +149,9 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
     }
 
     private void getCart() {
-        Intent intent = new Intent(mContext, PayActivity.class);
+        Intent intent = new Intent((Activity)mContext, PayActivity.class);
         ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) mContext, mTransitionView, "toCartDetail");
         mContext.startActivity(intent, optionsCompat.toBundle());
+
     }
 }

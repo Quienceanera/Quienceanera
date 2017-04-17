@@ -97,6 +97,7 @@ public class VendorAdapter extends FirebaseRecyclerAdapter<Vendor, Viewholder> {
         eventActivity.getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.containerEventActivity, FragmentUtil.getConsumerVendorProfileFragment())
+                .setCustomAnimations(R.animator.fragment_slide_left_enter, R.animator.fragment_slide_left_exit)
                 .addToBackStack(null)
                 .commit();
     }
