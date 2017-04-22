@@ -12,22 +12,12 @@
     <string name="what_s_the_occasion">What\'s the occasion?</string>
     <string name="next">Next</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="when_will_your_event_be_held">When will your event be held?</string>
-    <string name="what_is_your_estimated_budget">What is your estimated budget?</string>
     <string name="find_vendors">FIND VENDORS</string>
-    <string name="we_found">We found</string>
-    <string name="vendors_for_your_event">vendors for your event!</string>
-    <string name="caterers">CATERERS</string>
+
     <string name="title_activity_consumer">ConsumerActivity</string>
     <string name="log_in">LOG IN</string>
     <string name="enter_your_zip_code">Enter your zip code</string>
-    <string name="mixologists">MIXOLOGISTS</string>
-    <string name="florists">FLORISTS</string>
-    <string name="party_supplies">PARTY SUPPLIES</string>
-    <string name="djs">DJs</string>
-    <string name="bakeries">BAKERIES</string>
+
     <string name="filter_results_by_estimated_budget">Filter results by estimated budget</string>
     <string name="contact_vendor">Contact Vendor</string>
     <string name="title_activity_maps">Map</string>
@@ -43,7 +33,112 @@
     <string name="banner_ad_unit_id">ca-app-pub-1700195790577663/6756962433</string>
     <string name="invitation_title">Quienceaneras</string>
     <string name="invitation_message">Thought you might like this : )</string>
-    <string name="invitation_custom_image"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Flogoi.png]]></string>
     <string name="invitation_cta">Try it out!</string>
 
+    //URLs
+    <string name="invitation_custom_image"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Flogoi.png]]></string>
+    <string name="logo_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Flogo.png?alt=media&token=f3fb17ed-6cb5-41ff-a8de-41f283efb14c]]></string>
+    <string name="main_activity_background"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fmobile_bg.jpg?alt=media&token=8930f92d-f5f0-45dd-b9f9-51775faac1e2]]></string>
+    <string name="caterers_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fcaterers.png?alt=media&token=726a98cc-307f-4cd2-9c1b-35370a2b8e36]]></string>
+    <string name="bakeries_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fbakeries.jpg?alt=media&token=544ed26b-6112-4d6a-b3c7-3ecafa3adfa4]]></string>
+    <string name="foodtrucks_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Ffoodtruck.jpg?alt=media&token=e2b974af-ba24-4238-81de-3821ef5b7194]]></string>
+    <string name="organic_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Forganic.jpg?alt=media&token=8c438984-60e1-4c45-ab75-059664439386]]></string>
+    <string name="djs_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fdj.jpg?alt=media&token=0b9945d7-2dd9-4c34-bc46-4b9cc2a98540]]></string>
+    <string name="live_music_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Flive.jpg?alt=media&token=239bb3cf-1bd1-4a60-9ae4-fced84d0485b]]></string>
+    <string name="instrument_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Finstrument.jpg?alt=media&token=33ec7c16-74d0-4168-b5ec-5729373a3829]]></string>
+    <string name="vocal_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fvocal.jpg?alt=media&token=4d00d426-0f27-4b35-82fc-f27c44e7ad39]]></string>
+    <string name="mixologists_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fmixologists.jpg?alt=media&token=fde6dbba-c7af-41a5-b17a-2859bccd4f27]]></string>
+    <string name="kegs_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fkeg.jpg?alt=media&token=5248798c-0401-46d4-adb7-d652a7a967b9]]></string>
+    <string name="wholesale_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fwholesale.jpg?alt=media&token=c77218f3-9ba4-4908-9ba8-5ef4216f2c43]]></string>
+    <string name="wine_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fwine.jpg?alt=media&token=f89b9f45-7be4-4d44-a6b5-7bc97ab4f3dc]]></string>
+
+    //Categories
+    <string name="caterers">CATERER</string>
+    <string name="mixologists">MIXOLOGISTS</string>
+    <string name="florists">FLORISTS</string>
+    <string name="party_supplies">PARTY SUPPLIES</string>
+    <string name="djs">DJS</string>
+    <string name="bakeries">BAKERIES</string>
+    <string name="food_trucks">FOOD TRUCKS</string>
+    <string name="organic">ORGANIC</string>
+    <string name="kegs">KEGS</string>
+    <string name="wholesale">WHOLESALE</string>
+    <string name="wine">WINE</string>
+    <string name="live">LIVE</string>
+    <string name="instruments">INSTRUMENTS</string>
+    <string name="vocal">VOCAL</string>
+    //Other
+    <string name="zip">Zip:</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="$">$</string>
+    <string name="$$">$$</string>
+    <string name="$$$">$$$</string>
+    <string name="qty">Qty:</string>
+    <string name="for_string">For</string>
+    <string name="submitted_on">Submitted On:</string>
+    <string name="total">Total:</string>
+    <string name="and_all_its_content">And All It\'s Content?</string>
+    <string name="order_confirmed">Order Confirmed!</string>
+    <string name="awaiting_confirmation">Awaiting Confirmation</string>
+    <string name="special_instructions">Special Instructions</string>
+    <string name="okay">Okay</string>
+    <string name="delete_question">Delete?</string>
+    <string name="empty">Empty</string>
+    <string name="date_format">MM/dd-hh:mm</string>
+    <string name="confirmation_canceled">Confirmation Canceled</string>
+    <string name="customer_has_been_notified">Customer Has Been Notified!</string>
+    <string name="confirmed">Confirmed!</string>
+    <string name="can_not_be_empty">Can not be empty</string>
+    <string name="photo_uploaded">Photo Uploaded!</string>
+    <string name="photo_upload_failed">Photo Upload Failed</string>
+    <string name="log_out">log out</string>
+    //XML
+    <string name="o">O</string>
+    <string name="r">R</string>
+    <string name="d">D</string>
+    <string name="e">E</string>
+    <string name="v">V</string>
+    <string name="n">N</string>
+    <string name="s">S</string>
+    <string name="c">C</string>
+    <string name="h">H</string>
+    <string name="k">K</string>
+    <string name="u">U</string>
+    <string name="t">T</string>
+    <string name="a">A</string>
+    <string name="f">F</string>
+    <string name="i">I</string>
+    <string name="m">M</string>
+    <string name="g">G</string>
+    <string name="space" />
+    <string name="p">P</string>
+    <string name="l">L</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="price_example_20_00">Price example: 20.00</string>
+    <string name="recommend_a_business_for_quienceaneras">Recommend a Business for Quienceaneras!</string>
+    <string name="title_your_celebration">Title Your Celebration</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="invite_a_friend">Invite A Friend</string>
+    <string name="search_vendors">Search Vendors</string>
+    <string name="create_event">Create Event</string>
+    <string name="your_logo_here">Your logo here!</string>
+    <string name="what_is_your_business_name">What is your business name?</string>
+    <string name="what_is_the_owners_name">What is the owners name?</string>
+    <string name="who_will_be_your_customer_contact">Who will be your customer contact?</string>
+    <string name="give_a_description_of_your_business">Give a description of your business</string>
+    <string name="what_type_of_service_do_you_provide">What type of service do you provide?</string>
+    <string name="business_address">Business Address</string>
+    <string name="save">Save</string>
+    <string name="user_name">User Name</string>
+    <string name="add_to_order">ADD TO ORDER</string>
+    <string name="buy">BUY</string>
+    <string name="profile">PROFILE</string>
+    <string name="edit">EDIT</string>
+    <string name="products">PRODUCTS</string>
+    <string name="documents">DOCUMENTS</string>
+    <string name="popular_items">Popular Items:</string>
+    <string name="choose_a_date_for_your_occasion">Choose a date for your occasion</string>
 </resources>

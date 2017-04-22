@@ -44,8 +44,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     private VendorProfileProductAdapter mVendorProfileProductAdapter;
     private ImageView mImageViewProductItem;
     private TextView mTextViewProductItemName, mTextViewProductItemDetails, mTextViewProductItemPrice, mTextViewProductVendorName;
-    public static String mProductKey;
-    private String mProductImage, mProductName, mProductDetails, mProductPrice, mProductQuantity, mVendorUid, mUid, mKey, mVendorName, mInstructions1;
+    private String mProductImage, mProductName, mProductDetails, mProductPrice, mProductQuantity, mVendorUid, mVendorName, mProductKey, mInstructions1, mEventKey, mEventDate, mEventName, mEventZip, mKey;
     private EditText mEditTextQuantity;
 
     public ConsumerVendorProductItemFragment() {
@@ -56,11 +55,19 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i("Fragment", TAG);
+
+        Bundle extras = getArguments();
+        if (extras == null){
+            Log.i("FragmentProductItem", "extras are null");
+
+        } else {
+            mProductKey = extras.getString("ProductKey");
+            mVendorUid = extras.getString("VendorUid");
+            mVendorName = extras.getString("VendorName");
+            Log.i("Bundle", mProductKey+" "+mVendorUid+" "+mVendorName);
+
+        }
         mContext = getActivity();
-        mProductKey = mVendorProfileProductAdapter.mProductKey;
-        mVendorUid = mVendorProfileProductAdapter.mVendorUid;
-        mVendorName = mVendorProfileProductAdapter.mVendorName;
-        mUid = FirebaseUtil.getUser().getUid();
         mUserMenuRef = FirebaseUtil.getConsumerSideVendorProductRef();
     }
 
@@ -97,7 +104,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     }
 
     public void getProductInfo() {
-        mUserMenuRef.child(VendorProfileProductAdapter.mProductKey).addValueEventListener(new ValueEventListener() {
+        mUserMenuRef.child(mProductKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mProductImage = (String) dataSnapshot.child("photo").getValue();
@@ -180,7 +187,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
 
 
    public void getKey () {
-            mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(VendorAdapter.mVendorUid);
+            mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderRef().child(mVendorUid);
             Log.i("EventAdapter Key", EventsAdapter.mEventKey);
         mVendorCartRef = FirebaseUtil.getConsumerSideVendorOrderRef();
         mPushRef = mUserCartRef.push();
@@ -192,29 +199,29 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
 
         if (EventsAdapter.mEventKey != null) {
             Items items = new Items(
-                    VendorProfileProductAdapter.mProductKey,
+                    mProductKey,
                     mProductQuantity,
                     mProductPrice,
                     mInstructions1,
                     mProductName,
                     mProductImage,
-                    VendorAdapter.mVendorName,
-                    VendorAdapter.mVendorUid,
-                    VendorAdapter.mVendorUid
+                    mVendorName,
+                    mVendorUid,
+                    mVendorUid
             );
-            mUserCartRef.child(VendorProfileProductAdapter.mProductKey).setValue(items);
+            mUserCartRef.child(mProductKey).setValue(items);
         }
 
         if (EventsAdapter.mEventKey != null) {
             VendorOrderItem vendorOrderItem = new VendorOrderItem(
-                    VendorProfileProductAdapter.mProductKey,
+                    mProductKey,
                     mProductQuantity,
                     mProductPrice,
                     mInstructions1,
                     mProductName,
                     mProductImage
             );
-            mVendorCartRef.child(VendorProfileProductAdapter.mProductKey).setValue(vendorOrderItem);
+            mVendorCartRef.child(mProductKey).setValue(vendorOrderItem);
         }
         pushToCart();
     }
@@ -223,7 +230,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm", Locale.US);
         final String mCurrentTimestamp = time.format(new Date());
 
-        mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(VendorAdapter.mVendorUid);
+        mUserCartRef = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(mVendorUid);
 
         Cart cart = new Cart(
                 EventsAdapter.mEventDate,
@@ -232,11 +239,11 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                 EventsAdapter.mEventName,
                 EventsAdapter.mEventKey,
                 FirebaseUtil.getUid(),
-                VendorAdapter.mVendorUid,
+                mVendorUid,
                 null,
                 null,
+                mVendorName,
                 VendorAdapter.mVendorName,
-                VendorAdapter.mVendorLogo,
                 mCurrentTimestamp,
                 "false",
                 "false"

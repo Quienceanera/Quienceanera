@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Objects.Events;
@@ -46,6 +48,7 @@ public class EventRecyclerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.events_item_list, container, false);
         view.setTag(TAG);
+
         if (container != null){
             container.removeAllViews();
         }
@@ -53,6 +56,10 @@ public class EventRecyclerFragment extends Fragment {
         mLayoutManger = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManger);
         mRecyclerView.setAdapter(mAdapter);
+
+        final Animation animateIn = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_up);
+        mRecyclerView.startAnimation(animateIn);
+
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -76,6 +83,7 @@ public class EventRecyclerFragment extends Fragment {
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
+
         return view;
     }
 

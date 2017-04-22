@@ -11,12 +11,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.transition.Explode;
+import android.transition.Transition;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ViewPagerAdapter;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.CreateEventDialogFragment;
 import com.example.eventmakr.eventmakr.R;
@@ -38,21 +39,33 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
     public static Boolean mVendorMode, mConsumerMode;
     private CoordinatorLayout mLayoutConsumer;
     private final int REQUEST_INVITE = 1;
-    public static int mFabWidth, mFabPosition;
+    private int mFabWidth, mFabPosition;
+    private String mEventKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consumer);
+        postponeEnterTransition();
+            Bundle extras = getIntent().getExtras();
+            if (extras == null){
+                Log.i(TAG, "extras are null");
+
+            } else {
+                mEventKey = extras.getString(mEventKey);
+//                Log.i(TAG, mEventKey);
+            }
 
         View decor = getWindow().getDecorView();
         View statusBar = decor.findViewById(android.R.id.statusBarBackground);
         View navBar = decor.findViewById(android.R.id.navigationBarBackground);
+        View target = decor.findViewById(R.id.imageViewCartHome);
 
-        Explode explode = new Explode();
-        explode.excludeTarget(R.id.imageViewCartHome, true);
+        Transition explode = new Explode();
+        explode.excludeTarget(target, true);
         explode.excludeTarget(statusBar, true);
         explode.excludeTarget(navBar, true);
+        explode.setDuration(300);
         getWindow().setExitTransition(explode);
 
         mFabNewEvent = (FloatingActionButton) findViewById(R.id.fabNewEvent);
@@ -64,9 +77,12 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         mLayoutConsumer = (CoordinatorLayout) findViewById(R.id.layoutConsumer);
 
         mFabNewEvent.setOnClickListener(this);
-        if (EventsAdapter.mEventKey != null){
+        mCardViewCreateEvent.setOnClickListener(this);
+        if (mEventKey != null){
             mFabSearchVendors.setOnClickListener(this);
+            mCardViewSearchVendors.setOnClickListener(this);
             mFabSendInvite.setOnClickListener(this);
+            mCardViewSendInvite.setOnClickListener(this);
         }
 
         mImageViewBackGround = (ImageView) findViewById(R.id.imageViewBackground);
@@ -78,6 +94,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         mTabLayout = (TabLayout) findViewById(R.id.tabLayoutConsumer);
         mViewPager = (ViewPager) findViewById(R.id.viewpagerConsumer);
         mViewPagerAdapter = new ViewPagerAdapter(getFragmentManager(), this);
+
         mViewPagerAdapter.addFragments(FragmentUtil.getEventsFragment(), "");
 
         mFabSearchVendors.setVisibility(View.GONE);
@@ -85,7 +102,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
 
         mFabSendInvite.setVisibility(View.GONE);
         mCardViewSendInvite.setVisibility(View.GONE);
-        if (EventsAdapter.mEventKey != null){
+        if (mEventKey != null){
             mViewPagerAdapter.addFragments(FragmentUtil.getCartFragment(), "");
             mViewPagerAdapter.addFragments(FragmentUtil.getUserFragment(), "");
         }
@@ -177,6 +194,19 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+    private void scheduleStartPostponedTransition(final View sharedElement){
+        sharedElement.getViewTreeObserver().addOnPreDrawListener(
+                new ViewTreeObserver.OnPreDrawListener() {
+                    @Override
+                    public boolean onPreDraw() {
+                        sharedElement.getViewTreeObserver().removeOnPreDrawListener(this);
+                        startPostponedEnterTransition();
+                        return true;
+                    }
+                }
+        );
+    }
+
     void loadBackground() {
         Glide.with(this)
                 .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fcupcakebw.jpg?alt=media&token=6f2ad4a1-9b52-489c-832e-31d2fc241ae4")
@@ -206,12 +236,13 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
     protected void onPostResume() {
         super.onPostResume();
         ViewAnimator.animate(mImageViewLogo)
-                .slideBottom()
+                .newsPaper()
                 .descelerate()
                 .duration(1000)
                 .start();
 
-
+        scheduleStartPostponedTransition(mFabNewEvent);
+//        getWindow().getAttributes().windowAnimations = R.style.EventsFragment;
     }
 
     @Override
@@ -219,12 +250,15 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         int id = v.getId();
         switch (id) {
             case R.id.fabNewEvent:
+            case R.id.cardViewCreateEvent_helper:
                 getCreateEventDialog();
                 break;
             case R.id.fabSearchVendor:
+            case R.id.cardViewSearchVendor_helper:
                 getEventsActivity();
                 break;
             case R.id.fabSendInvite:
+            case R.id.cardViewSendInvite_helper:
                 onInviteClicked();
                 break;
             default:
@@ -279,11 +313,12 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
         mFabWidth = mFabSearchVendors.getWidth();
 
         Intent intent = new Intent(this, EventActivity.class);
+        intent.putExtra("mFabWidth", mFabSearchVendors.getWidth());
         ActivityCompat.startActivity(this, intent,
                 ActivityOptionsCompat.
                         makeSceneTransitionAnimation(this, mFabSearchVendors, "reveal")
                         .toBundle());
-//        startActivity(new Intent(this, EventActivity.class));
+        finish();
     }
 
     @Override

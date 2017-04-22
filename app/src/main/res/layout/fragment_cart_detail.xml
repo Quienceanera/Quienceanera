@@ -29,6 +29,7 @@
 
             <LinearLayout
                 android:layout_marginStart="2dp"
+                android:transitionName="transitionPayDetails"
                 android:orientation="vertical"
                 android:layout_toEndOf="@+id/cardViewCartDetail_helper"
                 android:layout_width="wrap_content"

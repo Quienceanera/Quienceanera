@@ -23,7 +23,7 @@
 
             <EditText
                 android:id="@+id/editTextInstructions"
-                android:hint="Special Instructions..."
+                android:hint="@string/special_instructions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

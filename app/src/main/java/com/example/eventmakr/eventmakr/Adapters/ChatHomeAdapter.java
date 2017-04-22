@@ -1,12 +1,11 @@
 package com.example.eventmakr.eventmakr.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
-import com.example.eventmakr.eventmakr.Activities.ChatActivity;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.eventmakr.eventmakr.Activities.ConsumerActivity;
 import com.example.eventmakr.eventmakr.Activities.VendorActivity;
 import com.example.eventmakr.eventmakr.Objects.ChatHome;
@@ -37,6 +36,9 @@ public class ChatHomeAdapter extends FirebaseRecyclerAdapter<ChatHome, ChatHomeV
             Glide.with(mContext)
                     .load(model.getConsumerPhoto())
                     .centerCrop()
+                    .crossFade()
+                    .thumbnail(0.1f)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(viewHolder.mImageViewChatHome);
         } else {
             viewHolder.mTextViewChatHomeVendorName.setText(model.getVendorName());
@@ -57,17 +59,17 @@ public class ChatHomeAdapter extends FirebaseRecyclerAdapter<ChatHome, ChatHomeV
                 mEventKey = model.getEventKey();
                 mVendorName = model.getVendorName();
                 Log.i("ConsumerUID", mConsumerUid +" "+ mEventKey);
-                getChat();
+//                getChat();
             }
         });
     }
 
-    private void getChat() {
-        if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
-            mContext.startActivity(new Intent(mContext, ChatActivity.class));
-        } else {
-            mContext.startActivity(new Intent(mContext, ChatActivity.class));
-        }
+//    private void getChat() {
+//        if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
+//            mContext.startActivity(new Intent(mContext, ChatActivity.class));
+//        } else {
+//            mContext.startActivity(new Intent(mContext, ChatActivity.class));
+//        }
 
-    }
+//    }
 }

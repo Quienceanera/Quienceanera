@@ -35,7 +35,6 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="small tray"
                 android:id="@+id/textViewOrderItemName"
                 android:layout_marginTop="2dp"
                 android:layout_width="wrap_content"
@@ -45,7 +44,6 @@
                 android:textStyle="normal|bold" />
 
             <TextView
-                android:text="catering"
                 android:layout_below="@+id/textViewOrderItemName"
                 android:id="@+id/textViewOrderItemCustomerName"
                 android:layout_marginTop="2dp"
@@ -55,7 +53,6 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:text="4"
                 android:id="@+id/textViewOrderItemQuantity"
                 android:layout_below="@+id/textViewOrderItemCustomerName"
                 android:layout_marginTop="2dp"
@@ -66,7 +63,6 @@
                 android:textSize="15sp" />
 
         <TextView
-            android:text="10.99"
             android:id="@+id/textViewOrderItemPrice"
             android:layout_below="@+id/textViewOrderItemQuantity"
             android:layout_marginTop="2dp"
@@ -78,7 +74,7 @@
     </RelativeLayout>
 
         <TextView
-            android:text="Awaiting Confirmation"
+            android:text="@string/awaiting_confirmation"
             android:layout_alignBaseline="@+id/checkBoxOrderItem"
             android:layout_toStartOf="@+id/checkBoxOrderItem"
             android:textSize="12sp"

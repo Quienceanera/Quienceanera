@@ -1,7 +1,6 @@
 package com.example.eventmakr.eventmakr.Activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -36,6 +35,7 @@ public class EventActivity extends AppCompatActivity {
     private ImageView mBackGround;
     private String mEventTypeUrl;
     private Context mContext;
+    private int mFabWidth;
 
     private AdView mAdView;
 
@@ -44,6 +44,15 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
         Log.i(TAG, TAG);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras == null){
+            Log.i(TAG, "extras are null");
+
+        } else {
+            mFabWidth = extras.getInt("mFabWidth");
+            Log.i(TAG, String.valueOf(mFabWidth));
+        }
 
         setupEnterAnimation();
 
@@ -61,10 +70,10 @@ public class EventActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!FragmentUtil.getConsumerVendorCategoryFragment().isVisible()){
-                    AnimationUtil.animateRevealHide(getApplicationContext(), mLayoutEvent, R.color.colorAccentLight, ConsumerActivity.mFabWidth, new OnRevealAnimationListener() {
+                    AnimationUtil.animateRevealHide(getApplicationContext(), mLayoutEvent, R.color.colorAccentLight, mFabWidth, new OnRevealAnimationListener() {
                         @Override
                         public void onRevealHide() {
-                            startActivity(new Intent(getApplicationContext(), ConsumerActivity.class));
+                            EventActivity.super.onBackPressed();
                         }
 
                         @Override
@@ -72,7 +81,7 @@ public class EventActivity extends AppCompatActivity {
 
                         }
                     });
-                    onBackPressed();
+
                 }
             }
         });
@@ -120,12 +129,12 @@ public class EventActivity extends AppCompatActivity {
     private void animateRevealShow(final CoordinatorLayout mLayoutEvent) {
         int cx = (mLayoutEvent.getLeft() + mLayoutEvent.getRight())/2;
         int cy = (mLayoutEvent.getTop() + mLayoutEvent.getBottom()/2);
-        AnimationUtil.animateRevealShow(this, mLayoutEvent, ConsumerActivity.mFabWidth / 2, R.color.pink, cx, cy,
+        AnimationUtil.animateRevealShow(this, mLayoutEvent, mFabWidth / 2, R.color.pink, cx, cy,
                 new OnRevealAnimationListener() {
                     @Override
                     public void onRevealHide() {
                         Animation mFadeIn = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
-                        mFadeIn.setDuration(200);
+                        mFadeIn.setDuration(300);
                         mLayoutVendors.startAnimation(mFadeIn);
                         mFabRevealTarget.setVisibility(View.VISIBLE);
                     }
@@ -133,6 +142,7 @@ public class EventActivity extends AppCompatActivity {
                     @Override
                     public void onRevealShow() {
                         initViews();
+
                     }
                 });
     }
@@ -184,7 +194,7 @@ public class EventActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         if (FragmentUtil.getConsumerVendorCategoryFragment().isVisible()){
-            AnimationUtil.animateRevealHide(this, mLayoutEvent, R.color.colorAccentLight, ConsumerActivity.mFabWidth, new OnRevealAnimationListener() {
+            AnimationUtil.animateRevealHide(this, mLayoutEvent, R.color.colorAccentLight, mFabWidth, new OnRevealAnimationListener() {
                 @Override
                 public void onRevealHide() {
 

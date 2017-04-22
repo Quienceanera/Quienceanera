@@ -25,7 +25,7 @@ public class EventsViewholder extends RecyclerView.ViewHolder {
         mTextViewEventsDate = (TextView) itemView.findViewById(R.id.textViewEventsDate);
         mTextViewEventsZip = (TextView) itemView.findViewById(R.id.textViewEventsZip);
 
-        mButtonEdit = (Button) itemView.findViewById(R.id.editButton);
+//        mButtonEdit = (Button) itemView.findViewById(R.id.editButton);
 //        mButtonSelect = (Button) itemView.findViewById(R.id.selectButton);
     }
 }

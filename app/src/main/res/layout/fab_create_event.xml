@@ -17,7 +17,7 @@
 
         <TextView
             android:layout_margin="3dp"
-            android:text="Create Event"
+            android:text="@string/create_event"
             android:textColor="@color/blue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -26,6 +26,7 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabNewEvent"
+        android:transitionName="mainToConsumer"
         app:useCompatPadding="true"
         android:layout_toEndOf="@+id/cardViewCreateEvent_helper"
         android:src="@drawable/plus"

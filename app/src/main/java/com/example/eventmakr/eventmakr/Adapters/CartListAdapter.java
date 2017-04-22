@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.eventmakr.eventmakr.Objects.Items;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.ViewHolders.CartListViewholder;
@@ -32,6 +33,8 @@ public class CartListAdapter extends FirebaseRecyclerAdapter<Items, CartListView
         Glide.with(mContext)
                 .load(model.getPhoto())
                 .centerCrop()
+                .thumbnail(1.0f)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(viewHolder.mImageViewCartItem);
 
         if (model.getInstructions() != null) {

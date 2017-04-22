@@ -31,7 +31,6 @@
 
                 <TextView
                     android:layout_margin="5dp"
-                    android:text="fjskjdlfajskldjflask"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                     android:textColor="@color/blue"
                     android:id="@+id/textViewEventsType"
@@ -54,7 +53,6 @@
                         <TextView
                             android:layout_gravity="center_horizontal"
                             android:drawableStart="@drawable/map_marker"
-                            android:text="43434"
                             android:layout_margin="5dp"
                             android:textColor="@color/green"
                             android:id="@+id/textViewEventsZip"
@@ -67,7 +65,6 @@
                         <TextView
                             android:layout_gravity="end"
                             android:drawableStart="@drawable/calendar"
-                            android:text="434343434"
                             android:textColor="@color/pink"
                             android:layout_margin="5dp"
                             android:id="@+id/textViewEventsDate"
@@ -133,25 +130,25 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:elevation="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <!--<LinearLayout-->
+            <!--android:elevation="10dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content">-->
 
-            <Button
-                android:id="@+id/editButton"
-                android:textAllCaps="true"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
-                android:text="search\nvendors"
-                android:elevation="2dp"
-                android:textColor="@color/colorText"
-                android:background="@color/colorButtons"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <!--<Button-->
+                <!--android:id="@+id/editButton"-->
+                <!--android:textAllCaps="true"-->
+                <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"-->
+                <!--android:text="search\nvendors"-->
+                <!--android:elevation="2dp"-->
+                <!--android:textColor="@color/colorText"-->
+                <!--android:background="@color/colorButtons"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
     </RelativeLayout>
 

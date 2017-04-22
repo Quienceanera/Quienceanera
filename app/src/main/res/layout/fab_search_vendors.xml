@@ -17,7 +17,7 @@
 
         <TextView
             android:layout_margin="3dp"
-            android:text="Search Vendors"
+            android:text="@string/search_vendors"
             android:textColor="@color/green"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

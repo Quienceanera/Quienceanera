@@ -27,7 +27,7 @@
                     android:layout_height="match_parent" />
 
                 <TextView
-                    android:text="PROFILE"
+                    android:text="@string/profile"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
                     android:padding="10dp"
@@ -38,7 +38,7 @@
 
                 <Button
                     android:id="@+id/buttonVendorMenuProfile"
-                    android:text="EDIT"
+                    android:text="@string/edit"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                     android:textColor="@color/colorText"
                     android:layout_alignParentBottom="true"
@@ -69,7 +69,7 @@
                     android:layout_height="match_parent" />
 
                 <TextView
-                    android:text="PRODUCTS"
+                    android:text="@string/products"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
@@ -80,7 +80,7 @@
 
                 <Button
                     android:id="@+id/buttonVendorMenuProducts"
-                    android:text="EDIT"
+                    android:text="@string/edit"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                     android:textColor="@color/colorText"
                     android:layout_alignParentBottom="true"
@@ -111,7 +111,7 @@
                     android:layout_height="match_parent" />
 
                 <TextView
-                    android:text="DOCUMENTS"
+                    android:text="@string/documents"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
@@ -122,7 +122,7 @@
 
                 <Button
                     android:id="@+id/buttonVendorMenuDocuments"
-                    android:text="EDIT"
+                    android:text="@string/edit"
                     android:textColor="@color/colorText"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                     android:layout_alignParentBottom="true"

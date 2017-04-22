@@ -21,7 +21,6 @@ import com.example.eventmakr.eventmakr.Objects.Message;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
-import com.example.eventmakr.eventmakr.Utils.MyFirebaseMessagingService;
 import com.example.eventmakr.eventmakr.ViewHolders.Viewholder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +34,6 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
     private String mPhotoUrl, mUsername, mUid, mChatPath, mChatKey, mVendorUid;
     private DatabaseReference mDatabaseReference, mDatabaseRef, mNewMessageRef, mVendorMessageRef, mConsumerMessageRef;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private MyFirebaseMessagingService myFirebaseMessagingService;
     private String SENDER_ID = FirebaseUtil.getUid();
     private Viewholder mViewHolder;
     private FloatingActionButton mFabSend;
@@ -94,7 +92,7 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
         switch (id) {
             case R.id.fabSend:
                 if (TextUtils.isEmpty(mEditTextChat.getText().toString())){
-                    mEditTextChat.setError("Empty");
+                    mEditTextChat.setError(getString(R.string.empty));
                 }else {
                     postChat();
                 }
@@ -103,11 +101,11 @@ public class ChatFragment extends android.app.Fragment implements View.OnClickLi
         }
     }
     void postChat() {
-        SimpleDateFormat time = new SimpleDateFormat("MM/dd-hh:mm", Locale.US);
+        SimpleDateFormat time = new SimpleDateFormat(getString(R.string.date_format), Locale.US);
         final String mCurrentTimestamp = time.format(new Date());
         mDatabaseRef = FirebaseUtil.getBaseRef().push();
         mChatKey = mDatabaseRef.getKey();
-        Log.i("Chat Message Key", mChatKey);
+//        Log.i("Chat Message Key", mChatKey);
         if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode){
 
             mVendorMessageRef = FirebaseUtil.getVendorSideVendorMessageRef().child(mChatKey);

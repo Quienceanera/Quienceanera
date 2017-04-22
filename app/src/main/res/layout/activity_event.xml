@@ -48,49 +48,49 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="V"
+                    android:text="@string/v"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                     android:textColor="@color/logoColor"
                     android:textSize="30sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:text="E"
+                    android:text="@string/e"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                     android:textColor="@color/yellow"
                     android:textSize="30sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:text="N"
+                    android:text="@string/n"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                     android:textColor="@color/green"
                     android:textSize="30sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:text="D"
+                    android:text="@string/d"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                     android:textColor="@color/pink"
                     android:textSize="30sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:text="O"
+                    android:text="@string/o"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                     android:textColor="@color/blue"
                     android:textSize="30sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:text="R"
+                    android:text="@string/r"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                     android:textColor="@color/yellow"
                     android:textSize="30sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:text="S"
+                    android:text="@string/s"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                     android:textColor="@color/green"
                     android:textSize="30sp"
@@ -118,16 +118,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-        <!--<com.google.android.gms.ads.AdView-->
-            <!--android:id="@+id/adView"-->
-            <!--android:background="@color/tw__transparent"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--ads:adSize="BANNER"-->
-            <!--ads:adUnitId="@string/banner_ad_unit_id">-->
-        <!--</com.google.android.gms.ads.AdView>-->
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:background="@color/tw__transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id">
+        </com.google.android.gms.ads.AdView>
 
     </RelativeLayout>
 

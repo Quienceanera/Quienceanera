@@ -65,7 +65,7 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
         super.onCreate(savedInstanceState);
         Log.i(TAG, TAG);
         mProfileRef = FirebaseUtil.getVendorSideProfileRef();
-        mPrice = "$";
+        mPrice = getString(R.string.$);
     }
 
     @Override
@@ -93,20 +93,20 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
             @Override
             public void onSlide(int index) {
                 if (index == 0) {
-                    mPrice = "$";
+                    mPrice = getString(R.string.$);
                     m$.setVisibility(View.VISIBLE);
                     m$$.setVisibility(View.GONE);
                     m$$$.setVisibility(View.GONE);
                 }
                 if (index == 1){
-                    mPrice = "$$";
+                    mPrice = getString(R.string.$$);
                     m$.setVisibility(View.VISIBLE);
                     m$$.setVisibility(View.VISIBLE);
                     m$$$.setVisibility(View.GONE);
 
                 }
                 if (index == 2){
-                    mPrice = "$$$";
+                    mPrice = getString(R.string.$$$);
                     m$.setVisibility(View.VISIBLE);
                     m$$.setVisibility(View.VISIBLE);
                     m$$$.setVisibility(View.VISIBLE);
@@ -245,6 +245,7 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
         );
         mPushRef.setValue(vendor);
         mProfileRef.setValue(vendorUser);
+        FirebaseUtil.getVendorPlaceRef().setValue("placeIdHere");
         startActivity(new Intent(getActivity(), VendorActivity.class));
     }
 
@@ -262,11 +263,11 @@ public class VendorInputFragment extends android.app.Fragment implements View.On
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                    mProgressBar.setVisibility(View.INVISIBLE);
                     mLogo = taskSnapshot.getDownloadUrl().toString();
-                    Snackbar.make(getActivity().findViewById(R.id.layoutVendorExtras), "Photo Uploaded", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(getActivity().findViewById(R.id.layoutVendorExtras), getString(R.string.photo_uploaded), Snackbar.LENGTH_SHORT).show();
                 }
             });
         } else {
-            Log.i(TAG, "Photo Upload Failed");
+            Log.i(TAG, getString(R.string.photo_upload_failed));
         }
     }
 

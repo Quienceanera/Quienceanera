@@ -228,9 +228,10 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
 
     void restartActivity(){
         CartHomeAdapter.mConfirm = "true";
+        Bundle bundle = new Bundle();
         getFragmentManager()
                 .beginTransaction()
-                .remove(FragmentUtil.getCartDetailFragment())
+                .remove(FragmentUtil.getCartDetailFragment(bundle))
                 .commit();
         startActivity(new Intent(getActivity(), PayActivity.class));
     }

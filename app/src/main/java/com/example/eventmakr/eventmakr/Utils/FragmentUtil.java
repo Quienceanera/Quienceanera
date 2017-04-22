@@ -1,6 +1,8 @@
 package com.example.eventmakr.eventmakr.Utils;
 
 
+import android.os.Bundle;
+
 import com.example.eventmakr.eventmakr.Activities.PayFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerBudgetFragment;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.ConsumerVendorCategoryFragment;
@@ -74,8 +76,10 @@ public class FragmentUtil {
         return new ConsumerVendorCategoryFragment();
     }
 
-    public static ConsumerVendorProfileFragment getConsumerVendorProfileFragment () {
-        return new ConsumerVendorProfileFragment();
+    public static ConsumerVendorProfileFragment getConsumerVendorProfileFragment (Bundle bundle) {
+        ConsumerVendorProfileFragment fragment = new ConsumerVendorProfileFragment();
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     public static MenuItemFragment getMenuItemFragment () {
@@ -118,16 +122,20 @@ public class FragmentUtil {
         return new OrderListRecyclerFragment();
     }
 
-    public static CartDetailFragment getCartDetailFragment() {
-        return new CartDetailFragment();
+    public static CartDetailFragment getCartDetailFragment(Bundle bundle) {
+        CartDetailFragment fragment = new CartDetailFragment();
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     public static VendorInputFragment getVendorInputFragment () {
         return new VendorInputFragment();
     }
 
-    public static ConsumerVendorProductItemFragment getConsumerVendorProductItemFragment () {
-        return new ConsumerVendorProductItemFragment();
+    public static ConsumerVendorProductItemFragment getConsumerVendorProductItemFragment (Bundle bundle) {
+        ConsumerVendorProductItemFragment fragment = new ConsumerVendorProductItemFragment();
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     public static VendorRecyclerFragment getRecyclerVendorFragment () {

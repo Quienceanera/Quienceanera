@@ -50,7 +50,7 @@
                         android:textColor="@color/yellow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Your logo here!"/>
+                        android:text="@string/your_logo_here"/>
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/fabVendorInputAddLogo"
@@ -95,7 +95,7 @@
                             android:maxLines="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="What is your business name?" />
+                            android:hint="@string/what_is_your_business_name" />
                     <!--</android.support.design.widget.TextInputLayout>-->
 
 
@@ -117,7 +117,7 @@
                         android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="What is the owners name?" />
+                        android:hint="@string/what_is_the_owners_name" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -138,7 +138,7 @@
                         android:maxLines="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Who will be your customer contact?" />
+                        android:hint="@string/who_will_be_your_customer_contact" />
 
                 </LinearLayout>
 
@@ -160,7 +160,7 @@
                         android:maxLines="2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Give a description of your business" />
+                        android:hint="@string/give_a_description_of_your_business" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -180,7 +180,7 @@
                         android:inputType="textCapWords"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="What type of service do you provide?" />
+                        android:hint="@string/what_type_of_service_do_you_provide" />
 
                 </LinearLayout>
 
@@ -203,7 +203,7 @@
                             android:maxLines="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:hint="Business Address        " />
+                            android:hint="@string/business_address" />
 
                         <EditText
                             android:paddingTop="16dp"
@@ -216,7 +216,7 @@
                             android:maxLength="5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Zip code" />
+                            android:hint="@string/zip_code" />
 
                 </LinearLayout>
 
@@ -256,7 +256,7 @@
 
                 <TextView
                     android:id="@+id/$1"
-                    android:text="$"
+                    android:text="@string/$"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                     android:textSize="30sp"
                     android:textStyle="bold"
@@ -266,7 +266,7 @@
                 <TextView
                     android:visibility="gone"
                     android:id="@+id/$2"
-                    android:text="$"
+                    android:text="@string/$"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                     android:textSize="30sp"
                     android:textStyle="bold"
@@ -276,7 +276,7 @@
                 <TextView
                     android:visibility="gone"
                     android:id="@+id/$3"
-                    android:text="$"
+                    android:text="@string/$"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                     android:textSize="30sp"
                     android:textStyle="bold"
@@ -304,7 +304,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:text="Save"
+                    android:text="@string/save"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                     android:elevation="4dp"
                     android:textColor="@color/colorText"

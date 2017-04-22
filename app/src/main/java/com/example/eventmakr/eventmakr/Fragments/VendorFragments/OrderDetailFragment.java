@@ -80,9 +80,10 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
                 }
 
                 mTextViewOrderDetailCustomerName.setText(mCustomerName);
+                //// TODO: 4/21/2017 switch event date with event type date
                 mTextViewOrderDetailDate.setText("Event date: "+mOrderDetailDate);
-                mTextViewOrderDetailEvent.setText("For "+mOrderDetailEvent);
-                mTextViewOrderDetailAddress.setText("Zip: "+mOrderDetailAddress);
+                mTextViewOrderDetailEvent.setText(getString(R.string.for_string)+" "+mOrderDetailEvent);
+                mTextViewOrderDetailAddress.setText(getString(R.string.zip)+" "+mOrderDetailAddress);
 
                 if (dataSnapshot.hasChild(FirebaseUtil.getUid())){
                     Log.i("Datasnapshot", "True");
@@ -116,16 +117,16 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
                         mVendorOrderInfoRef.child(FirebaseUtil.getUid()).removeValue();
                         mProcessConfirm = false;
                         Log.i("DataSnapshot 1", dataSnapshot.toString());
-                        mConfirm = "Confirmation Canceled";
-                        mConfirmNotify = "Customer Has Been Notified!";
+                        mConfirm = getString(R.string.confirmation_canceled);
+                        mConfirmNotify = getString(R.string.customer_has_been_notified);
                         mImage = R.drawable.check_circle_outline2;
                         showConfirmationStatus();
                     }else{
                         mVendorOrderInfoRef.child(FirebaseUtil.getUid()).setValue("true");
                         mProcessConfirm = false;
                         Log.i("DataSnapshot 2", dataSnapshot.toString());
-                        mConfirm = "Confirmed!";
-                        mConfirmNotify = "Customer Has Been Notified!";
+                        mConfirm = getString(R.string.confirmed);
+                        mConfirmNotify = getString(R.string.customer_has_been_notified);
                         mImage = R.drawable.checkbox_marked_circle2;
                         showConfirmationStatus();
                     }
@@ -145,7 +146,7 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
                 .setTextTitle(mConfirm)
                 .setTitleColor(R.color.blue)
                 .setTextSubTitle(mConfirmNotify)
-                .setPositiveButtonText("Okay")
+                .setPositiveButtonText(getString(R.string.okay))
                 .setOnPositiveClicked(new FancyAlertDialog.OnPositiveClicked() {
                     @Override
                     public void OnClick(View view, Dialog dialog) {
@@ -171,13 +172,6 @@ public class OrderDetailFragment extends android.app.Fragment implements View.On
         if (mValueEventListener != null){
             mVendorOrderInfoRef.removeEventListener(mValueEventListener);
         }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Log.i(TAG, "onDetatch");
-
     }
 
     @Override

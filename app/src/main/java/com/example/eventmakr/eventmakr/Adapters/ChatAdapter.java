@@ -105,6 +105,7 @@ public class ChatAdapter extends FirebaseRecyclerAdapter<Message, Viewholder>{
                 Glide.with(viewHolder.itemView.getContext())
                         .load(model.getPhotoUrl())
                         .priority(Priority.NORMAL)
+                        .thumbnail(1.0f)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(viewHolder.mCircleImageViewChat);
             }

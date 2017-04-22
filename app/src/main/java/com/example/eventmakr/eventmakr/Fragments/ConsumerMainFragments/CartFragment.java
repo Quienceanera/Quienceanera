@@ -3,7 +3,9 @@ package com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ public class CartFragment extends android.app.Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, TAG);
+        getActivity().getWindow().setEnterTransition(new Slide(Gravity.TOP));
     }
 
     @Override
@@ -51,6 +54,7 @@ public class CartFragment extends android.app.Fragment {
         getChildFragmentManager()
                 .beginTransaction()
                 .add(R.id.containerCart, FragmentUtil.getOrderListItemFragment())
+                .setCustomAnimations(R.animator.fragment_slide_left_enter, R.animator.fragment_slide_left_exit)
                 .commit();
     }
 

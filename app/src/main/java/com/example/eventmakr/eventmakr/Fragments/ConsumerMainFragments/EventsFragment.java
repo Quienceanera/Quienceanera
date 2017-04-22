@@ -27,6 +27,7 @@ public class EventsFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.events_fragment, container, false);
+        getActivity().getWindow().getAttributes().windowAnimations = R.style.EventsFragment;
 //        mFabNewEvent = (FloatingActionButton) view.findViewById(R.id.fabNewEvent);
 //        mFabNewEvent.setOnClickListener(this);
 
@@ -38,7 +39,6 @@ public class EventsFragment extends Fragment implements View.OnClickListener{
         getChildFragmentManager()
                 .beginTransaction()
                 .add(R.id.containerEvents, FragmentUtil.getEventsList())
-                .setCustomAnimations(R.animator.fragment_slide_left_enter, R.animator.fragment_slide_left_exit)
                 .commit();
     }
 

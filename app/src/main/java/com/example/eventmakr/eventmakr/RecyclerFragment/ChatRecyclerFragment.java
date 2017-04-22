@@ -56,21 +56,7 @@ public class ChatRecyclerFragment extends Fragment {
         if (container != null){
             container.removeAllViews();
         }
-//        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewChatHomeList);
-//        mLayoutManger = new LinearLayoutManager(getActivity());
-//        mRecyclerView.setLayoutManager(mLayoutManger);
-//        mRecyclerView.setAdapter(mAdapter);
-//        mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-//            @Override
-//            public void onItemRangeInserted(int positionStart, int itemCount) {
-//                super.onItemRangeInserted(positionStart, itemCount);
-//                mCount = mAdapter.getItemCount();
-//                mLastPosition = mLayoutManger.findLastCompletelyVisibleItemPosition();
-//                if (mLastPosition == -1 || (positionStart >= (mCount - 1) && mLastPosition == (positionStart - 1))) {
-//                    mRecyclerView.scrollToPosition(positionStart);
-//                }
-//            }
-//        });
+
         return view;
     }
 

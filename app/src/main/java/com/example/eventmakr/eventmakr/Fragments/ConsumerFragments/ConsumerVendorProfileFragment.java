@@ -17,7 +17,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.eventmakr.eventmakr.Adapters.VendorAdapter;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
@@ -47,17 +46,19 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
     private static final String TAG = "VendorProfileFragment";
     private CardView mButtonMyItems, mCardViewMap, mCardViewVendorProfile;
     private Context mContext;
-    private DatabaseReference mDatabaseReference;
+    private DatabaseReference mDatabaseReference, mPlaceIdRef;
     private ImageView mImageViewVendorProfile;
     private TextView mTextViewVendorName, mTextViewVendorDescription, mTextViewVendorAddress;
-    private String mVendorCategory;
-    private LatLng mLatLng;
     private RatingBar mRatingBar;
-    private String mVendorLogo, mVendorName, mVendorDescription, mVendorAddress;
+    private String mVendorLogo, mVendorName, mVendorDescription, mVendorAddress, mVendorCategory, mVendorUid, mPlaceId;
     private RelativeLayout mLayoutContainer;
     private FrameLayout mLayoutProductList;
     private GoogleApiClient mGoogleApiClient;
     private GoogleMap mMap;
+    private CameraPosition mCameraPosition;
+    private LatLng mLatLng;
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+    private boolean mLocationPermissionGranted;
     private boolean mapReady = false;
 
     public ConsumerVendorProfileFragment() {
@@ -68,9 +69,20 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i("Fragment", TAG);
+        Bundle extras = getArguments();
+        if (extras == null){
+            Log.i(TAG, "extras are null");
+
+        } else {
+            mVendorCategory = extras.getString("VendorCategory");
+            mVendorUid = extras.getString("VendorUid");
+
+            Log.i(TAG, mVendorCategory+" "+mVendorUid);
+        }
+
         mContext = getActivity();
-        mVendorCategory = ConsumerBudgetFragment.mCategory;
-        mDatabaseReference = FirebaseUtil.getVendorRef().child(mVendorCategory).child(VendorAdapter.mVendorUid);
+        mDatabaseReference = FirebaseUtil.getVendorRef().child(mVendorCategory).child(mVendorUid);
+        mPlaceIdRef = FirebaseUtil.getConsumerSideVendorPlaceRef();
 
         mGoogleApiClient = new GoogleApiClient
                 .Builder(getActivity())
@@ -81,21 +93,37 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
                 .enableAutoManage((FragmentActivity) getActivity(), this)
                 .build();
 
-        Places.GeoDataApi.getPlaceById(mGoogleApiClient, VendorAdapter.mPlaceId)
-                .setResultCallback(new ResultCallback<PlaceBuffer>() {
-                    @Override
-                    public void onResult(@NonNull PlaceBuffer places) {
-                        if (places.getStatus().isSuccess() && places.getCount() > 0) {
-                            final Place mPlace = places.get(0);
-                            mLatLng = mPlace.getLatLng();
-                            mRatingBar.setRating(mPlace.getRating());
-                            Log.i("Vendor Profile", mPlace.getLatLng().toString());
-                        } else {
-                            Log.e("Vendor Profile", "Place not found");
+        mPlaceIdRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mPlaceId = dataSnapshot.getValue().toString();
+                Log.i(mPlaceId, dataSnapshot.toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        // TODO: 4/21/2017 find out why mPlaceid is null
+        if (mPlaceId != null){
+            Places.GeoDataApi.getPlaceById(mGoogleApiClient, mPlaceId)
+                    .setResultCallback(new ResultCallback<PlaceBuffer>() {
+                        @Override
+                        public void onResult(@NonNull PlaceBuffer places) {
+                            if (places.getStatus().isSuccess() && places.getCount() > 0) {
+                                final Place mPlace = places.get(0);
+                                mLatLng = mPlace.getLatLng();
+                                mRatingBar.setRating(mPlace.getRating());
+                                Log.i("Vendor Profile", mPlace.getLatLng().toString());
+                            } else {
+                                Log.e("Vendor Profile", "Place not found");
+                            }
+                            places.release();
                         }
-                        places.release();
-                    }
-                });
+                    });
+        }
+
     }
 
     @Override
@@ -180,29 +208,31 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
         mMap = googleMap;
         mapReady = true;
 
-        MapStyleOptions styleOptions = MapStyleOptions.loadRawResourceStyle(getActivity(), R.raw.map_style);
+        moveCamera();
+    }
 
-        CameraPosition target = CameraPosition.builder().target(mLatLng).zoom(14).build();
-//        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            // TODO: Consider calling
-//            //    ActivityCompat#requestPermissions
-//            // here to request the missing permissions, and then overriding
-//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//            //                                          int[] grantResults)
-//            // to handle the case where the user grants the permission. See the documentation
-//            // for ActivityCompat#requestPermissions for more details.
-//            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)){
-//
-//            }else{
-////                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, );
-//            }
-//            return;
+//    private void checkPermissions(){
+//        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),
+//                android.Manifest.permission.ACCESS_FINE_LOCATION)
+//                == PackageManager.PERMISSION_GRANTED) {
+//            mLocationPermissionGranted = true;
+//        } else {
+//            ActivityCompat.requestPermissions(getActivity(),
+//                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+//                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
 //        }
-//            mMap.setMyLocationEnabled(true);
-            mMap.addMarker(new MarkerOptions().position(mLatLng).title(mVendorName));
-            mMap.moveCamera(CameraUpdateFactory.newCameraPosition(target));
+//
+//    }
 
-        mMap.setMapStyle(styleOptions);
+    private void moveCamera(){
+        if (mCameraPosition != null){
+            MapStyleOptions styleOptions = MapStyleOptions.loadRawResourceStyle(getActivity(), R.raw.map_style);
+            mCameraPosition = CameraPosition.builder().target(mLatLng).zoom(14).build();
+            mMap.addMarker(new MarkerOptions().position(mLatLng).title(mVendorName));
+            mMap.moveCamera(CameraUpdateFactory.newCameraPosition(mCameraPosition));
+            mMap.setMapStyle(styleOptions);
+
+        }
     }
 
     @Override

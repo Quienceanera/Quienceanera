@@ -20,6 +20,7 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+        // TODO: 4/21/2017 Work on notifications
         // Handle data payload of FCM messages.
         Log.d(TAG, "FCM Message Id: " + remoteMessage.getMessageId());
         Log.d(TAG, "FCM Notification Message: " +

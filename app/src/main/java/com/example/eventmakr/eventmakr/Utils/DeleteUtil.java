@@ -29,7 +29,9 @@ public abstract class DeleteUtil {
 
     public static void deleteOrderHomeItem(){
         FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(CartHomeAdapter.mVendorUid).removeValue();
+        FirebaseUtil.getConsumerSideConsumerOrderRef().child(CartHomeAdapter.mVendorUid).removeValue();
         FirebaseUtil.getConsumerSideVendorOrderInfoRef().removeValue();
+        FirebaseUtil.getConsumerSideConsumerChatRef().child(EventsAdapter.mEventKey).child(CartHomeAdapter.mVendorUid).removeValue();
     }
 
     public static void deleteVendorOrderHomeItem(){

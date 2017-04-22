@@ -23,7 +23,7 @@
 
             <EditText
                 android:id="@+id/editTextRecommendVendor"
-                android:hint="Recommend a Business for Quienceaneras!"
+                android:hint="@string/recommend_a_business_for_quienceaneras"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

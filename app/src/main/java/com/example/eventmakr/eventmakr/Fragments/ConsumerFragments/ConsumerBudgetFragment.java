@@ -1,6 +1,5 @@
 package com.example.eventmakr.eventmakr.Fragments.ConsumerFragments;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -26,8 +25,6 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
     private FrameLayout mLayoutVendorRecycler;
     static final int REQUESTCODE = 1;
 
-//    private OnFragmentInteractionListener mListener;
-
     public ConsumerBudgetFragment() {
         // Required empty public constructor
     }
@@ -37,9 +34,7 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
         super.onCreate(savedInstanceState);
         Log.i(TAG, TAG);
         mCategory = ConsumerVendorCategoryFragment.mCategory;
-//        if (mCategory != null) {
-//        }
-        VendorAdapter.mPriceRange = "$";
+        VendorAdapter.mPriceRange = getString(R.string.$);
     }
 
     @Override
@@ -57,22 +52,15 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
             public void onSlide(int progress) {
                 Log.i("seekbar", String.valueOf(progress));
                 if (progress == 1) {
-                    VendorAdapter.mPriceRange = "$$";
+                    VendorAdapter.mPriceRange = getString(R.string.$$);
                     getUpdateChildRecyclerVendorFragment();
                 } if (progress == 0) {
-                    VendorAdapter.mPriceRange = "$";
+                    VendorAdapter.mPriceRange = getString(R.string.$);
                     getUpdateChildRecyclerVendorFragment();
                 } if (progress == 2) {
-                    VendorAdapter.mPriceRange = "$$$";
+                    VendorAdapter.mPriceRange = getString(R.string.$$$);
                     getUpdateChildRecyclerVendorFragment();
                 }
-//                if (VendorAdapter.mPriceRange.equals("$$")){
-//                    progress = 1;
-//                } if (VendorAdapter.mPriceRange.equals("$$$")){
-//                    progress = 2;
-//                } if (VendorAdapter.mPriceRange.equals("$")){
-//                    progress = 0;
-//                }
             }
         });
 
@@ -108,19 +96,10 @@ public class ConsumerBudgetFragment extends android.app.Fragment implements View
 
     }
 
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
 
     @Override
     public void onClick(View view) {
 
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

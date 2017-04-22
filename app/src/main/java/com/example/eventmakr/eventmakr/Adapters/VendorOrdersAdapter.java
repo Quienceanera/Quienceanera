@@ -4,7 +4,9 @@ import android.content.Context;
 import android.util.Log;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.eventmakr.eventmakr.Objects.VendorOrderItem;
+import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.ViewHolders.VendorOrderListViewholder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
@@ -24,10 +26,13 @@ public class VendorOrdersAdapter extends FirebaseRecyclerAdapter<VendorOrderItem
         viewHolder.mTextViewOrderItemName.setText(model.getName());
         viewHolder.mTextViewOrderItemCustomerName.setText("");
         viewHolder.mTextViewOrderItemPrice.setText("$"+model.getPrice());
-        viewHolder.mTextViewOrderItemQuantity.setText("Qty: "+model.getQuantity());
+        viewHolder.mTextViewOrderItemQuantity.setText(mContext.getString(R.string.qty) + model.getQuantity());
         Glide.with(mContext)
                 .load(model.getPhoto())
                 .centerCrop()
+                .thumbnail(0.1f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(viewHolder.mImageViewOrderItem);
         Log.i(TAG,TAG);
     }

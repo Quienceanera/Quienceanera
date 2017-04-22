@@ -41,6 +41,10 @@ public class FirebaseUtil {
 
     //TODO: Consumer Side
 
+    public static DatabaseReference getConsumerSideVendorPlaceRef(){
+        return getBaseRef().child("vendorPlaceId").child(VendorAdapter.mVendorUid);
+    }
+
     public static DatabaseReference getNotificationRef(){
         return getBaseRef().child("notifications");
     }
@@ -110,6 +114,10 @@ public class FirebaseUtil {
 
 
     //TODO: Vendor Side
+
+    public static DatabaseReference getVendorPlaceRef(){
+        return getBaseRef().child("vendorPlaceId").child(getUid());
+    }
 
     public static DatabaseReference getVendorSideVendorProductRef() {
         return getBaseRef().child("vendorProduct").child(getUid());

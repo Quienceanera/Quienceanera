@@ -1,18 +1,15 @@
 package com.example.eventmakr.eventmakr.Activities;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.transition.Fade;
-import android.transition.Slide;
 import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toolbar;
 
@@ -33,16 +30,31 @@ public class PayActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private ConsumerViewPagerAdapter mViewPagerAdapter;
     private LinearLayout mLayoutConfirm, mLayoutChat, mLayoutCheckOut;
+    private FrameLayout mLayoutPayDetails;
+    private String mVendorUid, mTotalPrice, mVendorName, mVendorLogo, mReady;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, TAG);
         setContentView(R.layout.activity_pay);
-//        getEnterAnimation();
-        getWindow().setEnterTransition(new Fade(Fade.IN));
-        getWindow().setExitTransition(new Fade(Fade.OUT));
 
+        Bundle extras = getIntent().getExtras();
+        if (extras == null){
+            Log.i(TAG, "extras are null");
+
+        } else {
+            mVendorUid = extras.getString("VendorUid");
+            mTotalPrice = extras.getString("TotalPrice");
+            mVendorName = extras.getString("VendorName");
+            mVendorLogo = extras.getString("VendorLogo");
+            mReady = extras.getString("Ready");
+            Log.i(TAG, extras.toString());
+        }
+        getEnterAnimation();
+//
+//        getWindow().setEnterTransition(new Fade(Fade.IN));
+//        getWindow().setExitTransition(new Fade(Fade.OUT));
 
         VendorActivity.mVendorMode = false;
         mToolbar = (Toolbar) findViewById(R.id.toolbarPay);
@@ -57,12 +69,13 @@ public class PayActivity extends AppCompatActivity {
         mLayoutChat = (LinearLayout) findViewById(R.id.layoutChatBanner);
         mLayoutCheckOut = (LinearLayout) findViewById(R.id.layoutCheckOutBanner);
         mLayoutConfirm = (LinearLayout) findViewById(R.id.layoutConfirmBanner);
+        mLayoutPayDetails = (FrameLayout) findViewById(R.id.containerPayDetails);
         mTabLayout = (TabLayout) findViewById(R.id.tabLayoutPay);
         mViewPager = (ViewPager) findViewById(R.id.viewpagerPay);
         mViewPagerAdapter = new ConsumerViewPagerAdapter(getFragmentManager(), this);
-        Log.i(TAG+"1", CartHomeAdapter.mConfirm);
-        if (Objects.equals(CartHomeAdapter.mConfirm, "true")){
-            Log.i(TAG+"2", CartHomeAdapter.mConfirm);
+//        Log.i(TAG+"1", mReady);
+        if (Objects.equals(mReady, "true")){
+            Log.i(TAG+"2", mReady);
             mViewPagerAdapter.addFragments(new CartFragment(), "");
             mViewPagerAdapter.addFragments(new ChatFragment(),"");
             mLayoutCheckOut.setVisibility(View.VISIBLE);
@@ -105,46 +118,46 @@ public class PayActivity extends AppCompatActivity {
         });
 
         getCartDetailFragment();
-
     }
 
     private void getEnterAnimation() {
-        Slide slide = new Slide(Gravity.RIGHT);
-        slide.setInterpolator(AnimationUtils.loadInterpolator(this, android.R.interpolator.linear_out_slow_in));
-        getWindow().setEnterTransition(slide);
-        slide.addListener(new Transition.TransitionListener() {
-            @Override
-            public void onTransitionStart(Transition transition) {
-            }
-
-            @Override
-            public void onTransitionEnd(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionCancel(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionPause(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionResume(Transition transition) {
-
-            }
-        });
+        Transition transition = TransitionInflater.from(this).inflateTransition(R.transition.arc_motion_transition);
+//        transition.setDuration(800);
+//        getWindow().setEnterTransition(transition);
+//        transition.addListener(new Transition.TransitionListener() {
+//            @Override
+//            public void onTransitionStart(Transition transition) {
+//            }
+//
+//            @Override
+//            public void onTransitionEnd(Transition transition) {
+//
+//            }
+//
+//            @Override
+//            public void onTransitionCancel(Transition transition) {
+//
+//            }
+//
+//            @Override
+//            public void onTransitionPause(Transition transition) {
+//
+//            }
+//
+//            @Override
+//            public void onTransitionResume(Transition transition) {
+//
+//            }
+//        });
 
     }
 
     void getCartDetailFragment(){
+        Bundle bundle = new Bundle();
+        bundle.putString("VendorUid", mVendorUid);
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.containerPayDetails, FragmentUtil.getCartDetailFragment())
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .replace(R.id.containerPayDetails, FragmentUtil.getCartDetailFragment(bundle))
                 .commit();
     }
 

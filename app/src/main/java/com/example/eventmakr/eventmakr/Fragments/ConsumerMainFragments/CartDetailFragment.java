@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FirebaseUtil;
 import com.google.firebase.database.DataSnapshot;
@@ -24,7 +23,7 @@ public class CartDetailFragment extends android.app.Fragment {
     private static final String TAG = CartDetailFragment.class.getSimpleName();
     private ImageView mImageViewCartDetail;
     private TextView mTextViewCartDetailDate, mTextViewCartDetailEvent, mTextViewCartDetailAddress, mTextViewcartDetailVendorName;
-    private String mCartDetailDate, mCartDetailEvent, mCartDetailAddress, mVendorLogo, mVendorName;
+    private String mCartDetailDate, mCartDetailEvent, mCartDetailAddress, mVendorLogo, mVendorName, mVendorUid;
     private DatabaseReference mCartInfoRef;
     private ValueEventListener mValueEventListener;
 
@@ -36,10 +35,20 @@ public class CartDetailFragment extends android.app.Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, TAG);
+
+        Bundle extras = getArguments();
+        if (extras == null){
+            Log.i(TAG, "extras are null");
+
+        } else {
+            mVendorUid = extras.getString("VendorUid");
+            Log.i(TAG, extras.toString());
+        }
+
         Slide slide = new Slide();
         slide.setSlideEdge(Gravity.RIGHT);
         setEnterTransition(slide);
-        mCartInfoRef = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(CartHomeAdapter.mVendorUid);
+        mCartInfoRef = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(mVendorUid);
     }
 
     @Override
@@ -69,9 +78,10 @@ public class CartDetailFragment extends android.app.Fragment {
                                 .into(mImageViewCartDetail);
                     }
                     mTextViewcartDetailVendorName.setText(mVendorName);
+                    //TODO: change "event date" to "(eventtype)+ date
                     mTextViewCartDetailDate.setText("Event date: " + mCartDetailDate);
-                    mTextViewCartDetailEvent.setText("For " + mCartDetailEvent);
-                    mTextViewCartDetailAddress.setText("Zip: " + mCartDetailAddress);
+                    mTextViewCartDetailEvent.setText(getString(R.string.for_string)+" "+ mCartDetailEvent);
+                    mTextViewCartDetailAddress.setText(getString(R.string.zip)+" "+ mCartDetailAddress);
 
                 }
 

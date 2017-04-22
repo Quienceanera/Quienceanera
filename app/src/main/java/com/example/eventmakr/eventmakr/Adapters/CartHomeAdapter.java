@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.eventmakr.eventmakr.Activities.PayActivity;
 import com.example.eventmakr.eventmakr.Objects.Cart;
 import com.example.eventmakr.eventmakr.R;
@@ -60,6 +61,8 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
         Glide.with(mContext)
                 .load(model.getVendorLogo())
                 .centerCrop()
+                .thumbnail(1.0f)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(viewHolder.mImageViewCartHome);
 
         viewHolder.mCardViewCartHome.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +74,32 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
                 mVendorLogo = model.getVendorLogo();
                 mConfirm = model.getReady();
                 mDatabaseNewMessage.removeValue();
-                getCart();
+//                final Rect viewRect = new Rect();
+//                v.getGlobalVisibleRect(viewRect);
+//                Transition explode = new Explode();
+//                explode.setEpicenterCallback(new Transition.EpicenterCallback() {
+//                    @Override
+//                    public Rect onGetEpicenter(Transition transition) {
+//                        return viewRect;
+//                    }
+//                });
+//                explode.setDuration(1000);
+//                ConsumerActivity consumerActivity = new ConsumerActivity();
+//                m.getWindow().setExitTransition(explode);
+
+                Intent intent = new Intent(mContext, PayActivity.class);
+                intent.putExtra("VendorUid", model.getVendorUid());
+                intent.putExtra("TotalPrice", model.getPriceTotal());
+                intent.putExtra("VendorName", model.getVendorName());
+                intent.putExtra("VendorLogo", model.getVendorLogo());
+                intent.putExtra("Ready", model.getReady());
+//                intent.putExtra("ViewPosition", viewRect);
+
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        (Activity) mContext,
+                        mTransitionView,
+                        "toCartDetail");
+                mContext.startActivity(intent, optionsCompat.toBundle());
             }
         });
 
@@ -148,10 +176,4 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
         });
     }
 
-    private void getCart() {
-        Intent intent = new Intent((Activity)mContext, PayActivity.class);
-        ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) mContext, mTransitionView, "toCartDetail");
-        mContext.startActivity(intent, optionsCompat.toBundle());
-
-    }
 }

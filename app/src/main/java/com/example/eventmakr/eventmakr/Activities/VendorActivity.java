@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.eventmakr.eventmakr.Adapters.VendorViewPagerAdapter;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorMenuFragment;
 import com.example.eventmakr.eventmakr.Fragments.VendorFragments.VendorOrderHome;
@@ -86,8 +87,9 @@ public class VendorActivity extends AppCompatActivity{
 
 
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Flogo.png?alt=media&token=f3fb17ed-6cb5-41ff-a8de-41f283efb14c")
+                .load(getString(R.string.logo_url))
                 .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(mImageViewLogo);
 
         Glide.with(this)

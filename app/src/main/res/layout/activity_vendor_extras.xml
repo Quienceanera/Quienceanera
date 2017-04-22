@@ -32,49 +32,49 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="P"
+                        android:text="@string/p"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/logoColor"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="R"
+                        android:text="@string/r"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/yellow"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="O"
+                        android:text="@string/o"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/green"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="F"
+                        android:text="@string/f"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/pink"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="I"
+                        android:text="@string/i"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/blue"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="L"
+                        android:text="@string/l"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/yellow"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="E"
+                        android:text="@string/e"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/green"
                         android:textSize="30sp"
@@ -91,56 +91,56 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="P"
+                        android:text="@string/p"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/logoColor"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="R"
+                        android:text="@string/r"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/yellow"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="O"
+                        android:text="@string/o"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/green"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="D"
+                        android:text="@string/d"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/pink"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="U"
+                        android:text="@string/u"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/blue"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="C"
+                        android:text="@string/c"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/yellow"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="T"
+                        android:text="@string/t"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/green"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="S"
+                        android:text="@string/s"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/pink"
                         android:textSize="30sp"
@@ -157,63 +157,63 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="D"
+                        android:text="@string/d"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/logoColor"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="O"
+                        android:text="@string/o"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/yellow"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="C"
+                        android:text="@string/c"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/green"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="U"
+                        android:text="@string/u"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/pink"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="M"
+                        android:text="@string/m"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/blue"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="E"
+                        android:text="@string/e"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/yellow"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="N"
+                        android:text="@string/n"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/green"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="T"
+                        android:text="@string/t"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/pink"
                         android:textSize="30sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="S"
+                        android:text="@string/s"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                         android:textColor="@color/blue"
                         android:textSize="30sp"

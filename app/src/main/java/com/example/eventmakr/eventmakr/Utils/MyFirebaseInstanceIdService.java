@@ -30,13 +30,4 @@ public class MyFirebaseInstanceIdService extends com.google.firebase.iid.Firebas
 //                .subscribeToTopic(TOPIC);
     }
 
-//    private void registerToken(String token){
-//        OkHttpClient client = new OkHttpClient();
-//        RequestBody body = new FormBody.Builder()
-//                .add("Token", token)
-//                .build();
-//
-//        Request request = new Request.Builder()
-//                .url()
-//    }
 }

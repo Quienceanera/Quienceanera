@@ -105,7 +105,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
 
     void loadImages () {
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fcaterers.png?alt=media&token=726a98cc-307f-4cd2-9c1b-35370a2b8e36")
+                .load(getString(R.string.caterers_url))
                 .centerCrop()
                 .crossFade()
                 .thumbnail(0.1f)
@@ -114,7 +114,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
 
 
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fbakeries.jpg?alt=media&token=544ed26b-6112-4d6a-b3c7-3ecafa3adfa4")
+                .load(getString(R.string.bakeries_url))
                 .centerCrop()
                 .crossFade()
                 .thumbnail(0.1f)
@@ -122,7 +122,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
                 .into(mImageViewBakeries);
 
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Ffoodtruck.jpg?alt=media&token=e2b974af-ba24-4238-81de-3821ef5b7194")
+                .load(getString(R.string.foodtrucks_url))
                 .centerCrop()
                 .crossFade()
                 .thumbnail(0.1f)
@@ -130,7 +130,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
                 .into(mImageViewFoodTrucks);
 
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Forganic.jpg?alt=media&token=8c438984-60e1-4c45-ab75-059664439386")
+                .load(getString(R.string.organic_url))
                 .centerCrop()
                 .crossFade()
                 .thumbnail(0.1f)
@@ -138,7 +138,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
                 .into(mImageViewOrganic);
 
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fdj.jpg?alt=media&token=0b9945d7-2dd9-4c34-bc46-4b9cc2a98540")
+                .load(getString(R.string.djs_url))
                 .centerCrop()
                 .crossFade()
                 .thumbnail(0.1f)
@@ -146,7 +146,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
                 .into(mImageViewDjs);
 
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Flive.jpg?alt=media&token=239bb3cf-1bd1-4a60-9ae4-fced84d0485b")
+                .load(getString(R.string.live_music_url))
                 .centerCrop()
                 .crossFade()
                 .thumbnail(0.1f)
@@ -154,21 +154,21 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
                 .into(mImageViewLive);
 
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Finstrument.jpg?alt=media&token=33ec7c16-74d0-4168-b5ec-5729373a3829")
+                .load(getString(R.string.instrument_url))
                 .centerCrop()
                 .crossFade()
                 .thumbnail(0.1f)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(mImageViewInstrument);
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fvocal.jpg?alt=media&token=4d00d426-0f27-4b35-82fc-f27c44e7ad39")
+                .load(getString(R.string.vocal_url))
                 .centerCrop()
                 .crossFade()
                 .thumbnail(0.1f)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(mImageViewVocal);
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fmixologists.jpg?alt=media&token=fde6dbba-c7af-41a5-b17a-2859bccd4f27")
+                .load(getString(R.string.mixologists_url))
                 .centerCrop()
                 .crossFade()
                 .thumbnail(0.1f)
@@ -176,7 +176,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
                 .into(mImageViewMixologists);
 
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fkeg.jpg?alt=media&token=5248798c-0401-46d4-adb7-d652a7a967b9")
+                .load(getString(R.string.kegs_url))
                 .centerCrop()
                 .crossFade()
                 .thumbnail(0.1f)
@@ -184,7 +184,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
                 .into(mImageViewKegs);
 
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fwholesale.jpg?alt=media&token=c77218f3-9ba4-4908-9ba8-5ef4216f2c43")
+                .load(getString(R.string.wholesale_url))
                 .centerCrop()
                 .crossFade()
                 .thumbnail(0.1f)
@@ -192,7 +192,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
                 .into(mImageViewWholesale);
 
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fwine.jpg?alt=media&token=f89b9f45-7be4-4d44-a6b5-7bc97ab4f3dc")
+                .load(getString(R.string.wine_url))
                 .centerCrop()
                 .crossFade()
                 .thumbnail(0.1f)
@@ -205,6 +205,7 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
         super.onDetach();
     }
 
+    // TODO: 4/21/2017 fix strings
     @Override
     public void onClick(View view) {
         int id = view.getId();
@@ -214,47 +215,47 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
                 getConsumerBudgetFragment();
                 break;
             case R.id.cardViewFoodTrucks:
-                mCategory = "FoodTrucks";
+                mCategory = "Food Trucks";
                 getConsumerBudgetFragment();
                 break;
             case R.id.cardViewBakeries:
-                mCategory = "Bakeries";
+                mCategory = getString(R.string.bakeries);
                 getConsumerBudgetFragment();
                 break;
             case R.id.cardViewOrganic:
-                mCategory = "Organic";
+                mCategory = getString(R.string.organic);
                 getConsumerBudgetFragment();
                 break;
             case R.id.cardViewMixologists:
-                mCategory = "Mixologists";
+                mCategory = getString(R.string.mixologists);
                 getConsumerBudgetFragment();
                 break;
             case R.id.cardViewKegs:
-                mCategory = "Kegs";
+                mCategory = getString(R.string.kegs);
                 getConsumerBudgetFragment();
                 break;
             case R.id.cardViewWholesale:
-                mCategory = "Wholesale";
+                mCategory = getString(R.string.wholesale);
                 getConsumerBudgetFragment();
                 break;
             case R.id.cardViewWine:
-                mCategory = "Wine";
+                mCategory = getString(R.string.wine);
                 getConsumerBudgetFragment();
                 break;
             case R.id.cardViewDjs:
-                mCategory = "Djs";
+                mCategory = getString(R.string.djs);
                 getConsumerBudgetFragment();
                 break;
             case R.id.cardViewLive:
-                mCategory = "Live";
+                mCategory = getString(R.string.live);
                 getConsumerBudgetFragment();
                 break;
             case R.id.cardViewInstrument:
-                mCategory = "Instruments";
+                mCategory = getString(R.string.instruments);
                 getConsumerBudgetFragment();
                 break;
             case R.id.cardViewVocal:
-                mCategory = "Vocal";
+                mCategory = getString(R.string.vocal);
                 getConsumerBudgetFragment();
                 break;
             default:

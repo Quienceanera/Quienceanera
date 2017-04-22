@@ -1,10 +1,12 @@
 package com.example.eventmakr.eventmakr.Adapters;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.eventmakr.eventmakr.Activities.EventActivity;
 import com.example.eventmakr.eventmakr.Objects.Menu;
 import com.example.eventmakr.eventmakr.R;
@@ -31,7 +33,8 @@ public class VendorProfileProductAdapter extends FirebaseRecyclerAdapter<Menu, V
         Glide.with(mContext)
                 .load(model.getPhoto())
                 .centerCrop()
-                .thumbnail(0.5f)
+                .thumbnail(0.1f)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(viewHolder.mImageViewVendorProductItem);
 
         viewHolder.mImageViewVendorProductItem.setOnClickListener(new View.OnClickListener() {
@@ -40,16 +43,28 @@ public class VendorProfileProductAdapter extends FirebaseRecyclerAdapter<Menu, V
                 mProductKey = model.getKey();
                 mVendorUid = model.getVendorUid();
                 mVendorName = model.getVendorName();
-                getProductItemFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("ProductKey", model.getKey());
+                bundle.putString("VendorUid", model.getVendorUid());
+                bundle.putString("VendorName", model.getVendorName());
+
+                ((EventActivity) mContext)
+                        .getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.containerEventActivity, FragmentUtil.getConsumerVendorProductItemFragment(bundle))
+                        .addToBackStack(null)
+                        .commit();
+//                getProductItemFragment();
             }
         });
     }
-    private void getProductItemFragment () {
-        ((EventActivity) mContext)
-                .getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.containerEventActivity, FragmentUtil.getConsumerVendorProductItemFragment())
-                .addToBackStack(null)
-                .commit();
-    }
+//    private void getProductItemFragment () {
+//        ((EventActivity) mContext)
+//                .getFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.containerEventActivity, FragmentUtil.getConsumerVendorProductItemFragment())
+//                .addToBackStack(null)
+//                .commit();
+//    }
 }

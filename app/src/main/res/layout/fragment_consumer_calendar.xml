@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
             <TextView
-                android:text="@string/when_will_your_event_be_held"
+                android:text="@string/choose_a_date_for_your_occasion"
                 android:textStyle="bold"
                 android:layout_centerHorizontal="true"
                 android:elevation="6dp"

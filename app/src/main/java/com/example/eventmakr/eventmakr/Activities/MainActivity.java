@@ -3,6 +3,7 @@ package com.example.eventmakr.eventmakr.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = MainActivity.class.getSimpleName();
     private CardView mButtonPlanning, mButtonLogIn, mButtonVendor;
     private ParallaxImageView mBackground;
-    private CardView mCardView1, mCardView2;
+    private CardView mCardView1, mCardView2, mButtonSignOut;
     private FirebaseUser mFirebaseUser;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mCardView1 = (CardView) findViewById(R.id.cardView1);
         mCardView2 = (CardView) findViewById(R.id.cardView2);
 
+        mButtonSignOut = (CardView) findViewById(R.id.signOutButton);
+
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         mButtonPlanning = (CardView) findViewById(R.id.buttonPlanning);
@@ -51,14 +54,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mButtonPlanning.setOnClickListener(this);
         mButtonLogIn.setOnClickListener(this);
         mButtonVendor.setOnClickListener(this);
+        mButtonSignOut.setOnClickListener(this);
 
         if (mFirebaseUser == null) {
             startSignInActivity();
-//            ViewAnimator.animate(mButtonLogIn)
-//                    .fadeIn()
-//                    .duration(1300)
-//                    .start();
-//            mButtonLogIn.setVisibility(View.VISIBLE);
+            mButtonSignOut.setVisibility(View.GONE);
+
             Log.i("User", "Not logged in");
         } else {
 //            mButtonLogIn.setVisibility(View.GONE);
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         void loadParallaxBg(){
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/eventmakr-q.appspot.com/o/default%2Fmobile_bg.jpg?alt=media&token=8930f92d-f5f0-45dd-b9f9-51775faac1e2")
+                .load(getString(R.string.main_activity_background))
                 .centerCrop()
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -150,11 +151,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (id) {
             case R.id.buttonPlanning:
                 Intent consumerIntent = new Intent(MainActivity.this, ConsumerActivity.class);
-                startActivity(consumerIntent);
-                finish();
-                break;
-            case R.id.buttonLogIn:
 
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this, mButtonPlanning, "mainToConsumer");
+                startActivity(consumerIntent, optionsCompat.toBundle());
+                break;
+            case R.id.signOutButton:
+                mFirebaseAuth.signOut();
+                startSignInActivity();
+                finish();
                 break;
             case R.id.buttonVendor:
                 Intent vendorIntent = new Intent(MainActivity.this, VendorActivity.class);

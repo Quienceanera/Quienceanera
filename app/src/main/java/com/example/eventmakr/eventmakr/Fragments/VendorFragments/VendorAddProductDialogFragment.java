@@ -84,13 +84,13 @@ public class VendorAddProductDialogFragment extends DialogFragment implements Vi
                 mProductPrice.isEmpty()||
                 mProductImage.isEmpty()){
             if (TextUtils.isEmpty(mProductName)){
-                mEditTextProductName.setError("Can not be empty");
+                mEditTextProductName.setError(getString(R.string.can_not_be_empty));
             }
             if (TextUtils.isEmpty(mProductDescription)){
-                mEditTextProductDescription.setError("Can not be empty");
+                mEditTextProductDescription.setError(getString(R.string.can_not_be_empty));
             }
             if (TextUtils.isEmpty(mProductPrice)){
-                mEditTextProductPrice.setError("Can not be empty");
+                mEditTextProductPrice.setError(getString(R.string.can_not_be_empty));
             }
         } else{
             getKey();
@@ -131,7 +131,7 @@ public class VendorAddProductDialogFragment extends DialogFragment implements Vi
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     mProgressBar.setVisibility(View.INVISIBLE);
                     mProductImage = taskSnapshot.getDownloadUrl().toString();
-                    Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.layoutVendorExtras), "Photo Uploaded!", Snackbar.LENGTH_SHORT);
+                    Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.layoutVendorExtras), R.string.photo_uploaded, Snackbar.LENGTH_SHORT);
                     View view = snackbar.getView();
                     view.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.blue));
                     snackbar.show();

@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.eventmakr.eventmakr.Activities.VendorOrderActivity;
 import com.example.eventmakr.eventmakr.Objects.VendorOrderHome;
 import com.example.eventmakr.eventmakr.R;
@@ -44,14 +46,17 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
         mDatabaseConfirm = FirebaseUtil.getVendorSideVendorOrderHomeRef().child(mOrderHomeKey);
         mDatabaseConfirm.keepSynced(true);
         viewHolder.mTextViewVendorOrderHomeCustomerName.setText(model.getCustomerName());
-        viewHolder.mTextViewVendorOrderHomeEventName.setText("For " + model.getEventName());
-        viewHolder.mTextViewVendorOrderHomeTimestamp.setText("Submitted On: " + model.getTimestamp());
-        viewHolder.mTextViewVendorOrderHomePriceTotal.setText("Total: $" + model.getTotalPrice());
-        viewHolder.mTextViewVendorOrderHomeCount.setText("Qty: " + model.getTotalQuantity());
+        viewHolder.mTextViewVendorOrderHomeEventName.setText(mContext.getString(R.string.for_string)+" "+model.getEventName());
+        viewHolder.mTextViewVendorOrderHomeTimestamp.setText(mContext.getString(R.string.submitted_on)+" "+ model.getTimestamp());
+        viewHolder.mTextViewVendorOrderHomePriceTotal.setText(mContext.getString(R.string.total)+(mContext.getString(R.string.$))+ model.getTotalPrice());
+        viewHolder.mTextViewVendorOrderHomeCount.setText(mContext.getString(R.string.qty)+" "+model.getTotalQuantity());
 
         Glide.with(mContext)
                 .load(model.getCustomerPhoto())
                 .centerCrop()
+                .crossFade()
+                .thumbnail(0.1f)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(viewHolder.mImageViewVendorOrderHome);
 
         viewHolder.mCardViewVendorOrderHome.setOnClickListener(new View.OnClickListener() {
@@ -75,11 +80,11 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
                 FancyAlertDialog.Builder alert = new FancyAlertDialog.Builder(mContext)
                         .setBackgroundColor(R.color.colorAccentLighter)
                         .setImageRecourse(R.drawable.delete)
-                        .setTextTitle("Delete "+model.getEventName()+" And All It's Content?")
+                        .setTextTitle(mContext.getString(R.string.delete)+" "+model.getEventName()+" "+mContext.getString(R.string.and_all_its_content))
                         .setTitleColor(R.color.blue)
-                        .setTextSubTitle("For: "+model.getEventName())
-                        .setNegativeButtonText("Cancel")
-                        .setPositiveButtonText("Yes")
+                        .setTextSubTitle(mContext.getString(R.string.for_string)+" "+model.getEventName())
+                        .setNegativeButtonText(mContext.getString(R.string.cancel))
+                        .setPositiveButtonText(mContext.getString(R.string.yes))
                         .setOnNegativeClicked(new FancyAlertDialog.OnNegativeClicked() {
                             @Override
                             public void OnClick(View view, Dialog dialog) {
@@ -105,11 +110,11 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild(FirebaseUtil.getUid())){
                     Log.i("Datasnapshot", "True");
-                    viewHolder.mTextViewConfirm.setText("Order Confirmed!");
+                    viewHolder.mTextViewConfirm.setText(R.string.order_confirmed);
                     viewHolder.mCardViewVendorOrderHome.setCardBackgroundColor(rgb(175,209,54));
                 }else{
                     Log.i("Datasnapshot", "false");
-                    viewHolder.mTextViewConfirm.setText("Awaiting Confirmation");
+                    viewHolder.mTextViewConfirm.setText(R.string.awaiting_confirmation);
                     viewHolder.mCardViewVendorOrderHome.setCardBackgroundColor(rgb(255,255,255));
                 }
             }
@@ -137,11 +142,9 @@ public class VendorOrderHomeAdapter extends FirebaseRecyclerAdapter<VendorOrderH
 
             }
         });
-
     }
 
     private void getOrders() {
         mContext.startActivity(new Intent(mContext, VendorOrderActivity.class));
     }
-
 }
