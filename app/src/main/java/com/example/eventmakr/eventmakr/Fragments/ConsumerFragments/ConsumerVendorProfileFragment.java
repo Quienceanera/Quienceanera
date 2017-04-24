@@ -83,6 +83,7 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
         mContext = getActivity();
         mDatabaseReference = FirebaseUtil.getVendorRef().child(mVendorCategory).child(mVendorUid);
         mPlaceIdRef = FirebaseUtil.getConsumerSideVendorPlaceRef();
+        mPlaceIdRef.keepSynced(true);
 
         mGoogleApiClient = new GoogleApiClient
                 .Builder(getActivity())
@@ -98,6 +99,22 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mPlaceId = dataSnapshot.getValue().toString();
                 Log.i(mPlaceId, dataSnapshot.toString());
+
+                Places.GeoDataApi.getPlaceById(mGoogleApiClient, mPlaceId)
+                        .setResultCallback(new ResultCallback<PlaceBuffer>() {
+                            @Override
+                            public void onResult(@NonNull PlaceBuffer places) {
+                                if (places.getStatus().isSuccess() && places.getCount() > 0) {
+                                    final Place mPlace = places.get(0);
+                                    mLatLng = mPlace.getLatLng();
+                                    mRatingBar.setRating(mPlace.getRating());
+                                    Log.i("Vendor Profile", mPlace.getLatLng().toString());
+                                } else {
+                                    Log.e("Vendor Profile", "Place not found");
+                                }
+                                places.release();
+                            }
+                        });
             }
 
             @Override
@@ -105,25 +122,6 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
 
             }
         });
-        // TODO: 4/21/2017 find out why mPlaceid is null
-        if (mPlaceId != null){
-            Places.GeoDataApi.getPlaceById(mGoogleApiClient, mPlaceId)
-                    .setResultCallback(new ResultCallback<PlaceBuffer>() {
-                        @Override
-                        public void onResult(@NonNull PlaceBuffer places) {
-                            if (places.getStatus().isSuccess() && places.getCount() > 0) {
-                                final Place mPlace = places.get(0);
-                                mLatLng = mPlace.getLatLng();
-                                mRatingBar.setRating(mPlace.getRating());
-                                Log.i("Vendor Profile", mPlace.getLatLng().toString());
-                            } else {
-                                Log.e("Vendor Profile", "Place not found");
-                            }
-                            places.release();
-                        }
-                    });
-        }
-
     }
 
     @Override
@@ -145,7 +143,6 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
         mGoogleApiClient.connect();
         return view;
     }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -207,8 +204,15 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
         Log.i("Map Ready", TAG);
         mMap = googleMap;
         mapReady = true;
+        MapStyleOptions styleOptions = MapStyleOptions.loadRawResourceStyle(getActivity(), R.raw.map_style);
+        mCameraPosition = CameraPosition.builder().target(mLatLng).zoom(14).build();
+        if (mCameraPosition != null){
+            mMap.addMarker(new MarkerOptions().position(mLatLng).title(mVendorName));
+            mMap.moveCamera(CameraUpdateFactory.newCameraPosition(mCameraPosition));
+            mMap.setMapStyle(styleOptions);
 
-        moveCamera();
+        }
+
     }
 
 //    private void checkPermissions(){
@@ -223,17 +227,6 @@ public class ConsumerVendorProfileFragment extends android.app.Fragment implemen
 //        }
 //
 //    }
-
-    private void moveCamera(){
-        if (mCameraPosition != null){
-            MapStyleOptions styleOptions = MapStyleOptions.loadRawResourceStyle(getActivity(), R.raw.map_style);
-            mCameraPosition = CameraPosition.builder().target(mLatLng).zoom(14).build();
-            mMap.addMarker(new MarkerOptions().position(mLatLng).title(mVendorName));
-            mMap.moveCamera(CameraUpdateFactory.newCameraPosition(mCameraPosition));
-            mMap.setMapStyle(styleOptions);
-
-        }
-    }
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {

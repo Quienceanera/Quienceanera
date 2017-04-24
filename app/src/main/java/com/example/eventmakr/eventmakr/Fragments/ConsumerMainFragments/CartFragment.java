@@ -54,7 +54,7 @@ public class CartFragment extends android.app.Fragment {
         getChildFragmentManager()
                 .beginTransaction()
                 .add(R.id.containerCart, FragmentUtil.getOrderListItemFragment())
-                .setCustomAnimations(R.animator.fragment_slide_left_enter, R.animator.fragment_slide_left_exit)
+//                .setCustomAnimations(R.animator.fragment_slide_left_enter, R.animator.fragment_slide_left_exit)
                 .commit();
     }
 

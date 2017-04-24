@@ -85,7 +85,7 @@ public class ContactVendorFragment extends android.app.Fragment implements View.
 //                    quantity = (int) (mChildQuantity * Double.parseDouble(String.valueOf(mChildrenNum)));
                     Log.i("Quantity inside", String.valueOf(quantity));
                 }
-                mTextViewTotal.setText("Total Price: " + "$" +String.valueOf(sum));
+                mTextViewTotal.setText(String.valueOf(sum));
                 mTextViewTotalQuantity.setText("Qty:"+String.valueOf(quantity));
                 mPriceTotal = String.valueOf(sum);
                 mQuantity = String.valueOf(quantity);

@@ -20,7 +20,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         app:cardUseCompatPadding="true"
-        android:elevation="2dp"
+        app:cardElevation="2dp"
         android:layout_width="match_parent"
         android:layout_height="60dp" >
 
@@ -30,7 +30,7 @@
 
             <TextView
                 android:layout_centerInParent="true"
-                android:text="CHECKOUT"
+                android:text="@string/checkout"
                 android:textColor="@color/colorText"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                 android:elevation="4dp"

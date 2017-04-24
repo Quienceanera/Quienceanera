@@ -1,13 +1,13 @@
 package com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments;
 
 import android.os.Bundle;
-import android.transition.Slide;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +25,7 @@ public class CartDetailFragment extends android.app.Fragment {
     private TextView mTextViewCartDetailDate, mTextViewCartDetailEvent, mTextViewCartDetailAddress, mTextViewcartDetailVendorName;
     private String mCartDetailDate, mCartDetailEvent, mCartDetailAddress, mVendorLogo, mVendorName, mVendorUid;
     private DatabaseReference mCartInfoRef;
+    private LinearLayout mLayoutDetails;
     private ValueEventListener mValueEventListener;
 
     public CartDetailFragment() {
@@ -45,9 +46,9 @@ public class CartDetailFragment extends android.app.Fragment {
             Log.i(TAG, extras.toString());
         }
 
-        Slide slide = new Slide();
-        slide.setSlideEdge(Gravity.RIGHT);
-        setEnterTransition(slide);
+//        Slide slide = new Slide();
+//        slide.setSlideEdge(Gravity.RIGHT);
+//        setEnterTransition(slide);
         mCartInfoRef = FirebaseUtil.getConsumerSideConsumerOrderInfoRef().child(mVendorUid);
     }
 
@@ -60,6 +61,17 @@ public class CartDetailFragment extends android.app.Fragment {
             mTextViewCartDetailEvent = (TextView) view.findViewById(R.id.textViewCartDetailEventName);
             mTextViewCartDetailAddress = (TextView) view.findViewById(R.id.textViewCartDetailAddress);
             mTextViewcartDetailVendorName = (TextView) view.findViewById(R.id.textViewCartDetailVendorName);
+
+        mLayoutDetails = (LinearLayout) view.findViewById(R.id.layoutCartDetailTextViews);
+
+        for (int i = 0; i < mLayoutDetails.getChildCount(); i++){
+            View child = mLayoutDetails.getChildAt(i);
+            child.animate().setStartDelay(100 + i * 500)
+                    .setInterpolator(new AccelerateInterpolator())
+                    .alpha(1)
+                    .scaleX(1)
+                    .scaleY(1);
+        }
 
             mValueEventListener = mCartInfoRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -78,10 +90,9 @@ public class CartDetailFragment extends android.app.Fragment {
                                 .into(mImageViewCartDetail);
                     }
                     mTextViewcartDetailVendorName.setText(mVendorName);
-                    //TODO: change "event date" to "(eventtype)+ date
-                    mTextViewCartDetailDate.setText("Event date: " + mCartDetailDate);
-                    mTextViewCartDetailEvent.setText(getString(R.string.for_string)+" "+ mCartDetailEvent);
-                    mTextViewCartDetailAddress.setText(getString(R.string.zip)+" "+ mCartDetailAddress);
+                    mTextViewCartDetailDate.setText(mCartDetailDate);
+                    mTextViewCartDetailEvent.setText(mCartDetailEvent);
+                    mTextViewCartDetailAddress.setText(mCartDetailAddress);
 
                 }
 

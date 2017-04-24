@@ -1,8 +1,12 @@
 package com.example.eventmakr.eventmakr.Adapters;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.util.Log;
 import android.view.View;
 
@@ -15,10 +19,15 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.geniusforapp.fancydialog.FancyAlertDialog;
 import com.google.firebase.database.Query;
 
+import java.util.Locale;
+
 public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewholder>{
     private static final String TAG = EventsAdapter.class.getSimpleName();
     private Context mContext;
+    private Typeface mTypeFace;
+    private AssetManager mAssetManager;
     public static String mEventKey, mEventName, mEventDate, mEventAddress, mEventType, mVendorUid;
+    private View mTransitionView;
     private Query mQuery;
     private String getEventKey;
 
@@ -26,34 +35,20 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
         super(modelClass, modelLayout, viewHolderClass, ref);
         this.mContext = context;
         this.mQuery = ref;
+        this.mAssetManager = mContext.getAssets();
+        this.mTypeFace = Typeface.createFromAsset(mAssetManager, String.format(Locale.US, "fonts/%s", "Calligraffitti-Regular.ttf"));
     }
 
     @Override
     protected void populateViewHolder(final EventsViewholder viewHolder, final Events model, final int position) {
         Log.i(TAG,TAG);
-//        final Animation animateIn = AnimationUtils.loadAnimation(mContext, R.anim.slide_up);
-//        viewHolder.mCardViewEvents.startAnimation(animateIn);
-//        animateIn.setAnimationListener(new Animation.AnimationListener() {
-//            @Override
-//            public void onAnimationStart(Animation animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animation animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animation animation) {
-//
-//            }
-//        });
+
+        mTransitionView = viewHolder.mCardViewEvents.findViewById(R.id.cardViewEvents);
 
         viewHolder.mTextViewEvents.setText(model.getEventName());
+        viewHolder.mTextViewEvents.setTypeface(mTypeFace);
         viewHolder.mTextViewEventsDate.setText(model.getEventDate());
         viewHolder.mTextViewEventsZip.setText(model.getEventZip());
-
         viewHolder.mCardViewEventsHelper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +58,7 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
                 mEventName = model.getEventName();
                 mEventAddress = model.getEventZip();
                 mEventType = model.getEventType();
+
 //                Bundle bundle = new Bundle();
 //                bundle.putString("EventKey", getRef(position).getKey());
 //                bundle.putString("EventDate", model.getEventDate());
@@ -74,8 +70,9 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<Events, EventsViewhol
 //                FragmentUtil.getConsumerVendorProductItemFragment(bundle);
 
                 Intent intent = new Intent(mContext, ConsumerActivity.class);
+                ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) mContext, mTransitionView, "eventsTransition");
                 intent.putExtra(getEventKey, getRef(position).getKey());
-                mContext.startActivity(intent);
+                mContext.startActivity(intent, activityOptions.toBundle());
 
             }
         });

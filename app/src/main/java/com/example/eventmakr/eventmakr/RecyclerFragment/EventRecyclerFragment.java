@@ -3,14 +3,12 @@ package com.example.eventmakr.eventmakr.RecyclerFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Objects.Events;
@@ -24,7 +22,8 @@ public class EventRecyclerFragment extends Fragment {
     private static final String TAG = "EventRecyclerFragment";
     private RecyclerView mRecyclerView;
     private EventsAdapter mAdapter;
-    private LinearLayoutManager mLayoutManger;
+//    private LinearLayoutManager mLayoutManger;
+    private GridLayoutManager mLayoutManager;
     private Query mQuery;
 
     public EventRecyclerFragment() {
@@ -48,17 +47,20 @@ public class EventRecyclerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.events_item_list, container, false);
         view.setTag(TAG);
-
         if (container != null){
             container.removeAllViews();
         }
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewEventsList);
-        mLayoutManger = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(mLayoutManger);
+        mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        final Animation animateIn = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_up);
-        mRecyclerView.startAnimation(animateIn);
+//        if (mRecyclerView == null){
+//            mRecyclerView.addView();
+//        }
+
+//        final Animation animateIn = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_up);
+//        mRecyclerView.startAnimation(animateIn);
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -85,6 +87,14 @@ public class EventRecyclerFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdapter == null){
+
+        }
     }
 
     @Override

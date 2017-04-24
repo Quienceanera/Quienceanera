@@ -44,7 +44,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
     private VendorProfileProductAdapter mVendorProfileProductAdapter;
     private ImageView mImageViewProductItem;
     private TextView mTextViewProductItemName, mTextViewProductItemDetails, mTextViewProductItemPrice, mTextViewProductVendorName;
-    private String mProductImage, mProductName, mProductDetails, mProductPrice, mProductQuantity, mVendorUid, mVendorName, mProductKey, mInstructions1, mEventKey, mEventDate, mEventName, mEventZip, mKey;
+    private String mProductImage, mProductName, mProductDetails, mProductPrice, mProductQuantity, mVendorUid, mVendorName, mVendorPhoto, mProductKey, mInstructions1, mEventKey, mEventDate, mEventName, mEventZip, mKey;
     private EditText mEditTextQuantity;
 
     public ConsumerVendorProductItemFragment() {
@@ -64,6 +64,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
             mProductKey = extras.getString("ProductKey");
             mVendorUid = extras.getString("VendorUid");
             mVendorName = extras.getString("VendorName");
+//            mVendorPhoto = extras.getString("VendorPhoto");
             Log.i("Bundle", mProductKey+" "+mVendorUid+" "+mVendorName);
 
         }
@@ -84,6 +85,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         mEditTextQuantity = (EditText) view.findViewById(R.id.editTextQuantity);
 
         getProductInfo();
+        getVendorInfo();
 
         mButtonProductItemSelect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +105,21 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
         return view;
     }
 
+    public void getVendorInfo() {
+        FirebaseUtil.getConsumerSideVendorProfileRef().child(mVendorUid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mVendorPhoto = dataSnapshot.child("logo").getValue().toString();
+                mVendorName = dataSnapshot.child("name").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     public void getProductInfo() {
         mUserMenuRef.child(mProductKey).addValueEventListener(new ValueEventListener() {
             @Override
@@ -120,7 +137,7 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                 mTextViewProductItemName.setText(mProductName);
                 mTextViewProductItemDetails.setText(mProductDetails);
                 mTextViewProductItemPrice.setText("$ " + mProductPrice+" ea");
-                mTextViewProductVendorName.setText(VendorAdapter.mVendorName);
+                mTextViewProductVendorName.setText(mVendorName);
 
                 mEditTextQuantity.addTextChangedListener(new TextWatcher() {
                     @Override
@@ -242,8 +259,8 @@ public class ConsumerVendorProductItemFragment extends android.app.Fragment impl
                 mVendorUid,
                 null,
                 null,
-                mVendorName,
                 VendorAdapter.mVendorName,
+                mVendorPhoto,
                 mCurrentTimestamp,
                 "false",
                 "false"

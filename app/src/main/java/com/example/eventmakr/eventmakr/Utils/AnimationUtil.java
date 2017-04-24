@@ -49,7 +49,7 @@ public class AnimationUtil {
 
         Animator anim =
                 ViewAnimationUtils.createCircularReveal(view, x, y, startRadius, finalRadius);
-        anim.setDuration(300);
+        anim.setDuration(200);
         anim.setStartDelay(100);
         anim.setInterpolator(new AccelerateDecelerateInterpolator());
         anim.addListener(new AnimatorListenerAdapter() {

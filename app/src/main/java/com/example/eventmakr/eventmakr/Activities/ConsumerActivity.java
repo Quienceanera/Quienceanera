@@ -10,7 +10,7 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.transition.Explode;
+import android.transition.Fade;
 import android.transition.Transition;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +18,7 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.eventmakr.eventmakr.Adapters.EventsAdapter;
 import com.example.eventmakr.eventmakr.Adapters.ViewPagerAdapter;
 import com.example.eventmakr.eventmakr.Fragments.ConsumerFragments.CreateEventDialogFragment;
 import com.example.eventmakr.eventmakr.R;
@@ -41,6 +42,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
     private final int REQUEST_INVITE = 1;
     private int mFabWidth, mFabPosition;
     private String mEventKey;
+    private int mImageWidth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,23 +52,18 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
             Bundle extras = getIntent().getExtras();
             if (extras == null){
                 Log.i(TAG, "extras are null");
+                mEventKey = EventsAdapter.mEventKey;
 
             } else {
                 mEventKey = extras.getString(mEventKey);
+                mImageWidth = extras.getInt("ImageWidth");
 //                Log.i(TAG, mEventKey);
             }
 
-        View decor = getWindow().getDecorView();
-        View statusBar = decor.findViewById(android.R.id.statusBarBackground);
-        View navBar = decor.findViewById(android.R.id.navigationBarBackground);
-        View target = decor.findViewById(R.id.imageViewCartHome);
-
-        Transition explode = new Explode();
-        explode.excludeTarget(target, true);
-        explode.excludeTarget(statusBar, true);
-        explode.excludeTarget(navBar, true);
+        Fade explode = new Fade(Fade.OUT);
         explode.setDuration(300);
         getWindow().setExitTransition(explode);
+
 
         mFabNewEvent = (FloatingActionButton) findViewById(R.id.fabNewEvent);
         mFabSearchVendors = (FloatingActionButton) findViewById(R.id.fabSearchVendor);
@@ -93,6 +90,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
 
         mTabLayout = (TabLayout) findViewById(R.id.tabLayoutConsumer);
         mViewPager = (ViewPager) findViewById(R.id.viewpagerConsumer);
+
         mViewPagerAdapter = new ViewPagerAdapter(getFragmentManager(), this);
 
         mViewPagerAdapter.addFragments(FragmentUtil.getEventsFragment(), "");
@@ -190,8 +188,35 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
+        Transition transition = getWindow().getEnterTransition();
+        transition.addListener(new Transition.TransitionListener() {
+            @Override
+            public void onTransitionStart(Transition transition) {
 
+            }
 
+            @Override
+            public void onTransitionEnd(Transition transition) {
+                        if (mTabLayout.getTabCount() > 1){
+                            TabLayout.Tab tab = mTabLayout.getTabAt(1);
+                            tab.select();
+                        }
+                        transition.removeListener(this);
+            }
+
+            @Override
+            public void onTransitionCancel(Transition transition) {
+
+            }
+            @Override
+            public void onTransitionPause(Transition transition) {
+
+            }
+            @Override
+            public void onTransitionResume(Transition transition) {
+
+            }
+        });
     }
 
     private void scheduleStartPostponedTransition(final View sharedElement){
@@ -235,14 +260,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        ViewAnimator.animate(mImageViewLogo)
-                .newsPaper()
-                .descelerate()
-                .duration(1000)
-                .start();
-
         scheduleStartPostponedTransition(mFabNewEvent);
-//        getWindow().getAttributes().windowAnimations = R.style.EventsFragment;
     }
 
     @Override
@@ -318,7 +336,7 @@ public class ConsumerActivity extends AppCompatActivity implements View.OnClickL
                 ActivityOptionsCompat.
                         makeSceneTransitionAnimation(this, mFabSearchVendors, "reveal")
                         .toBundle());
-        finish();
+//        finish();
     }
 
     @Override

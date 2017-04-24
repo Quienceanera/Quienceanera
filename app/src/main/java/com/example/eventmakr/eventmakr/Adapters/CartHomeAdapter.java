@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.util.Log;
 import android.view.View;
@@ -61,7 +62,7 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
         Glide.with(mContext)
                 .load(model.getVendorLogo())
                 .centerCrop()
-                .thumbnail(1.0f)
+                .thumbnail(0.1f)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(viewHolder.mImageViewCartHome);
 
@@ -91,15 +92,10 @@ public class CartHomeAdapter extends FirebaseRecyclerAdapter<Cart, CartHomeViewh
                 intent.putExtra("VendorUid", model.getVendorUid());
                 intent.putExtra("TotalPrice", model.getPriceTotal());
                 intent.putExtra("VendorName", model.getVendorName());
-                intent.putExtra("VendorLogo", model.getVendorLogo());
                 intent.putExtra("Ready", model.getReady());
-//                intent.putExtra("ViewPosition", viewRect);
+                intent.putExtra("ImageWidth", viewHolder.mImageViewCartHome.getWidth());
 
-                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        (Activity) mContext,
-                        mTransitionView,
-                        "toCartDetail");
-                mContext.startActivity(intent, optionsCompat.toBundle());
+                ActivityCompat.startActivity(mContext, intent, ActivityOptionsCompat.makeSceneTransitionAnimation(((Activity)mContext),mTransitionView, "toCartDetail").toBundle());
             }
         });
 

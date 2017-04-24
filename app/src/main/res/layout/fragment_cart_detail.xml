@@ -17,7 +17,7 @@
                 app:cardCornerRadius="4dp"
                 app:cardElevation="2dp"
                 android:layout_width="150dp"
-                android:layout_height="100dp">
+                android:layout_height="120dp">
 
                 <ImageView
                     android:id="@+id/imageViewCartDetail"
@@ -28,6 +28,8 @@
             </android.support.v7.widget.CardView>
 
             <LinearLayout
+                android:id="@+id/layoutCartDetailTextViews"
+                android:layout_centerHorizontal="true"
                 android:layout_marginStart="2dp"
                 android:transitionName="transitionPayDetails"
                 android:orientation="vertical"
@@ -36,15 +38,17 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:drawableStart="@drawable/store3"
                     android:id="@+id/textViewCartDetailVendorName"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                     android:textColor="@color/blue"
-                    android:textSize="27sp"
+                    android:textSize="20sp"
                     android:elevation="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
+                    android:drawableStart="@drawable/cake_variant"
                     android:id="@+id/textViewCartDetailEventName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -54,6 +58,7 @@
                     android:textSize="15sp" />
 
                 <TextView
+                    android:drawableStart="@drawable/calendar"
                     android:id="@+id/textViewCartDetailDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -61,6 +66,7 @@
                     android:elevation="10dp" />
 
                 <TextView
+                    android:drawableStart="@drawable/map_marker"
                     android:id="@+id/textViewCartDetailAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

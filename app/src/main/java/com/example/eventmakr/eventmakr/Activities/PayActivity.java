@@ -1,14 +1,18 @@
 package com.example.eventmakr.eventmakr.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Slide;
 import android.transition.Transition;
-import android.transition.TransitionInflater;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toolbar;
@@ -20,6 +24,7 @@ import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.CartFragm
 import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.ChatFragment;
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
+import com.github.florent37.viewanimator.ViewAnimator;
 
 import java.util.Objects;
 
@@ -31,6 +36,8 @@ public class PayActivity extends AppCompatActivity {
     private ConsumerViewPagerAdapter mViewPagerAdapter;
     private LinearLayout mLayoutConfirm, mLayoutChat, mLayoutCheckOut;
     private FrameLayout mLayoutPayDetails;
+    private Context mContext;
+    private CoordinatorLayout mLayoutPayActivity;
     private String mVendorUid, mTotalPrice, mVendorName, mVendorLogo, mReady;
 
     @Override
@@ -38,6 +45,7 @@ public class PayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.i(TAG, TAG);
         setContentView(R.layout.activity_pay);
+        postponeEnterTransition();
 
         Bundle extras = getIntent().getExtras();
         if (extras == null){
@@ -52,9 +60,10 @@ public class PayActivity extends AppCompatActivity {
             Log.i(TAG, extras.toString());
         }
         getEnterAnimation();
-//
-//        getWindow().setEnterTransition(new Fade(Fade.IN));
-//        getWindow().setExitTransition(new Fade(Fade.OUT));
+
+        Slide slide = new Slide(Gravity.RIGHT);
+        getWindow().setEnterTransition(slide);
+        getWindow().setReturnTransition(slide);
 
         VendorActivity.mVendorMode = false;
         mToolbar = (Toolbar) findViewById(R.id.toolbarPay);
@@ -70,6 +79,7 @@ public class PayActivity extends AppCompatActivity {
         mLayoutCheckOut = (LinearLayout) findViewById(R.id.layoutCheckOutBanner);
         mLayoutConfirm = (LinearLayout) findViewById(R.id.layoutConfirmBanner);
         mLayoutPayDetails = (FrameLayout) findViewById(R.id.containerPayDetails);
+        mLayoutPayActivity = (CoordinatorLayout) findViewById(R.id.layoutPayActivity);
         mTabLayout = (TabLayout) findViewById(R.id.tabLayoutPay);
         mViewPager = (ViewPager) findViewById(R.id.viewpagerPay);
         mViewPagerAdapter = new ConsumerViewPagerAdapter(getFragmentManager(), this);
@@ -121,35 +131,66 @@ public class PayActivity extends AppCompatActivity {
     }
 
     private void getEnterAnimation() {
-        Transition transition = TransitionInflater.from(this).inflateTransition(R.transition.arc_motion_transition);
-//        transition.setDuration(800);
-//        getWindow().setEnterTransition(transition);
-//        transition.addListener(new Transition.TransitionListener() {
-//            @Override
-//            public void onTransitionStart(Transition transition) {
-//            }
-//
-//            @Override
-//            public void onTransitionEnd(Transition transition) {
-//
-//            }
-//
-//            @Override
-//            public void onTransitionCancel(Transition transition) {
-//
-//            }
-//
-//            @Override
-//            public void onTransitionPause(Transition transition) {
-//
-//            }
-//
-//            @Override
-//            public void onTransitionResume(Transition transition) {
-//
-//            }
-//        });
+        Transition transition = getWindow().getSharedElementEnterTransition();
+        transition.setDuration(200);
+        transition.addListener(new Transition.TransitionListener() {
+            @Override
+            public void onTransitionStart(Transition transition) {
+            }
 
+            @Override
+            public void onTransitionEnd(Transition transition) {
+                ViewAnimator.animate(mTabLayout,mLayoutConfirm, mLayoutCheckOut, mLayoutChat)
+                        .fadeIn()
+                        .duration(800)
+                        .start();
+                transition.removeListener(this);
+//                for (int i = 0; i < mLayoutPayActivity.getChildCount(); i++){
+//                    View child = mLayoutPayActivity.getChildAt(i);
+//                    child.animate().setStartDelay(100 + i * 500)
+//                            .setInterpolator(new AccelerateInterpolator())
+//                            .alpha(1)
+//                            .scaleX(1)
+//                            .scaleY(1);
+//                }
+
+            }
+
+            @Override
+            public void onTransitionCancel(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionPause(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionResume(Transition transition) {
+
+            }
+        });
+
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        scheduleStartPostponedTransition(findViewById(R.id.imageViewCartDetail));
+    }
+
+    private void scheduleStartPostponedTransition(final View sharedElement){
+        sharedElement.getViewTreeObserver().addOnPreDrawListener(
+                new ViewTreeObserver.OnPreDrawListener() {
+                    @Override
+                    public boolean onPreDraw() {
+                        sharedElement.getViewTreeObserver().removeOnPreDrawListener(this);
+                        startPostponedEnterTransition();
+                        return true;
+                    }
+                }
+        );
     }
 
     void getCartDetailFragment(){
@@ -164,7 +205,7 @@ public class PayActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        supportFinishAfterTransition();
+//        supportFinishAfterTransition();
 //        if (VendorActivity.mVendorMode && !ConsumerActivity.mConsumerMode && EventsAdapter.mEventKey == null){
 //            supportFinishAfterTransition();
 //            startActivity(new Intent(PayActivity.this, VendorActivity.class));

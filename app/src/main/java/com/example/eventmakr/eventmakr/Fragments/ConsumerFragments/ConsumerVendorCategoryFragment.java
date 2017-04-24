@@ -100,6 +100,15 @@ public class ConsumerVendorCategoryFragment extends android.app.Fragment impleme
         mCardViewWholesale.setOnClickListener(this);
         mCardViewWine.setOnClickListener(this);
 
+//        ViewGroup rootContainer = (ViewGroup) view.findViewById(R.id.layoutVendors);
+//        Scene scene = Scene.getSceneForLayout(mLayoutVendors, R.layout.layout_vendor_menu_1, getActivity());
+//        Scene scene2 = Scene.getSceneForLayout(mLayoutVendors, R.layout.layout_vendor_menu_2, getActivity());
+//        Scene scene3 = Scene.getSceneForLayout(mLayoutVendors, R.layout.layout_vendor_menu_3, getActivity());
+//
+//        scene.enter();
+//        scene2.enter();
+//        scene3.enter();
+
         return view;
     }
 
