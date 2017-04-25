@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.Objects.Events;
 import com.example.eventmakr.eventmakr.R;
@@ -112,6 +113,9 @@ public class CreateEventDialogFragment extends DialogFragment implements View.On
             }
             if (TextUtils.isEmpty(mEventAddress)){
                 mEditTextZipCode.setError("Can not be empty");
+            }
+            if (mEventDate.isEmpty()){
+                Toast.makeText(getActivity(), "Pick a Date", Toast.LENGTH_SHORT).show();
             }
 //            if (TextUtils.isEmpty(mEventType)){
 //                Toast.makeText(getActivity(), "Choose A Date", Toast.LENGTH_SHORT).show();

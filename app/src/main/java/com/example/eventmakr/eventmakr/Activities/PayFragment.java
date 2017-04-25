@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
 import com.example.eventmakr.eventmakr.R;
+import com.example.eventmakr.eventmakr.Utils.ConstantsUtil;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.BooleanResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -57,9 +58,10 @@ public class PayFragment extends FragmentActivity implements GoogleApiClient.Con
     private TextView mTextViewTotal;
     private CardView mLayoutCreditCardForm;
     private String mTokenString;
+    private String mTotalPrice = "20.00";
     private Token mToken;
-    public static final String PUBLISHABLE_KEY = "pk_test_meDPIZOcJTWc3P854aImTlNo";
-    public static final String SECRET_KEY = "sk_test_XRxN5L1wiHwLMOX3EiUYoiL9";
+    public static final String PUBLISHABLE_KEY = "pk_live_R8VtNECbBQUNhQKbjzxaoisW";
+    public static final String SECRET_KEY = "sk_test_CPGPeiE1paVb2CtLwczM4sAC";
     private static final int LOAD_MASKED_WALLET_REQUEST_CODE = 1000;
     private static final int LOAD_FULL_WALLET_REQUEST_CODE = 1001;
     private SupportWalletFragment walletFragment;
@@ -75,7 +77,7 @@ public class PayFragment extends FragmentActivity implements GoogleApiClient.Con
         Log.i(TAG, TAG);
         com.stripe.Stripe.apiKey = PUBLISHABLE_KEY;
         googleApiClient();
-//        isReadyToPay();
+        isReadyToPay();
 
     }
 
@@ -83,7 +85,7 @@ public class PayFragment extends FragmentActivity implements GoogleApiClient.Con
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
         mTextViewTotal = (TextView) findViewById(R.id.textViewPayTotal);
         mLayoutCreditCardForm = (CardView) findViewById(R.id.layoutCreditCardForm);
-//        mTextViewTotal.setText("Order Total:"+" $"+CartHomeAdapter.mTotalPrice);
+        mTextViewTotal.setText("Order Total:"+" $"+mTotalPrice);
 //        Log.i("totalprice", CartHomeAdapter.mTotalPrice);
         return super.onCreateView(parent, name, context, attrs);
     }
@@ -97,9 +99,10 @@ public class PayFragment extends FragmentActivity implements GoogleApiClient.Con
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Wallet.API, new Wallet.WalletOptions.Builder()
-                        .setEnvironment(WalletConstants.ENVIRONMENT_TEST)
+                        .setEnvironment(ConstantsUtil.WALLET_ENVIROMENT)
                         .setTheme(WalletConstants.THEME_LIGHT)
                         .build())
+                .enableAutoManage(this, this)
                 .build();
     }
 
@@ -111,13 +114,17 @@ public class PayFragment extends FragmentActivity implements GoogleApiClient.Con
                         if (booleanResult.getStatus().isSuccess()) {
                             if (booleanResult.getValue()) {
                                 showAndroidPay();
+                                Log.i("isReadyToPay: True", booleanResult.getStatus().toString());
+
                             } else {
                                 // Hide Android Pay buttons, show a message that Android Pay
                                 // cannot be used yet, and display a traditional checkout button
+                                Log.i("isReadyToPay: False", booleanResult.getStatus().toString());
+
                             }
                         } else {
                             // Error making isReadyToPay call
-                            Log.i("isReadyToPay:", booleanResult.getStatus().toString());
+                            Log.i("isReadyToPay: False", booleanResult.getStatus().toString());
                         }
                     }
                 }
@@ -125,8 +132,7 @@ public class PayFragment extends FragmentActivity implements GoogleApiClient.Con
     }
 
     public void showAndroidPay() {
-        walletFragment =
-                (SupportWalletFragment) getSupportFragmentManager().findFragmentById(R.id.wallet_fragment);
+        walletFragment = (SupportWalletFragment) getSupportFragmentManager().findFragmentById(R.id.wallet_fragment);
         MaskedWalletRequest maskedWalletRequest = MaskedWalletRequest.newBuilder()
                 // Request credit card tokenization with Stripe by specifying tokenization parameters:
                 .setPaymentMethodTokenizationParameters(PaymentMethodTokenizationParameters.newBuilder()
@@ -140,7 +146,7 @@ public class PayFragment extends FragmentActivity implements GoogleApiClient.Con
                 .setShippingAddressRequired(true)
 
                 // Price set as a decimal:
-                .setEstimatedTotalPrice(CartHomeAdapter.mTotalPrice)
+                .setEstimatedTotalPrice(mTotalPrice)
                 .setCurrencyCode("USD")
                 .build();
 
@@ -203,7 +209,7 @@ public class PayFragment extends FragmentActivity implements GoogleApiClient.Con
             Log.i("AsyncTask", mTokenString);
             // Charge the user's card:
             final Map<String, Object> cardParams = new HashMap<>();
-            cardParams.put("amount", CartHomeAdapter.mTotalPrice);
+            cardParams.put("amount", mTotalPrice);
             cardParams.put("currency", "usd");
             cardParams.put("description", CartHomeAdapter.mVendorUid);
             cardParams.put("source", mTokenString);

@@ -2,6 +2,7 @@ package com.example.eventmakr.eventmakr.Activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.eventmakr.eventmakr.Adapters.CartHomeAdapter;
@@ -25,14 +28,31 @@ import com.example.eventmakr.eventmakr.Fragments.ConsumerMainFragments.ChatFragm
 import com.example.eventmakr.eventmakr.R;
 import com.example.eventmakr.eventmakr.Utils.FragmentUtil;
 import com.github.florent37.viewanimator.ViewAnimator;
+import com.stripe.android.Stripe;
+import com.stripe.android.TokenCallback;
+import com.stripe.android.model.Card;
+import com.stripe.android.model.Token;
+import com.stripe.exception.APIConnectionException;
+import com.stripe.exception.APIException;
+import com.stripe.exception.AuthenticationException;
+import com.stripe.exception.CardException;
+import com.stripe.exception.InvalidRequestException;
+import com.stripe.model.Charge;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+
+import io.fabric.sdk.android.BuildConfig;
+import io.fabric.sdk.android.Fabric;
 
 public class PayActivity extends AppCompatActivity {
     private static final String TAG = PayActivity.class.getSimpleName();
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
+    private Token mToken;
+    private String mTokenString;
     private ConsumerViewPagerAdapter mViewPagerAdapter;
     private LinearLayout mLayoutConfirm, mLayoutChat, mLayoutCheckOut;
     private FrameLayout mLayoutPayDetails;
@@ -40,11 +60,17 @@ public class PayActivity extends AppCompatActivity {
     private CoordinatorLayout mLayoutPayActivity;
     private String mVendorUid, mTotalPrice, mVendorName, mVendorLogo, mReady;
 
+    public static final String PUBLISHABLE_KEY = "sk_test_CPGPeiE1paVb2CtLwczM4sAC";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, TAG);
+        Fabric.with(this);
         setContentView(R.layout.activity_pay);
+        com.stripe.Stripe.apiKey = PUBLISHABLE_KEY;
+
         postponeEnterTransition();
 
         Bundle extras = getIntent().getExtras();
@@ -129,6 +155,72 @@ public class PayActivity extends AppCompatActivity {
 
         getCartDetailFragment();
     }
+
+    public void submitCard(View view) {
+        // TODO: replace with your own test key
+        final String publishableApiKey = BuildConfig.DEBUG ?
+                "pk_test_7DGPxpaErrh1UKczUD58zGe5" :
+                "pk_test_7DGPxpaErrh1UKczUD58zGe5";
+
+        TextView cardNumberField = (TextView) findViewById(R.id.cardNumber);
+        TextView monthField = (TextView) findViewById(R.id.month);
+        TextView yearField = (TextView) findViewById(R.id.year);
+        TextView cvcField = (TextView) findViewById(R.id.cvc);
+
+        Card card = new Card(cardNumberField.getText().toString(),
+                Integer.valueOf(monthField.getText().toString()),
+                Integer.valueOf(yearField.getText().toString()),
+                cvcField.getText().toString());
+
+        Stripe stripe = new Stripe();
+        stripe.createToken(card, publishableApiKey, new TokenCallback() {
+            public void onSuccess(Token token) {
+                // TODO: Send Token information to your backend to initiate a charge
+                Toast.makeText(
+                        getApplicationContext(),
+                        "Token created: " + token.getId(),
+                        Toast.LENGTH_LONG).show();
+                mToken = token;
+                mTokenString = token.getId();
+                new stripeTask().execute();
+            }
+
+            public void onError(Exception error) {
+                Log.d("Stripe", error.getLocalizedMessage());
+            }
+        });
+    }
+    class stripeTask extends AsyncTask<Token, Integer, String> {
+
+        @Override
+        protected String doInBackground(Token... params) {
+            Log.i("AsyncTask", mTokenString);
+            // Charge the user's card:
+            final Map<String, Object> cardParams = new HashMap<>();
+            cardParams.put("amount", 50);
+            cardParams.put("currency", "usd");
+            cardParams.put("description", CartHomeAdapter.mVendorUid);
+            cardParams.put("source", mTokenString);
+
+            try {
+                Charge charge = Charge.create(cardParams);
+                Log.i("Charge", charge.getStatus());
+
+            } catch (AuthenticationException e) {
+                e.printStackTrace();
+            } catch (APIException e) {
+                e.printStackTrace();
+            } catch (InvalidRequestException e) {
+                e.printStackTrace();
+            } catch (CardException e) {
+                e.printStackTrace();
+            } catch (APIConnectionException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
 
     private void getEnterAnimation() {
         Transition transition = getWindow().getSharedElementEnterTransition();

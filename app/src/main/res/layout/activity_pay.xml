@@ -241,11 +241,15 @@
             <!--android:layout_above="@+id/cardViewPay"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="match_parent">-->
-
             <!--<include layout="@layout/credit_card_form" />-->
-
         <!--</FrameLayout>-->
 
+    <!--<FrameLayout-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
         <!--<include layout="@layout/wallet_buttons" />-->
+    <!--</FrameLayout>-->
+
 
 </android.support.design.widget.CoordinatorLayout>
